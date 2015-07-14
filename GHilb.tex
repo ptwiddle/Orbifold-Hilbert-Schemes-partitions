@@ -43,6 +43,10 @@
 \newcommand{\proj}{\mathbb{P}}
 \newcommand{\core}{\mathbf{core}}
 
+\DeclareMathOperator{\Hilb}{Hilb}
+
+
+
 \begin{document}
 \title{Orbifold Hilbert schemes and a generalization of cores and quotients}
 
@@ -57,8 +61,61 @@
 \section{Introduction}
 \cite{GLM}
 
+\section{Hilbert schemes of points on surfaces}
+
+\subsection{Hilbert schemes of points in the plane}
 
 
+\begin{theorem}[Ellingsrud and Str\o mme, 1987]
+$$\sum_{k,n \geq 0} b_k(\Hilb_n(\C^2))t^k q^n=\prod_{\ell=1}^\infty \frac{1}{1-t^{2\ell-2}q^\ell}$$
+\end{theorem}
+
+
+
+\subsubsection{Bia\l ynicki-Birula decomposition}
+Proved using the Bia\l ynicki-Birula decomposition.  The Bia\l ynicki-Birula decomosition should be understood in analogy with Morse theory.  
+
+The role of the Morse flow will be played by the flow $x\mapsto \varepsilon x$ as $\varepsilon\in\C^*$ tends toward zero.  We assume that the $\C^*$ action on $X$ is such that this limit point exists for all $x\in X$.  
+
+Let $p$ be a fixed point of the $\C^*$ action.  Then linearizing the $\C^*$ action on $X$ gives a $\C^*$ action on $T_pX$, and so $T_pX$ is not just a vector space but a $\C^*$ representation, and hence decomposes into a direct sum of irreducible representations.  Let $V_a$ denote the irreducible representation of $\C^*$ where $\varepsilon\in\C^*$ acts as $\varepsilon^a$.  
+
+Let $T_p^+X$ (respectively $T_p^-X$) denote the subspace of $T_pX$ where the $\C^*$ action acts with a positive (respectively negative) exponent.  I.e., if
+
+$$T_pX=\bigoplus_{n\in\Z} V_n^{e_n}$$
+then
+
+Let 
+$$\mathcal{S}_p=\{x\in X|\lim_{\varepsilon\to 0} \varepsilon x=p\}$$
+Then clearly we have $X=\sqcup_{p}\mathcal{S}_p$; the point is that $\mathcal{S}_p$ is a subvariety isomorphic to $\C^{\iota(p)}$.
+
+
+
+We first observe that $V_0$ cannot occur in $T_pX$, as 
+
+We saw in Section [REFER BACK TO ] that if $X$ is a variety with a $\C^*$ action with $k$ isolated fixed points, then $\chi(X)=k$.  If we know the weights of the $\C^*$ action on the tangent spaces of the fixed points, the Bia\l ynicki-Birula decomposition leverages this result to give the betti numbers of $X$, or even further the class of $X$ in the Grothendieck ring of varieties.
+
+\subsubsection{Tangent space to a monomial ideal}
+To apply the Bia\l ynicki-Birula decomposition to $\Hilb_n(\C^2)$, we need to calculate the weights of the $\C^*$ action on $T_\lambda\Hilb_n(\C^2)$.
+
+\begin{Lemma}[Ellingsrud and Str\o mme, Cheah]
+$$T_\lambda \Hilb_n(\C^2)=\sum_{\square\in\lambda} \left(x^{-\ell(\square)} y^{a(\square)+1}+x^{\ell(\square)+1}y^{-a(\square)}\right)$$
+\end{Lemma}
+
+\begin{proof}
+
+First, we use $T_\lambda\Hilb_n(\C^2)=\Hom_R(\mathcal{I}_\lambda,R/\mathcal{I}_\lambda)$.
+
+Analogy with the Grassmannian makes this intuitively plausible; indeed, if $V\subset W$ is a $k$ dimensional subspace, then $T_V Gr_k(W)=\Hom(V, V^\perp)=\Hom(V, W/V)$.  Thus, we understand the deformations of $\mathcal{I}_\lambda$ as a vector space; for the deformation to remain an ideal it is plausible that we should require the deformation to be a map of $R$ modules and not just vector spaces.
+
+More formally, it is a general fact that first order deformations of objects are given by $\Ext^1(\mathcal{F},\mathcal{F})$, and obstructions to these deformations are given by $\Ext^2(\mathcal{F},\mathcal{F})$; starting from this fact and considering the long exact sequences by taking $\Hom(\mathcal{I})$ to
+
+$$0\to \mathcal{I}\to R\to R/\mathcal{I}\to 0$$
+gives the result.
+
+
+
+
+\end{proof}
 
 \bibliographystyle{plain}
 \bibliography{GHilb}
