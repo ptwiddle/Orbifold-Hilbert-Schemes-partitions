@@ -44,8 +44,8 @@
 \newcommand{\core}{\mathbf{core}}
 
 \DeclareMathOperator{\Hilb}{Hilb}
-
-
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Hom}{Hom}
 
 \begin{document}
 \title{Orbifold Hilbert schemes and a generalization of cores and quotients}
@@ -62,6 +62,29 @@
 \cite{GLM}
 
 \section{Hilbert schemes of points on surfaces}
+
+
+
+\subsection{Colored square counting}
+
+The core construction helps us with the colored box square counting:
+
+Consider the function
+$$P_G(q_0,\dots,q_{r-1})=\sum_{\lambda\in\mathcal{P}} \mathbf{q}^{|\lambda|^G}$$
+where 
+$$\mathbf{q}^{|\lambda|_G}=\prod_{i=0}^{r-1} q_i^{|\lambda|^G_i}$$
+that counts partitions according to their full colored square count as opposed to just their size; alternatively, the coefficient of $\mathbf{q}^v$ is the euler characteristic of $\Hilb_v([\C^2/G])$.
+
+What can we say about $P_G$?  First, we consider the case where $G\subset SL_2$.  Let $Q=q_0q_1\cdots q_{r-1}$.  The core construction gives
+$$P_G=\prod_{i=1}^\infty\frac{1}{(1-Q^i)^r} \sum_{w} Q^{A(w)}\mathbf{q}^w $$
+Thus, we see in this case $P_G$ is a multivariable theta function.
+
+In case $r=2$, this has an infinite product expansion using the Jacobi identity.  In fact, work of Boulet shows that actually the case $G=\Z_2\times \Z_2$ has an infinite product expansion.  Letting $q_{00}, q_{01}, q_{10}, q_{11}$ denote the variables, we have
+
+$$P_{\Z_2\times\Z_2}=\prod_{i=1}^\infty \frac{(1+q_{00}^jq_{01}^{j-1}q_{10}^{j-1}q_{11}^{j-1})(1+q_{00}^jq_{01}^jq_{10}^jq_{11}^{j-1})}{(1-q_{00}^jq_{01}^jq_{10}^jq_{11}^j)(1-q_{00}^jq_{01}^jq_{10}^{j-1}q_{11}^{j-1})(1-q_{00}^jq_{01}^{j-1}q_{10}^{j}q_{11}^{j-1})}$$
+
+However, even the one variable specialization $P_{\Z_3}(q,1,1)$ does not have a nice infinite product expression, as observed by Bal\'azs Szendr\"oi \cite{Bmo}; as it has a root at $-e^{\pi/\sqrt{3}}$ \cite{Borwein2}.
+
 
 \subsection{Hilbert schemes of points in the plane}
 
@@ -97,9 +120,9 @@ We saw in Section [REFER BACK TO ] that if $X$ is a variety with a $\C^*$ action
 \subsubsection{Tangent space to a monomial ideal}
 To apply the Bia\l ynicki-Birula decomposition to $\Hilb_n(\C^2)$, we need to calculate the weights of the $\C^*$ action on $T_\lambda\Hilb_n(\C^2)$.
 
-\begin{Lemma}[Ellingsrud and Str\o mme, Cheah]
+\begin{lemma}[Ellingsrud and Str\o mme, Cheah]
 $$T_\lambda \Hilb_n(\C^2)=\sum_{\square\in\lambda} \left(x^{-\ell(\square)} y^{a(\square)+1}+x^{\ell(\square)+1}y^{-a(\square)}\right)$$
-\end{Lemma}
+\end{lemma}
 
 \begin{proof}
 
