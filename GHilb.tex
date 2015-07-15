@@ -34,7 +34,7 @@
 \newtheorem{observation}{Observation}
 \newtheorem{question}{Question}
 \newtheorem{conjecture}[dummy]{Conjecture}
-
+\newtheorem{warning}[dummy]{Warning}
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\C}{\mathbb{C}}
@@ -87,11 +87,17 @@ Taking the difference of the the middle two generators, we see that $\mathcal{I}
 
 Another way of writing the ideal $\mathcal{I}_{P_0}$ is as 
 $$\mathcal{I}_{P_0}=\{f\in R| f(0)=\partial_vf(0)=0\}$$
-where here $v=(a,b)$ is the direction the two points collided in.  Thus, the non-reduced scheme structure at $\mathcal$ \emph{remembers} the direction the point collided from.
+where here $v=(a,b)$ is the direction the two points collided in.  Thus, the non-reduced scheme structure at $\mathcal{I}_{P_0}$ \emph{remembers} the direction the point collided from.
 \end{example}
 
-When 
+The torus $(\C^*)^2$ acts on the plane $\C^2$ in the obvious way, $(s,t)\cdot (\alpha,\beta)=(s\alpha,t\beta)$ and hence on $R=\C[x,y]$ and $\Hilb_n(\C^2)$.  
 
+\begin{warning} \label{warning:action-sign}
+
+ The elements of $R$ are functions on $\C^2$, and thus $(\C^*)^2$ acts with \emph{opposite} weights as might naively be expected, that is 
+$$(s,t)\cdot x^ny^m=s^{-n}t^{-m}x^ny^m$$
+
+\end{warning}
 
 
 
@@ -151,11 +157,13 @@ We saw in Section [REFER BACK TO ] that if $X$ is a variety with a $\C^*$ action
 \subsubsection{Tangent space to a monomial ideal}
 To apply the Bia\l ynicki-Birula decomposition to $\Hilb_n(\C^2)$, we need to calculate the weights of the $\C^*$ action on $T_\lambda\Hilb_n(\C^2)$.
 
-\begin{lemma}[Ellingsrud and Str\o mme, Cheah]
+\begin{lemma}[Ellingsrud and Str\o mme, Cheah] \label{lem:torus-weights}
 $$T_\lambda \Hilb_n(\C^2)=\sum_{\square\in\lambda} \left(x^{-\ell(\square)} y^{a(\square)+1}+x^{\ell(\square)+1}y^{-a(\square)}\right)$$
 \end{lemma}
 
 \begin{proof}
+
+
 
 First, we use $T_\lambda\Hilb_n(\C^2)=\Hom_R(\mathcal{I}_\lambda,R/\mathcal{I}_\lambda)$.
 
@@ -166,10 +174,35 @@ More formally, it is a general fact that first order deformations of objects are
 $$0\to \mathcal{I}\to R\to R/\mathcal{I}\to 0$$
 gives the result.
 
+\end{proof}
 
+
+Let $T_\lambda^{a,b}$ denote the $(a,b)$-isotypical component of $T_{\mathcal{I}_\lambda}\Hilb_n(\C^2)$.  Viewed as an element of $\Hom(\mathcal{I}_\lambda, R/\mathcal{I}_\lambda)$, any such map multiplies some subset of the monomials in $\mathcal{I}_\lambda$ by $cx^a y^b$, for some constant $c$, and sends the other monomials in $\mathcal{I}_\lambda$.  
+
+Let $P_\lambda$ be the boundary path of $\lambda$; for $(a,b)$ in $\Z^2$, let $P_\lambda(a,b)$ denote the boundary path of $\lambda$ shifted to the right by $a$ and up by $b$.
+
+\begin{lemma} Let $B_\lambda(a,b)$ be the set of bounded regions above $P_\lambda$ and below $P_\lambda(-a,-b)$.  For $b\in B_\lambda(a,b)$, let $f_b$ denote the map that multiplies monomials in $b$ by $x^ay^b$ and sends monomials not in $B_\lambda(a,b)$ to $0$.  Then the $f_b$ form a basis for $T_\lambda^{a,b}$.
+\end{lemma}
+
+\begin{proof}
 
 
 \end{proof}
+
+
+We are now in a position to prove Lemma \ref{lem:torus-weights}.  First we show that $T_\lambda^{(a,b)}$ is empty if $(a,b)$ are both negative or both non-negative.  If both are non-negative, then there are no cells at all below $P_\lambda(-a,-b)$ and $P_\lambda$.  If both are positive, then the cells below $P_\lambda(-a,-b)$ and $P_\lambda$ form one unbounded region.
+
+Thus, exactly one of $a,b$ is negative; assume it is $a$.  We must show that the elements of $B_\lambda(a,b)$ are in bijection with the cells $\square\in\lambda$ having  $a=\ell(\square)$ and $b=-a(\square)-1$ (recall the sign from Warning \ref{warning:action-sign}.
+
+Consider a region of cells above $P_\lambda$ and below $P_\lambda(-a,-b)$.  There are two possible directions this region could be unbounded -- along the positive $y$ or $x$-axes.  Since $b$ is positive, there are no squares far along the $x$-axis both below $P_\lambda(-a,-b)$  and above $P_\lambda$, and so the region is automatically bounded in that direction.  
+
+We must therefore guarantee the region is bounded at the bottom right.  This will happen when a South step of $P_\lambda$ starts at the same point as East step of $P_\lambda(-a,-b)$.  
+
+Bounded cells well thus be in bijection with pairs of such cells.  Translating the East step back $(a,b)$ to its original place on the boundary strip, we find these two steps give an inversion in the $P_\lambda$ and hence a cell of $\lambda$.  The arm length of this cell will be $b+1$, and the leg will have size $a$. 
+
+A similar argument shows that tangent directions with $b$ negative correspond to. 
+
+
 
 The topology of Hilbert schemes of points on surfaces was found by G\o ttsche.  A key point is that rather than study $\Hilb_n(S)$ for fixed $n$, it is easier to study them for all $n$ at once.
 
@@ -295,13 +328,13 @@ $$\mathcal{H}_G(q,t)= \frac{(q^k;q^k)^k_\infty}{(q,q)_\infty} \prod_{g\in G}\fra
 
 The analogs of stabilization and geometric representation theory work on the level of connected Hilbert scheme.
 
-\begin{theorem}[Johnson] 
+\begin{theorem} 
 $P_t(\Hilb^{\delta+nG}_G)$ stabilizes to $1/(t,t)_\infty^{|G|}$
 \end{theorem}
 Note that the right hand side is independent of $m$ and $\delta$.
 \begin{proof} Combinatorics -- a generalization of cores and quotients of partitions \end{proof}
 
-\begin{conjecture}[Johnson] 
+\begin{conjecture}
 The stable cohomology of $\Hilb^{\delta+nG}$ is freely generated by the Chern classes of the $|G|$ tautological bundles.
 \end{conjecture}
 
@@ -310,7 +343,7 @@ The stable cohomology of $\Hilb^{\delta+nG}$ is freely generated by the Chern cl
 \subsubsection{Heisenberg Action}
 
 
-\begin{conjecture}[Johnson]
+\begin{conjecture}
 Let $\delta\in K_0(G)$ be small, and $G$ cyclic.  Then
 $$\bigoplus_{k\geq 0} H_*(\Hilb^{\delta+kG}_G)$$ admits the action of a Heisenberg algebra based on the cohomology of the minimal resolution of $\C^2/G$.
 \end{conjecture}
