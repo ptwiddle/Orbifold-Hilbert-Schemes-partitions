@@ -75,7 +75,7 @@ Geometrically, $\Hilb_n(\C^2)$ should be thought of as follows.  Let $\Sym^n(\C^
 If $P=\{p_1,p_2,\dots, p_n\}$ is a set of $n$ distinct points in the plane, thenon the one hand the ideal $\mathcal{I}_{P}=\{f\in R| f(p)=0 \text{ for }p\in \mathbf{p}\}$ of functions vanishing on $P$ is in $\Hilb_n$.  If two of the points collide, there is still a limiting ideal $\mathcal{I}$ consisting of.  The resulting ideal is not reduced, and the non-reduced structure ``remembers'' some of how they collide.
 
 The ring $R/\mathcal{I}$ is the structure ring of $n$ points, counted with multiplicity, in the plane; when points collide, they have a non-reduced scheme structure.  
-
+v
 \begin{example}
 Let $(a,b)\neq (0,0)\in\C^2$, and let $P_t$ be the pair of distinct points $(0,0)$ and $(at,bt)$.  What is the limit of $\mathcal{I}_{P_t}$ as $t\to 0$?
 
@@ -93,7 +93,7 @@ where here $v=(a,b)$ is the direction the two points collided in.  Thus, the non
 
 \begin{definition}
 The \emph{Hilbert-Chow morphism} $HC:\Hilb_n(S)\to\Sym^n(S)$ sends an ideal $\mathcal{I}$ to 
-$$HC(\mathcal{I}\mapsto \sum_{p\in S} \dim_p (R/\mathcal{I})$$
+$$HC:\mathcal{I}\mapsto \sum_{p\in S} \dim_p (R/\mathcal{I})$$
 \end{definition}
 
 
@@ -151,10 +151,47 @@ $$\Hilb_2(S_{1/3})=\proj^1$$.
 
 In the anti-diagonal case, $x$ and $y$ are scaled by different numbers.  So the only linear generator of $\mathcal{I}, bx-ay$, will not be fixed unless $b=0$ or $a=0$, and so we see that $\Hilb_2(S_{2/3})$ consists of two points.  
 
-Here we have another marked difference from the case of 
+Here we have another marked difference from the case of non-orbifold surfaces: Hilbert schemes of points on orbifolds need not be connected.
 
 \end{example}
 
+The fact that orbifold Hilbert schemes are disconnected is easily explained by a discrete invariant.  Since $R, \mathcal{I}$ both have $G$ actions, the module $R/\mathcal{I}$ is not just a vector space but a representation of $G$.  These are discrete invariants, and so obviously one representation of $G$ cannot deform into another.  
+
+\begin{definition}
+For $v$ a representation of $G$, we define
+$$\Hilb_v(\C^2/G)=\{\mathcal{I}|R/\mathcal{I}=v\}$$
+\end{definition}
+
+It turns out the $\Hilb_v$ are connected.  
+
+This discussion also helps explain why adding a point does not correspond to a smooth point of $\C^2/G$.  Smooth points of $\C^2/G$ correspond to points in $\C^2$ where $G$ acts freely.  If $\mathcal{O}_{Gp}$ is the structure sheaf of the orbit of such a point, then $G$ acts on $\mathcal{O}_{Gp}$ as the regular representation.  
+
+Thus, the generic point of $\Hilb_{\C[G]}({\C^2/G})$ -- often called $G-\Hilb$ in the literature -- will correspond to a smooth point of $\C^2/G$.  However, $G-\Hilb$ is smooth from our discussion before, and since the image of the Hilbert-Chow morphism is the $G$ invariant sets, we really have a map $G-\Hilb\to \C^2/G$ that is an isomorphism away from the singular points, and so we see $G-\Hilb$ is a resolution of $\C^2/G$. 
+
+In fact, singularities of the form $\C^2/G$ have a unique minimal resolution, and 
+
+\begin{theorem} \label{thm:GHilb-resolution}
+The map $G-\Hilb\to \C^2/G$ is the minimal resolution.
+\end{theorem}
+
+Theorem \ref{thm:GHilb-resolution} is useful because it gives a modular interpretation of the minimal resolution.  It also shows the geometry of the minimal resolution appearing.
+
+The resolution of the $\C^2/G$ singularity is rational; hence the exceptional locus is a tree of $\proj^1$'s joining together.  In case $G$ is cyclic, the resolution is actually a chain of rational curves.  
+
+The self-intersection of the $i$th piece is given by $i$th coefficient in 
+
+numbers are given by the continued fraction expansion of $r/a$.  
+
+\begin{example}
+The anti-diagonal case:
+
+
+
+\end{example}
+
+\begin{example}[Diagonal action]
+
+\end{example}
 
 
 \subsection{Colored square counting}
