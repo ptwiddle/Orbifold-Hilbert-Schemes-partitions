@@ -111,6 +111,11 @@ $$(s,t)\cdot x^ny^m=s^{-n}t^{-m}x^ny^m$$
 
 \end{warning}
 
+\begin{definition}
+The \emph{tautological bundle} over the Hilbert scheme of points has fiber $R/\mathcal{I}$ over $\mathcal{I}$; it is a rank $n$ bundle on $\Hilb_n$.
+\end{definition}
+
+
 \subsection{Orbifold Hilbert schemes}
 
 We turn now to Hilbert schemes on orbifolds.  An orbifold is, first of all, a space where every point has a neighborhood isomorphic to $\C^n/G$, where $G$ is a finite group.  Viewed this way, orbifolds are mildly singular spaces.  
@@ -164,11 +169,46 @@ $$\Hilb_v(\C^2/G)=\{\mathcal{I}|R/\mathcal{I}=v\}$$
 
 It turns out the $\Hilb_v$ are connected.  
 
+The tautological bundle on $\Hilb_n$ splits into $r$ distinct tautological bundles, according to how the group $G$ acts 
+
+
 This discussion also helps explain why adding a point does not correspond to a smooth point of $\C^2/G$.  Smooth points of $\C^2/G$ correspond to points in $\C^2$ where $G$ acts freely.  If $\mathcal{O}_{Gp}$ is the structure sheaf of the orbit of such a point, then $G$ acts on $\mathcal{O}_{Gp}$ as the regular representation.  
 
 Thus, the generic point of $\Hilb_{\C[G]}({\C^2/G})$ -- often called $G-\Hilb$ in the literature -- will correspond to a smooth point of $\C^2/G$.  However, $G-\Hilb$ is smooth from our discussion before, and since the image of the Hilbert-Chow morphism is the $G$ invariant sets, we really have a map $G-\Hilb\to \C^2/G$ that is an isomorphism away from the singular points, and so we see $G-\Hilb$ is a resolution of $\C^2/G$. 
 
-In fact, singularities of the form $\C^2/G$ have a unique minimal resolution, and 
+\begin{center}
+\begin{tikzpicture}[scale=.5]
+\draw(0,-4) node{$\widetilde{S}_{1/2}$};
+\draw[-latex] (3,0)--(9,0);
+
+\draw (0,2.236) ellipse (2 and 1);
+\draw (0,-2.236) ellipse (2 and 1);
+\draw[red] (0,0) ellipse (2 and 1);
+\fill[white] (-2,0)--(2,0)--(2,1.1)--(-2,1.1)--cycle;
+\fill[white] (-2,-2.336)--(2,-2.336)--(2,-1.136)--(-2,-1.136)--cycle;
+\draw[dashed] (0,-2.236) ellipse (2 and 1);
+\draw[red,dashed] (0,0) ellipse (2 and 1);
+
+\draw (2,2.236)--(2,-2.236);
+\draw (-2,2.236)--(-2,-2.236);
+
+\begin{scope}[xshift=12cm]
+\draw (0,-4) node{$S_{1/2}$};
+\draw (0,2.236) ellipse (2 and 1);
+\draw (0,-2.236) ellipse (2 and 1);
+\fill[white] (0,0)--(1.7888, -1.7888)--(-1.7888,-1.7888)--cycle;
+\draw (-1.7888,-1.7888) -- (1.78888,  1.7888);
+\draw (1.7888,-1.7888) -- (-1.78888,  1.7888);
+\draw[dashed] (0,-2.236) ellipse (2 and 1);
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+In fact, singularities of the form $\C^2/G$ have a unique minimal resolution, and $G-\Hilb$ is this resolution:
+
+
+
+
 
 \begin{theorem} \label{thm:GHilb-resolution}
 The map $G-\Hilb\to \C^2/G$ is the minimal resolution.
@@ -176,22 +216,75 @@ The map $G-\Hilb\to \C^2/G$ is the minimal resolution.
 
 Theorem \ref{thm:GHilb-resolution} is useful because it gives a modular interpretation of the minimal resolution.  It also shows the geometry of the minimal resolution appearing.
 
-The resolution of the $\C^2/G$ singularity is rational; hence the exceptional locus is a tree of $\proj^1$'s joining together.  In case $G$ is cyclic, the resolution is actually a chain of rational curves.  
+The resolution of the $\C^2/G$ singularity is rational; hence the exceptional locus is a tree of $\proj^1$'s joining together.  In case $G$ is cyclic, the resolution is actually a chain of rational curves with negative self intersection.  See Chapter 10 of \cite{toric} for a thorough discussion of this.
 
-The self-intersection of the $i$th piece is given by $i$th coefficient in 
+\begin{center}
+\begin{tikzpicture}[xscale=.75]
+\draw plot [smooth, tension=1] coordinates {(0,0) (2,.5) (4,0)};
+\draw plot [smooth, tension=1] coordinates {(3,0) (5,.5) (7,0)};
+\draw plot [smooth, tension=1] coordinates {(6,0) (8,.5) (10,0)};
+\draw plot [smooth, tension=1] coordinates {(9,0) (11,.5) (13,0)};
 
-numbers are given by the continued fraction expansion of $r/a$.  
+\draw (2,1) node{$-2$};
+\draw (5,1) node{$-4$};
+\draw (8,1) node{$-3$};
+\draw (11,1) node{$-3$};
 
-\begin{example}
-The anti-diagonal case:
+\end{tikzpicture}
+\end{center}
 
+$$
+\begin{bmatrix}
+-2 & 1 & 0 & 0 \\
+1 & -4 & 1 & 0 \\
+0 & 1 & -3 & 1 \\
+0 & 0 & 1 & -3 
+\end{bmatrix}
+$$
 
-
-\end{example}
+The number and self-intersection of the components of the exception divisor are given by the \emph{Hirzebruch-Jung} continued fraction expansion of $r/a$.  That is, if we write
+$$
+\frac{r}{a}=b_1-\cfrac{1}{b_2-\cfrac{1}{b_3-\cfrac{1}{\cdots - \cfrac{1}{b_r}}}}
+$$  
+then the exception divisor as $r$ components in a chain, and the $i$th component has self-intersection $-b_i$. 
 
 \begin{example}[Diagonal action]
+Consider the diagonal action of $\Z_r$ on $\C^2$; this corresponds to $a=1$, and so the Hirzebruch-Jung continued fraction is simply $r/1=r$.  The exceptional divisor consists of one component with self intersection $-r$.
 
 \end{example}
+
+
+\begin{example}[The anti-diagonal case]  
+In this case, the Hirzebruch-Jung continued fraction is
+$$r/(r-1)=\underbrace{2-\cfrac{1}{2-\cfrac{1}{\cdots-\cfrac{1}{2}}}}_{\text{$r-1$ times}}$$
+Thus, the resolution consists of a chain $r-1$ -2 curves.
+\end{example}
+
+\begin{example}[The other $\Z_5$ case]
+As a final example, consder $\Z_5$ acting with weights $(1,2)$.  Switching the role of $x$ and $y$, this is equivalent to $\Z_5$ acting with weights $(1,3)$.
+
+We have the continued fraction expansions
+$$5/2=3-\cfrac{1}{2}$$
+$$5/3=2-\cfrac{1}{3}$$
+The minimal resolution thus consists of a -3 curve meeting a -2 curve; the choice of which direction we choose as $x$ and $y$ corresponds to which edge of the chain we start at.
+\end{example}
+
+The intersection pairing of the minimal resolution $\widetilde{S}_{a/r}$ will play an important role later.  The components of the exception curve form a basis for 
+
+
+\subsection{McKay Correspondence}
+The McKay correspondence is a dictionary began as the
+
+\begin{definition}
+Let $G$ be a finite group, and $W$ a representation of $G$.  The \emph{McKay graph} $\Gamma_V$ is the directed graph with vertex set $\irreps(G)$, and if $U$ and $V$ are two irreps of $G$, the multiplicity of the edges from $U$ to $V$ is the multiplicity of $V$ in $U\otimes W$.
+\end{definition}
+
+The subgroups of $SU_2$ have an ADE classification.  There are two infinite series: cyclic groups, binary dihedral groups, and double covers of the isometries of the symmetries of the platonic solids.
+
+McKay observed that when $G\subset SL_2(\C)$, the McKay graph of the defining two dimension representation was the \emph{affine} version of the corresponding ADE Dynkin diagram.  Removing the vertex corresponding to the trivial representation gives the usual ADE Dynkin diagram.  Furthermore, the exceptional locus of the minimal resolution $\widetilde{S}_G$ of the corresponding singularity has all $-2$ curves, with dual graph the corresponding Dynkin diagram. 
+
+The space $G-\Hilb$ give an explanation of this.  The 
+
 
 
 \subsection{Colored square counting}
@@ -210,7 +303,9 @@ Thus, we see in this case $P_G$ is a multivariable theta function.
 
 In case $r=2$, this has an infinite product expansion using the Jacobi identity.  In fact, work of Boulet shows that actually the case $G=\Z_2\times \Z_2$ has an infinite product expansion.  Letting $q_{00}, q_{01}, q_{10}, q_{11}$ denote the variables, we have
 
+\begin{theorem}[Boulet \cite{boulet}]
 $$P_{\Z_2\times\Z_2}=\prod_{i=1}^\infty \frac{(1+q_{00}^jq_{01}^{j-1}q_{10}^{j-1}q_{11}^{j-1})(1+q_{00}^jq_{01}^jq_{10}^jq_{11}^{j-1})}{(1-q_{00}^jq_{01}^jq_{10}^jq_{11}^j)(1-q_{00}^jq_{01}^jq_{10}^{j-1}q_{11}^{j-1})(1-q_{00}^jq_{01}^{j-1}q_{10}^{j}q_{11}^{j-1})}$$
+\end{theorem}
 
 However, even the one variable specialization $P_{\Z_3}(q,1,1)$ does not have a nice infinite product expression, as observed by Bal\'azs Szendr\"oi \cite{Bmo}; as it has a root at $-e^{\pi/\sqrt{3}}$ \cite{Borwein2}.
 
