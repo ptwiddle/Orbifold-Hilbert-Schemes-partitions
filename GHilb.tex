@@ -41,6 +41,8 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\proj}{\mathbb{P}}
 \newcommand{\core}{\mathbf{core}}
+\newcommand{\irreps}{\text{irreps}}
+
 
 \DeclareMathOperator{\Hilb}{Hilb}
 \DeclareMathOperator{\Ext}{Ext}
@@ -48,8 +50,12 @@
 \DeclareMathOperator{\DC}{DH}
 \DeclareMathOperator{\Sym}{Sym}
 
-
 \begin{document}
+\begin{abstract}
+We study the connection between the combinatoric of certain partition statistics and the topology of the Hilbert schemes of certain orbifold surfaces.
+\end{abstract}
+
+
 \title{Orbifold Hilbert schemes and a generalization of cores and quotients}
 
 
@@ -59,9 +65,15 @@
 
 
 \maketitle
-
+\tableofcontents
 \section{Introduction}
 \cite{GLMpower}
+
+\subsection{Acknowledgements}
+
+Research on this work was supported by NSF grant NUMBER HERE, and CITE TOM's GRANT?
+
+Thanks to Amin, Yunfeng, and Martijn for asking a question that began this research, and to Tom Bridgeland for useful conversations.
 
 \section{Hilbert schemes of points on surfaces}
 
@@ -273,7 +285,7 @@ The intersection pairing of the minimal resolution $\widetilde{S}_{a/r}$ will pl
 
 
 \subsection{McKay Correspondence}
-The McKay correspondence is a dictionary began as the
+The McKay correspondence is relates the geometry of $\widetilde{S}_G$ to the representation theory of $G$.
 
 \begin{definition}
 Let $G$ be a finite group, and $W$ a representation of $G$.  The \emph{McKay graph} $\Gamma_V$ is the directed graph with vertex set $\irreps(G)$, and if $U$ and $V$ are two irreps of $G$, the multiplicity of the edges from $U$ to $V$ is the multiplicity of $V$ in $U\otimes W$.
@@ -283,8 +295,13 @@ The subgroups of $SU_2$ have an ADE classification.  There are two infinite seri
 
 McKay observed that when $G\subset SL_2(\C)$, the McKay graph of the defining two dimension representation was the \emph{affine} version of the corresponding ADE Dynkin diagram.  Removing the vertex corresponding to the trivial representation gives the usual ADE Dynkin diagram.  Furthermore, the exceptional locus of the minimal resolution $\widetilde{S}_G$ of the corresponding singularity has all $-2$ curves, with dual graph the corresponding Dynkin diagram. 
 
-The space $G-\Hilb$ give an explanation of this.  The 
+The description of the minimal resolution $\widetilde{S}_G$ as $G-\Hilb$ gives an explanation of this.  For an irrep $\rho$ of $G$, we have on the one hand a tautological bundle $\mathbb{E}_\rho$ over $G-\Hilb$, and on the other hand a vertex of the McKay graph.  
 
+$$c_1(\mathbb{E}_\rho)=E_\rho$$
+
+\subsection{The special McKay correspondence}
+
+When $G$ is not in $SL_2$, the number of components in the exception divisor of $\widetilde{S}_G$ is strictly less than the number of nontrivial irreducible representations of $G$.  The special McKay correspondence picks out a subset of the irreps of $G$, called the \emph{special} representations, and gives a labeling of the irreducible components of the exception divisor of $G$ by the special representations, so that we still have $c_1(\mathbb{E}_\rho)=E_\rho$.
 
 
 \subsection{Colored square counting}
@@ -489,12 +506,32 @@ Then $\iota(g)=\sum a_i/r$; sometimes called the logarithmic trace of $g$.
 
 The grading shift number is in general only a rational number -- $\iota(g)\in \Z$ if and only if the determinant of $g$ is trivial.  Thus, in case all isotropy groups $G_x$ are in $SL_2$, then the Chen-Ruan cohomology is integrally graded.
 
-\begin{example}
+\begin{example}[Antidiagonal action]
+When $G\subset SL_2$, we have that 
+$$\iota(g)=\left\{\begin{array}{rl} 0 & g=0 \\
+1 & g\neq 0 \end{array}\right.
+$$
 
+Thus, the dimension of $H_{CR}^*([\C^2/G])$ is equal to the number of conjugacy classes of $G$ (which is the number of irreps of $G$.  We have $H_{CR}^0$ is one dimensional, with the rest of the classes being two dimensional.  Thus we have
+
+$$H_{CR}^*([\C^2/G])\cong H^*(\widetilde{S}_G)$$
+as graded vector spaces (actually, as rings in this case).  
 \end{example}
 
 
-The Chen-Ruan cohomology of $[\C^2/G]$ is rationally graded, with $d$ with $0\leq d < 4$;
+It is a theorem of Yasuda that if $\mathcal{X}$ is any effective orbifold, and $\widetilde{X}$ is any crepant resolution of the coarse moduli space, then 
+$$H_{CR}^*(\mathcal{X})=H^*(\widetilde{X})$$
+as graded vector spaces.  The products do not necessarily agree; quantumn corrections are needed; the \emph{Crepant Resolution Conjecture} states that, properly understood, the quantumn cohomology of $\mathcal{X}$ and $\widetilde{X}$ should agree.
+
+
+\begin{example}
+Let $\Z_r$ act diagonally, with element $g_k$ acting as $(\exp(k2\pi i/r),\exp(k2\pi i/r))$.  Then we have $\iota(g_k)=2k/r$.
+\end{example}
+
+
+
+
+The Chen-Ruan cohomology of $[\C^2/G]$ is rationally graded, with $d$ with $0\leq d < 4$
 
 
 $$0\to G\cap SL_2\to G \to \C^*$$
@@ -506,7 +543,7 @@ $$0\to G\cap SL_2\to G \to \C^*$$
 
 
 
-Our conjectural product formula for $\DC_Gy$ is easiest to state in case $G\cap SL_2=1$.  In this case, the action of $G$ on $\wedge T^*\C^2$ is faithful; taking $r$ times the logarithmic trace of this action gives a bijection between $G$ and $\{0,\dots, r-1\}$.
+Our conjectural product formula for $\DC_G$ is easiest to state in case $G\cap SL_2=1$.  In this case, the action of $G$ on $\wedge T^*\C^2$ is faithful; taking $r$ times the logarithmic trace of this action gives a bijection between $G$ and $\{0,\dots, r-1\}$.
 
 
 Let $F(g)$ and $I(g)$ denote the fractional and integral parts of $\iota(g)$. 
@@ -520,8 +557,16 @@ $$\mathcal{H}_G(q,t)= \frac{(q^k;q^k)^k_\infty}{(q,q)_\infty} \prod_{g\in G}\fra
 \end{conjecture}
 
 
+\begin{example}[Diagonal action, $r$-odd]
+Let $r=2k+1$.   The element of $\Z_r$ that acts on $K$ as $\exp(2\pi i/r)$ acts 1on the tangent space as $\expi(2\pi i k/r)$, and thus as $\iota=2k/(2k+1)<1$.  
 
+Odd powers of this element will have $\iota<1$, while even powers will have $\iota>1$, giving 
 
+In the limit as $r\to\infty$ odd, we get Buryak-Feigin's result
+
+$$\prod_{n \text{ odd}} \frac{1}{1-q^n}\prod_{m \text{ even}}\frac{1}{1-tq^m}$$
+\end{example}
+Appears Buryak-Feigin plays well with colored box counting from cores.
 
 
 
@@ -571,6 +616,26 @@ Stabilization implies that for fixed $\delta$, and large $n$, this second resolu
 
 Changing Stability?
 But, it seems as $\delta\to\infty$, this second family of resolutions converges to the first.
+
+\section{Toward bijections: Generalized Dyson maps}
+
+In this section we point to some partial Our main product formula 
+
+In the case of diagonal $\C^*$ action, the $t=0$ coefficient of our general product formula reduces to Euler's theorem that the number of partitions of $n$ into distinct parts is the number of $n$ into odd parts.  Buryak, Feigin and Nakajima's result then gives a $t$ extension of this to all partitions: the number of partitions of $n$ with $\d_{(1,1)}=k$ is the number of partitions of $n$ with $k$ even parts.
+
+There are at least three bijective proofs of Euler's identity, see for instance \cite{pak}: Sylvester's bijection, Glaisher's bijection, and the iterated Dyson map.  This last bijection appears to be the one pertinent here.
+
+In the next subsection we briefly recall this bijection, then in 
+\subsection{Iterated Dyson map} \label{sec:review-dyson}
+
+
+\subsection{Asymptotic behavior} \label{sec-asymptotic-dyson}
+
+\subsection{Application to finite $G$} 
+
+
+\subsection{Generalizations} \label{sec:generalized-dyson}
+
 
 
 
