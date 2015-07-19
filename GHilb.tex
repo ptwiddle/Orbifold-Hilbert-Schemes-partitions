@@ -69,6 +69,19 @@ We study the connection between the combinatoric of certain partition statistics
 \section{Introduction}
 \cite{GLMpower}
 
+
+Buryak conjectured \cite{Buryak}, and later proved with Feigin \cite{BF}, and simplified the proof with Nakajima \cite{BFN}, the following version. 
+
+\begin{theorem}[Buryak-Feigin-Nakajima] \label{thm:BFN}
+Let $\C^*$ act on $\C^2$ by $t\cdot (x,y)=(t^ax, t^by), a,b\geq 0$.  Then
+
+$$\sum_{k,n} h^k(\Hilb_n(\C^2)^{\C^*})q^nt^k=\prod_{a+b } \frac{1}{1-q^\ell}\prod_{(a+b)|\ell} \frac{1}{1-q^\ell t}$$
+\end{theorem}
+
+The proofs given by Buryak-Feigin, and Buryak-Feigin-Nakajima are algebraic geometric, and go through quiver varieties.  An obvious first step in trying to prove our conjectures combinatorially would be to prove Theorem \ref{thm:BFN} combinatorially.  We give some evidence in Section \ref{ } that maps generalizing Dyson's map might be the approach for this.
+
+
+
 \subsection{Acknowledgements}
 
 Research on this work was supported by NSF grant NUMBER HERE, and CITE TOM's GRANT?
@@ -78,11 +91,11 @@ Thanks to Amin, Yunfeng, and Martijn for asking a question that began this resea
 \section{Hilbert schemes of points on surfaces}
 
 Throughout, $R=\C[x,y]$ will be the polynomial ring in two variables.  
-
+l
 The Hilbert scheme of points in the plane parameterizes ideals $\mathcal{I}$ of $R$ of codimension $n$.
 $$\Hilb_n(\C^2)=\{\mathcal{I}\subset R | \dim_\C R/\mathcal{I}=n\}$$
 The space $\Hilb_n(\C^2)$ is smooth and connected of dimension $2n$.
-
+d
 Geometrically, $\Hilb_n(\C^2)$ should be thought of as follows.  Let $\Sym^n(\C^2)=(\C^2)^n/S_n$ be the set of $n$ onordered points in $\C^2$.  $\Sym^n(\C^2)$ is singular for $n>1$, with singularities occuring where the points are not unique.  
 If $P=\{p_1,p_2,\dots, p_n\}$ is a set of $n$ distinct points in the plane, thenon the one hand the ideal $\mathcal{I}_{P}=\{f\in R| f(p)=0 \text{ for }p\in \mathbf{p}\}$ of functions vanishing on $P$ is in $\Hilb_n$.  If two of the points collide, there is still a limiting ideal $\mathcal{I}$ consisting of.  The resulting ideal is not reduced, and the non-reduced structure ``remembers'' some of how they collide.
 
@@ -558,7 +571,7 @@ $$\mathcal{H}_G(q,t)= \frac{(q^k;q^k)^k_\infty}{(q,q)_\infty} \prod_{g\in G}\fra
 
 
 \begin{example}[Diagonal action, $r$-odd]
-Let $r=2k+1$.   The element of $\Z_r$ that acts on $K$ as $\exp(2\pi i/r)$ acts 1on the tangent space as $\expi(2\pi i k/r)$, and thus as $\iota=2k/(2k+1)<1$.  
+Let $r=2k+1$.   The element of $\Z_r$ that acts on $K$ as $\exp(2\pi i/r)$ acts 1on the tangent space as $\exp(2\pi i k/r)$, and thus as $\iota=2k/(2k+1)<1$.  
 
 Odd powers of this element will have $\iota<1$, while even powers will have $\iota>1$, giving 
 
@@ -566,6 +579,32 @@ In the limit as $r\to\infty$ odd, we get Buryak-Feigin's result
 
 $$\prod_{n \text{ odd}} \frac{1}{1-q^n}\prod_{m \text{ even}}\frac{1}{1-tq^m}$$
 \end{example}
+
+In the examples that follow, we will use the following extension of the Pochhammer symbol:
+
+$$(a_1,\dots, a_n; b)_\infty=\prod_{i=1}^n (a_i;b)_\infty$$
+
+\begin{example}[$S_{2/5}$]
+We have
+$$\begin{array}{r|c|l}
+g & r(1-F(g)) & I(g) \\
+\hline
+1 & 2 & 0 \\
+2 & 4 & 1 \\
+3 & 1 & 0 \\
+4 & 3 & 1 \\
+\end{array}
+$$
+
+Thus, we have
+
+
+$$
+\frac{1}{(q, q^2,q^3t, q^4t, q^5t^2; q^5t^2)_\infty}
+$$
+\end{example}
+
+
 Appears Buryak-Feigin plays well with colored box counting from cores.
 
 
@@ -621,7 +660,7 @@ But, it seems as $\delta\to\infty$, this second family of resolutions converges 
 
 In this section we point to some partial Our main product formula 
 
-In the case of diagonal $\C^*$ action, the $t=0$ coefficient of our general product formula reduces to Euler's theorem that the number of partitions of $n$ into distinct parts is the number of $n$ into odd parts.  Buryak, Feigin and Nakajima's result then gives a $t$ extension of this to all partitions: the number of partitions of $n$ with $\d_{(1,1)}=k$ is the number of partitions of $n$ with $k$ even parts.
+In the case of diagonal $\C^*$ action, the $t=0$ coefficient of our general product formula reduces to Euler's theorem that the number of partitions of $n$ into distinct parts is the number of $n$ into odd parts.  Buryak, Feigin and Nakajima's result then gives a $t$ extension of this to all partitions: the number of partitions of $n$ with $d_{(1,1)}=k$ is the number of partitions of $n$ with $k$ even parts.
 
 There are at least three bijective proofs of Euler's identity, see for instance \cite{pak}: Sylvester's bijection, Glaisher's bijection, and the iterated Dyson map.  This last bijection appears to be the one pertinent here.
 
