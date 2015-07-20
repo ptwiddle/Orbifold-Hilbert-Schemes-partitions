@@ -137,7 +137,7 @@ $$(s,t)\cdot x^ny^m=s^{-n}t^{-m}x^ny^m$$
 \end{warning}
 
 \begin{definition}
-The \emph{tautological bundle} over the Hilbert scheme of points has fiber $R/\mathcal{I}$ over $\mathcal{I}$; it is a rank $n$ bundle on $\Hilb_n$.
+The \emph{tautological bundle} $\mathbb{E}$ over the Hilbert scheme of points has fiber $R/\mathcal{I}$ over $\mathcal{I}$; it is a rank $n$ bundle on $\Hilb_n$.
 \end{definition}
 
 
@@ -197,7 +197,7 @@ It turns out the $\Hilb_v$ are connected.
 The tautological bundle on $\Hilb_n$ splits into $r$ distinct tautological bundles, according to how the group $G$ acts 
 
 
-This discussion also helps explain why adding a point does not correspond to a smooth point of $\C^2/G$.  Smooth points of $\C^2/G$ correspond to points in $\C^2$ where $G$ acts freely.  If $\mathcal{O}_{Gp}$ is the structure sheaf of the orbit of such a point, then $G$ acts on $\mathcal{O}_{Gp}$ as the regular representation.  
+This discussion also helps explain why increasing $n$ a point does not correspond to a smooth point of $\C^2/G$.  Smooth points of $\C^2/G$ correspond to points in $\C^2$ where $G$ acts freely.  If $\mathcal{O}_{Gp}$ is the structure sheaf of the orbit of such a point, then $G$ acts on $\mathcal{O}_{Gp}$ as the regular representation.  Thuss
 
 Thus, the generic point of $\Hilb_{\C[G]}({\C^2/G})$ -- often called $G-\Hilb$ in the literature -- will correspond to a smooth point of $\C^2/G$.  However, $G-\Hilb$ is smooth from our discussion before, and since the image of the Hilbert-Chow morphism is the $G$ invariant sets, we really have a map $G-\Hilb\to \C^2/G$ that is an isomorphism away from the singular points, and so we see $G-\Hilb$ is a resolution of $\C^2/G$. 
 
@@ -655,6 +655,45 @@ Stabilization implies that for fixed $\delta$, and large $n$, this second resolu
 
 Changing Stability?
 But, it seems as $\delta\to\infty$, this second family of resolutions converges to the first.
+
+
+\section{Proofs}
+
+\subsection{Riemann-Roch}
+
+Although groups $\Ext(\mathcal{F},\mathcal{G})$ depend delicately on the sheaves involved, the Euler pairing
+$$\chi(\mathcal{F},\mathcal{G})=\sum_{i\geq 0} \Ext^i(\mathcal{F},\mathcal{G})$$
+only depends upon the $K$-theory classes of $\mathcal{F}$ and $\mathcal{G}$.
+
+\begin{example}
+Let $p$ and $q$ be two points of $\C^2$.  If $p\neq q$, then the structure sheaves $\mathcal{O}_p$ and $\mathcal{O}_q$ have disjoint support, and so $\Ext^i(\mathcal{O}_p,\mathcal{O}_q)=0$ for all $i$.
+
+If $p=q$, however, we have 
+\begin{eqnarray*}
+\Ext^0(\mathcal{O}_p,\mathcal{O}_p)&=&1\\
+\Ext^1(\mathcal{O}_p,\mathcal{O}_p)&=&2\\
+\Ext^2(\mathcal{O}_p,\mathcal{O}_p)&=&1 
+\end{eqnarray*}
+
+In both cases, however, we have $\chi(\mathcal{O}_p,\mathcal{O}_q)=0$.
+\end{example}
+
+Similarly, we have an orbifold Riemann-Roch pairing on $K^0([\C^2/G])$.  The Euler form is given by the McKay pairing with $\bigwedge^* \C^2$ in this case.  Note that $[V_G]$ is in the kernel of the McKay pairing -- geometrically, this corresponds to the fact that adding a smooth point on $[\C^2/G]$ will change the $K^0$ theory class by $V_G$, but the smooth point may be added disjoint from the support of the rest of the sheaf and the sheaf it is being paired with and hence not change.
+
+Thus, the Euler pairing $\chi$ descends to a pairing on $K^0(G)/V_G$.  
+
+\begin{lemma} Let $v\in K^0(G)/V_G$.  Then $|\core(v)|^G\in K^0(G)$ is given by $v+\chi(v,v)[V_G]$
+
+\end{lemma}
+
+\begin{proof}
+By definition, $|\core(v)|^G=v+M[V_G]$; we must find $M$.
+
+Expanding $\chi(v+M[V_G], v+M[V_G])$, we find on the one hand it will be
+
+$\Ext^0(v+M[V_G]$
+
+\end{proof}
 
 \section{Toward bijections: Generalized Dyson maps}
 
