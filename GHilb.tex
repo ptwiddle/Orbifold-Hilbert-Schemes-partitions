@@ -53,6 +53,8 @@
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\DC}{DH}
 \DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Ker}{Ker}
+
 
 \begin{document}
 \begin{abstract}
@@ -69,9 +71,26 @@ We study the connection between the combinatoric of certain partition statistics
 
 
 \maketitle
+\setcounter{tocdepth}{1}
 \tableofcontents
 \section{Introduction}
 \cite{GLMpower}
+
+This paper is written for two largely distinct audiences.  On the one hand, we write for algebraic geometers interested in Hilbert schemes of points and orbifold surfaces.  On the other hand, combinatorialists studying partitions.  As such, there is more expository material than perhaps is standard. 
+
+For geometers: there is much structure in the topology of Hilbert schemes of point on a smooth surface $S$: Gottsche, building on the work of Ellingsrud and Str\o mme for $\C^2$, found product formulas for generating functions of their cohomology.  Later, Grojnowski and Nakajima \cite{grojnowski, nakajimaheisenberg} explained these product formulas for geometric representation theory.  An important example here is when $S$ is the resolution of an ADE quotient signularity -- 
+
+Following and extending work of , we investigate the topology of the structure of Hilbert schemes of points on the local models $\C^2/\Z_r$.  We conjecture explicit product formulas in this case, reminiscent of Gottsche's formula, in terms of the Chen-Ruan cohomology of $[\C^2/\Z_r]$.  
+
+Turning to the connected components, we prove a stability result for the cohomology of orbifold Hilbert schemes, reminiscent of G\"ottsche's, as more and more \emph{smooth} points (equivalently, copies of the regular representation) are added.  We investigate components stuck of the origin, and show their dimension and the dimension of the corresponding ideals are given by piecewise quadratic functions, where the quadratic part is the intersection pairing on the minimal resolution.  We conjecture the action of a Heisenberg group modeled on the minimal resolution.
+
+For combinatorialists: Cores and quotients of partitions initially arose in the study of the modular representation theory of the symmetric group, but have found roles in number theory and representation theory, among others.  A lesser known occurence is in the geometry of Hilbert schemes of points.  
+
+Using this geometry as motivation, we introduce here some new partitions statistics, and use a generalization of cores and quotients of partitions to study them.  Our first statistic turns out out to be the size of our generalized quotient, and it counts cells where certain linear combinations of the arm and leg lengths satisfy a congruence condition.  We conjecture that $(q,t)$ counting partitions with respsect to size and this new statistic satisfy explicit product formulas that are $t$-analogs of the Euler product (or more generally, $t$-analogs of the formula for partitions coming from cores and quotients).  
+
+We prove that ``$G$-core'' partitions are in bijection with lattice points, and their size is given by a piecewise quadratic function.  
+
+
 
 
 Buryak conjectured \cite{Buryak}, and later proved with Feigin \cite{BF}, and simplified the proof with Nakajima \cite{BFN}, the following version. 
@@ -82,7 +101,7 @@ Let $\C^*$ act on $\C^2$ by $t\cdot (x,y)=(t^ax, t^by), a,b\geq 0$.  Then
 $$\sum_{k,n} h^k(\Hilb_n(\C^2)^{\C^*})q^nt^k=\prod_{a+b } \frac{1}{1-q^\ell}\prod_{(a+b)|\ell} \frac{1}{1-q^\ell t}$$
 \end{theorem}
 
-The proofs given by Buryak-Feigin, and Buryak-Feigin-Nakajima are algebraic geometric, and go through quiver varieties.  An obvious first step in trying to prove our conjectures combinatorially would be to prove Theorem \ref{thm:BFN} combinatorially.  We give some evidence in Section \ref{ } that maps generalizing Dyson's map might be the approach for this.
+The proofs given by Buryak-Feigin, and Buryak-Feigin-Nakajima are algebraic geometric, and go through quiver varieties.  An obvious first step in trying to prove our conjectures combinatorially would be to prove Theorem \ref{thm:BFN} combinatorially.  We give some evidence in Section \ref{sec:dyson} that maps generalizing Dyson's map might be the approach for this.
 
 
 
@@ -90,9 +109,9 @@ The proofs given by Buryak-Feigin, and Buryak-Feigin-Nakajima are algebraic geom
 
 Research on this work was supported by NSF grant NUMBER HERE, and CITE TOM's GRANT?
 
-Thanks to Amin, Yunfeng, and Martijn for asking a question that began this research, and to Tom Bridgeland for useful conversations.
+Thanks to Amin Gholampour, Yunfeng Jiang, and Martijn Kool for asking a question that began this work, and to Tom Bridgeland for useful conversations.
 
-\section{Hilbert schemes of points on surfaces}
+\section{Background: Topology of Hilbert schemes of points on surfaces}
 
 Throughout, $R=\C[x,y]$ will be the polynomial ring in two variables.  
 l
@@ -462,7 +481,7 @@ Then for fixed $k$ and large $n$, $b_{k}(S^{[n]})$ stabilizes
 
 The point is that there is exactly one factor in the product formula that has no $t$'s, namely $1/(1-q)$.  If we remove this term, we may expand the product as a series in $t$ with coefficients polynomials in $q$.
 
-Grojnowski and Nakajima gave another proof by categorifying G\"ottsche's formula.  The power series on the right hand side is the $(q,t)$ character of the highest weight representation of the Heisenberg algebra modeled on $H^*(S)$.  Thus, one is lead to hope that the vector space 
+Grojnowski and Nakajima \cite{grojnowski, nakajimaheisenberg} gave another proof by categorifying G\"ottsche's formula.  The power series on the right hand side is the $(q,t)$ character of the highest weight representation of the Heisenberg algebra modeled on $H^*(S)$.  Thus, one is lead to hope that the vector space 
 $$\mathcal{H}_S=\bigoplus_{k\geq 0} H^k(S)$$
 can naturally be given an action of this Heisenberg algebra.  This is exactly what Grojnowski and Nakajima did, using nested Hilbert schemes of points.
 
@@ -476,6 +495,131 @@ $$\DC_G(q,t):=\sum_{n,k\geq 0 } b_k(\Hilb_n([\C^2/G])) t^kq^n$$
 
 
 
+
+
+
+
+\subsubsection{Homological stability}
+
+The analogs of stabilization and geometric representation theory work on the level of connected Hilbert scheme.
+
+\begin{theorem} 
+$P_t(\Hilb^{\delta+nG}_G)$ stabilizes to $1/(t,t)_\infty^{|G|}$
+\end{theorem}
+Note that the right hand side is independent of $m$ and $\delta$.
+\begin{proof} Combinatorics -- a generalization of cores and quotients of partitions \end{proof}
+
+\begin{conjecture}
+The stable cohomology of $\Hilb^{\delta+nG}$ is freely generated by the Chern classes of the $|G|$ tautological bundles.
+\end{conjecture}
+
+
+
+\subsubsection{Heisenberg Action}
+
+
+\begin{conjecture}
+Let $\delta\in K_0(G)$ be small, and $G$ cyclic.  Then
+$$\bigoplus_{k\geq 0} H_*(\Hilb^{\delta+kG}_G)$$ admits the action of a Heisenberg algebra based on the cohomology of the minimal resolution of $\C^2/G$.
+\end{conjecture}
+
+Evidence:
+Let $c$ be the number of rational curves in the minimal resolution of $\C^2/G$.  Then
+$$\mathcal{CH}^\delta_G\cdot(q,qt^2)_\infty\cdot (qt^2,qt^2)_\infty^c$$
+has positive coefficients; but higher powers start giving negative coefficients.
+
+
+\subsubsection{Resolutions of $(\C^2/G)^n/S_n$}
+One family of resolutions
+
+Let $X_G$ be the minimal resolution of $\C^2/G$.  Then $\Hilb_n(X_G)$ is a resolution of $(\C^2/G)^n/S_n$.
+
+
+Another family of resolutions
+
+Let $\delta\in K^0(G)$ be such that $\Hilb^\delta([\C^2/G])=pt$.  Then $\Hilb^{\delta+nG}([\C^2/G])$ is a resolution of $(\C^2/G)^n/S_n$.  
+
+
+
+Stabilization implies that for fixed $\delta$, and large $n$, this second resolution will be bigger than the first resolution.
+
+Changing Stability?
+But, it seems as $\delta\to\infty$, this second family of resolutions converges to the first.
+
+
+\section{Warm-up: Cores, quotients, and the \texorpdfstring{$SL_2$}{SL_2} case}
+
+
+
+
+\subsection{Riemann-Roch}
+
+Although groups $\Ext(\mathcal{F},\mathcal{G})$ depend delicately on the sheaves involved, the Euler pairing
+$$\chi(\mathcal{F},\mathcal{G})=\sum_{i\geq 0} \Ext^i(\mathcal{F},\mathcal{G})$$
+only depends upon the $K$-theory classes of $\mathcal{F}$ and $\mathcal{G}$.
+
+\begin{example}
+Let $p$ and $q$ be two points of $\C^2$.  If $p\neq q$, then the structure sheaves $\mathcal{O}_p$ and $\mathcal{O}_q$ have disjoint support, and so $\Ext^i(\mathcal{O}_p,\mathcal{O}_q)=0$ for all $i$.
+
+If $p=q$, however, we have 
+\begin{eqnarray*}
+\Ext^0(\mathcal{O}_p,\mathcal{O}_p)&=&1\\
+\Ext^1(\mathcal{O}_p,\mathcal{O}_p)&=&2\\
+\Ext^2(\mathcal{O}_p,\mathcal{O}_p)&=&1 
+\end{eqnarray*}
+
+In both cases, however, we have $\chi(\mathcal{O}_p,\mathcal{O}_q)=0$.
+\end{example}
+
+Similarly, we have an orbifold Riemann-Roch pairing on $K^0([\C^2/G])$.  The Euler form is given by the McKay pairing with $\bigwedge^* \C^2$ in this case.  Note that $[V_G]$ is in the kernel of the McKay pairing -- geometrically, this corresponds to the fact that adding a smooth point on $[\C^2/G]$ will change the $K^0$ theory class by $V_G$, but the smooth point may be added disjoint from the support of the rest of the sheaf and the sheaf it is being paired with and hence not change.
+
+Thus, the Euler pairing $\chi$ descends to a pairing on $K^0(G)/V_G$.  We will want to make use of a subspace of $K^0(G)$ instead of vectors summing to zero.  As vector spaces, thus subspace plus multiples of $V_G$ spans all of $K^0(G)$, but not as lattices; therefore for $G$ abelian we introduce the space 
+$$S^0_G=\left\{v\in K^0(G; \Z[1/|G|])\Bigg | \sum_{\chi\in\irreps(G)}(\chi, v)=0\right\}$$
+
+\begin{definition}
+Let $v\in S^0_G$.  Then $\core(v)\in K^0(G)$ is the smallest class so that $\Hilb_{\core(v)}(\C^2/G)$ is nonempty.
+\end{definition}
+
+
+\begin{lemma} Suppose that $G\in SL_2$. Then
+$$\core(v)=v+(\frac{1}{2}Q_M(v,v)-v_0)[V_G]$$
+In particular, we see $\core(v)$ is a quadratic function of $v$.
+\end{lemma}
+
+\begin{proof}
+By definition, $|\core(v)|^G=v+M[V_G]$ for some $M\in\Z[1/|G|]$; we must find $M$.
+
+Let $\OO_v=R/\mathcal{I}$ for any element $\mathcal{I}\in\Hilb_{v+M[V_G]}$.  Expanding $\chi(v+M[V_G], v+M[V_G])$, we find on the one hand it will be
+$$\Ext^0(\OO_v,\OO_v)-\Ext^1(\OO_v,\OO_v)-\Ext^2(\OO_v,\OO_v)$$
+Since we know $G\in SL_2$, we know for that for the core we will have $\dim\Hilb_{v+M[V_G]}=0$, and hence $\Ext^1(\OO_v,\OO_v)=0$.
+
+Since $\OO_v$ is a quotient of $R$, which is generated by a single element of trivial weight, $\Ext^0(\OO_v,\OO_v)=v_0+M$.
+
+Similarly, since $G\subset SL_2$, we have $K_{[C^2/G]}=\OO_{[\C^2/G]}$, and so Serre duality gives that $\Ext^2(\OO_v,\OO_v)=v_0+M$ as well.  Thus, we have found
+$$\chi(v+M[V_G],v+M[V_G])=2v_0+2M$$
+On the other hand, Riemann-Roch and the fact that $V_G\in\Ker(Q_{M})$ gives
+
+gives that $\chi(v+M[V_G],v+M[V_G])=Q_M(v,v)$.  Thus, we have $M=\frac{1}{2}Q_M(v,v)-v_0$, as desired.
+\end{proof}
+
+For $v\in S^0_G$
+
+\begin{lemma}
+Let $k$ be the index of $K_{[\C^2/G]}$.
+
+We have
+$$M_v=\frac{1}{2}\left(Q_M(v)+\dim\Hilb_{\tilde{v}} -v_0-v_k\right)$$
+In particular, since we know $M_v$ is a piecewise quadratic function of $V$, we see that $\dim\Hilb_{\tilde{v}}$ is also a piecewise quadratic function of $v$.
+
+\end{lemma}
+
+\begin{proof}
+Note that in the proof we used $G\subset SL_2$ in two places.  Once was just for Serre duality.  Serre duality still holds for $G$ not in $SL_2$, we must just factor the canonical bundle $K_{[\C^2/G]}$ in.
+
+The second place was in knowing that $\dim \Hilb_{\tilde{v}}=0$; we must include that term as well now.
+
+\end{proof}
+\section{Chen-Ruan cohomology and the disconnected conjecture}
 
 
 \subsection{Conjectural product formula}
@@ -507,7 +651,7 @@ In G\"ottsche's formula, $\epsilon(h)=0$ corresponds to $b_0$, and $\epsilon(h)=
 
 \subsection{Chen-Ruan cohomology}
 
-The Chen-Ruan cohomology $H_{CR}^*(\mathcal{X})$ of an orbifold $\mathcal{X}$ was discovered as a byproduct of defining the quantum cohomology of such orbifolds.  As a vector space, the Chen-Ruan cohomology is the usual cohomology of the inertial orbifold $\mathcal{IX}$ of $\mathcal{X}$.  As a set $\mathcal{IX}$ is the space of constant maps from $S^1$ to $\mathcal{X}$; more algebraically, 
+The Chen-Ruan cohomology $H_{CR}^*(\mathcal{X})$ of an orbifold $\mathcal{X}$ was discovered as a byproduct of defining the quantum cohomology of such orbifolds \cite{chenruancohomology}.  As a vector space, the Chen-Ruan cohomology is the usual cohomology of the inertial orbifold $\mathcal{IX}$ of $\mathcal{X}$.  As a set $\mathcal{IX}$ is the space of constant maps from $S^1$ to $\mathcal{X}$; more algebraically, 
 $$\mathcal{IX}=\{(x, (g)| x\in \mathcal{X}, (g)\in\textrm{conj}(G_x)\}$$
 Every isotropy group $G_x$ has an identity element $e_x$, the subset of $(x, e_x)$ naturally forms a copy of $X$.  Elements $(x,(g))$ with $(g)$ nontrivial form other components of $\mathcal{IX}$ called \emph{twisted sectors}.
 
@@ -536,9 +680,13 @@ as graded vector spaces (actually, as rings in this case).
 \end{example}
 
 
-It is a theorem of Yasuda that if $\mathcal{X}$ is any effective orbifold, and $\widetilde{X}$ is any crepant resolution of the coarse moduli space, then 
+\begin{theorem}[Yasuda \cite{yasuda}] \label{thm:yasuda}
+Let $\mathcal{X}$ an effective orbifold, and $\widetilde{X}\to|\mathcal{X}|$ a crepant resolution of the coarse moduli space.  Then :
 $$H_{CR}^*(\mathcal{X})=H^*(\widetilde{X})$$
-as graded vector spaces.  The products do not necessarily agree; quantumn corrections are needed; the \emph{Crepant Resolution Conjecture} states that, properly understood, the quantumn cohomology of $\mathcal{X}$ and $\widetilde{X}$ should agree.
+as graded vector spaces.  
+\end{theorem}
+
+Note that the products do not necessarily agree; quantumn corrections are needed; the \emph{Crepant Resolution Conjecture} states that, properly understood, the quantumn cohomology of $\mathcal{X}$ and $\widetilde{X}$ should agree.  See \cite{CoatesRuan} for discussion of the details and reference to other sources.
 
 
 \begin{example}
@@ -613,127 +761,10 @@ Appears Buryak-Feigin plays well with colored box counting from cores.
 
 
 
-\subsubsection{Homological stability}
-
-The analogs of stabilization and geometric representation theory work on the level of connected Hilbert scheme.
-
-\begin{theorem} 
-$P_t(\Hilb^{\delta+nG}_G)$ stabilizes to $1/(t,t)_\infty^{|G|}$
-\end{theorem}
-Note that the right hand side is independent of $m$ and $\delta$.
-\begin{proof} Combinatorics -- a generalization of cores and quotients of partitions \end{proof}
-
-\begin{conjecture}
-The stable cohomology of $\Hilb^{\delta+nG}$ is freely generated by the Chern classes of the $|G|$ tautological bundles.
-\end{conjecture}
+\section{Generalized cores and applications}
 
 
-
-\subsubsection{Heisenberg Action}
-
-
-\begin{conjecture}
-Let $\delta\in K_0(G)$ be small, and $G$ cyclic.  Then
-$$\bigoplus_{k\geq 0} H_*(\Hilb^{\delta+kG}_G)$$ admits the action of a Heisenberg algebra based on the cohomology of the minimal resolution of $\C^2/G$.
-\end{conjecture}
-
-Evidence:
-Let $c$ be the number of rational curves in the minimal resolution of $\C^2/G$.  Then
-$$\mathcal{CH}^\delta_G\cdot(q,qt^2)_\infty\cdot (qt^2,qt^2)_\infty^c$$
-has positive coefficients; but higher powers start giving negative coefficients.
-
-
-\subsubsection{Resolutions of $(\C^2/G)^n/S_n$}
-One family of resolutions
-
-Let $X_G$ be the minimal resolution of $\C^2/G$.  Then $\Hilb_n(X_G)$ is a resolution of $(\C^2/G)^n/S_n$.
-
-
-Another family of resolutions
-
-Let $\delta\in K^0(G)$ be such that $\Hilb^\delta([\C^2/G])=pt$.  Then $\Hilb^{\delta+nG}([\C^2/G])$ is a resolution of $(\C^2/G)^n/S_n$.  
-
-
-
-Stabilization implies that for fixed $\delta$, and large $n$, this second resolution will be bigger than the first resolution.
-
-Changing Stability?
-But, it seems as $\delta\to\infty$, this second family of resolutions converges to the first.
-
-
-\section{Proofs}
-
-\subsection{Riemann-Roch}
-
-Although groups $\Ext(\mathcal{F},\mathcal{G})$ depend delicately on the sheaves involved, the Euler pairing
-$$\chi(\mathcal{F},\mathcal{G})=\sum_{i\geq 0} \Ext^i(\mathcal{F},\mathcal{G})$$
-only depends upon the $K$-theory classes of $\mathcal{F}$ and $\mathcal{G}$.
-
-\begin{example}
-Let $p$ and $q$ be two points of $\C^2$.  If $p\neq q$, then the structure sheaves $\mathcal{O}_p$ and $\mathcal{O}_q$ have disjoint support, and so $\Ext^i(\mathcal{O}_p,\mathcal{O}_q)=0$ for all $i$.
-
-If $p=q$, however, we have 
-\begin{eqnarray*}
-\Ext^0(\mathcal{O}_p,\mathcal{O}_p)&=&1\\
-\Ext^1(\mathcal{O}_p,\mathcal{O}_p)&=&2\\
-\Ext^2(\mathcal{O}_p,\mathcal{O}_p)&=&1 
-\end{eqnarray*}
-
-In both cases, however, we have $\chi(\mathcal{O}_p,\mathcal{O}_q)=0$.
-\end{example}
-
-Similarly, we have an orbifold Riemann-Roch pairing on $K^0([\C^2/G])$.  The Euler form is given by the McKay pairing with $\bigwedge^* \C^2$ in this case.  Note that $[V_G]$ is in the kernel of the McKay pairing -- geometrically, this corresponds to the fact that adding a smooth point on $[\C^2/G]$ will change the $K^0$ theory class by $V_G$, but the smooth point may be added disjoint from the support of the rest of the sheaf and the sheaf it is being paired with and hence not change.
-
-Thus, the Euler pairing $\chi$ descends to a pairing on $K^0(G)/V_G$.  We will want to make use of a subspace of $K^0(G)$ instead of vectors summing to zero.  As vector spaces, thus subspace plus multiples of $V_G$ spans all of $K^0(G)$, but not as lattices; therefore for $G$ abelian we introduce the space 
-$$S^0_G=\left\{v\in K^0(G; \Z[1/|G|])\Bigg | \sum_{\chi\in\irreps(G)}(\chi, v)=0\right\}$$
-
-\begin{definition}
-Let $v\in S^0_G$.  Then $\core(v)\in\K^0(G)$ is the smallest class so that $\Hilb_{\core(v)}(\C^2/G)$ is nonempty.
-\end{definition}
-
-
-\begin{lemma} Suppose that $G\in SL_2$. Then
-$$\core(v)=v+(\frac{1}{2}Q_M(v,v)-v_0)[V_G]$$
-In particular, we see $\core(v)$ is a quadratic function of $v$.
-\end{lemma}
-
-\begin{proof}
-By definition, $|\core(v)|^G=v+M[V_G]$ for some $M\in\Z[1/|G|]$; we must find $M$.
-
-Let $\OO_v=R/\mathcal{I}$ for any element $\mathcal{I}\in\Hilb_{v+M[V_G]}$.  Expanding $\chi(v+M[V_G], v+M[V_G])$, we find on the one hand it will be
-$$\Ext^0(\OO_v,\OO_v)-\Ext^1(\OO_v,\OO_v)-\Ext^2(\OO_v,\OO_v)$$
-Since we know $G\in SL_2$, we know for that for the core we will have $\dim\Hilb_{v+M[V_G]}=0$, and hence $\Ext^1(\OO_v,\OO_v)=0$.
-
-Since $\OO_v$ is a quotient of $R$, which is generated by a single element of trivial weight, $\Ext^0(\OO_v,\OO_v)=v_0+M$.
-
-Similarly, since $G\subset SL_2$, we have $K_{[C^2/G]}=\OO_{[\C^2/G]}$, and so Serre duality gives that $\Ext^2(\OO_v,\OO_v)=v_0+M$ as well.  Thus, we have found
-$$\chi(v+M[V_G],v+M[V_G])=2v_0+2M$$
-On the other hand, Riemann-Roch and the fact that $V_G\in\Ker(Q_{M})$ gives
-
-gives that $\chi(v+M[V_G],v+M[V_G])=Q_M(v,v)$.  Thus, we have $M=\frac{1}{2}Q_M(v,v)-v_0$, as desired.
-\end{proof}
-
-For $v\in S^0_G$
-
-\begin{lemma}
-Let $k$ be the index of $K_{[\C^2/G]}$.
-
-We have
-$$M_v=\frac{1}{2}\left(Q_M(v)+\dim\Hilb_{\tilde{v}} -v_0-v_k\right)$$
-In particular, since we know $M_v$ is a piecewise quadratic function of $V$, we see that $\dim\Hilb_{\tilde{v}}$ is also a piecewise quadratic function of $v$.
-
-\end{lemma}
-
-\begin{proof}
-Note that in the proof we used $G\subset SL_2$ in two places.  Once was just for Serre duality.  Serre duality still holds for $G$ not in $SL_2$, we must just factor the canonical bundle $K_{[\C^2/G]}$ in.
-
-The second place was in knowing that $\dim \Hilb_{\tilde{v}}=0$; we must include that term as well now.
-
-\end{proof}
-
-
-
-\section{Toward bijections: Generalized Dyson maps}
+\section{Toward bijections: Generalized Dyson maps} \label{sec:dyson}
 
 In this section we point to some partial Our main product formula 
 
@@ -747,7 +778,7 @@ In the next subsection we briefly recall this bijection, then in
 
 \subsection{Asymptotic behavior} \label{sec-asymptotic-dyson}
 
-\subsection{Application to finite $G$} 
+\subsection{Application to finite \texorpdfstring{$G$}{G}} 
 
 
 \subsection{Generalizations} \label{sec:generalized-dyson}
