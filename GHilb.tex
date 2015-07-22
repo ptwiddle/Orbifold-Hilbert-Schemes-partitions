@@ -172,7 +172,7 @@ The \emph{tautological bundle} $\mathbb{E}$ over the Hilbert scheme of points ha
 \end{definition}
 
 
-\subsection{Structure in the Topology of \texorpdfstring{$\Hilb_n(S)$}{Hilb_n(S)}}
+\subsection{Structure in the Topology of Hilbert schemes}
 
 
 The main motivation of this work is the structure found in the topology of Hilbert schemes of points in surfaces.  This section recalls this structure.
@@ -310,46 +310,54 @@ To apply Bia\l ynicki-Birula, one needs a $\C^*$ action with isolated fixed poin
 
 The common choice is to pick the torus with action $(1,\varepsilon)$.  The choice of subtorus weights should be integer numbers, and by $(1,\varepsilon)$ we mean an action $(N,1)$ with $N>>1$.  
 
-When restricted to the subtorus with weights $(1,\varepsilon)$ the terms $x^{-\ell(\square)} y^{a(\square)+1}$ and $x^{\ell(\square)+1}y^{-a(\square)}$ in Lemma \ref{lem:torus-weights} become weights $(-\ell(square)+\varepsilon(a(\square)+1)$, which is positive if and only if $\ell(square)=0$, and $\ell(\square)+1 -\varepsilon a(\square)$, which is always positive.  
+When restricted to the subtorus with weights $(1,\varepsilon)$ the terms $x^{-\ell(\square)} y^{a(\square)+1}$ and $x^{\ell(\square)+1}y^{-a(\square)}$ in Lemma \ref{lem:torus-weights} become weights $(-\ell(\square)+\varepsilon(a(\square)+1)$, which is positive if and only if $\ell(\square)=0$, and $\ell(\square)+1 -\varepsilon a(\square)$, which is always positive.  
 
-The squares with $\ell(square)=0$ are exactly the rightmost squares in each row of $\lambda$.  Hence if we view the rows of $\lambda$ as the parts, the number of squares with $\ell(\square)=0$ is precisely the length $\ell(\lambda)$.  Together with the Bia\l ynicki-Birula decomposition, and the sign convention, this proves Ellingsrud-Str\o mme. 
+The squares with $\ell(\square)=0$ are exactly the rightmost squares in each row of $\lambda$.  Hence if we view the rows of $\lambda$ as the parts, the number of squares with $\ell(\square)=0$ is precisely the length $\ell(\lambda)$.  Together with the Bia\l ynicki-Birula decomposition, and the sign convention, this proves Ellingsrud-Str\o mme. 
 
 
 It should be noted that although any generic $\C^*$ action will have isolated fixed points, and hence can be used to compute the cohomology of $\Hilb_n(\C^2)$, different $\C^*$ action will provide different statistics.  However, since all these statistics compute the same thing, they must be equidistributed.  This was apparently first observed geometrically by Haiman, and Loehr and Warrington gave a combinatorial proof in \cite{LW}, furthermore they extend the statistics to the non-isolated case.  It would be interesting to have a geometric understanding of the bijections in \cite{LW}.
 
 
 
+We begin with the following the description of the the tangent space to the Hilbert scheme:
+
+\begin{lemma} \label{lem:tangent-hom}
+$$T_{\mathcal{I}}\Hilb_n(\C^2)=\Hom_R(\mathcal{I},R/\mathcal{I})$$
+\end{lemma}
+
+Lemma \ref{lem:tangent-hom} actually holds in any dimension, for any smooth variety.
+
+Before giving a quick proof, we give a plausibility argument in analogy with the Grassmannian.  If $V\subset W$ is a $k$ dimensional subspace, then $T_V Gr_k(W)=\Hom(V, V^\perp)=\Hom(V, W/V)$.  This gives a description of the deformations of $\mathcal{I}$ as a vector subspace of $R$.  For the deformation to remain an ideal it is plausible that we should require the deformation to be a map of $R$ modules and not just vector spaces.
 
 \begin{proof}
-
-
-
-First, we use $T_\lambda\Hilb_n(\C^2)=\Hom_R(\mathcal{I}_\lambda,R/\mathcal{I}_\lambda)$.
-
-Analogy with the Grassmannian makes this intuitively plausible; indeed, if $V\subset W$ is a $k$ dimensional subspace, then $T_V Gr_k(W)=\Hom(V, V^\perp)=\Hom(V, W/V)$.  Thus, we understand the deformations of $\mathcal{I}_\lambda$ as a vector space; for the deformation to remain an ideal it is plausible that we should require the deformation to be a map of $R$ modules and not just vector spaces.
-
-More formally, it is a general fact that first order deformations of objects are given by $\Ext^1(\mathcal{F},\mathcal{F})$, and obstructions to these deformations are given by $\Ext^2(\mathcal{F},\mathcal{F})$; starting from this fact and considering the long exact sequences by taking $\Hom(\mathcal{I})$ to
-
+More formally, it is a general fact that first order deformations of objects are given by $\Ext^1(\mathcal{F},\mathcal{F})$, and obstructions to these deformations are given by $\Ext^2(\mathcal{F},\mathcal{F})$; starting from this fact and considering the long exact sequences by taking $\Hom(\mathcal{I}, -)$ to
 $$0\to \mathcal{I}\to R\to R/\mathcal{I}\to 0$$
-gives the result.
-
+gives 
+$$0\to\Hom(\mathcal{I},\mathcal{I})\to \Hom(\mathcal{I}, R)\to\Hom(\mathcal{I},R/\mathcal{I})\to\Ext^1(\mathcal{I}, \mathcal{I})\to\Ext^1(\mathcal{I},R)$$
+Since $\mathcal{I}$ is an ideal that eventually contains $x^n, y^m$, we have $\Hom(\mathcal{I},\mathcal{I})\cong\Hom(\mathcal{I}, R)$ and $\Ext^1(\mathcal{I},R)=0$, and so indeed we have $\Hom(\mathcal{I},R/\mathcal{I})\cong\Ext^1(\mathcal{I}, \mathcal{I})$.
 \end{proof}
 
+We can now complete the proof of the tangent weight statement.
 
-Let $T_\lambda^{a,b}$ denote the $(a,b)$-isotypical component of $T_{\mathcal{I}_\lambda}\Hilb_n(\C^2)$.  Viewed as an element of $\Hom(\mathcal{I}_\lambda, R/\mathcal{I}_\lambda)$, any such map multiplies some subset of the monomials in $\mathcal{I}_\lambda$ by $cx^a y^b$, for some constant $c$, and sends the other monomials in $\mathcal{I}_\lambda$.  
+
+Let $T_\lambda^{a,b}$ denote the $(a,b)$-isotypical component of $T_{\mathcal{I}_\lambda}\Hilb_n(\C^2)$.  Let $f\in\Hom(\mathcal{I}_\lambda, R/\mathcal{I}_\lambda)$ have weight $(a,b)$.
+$$f(x^{\alpha}y^\beta)=cx^{\alpha-a}y^{\beta-b}$$
+for some constant $c_{\alpha, \beta}$ (that can be different for different monomials).  
+
 
 Let $P_\lambda$ be the boundary path of $\lambda$; for $(a,b)$ in $\Z^2$, let $P_\lambda(a,b)$ denote the boundary path of $\lambda$ shifted to the right by $a$ and up by $b$.
 
-\begin{lemma} Let $B_\lambda(a,b)$ be the set of bounded regions above $P_\lambda$ and below $P_\lambda(-a,-b)$.  For $b\in B_\lambda(a,b)$, let $f_b$ denote the map that multiplies monomials in $b$ by $x^ay^b$ and sends monomials not in $B_\lambda(a,b)$ to $0$.  Then the $f_b$ form a basis for $T_\lambda^{a,b}$.
+\begin{lemma} Let $B_\lambda(a,b)$ be the set of bounded regions above $P_\lambda$ and below $P_\lambda(a,b)$.  For $U\in B_\lambda(a,b)$, let $f_U$ denote the map that multiplies monomials in $U$ by $x^{-a}y^{-b}$ and sends monomials not in $B_\lambda(a,b)$ to $0$.  Then the $f_U$ form a basis for $T_\lambda^{a,b}$.
 \end{lemma}
 
 \begin{proof}
+To be a map of $R$-modules the map must commute with multipication by $x$ and $y$.  Thus, if $x^{\alpha-a+1}y^{\beta-b}\notin \mathcal{I}$, we must have $c_{\alpha+1,\beta}=c_{\alpha,\beta}$, and similarly with $y$.  Thus, to be a map of $R$-modules, we see that monomials in the same component must get multiplied by the same constant.
 
-
+If a region is not bounded, then one of the generators of $\mathcal{I}$ contained in that region would be mapped to a monomial with negative exponents, which it can't do; therefore it must be multiplied by 0.
 \end{proof}
 
 
-We now prove Lemma \ref{lem:torus-weights}.  First, observe that $T_\lambda^{(a,b)}$ is empty if $(a,b)$ are both negative or both non-negative.  If both are non-negative, then there are no cells at all below $P_\lambda(-a,-b)$ and $P_\lambda$.  If both are positive, then the cells below $P_\lambda(-a,-b)$ and $P_\lambda$ form one unbounded region.  
+We now prove Lemma \ref{lem:torus-weights}.  First, observe that $T_\lambda^{(a,b)}$ is empty if $(a,b)$ are both negative or both non-negative.  If both are non-negative, then there are no cells at all below $P_\lambda(a,b)$ and above $P_\lambda$.  If both are positive, then the cells below $P_\lambda(a,b)$ and $P_\lambda$ form a single unbounded region.  
 
 \begin{tikzpicture}[scale=.5]
 \draw[thin] (0,0) grid (5,10);
@@ -373,17 +381,12 @@ We must therefore guarantee the region is bounded at the bottom right.  This wil
 
 Bounded cells well thus be in bijection with pairs of such cells.  Translating the East step back $(a,b)$ to its original place on the boundary strip, we find these two steps give an inversion in the $P_\lambda$ and hence a cell of $\lambda$.  The arm length of this cell will be $b+1$, and the leg will have size $a$. 
 
-A similar argument shows that tangent directions with $b$ negative correspond to. 
-
-
-
-The topology of Hilbert schemes of points on surfaces was found by G\"ottsche.  A key point is that rather than study $\Hilb_n(S)$ for fixed $n$, it is easier to study them for all $n$ at once.
+An analogous argument shows that tangent directions with $b$ negative correspond to the other terms in the sum.
 
 
 
 
-
-\section{Background: Hilbert schemes of points on \texorpdfstring{$[\C^2/G]$}{[C^2/G]}}
+\section{Background: Hilbert schemes of points on orbifolds}
 
 
 \subsection{Orbfiolds and stacks}
@@ -650,7 +653,7 @@ Changing Stability?
 But, it seems as $\delta\to\infty$, this second family of resolutions converges to the first.
 
 
-\section{Warm-up: Cores, quotients, and the \texorpdfstring{$SL_2$}{SL_2} case}
+\section{Warm-up: Cores, quotients, and the antidiagonal case}
 
 
 
