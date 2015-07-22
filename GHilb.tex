@@ -35,17 +35,21 @@
 \newtheorem{conjecture}[dummy]{Conjecture}
 \newtheorem{warning}[dummy]{Warning}
 
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\A}{\mathbf{A}}
 \newcommand{\OO}{\mathcal{O}}
+\newcommand{\LL}{\mathbf{L}}
 
 
 
-\newcommand{\proj}{\mathbb{P}}
+\newcommand{\proj}{\mathbf{P}}
 \newcommand{\core}{\mathbf{core}}
 \newcommand{\irreps}{\text{irreps}}
+\newcommand{\Var}{\mathbf{Var}}
+\newcommand{\Top}{\mathbf{Top}}
 
 
 \DeclareMathOperator{\Hilb}{Hilb}
@@ -55,6 +59,8 @@
 \DeclareMathOperator{\Sym}{Sym}
 \DeclareMathOperator{\Ker}{Ker}
 
+
+\newcommand{\HG}{\Hilb}
 
 \begin{document}
 \begin{abstract}
@@ -71,7 +77,7 @@ We study the connection between the combinatoric of certain partition statistics
 
 
 \maketitle
-\setcounter{tocdepth}{1}
+\setcounter{tocdepth}{2}
 \tableofcontents
 \section{Introduction}
 \cite{GLMpower}
@@ -111,10 +117,12 @@ Research on this work was supported by NSF grant NUMBER HERE, and CITE TOM's GRA
 
 Thanks to Amin Gholampour, Yunfeng Jiang, and Martijn Kool for asking a question that began this work, and to Tom Bridgeland for useful conversations.
 
-\section{Background: Topology of Hilbert schemes of points on surfaces}
+\section{Background: Hilbert schemes of points on smooth surfaces}
+
+\subsection{Introduction to Hilbert schemes}
 
 Throughout, $R=\C[x,y]$ will be the polynomial ring in two variables.  
-l
+
 The Hilbert scheme of points in the plane parameterizes ideals $\mathcal{I}$ of $R$ of codimension $n$.
 $$\Hilb_n(\C^2)=\{\mathcal{I}\subset R | \dim_\C R/\mathcal{I}=n\}$$
 The space $\Hilb_n(\C^2)$ is smooth and connected of dimension $2n$.
@@ -164,14 +172,233 @@ The \emph{tautological bundle} $\mathbb{E}$ over the Hilbert scheme of points ha
 \end{definition}
 
 
-\subsection{Orbifold Hilbert schemes}
+\subsection{Structure in the Topology of \texorpdfstring{$\Hilb_n(S)$}{Hilb_n(S)}}
 
+
+The main motivation of this work is the structure found in the topology of Hilbert schemes of points in surfaces.  This section recalls this structure.
+
+Perhaps the key point in these results is the appears simpler when looking at the Hilbert schemes together for all $n$, rather than just for any fixed $n$.  
+
+\begin{definition}
+A \emph{graded space} $X$ is just a disjoint union $$X=\amalg_{n\in\Z} X_n$$
+Often our spaces will be positively graded, and we will denote the graded space as formal power series with coefficients in $\Var, \Top$, etc.
+
+$$X=\oplus X_nq^n$$
+\end{definition}
+
+
+This is manifested on the first level by product formulas.  
+\begin{definition}
+Let 
+$$\HG_S=\bigoplus_{n=0}^\infty \Hilb_n(S)q^n$$
+\end{definition}
+
+\begin{definition}
+For a space $X$, the Poincare polynomial 
+$$P_t(X)=\sum_{k=0}^\infty b_k(X)$$
+If $X$ is a graded topological space, with finite dimensional graded pieces, then $P_t(X)$ is naturally an element of $\Z[t][[q]]$.
+\end{definition}
+
+
+\begin{definition}
+The \emph{Grothendieck ring of varieties} $K_0(\Var_k)$ is a quotient of the free abelian group on the set of isomorphism classes of varities over $k$.  We quotient out by relations of the form
+$$[X]=[Y]+[X\setminus Y]$$
+whenever $Y$ is a closed subvariety of $X$.   
+
+The product structure is given by
+$$[X]\times [Y]=[X\times Y]$$
+\end{definition}
+
+\begin{example}[Projective space]
+The fact that the Riemann sphere is obtained from $\C$ by adding a point at infinity translates to the identity $[\proj^1]=\LL+1$.
+
+More generally, the decomposition $\proj^n=\C^n\cup \proj^{n-1}$ gives
+$$[\proj^n]=\LL^n+[\proj^{n-1}]=\LL^n+\LL^{n-1}+\cdots 1=\frac{1-\LL^{n+1}}{1-\LL}$$
+
+\end{example}
+
+
+The first such product formula was the following result of 
+
+The study of the topology of $\Hilb_n(S)$ began with the following result:
+\begin{theorem}[Ellingsrud and Str\o mme \cite{ES}]
+$$P_t(\HG_S)=\prod_{\ell=1}^\infty \frac{1}{1-t^{2\ell-2}q^\ell}$$
+$$[\HG_S]=\prod_{\ell=1}^\infty \frac{1}{1-\LL^{\ell +1}q^\ell}$$
+\end{theorem}
+
+
+
+Ellingsrud and Str\o mme actually focused more on $\Hilb_n(\proj^2)$.  We recount their proof in the next two sections as the geometric content of our work is essentially a small continuation of their methods.
+
+
+
+G\"o ttsche extended 
+
+\begin{theorem}[G\"ottsche, \cite{gottsche}]
+Let $S$ be a smooth quasiprojective surface, and when $b_i$ appears in isolation, let it be $b_i(S)$.  Then:
+$$P_t(\HG_S)=\prod_{\ell\geq 1} \frac{(1+t^{2\ell-1}q^\ell)^{b_1}(1+t^{2\ell+1}q^\ell)^{b_3}}{(1-t^{2\ell-2}q^\ell)^{b_0}(1-t^{2\ell}q^\ell)^{b_2}(1-t^{2\ell+2}q^\ell)^{b_4}}$$
+\end{theorem}
+
+G\"ottsche's original proof used the Weil conjectures to reduce to the local model of the smooth surfaces, $S=\C^2$, where his formula is exactly Ellingsrud and Str\o mme's result.
+
+Later proofs used power structures on the Grothendieck ring of varieties to  ...
+.  This power structure was extended to orbifolds in \cite{}, and so the missing piece is an analogous result to Ellingsrud-Str\o mme for the local models of orbifold surfaces, namely $\C^2/G$ for $G$ a finite group.  
+
+\subsubsection{Corollaries and extensions of G\"ottsche}
+We will also investigate orbifold analogs of several results closely related to G\"ottsche's formula.
+
+First, G\"ottsche observed the following easy corollary to his formula:
+\begin{corollary}  Suppose $S$ is connected.
+Then for fixed $k$ and large $n$, $b_{k}(S^{[n]})$ stabilizes
+\end{corollary}
+
+The point is that there is exactly one factor in the product formula that has no $t$'s, namely $1/(1-q)$.  If we remove this term, we may expand the product as a series in $t$ with coefficients polynomials in $q$.
+
+Grojnowski and Nakajima \cite{grojnowski, nakajimaheisenberg} gave another proof by categorifying G\"ottsche's formula.  The power series on the right hand side is the $(q,t)$ character of the highest weight representation of the Heisenberg algebra modeled on $H^*(S)$.  Thus, one is lead to hope that the vector space 
+$$H^*(\HG_S)=\bigoplus_{k\geq 0} H^k()$$
+can naturally be given an action of this Heisenberg algebra.  This is exactly what Grojnowski and Nakajima did, using nested Hilbert schemes of points.  This result categorifies G\"ottsche's formula, and gives another proof of it.
+
+In case the quasiprojective surface $S$ is the minimal resolution of the ADE singularity, this Heisenberg action is part of a quantumn group action for the corresponding semisimple quantum group.
+
+Further categorifications of this action are areas of active study; the Heisenberg action on $\HG_{\C^2}$ is related to, while in case $S$ is the resolution of an ADE singularity the action has been further categorified by Cautis and Licata \cite{CL}, and the quantum group action in \cite{CL2}.
+
+Heisenberg actions on $K^*(\HG_{\C^2})$ have been studied and related to shuffle algberas in \cite{FT, SV}.
+
+
+\subsection{Proof of \texorpdfstring{Proof of Ellingsrud and Str\o mme}{Proof of Ellingsrud and Stromme}}
+
+In this section we present a detailed proof of Ellingsrud and Str\o mme's result.  Many proofs of this are in the literature; for instance \cite{cheah} (IS IT IN THIS OR ONLY THE THESIS?) gives a largely combinatorial one, and \cite{nakajimabook}   Our proof is essentially the combinatorial one in \cite{cheah}, or , but made more so in that we use the boundary path of the partition instead of ``systems of arrows''.  
+
+
+
+
+
+
+
+\subsubsection{Bia\l ynicki-Birula decomposition}
+Proved using the Bia\l ynicki-Birula decomposition.  The Bia\l ynicki-Birula decomosition should be understood in analogy with Morse theory.  
+
+The role of the Morse flow will be played by the flow $x\mapsto \varepsilon x$ as $\varepsilon\in\C^*$ tends toward zero.  We assume that the $\C^*$ action on $X$ is such that this limit point exists for all $x\in X$.  
+
+Let $p$ be a fixed point of the $\C^*$ action.  Then linearizing the $\C^*$ action on $X$ gives a $\C^*$ action on $T_pX$, and so $T_pX$ is not just a vector space but a $\C^*$ representation, and hence decomposes into a direct sum of irreducible representations.  Let $V_a$ denote the irreducible representation of $\C^*$ where $\varepsilon\in\C^*$ acts as $\varepsilon^a$.  
+
+Let $T_p^+X$ (respectively $T_p^-X$) denote the subspace of $T_pX$ where the $\C^*$ action acts with a positive (respectively negative) exponent.  I.e., if
+
+$$T_pX=\bigoplus_{n\in\Z} V_n^{e_n}$$
+then
+
+Let 
+$$\mathcal{S}_p=\{x\in X|\lim_{\varepsilon\to 0} \varepsilon x=p\}$$
+Then clearly we have $X=\sqcup_{p}\mathcal{S}_p$; the point is that $\mathcal{S}_p$ is a subvariety isomorphic to $\C^{\iota(p)}$.
+
+
+
+We first observe that $V_0$ cannot occur in $T_pX$, as 
+
+We saw in Section [REFER BACK TO ] that if $X$ is a variety with a $\C^*$ action with $k$ isolated fixed points, then $\chi(X)=k$.  If we know the weights of the $\C^*$ action on the tangent spaces of the fixed points, the Bia\l ynicki-Birula decomposition leverages this result to give the betti numbers of $X$, or even further the class of $X$ in the Grothendieck ring of varieties.
+
+\subsubsection{Tangent space to a monomial ideal}
+To apply the Bia\l ynicki-Birula decomposition to $\Hilb_n(\C^2)$, one must have a $\C^*$-action with eights of the $\C^*$ action on $T_\lambda\Hilb_n(\C^2)$.
+
+\begin{lemma}[Ellingsrud and Str\o mme \cite{ES}] \label{lem:torus-weights}
+$$T_\lambda \Hilb_n(\C^2)=\sum_{\square\in\lambda} \left(x^{-\ell(\square)} y^{a(\square)+1}+x^{\ell(\square)+1}y^{-a(\square)}\right)$$
+\end{lemma}
+
+Before giving a proof, we show how Lemma \ref{lem:torus-weights} implies Ellingsrud and Str\o mme's results. 
+
+To apply Bia\l ynicki-Birula, one needs a $\C^*$ action with isolated fixed points, not a $(\C^*)^2$ action.  The solution is to pick any generic subtorus.  
+
+The common choice is to pick the torus with action $(1,\varepsilon)$.  The choice of subtorus weights should be integer numbers, and by $(1,\varepsilon)$ we mean an action $(N,1)$ with $N>>1$.  
+
+When restricted to the subtorus with weights $(1,\varepsilon)$ the terms $x^{-\ell(\square)} y^{a(\square)+1}$ and $x^{\ell(\square)+1}y^{-a(\square)}$ in Lemma \ref{lem:torus-weights} become weights $(-\ell(square)+\varepsilon(a(\square)+1)$, which is positive if and only if $\ell(square)=0$, and $\ell(\square)+1 -\varepsilon a(\square)$, which is always positive.  
+
+The squares with $\ell(square)=0$ are exactly the rightmost squares in each row of $\lambda$.  Hence if we view the rows of $\lambda$ as the parts, the number of squares with $\ell(\square)=0$ is precisely the length $\ell(\lambda)$.  Together with the Bia\l ynicki-Birula decomposition, and the sign convention, this proves Ellingsrud-Str\o mme. 
+
+
+It should be noted that although any generic $\C^*$ action will have isolated fixed points, and hence can be used to compute the cohomology of $\Hilb_n(\C^2)$, different $\C^*$ action will provide different statistics.  However, since all these statistics compute the same thing, they must be equidistributed.  This was apparently first observed geometrically by Haiman, and Loehr and Warrington gave a combinatorial proof in \cite{LW}, furthermore they extend the statistics to the non-isolated case.  It would be interesting to have a geometric understanding of the bijections in \cite{LW}.
+
+
+
+
+\begin{proof}
+
+
+
+First, we use $T_\lambda\Hilb_n(\C^2)=\Hom_R(\mathcal{I}_\lambda,R/\mathcal{I}_\lambda)$.
+
+Analogy with the Grassmannian makes this intuitively plausible; indeed, if $V\subset W$ is a $k$ dimensional subspace, then $T_V Gr_k(W)=\Hom(V, V^\perp)=\Hom(V, W/V)$.  Thus, we understand the deformations of $\mathcal{I}_\lambda$ as a vector space; for the deformation to remain an ideal it is plausible that we should require the deformation to be a map of $R$ modules and not just vector spaces.
+
+More formally, it is a general fact that first order deformations of objects are given by $\Ext^1(\mathcal{F},\mathcal{F})$, and obstructions to these deformations are given by $\Ext^2(\mathcal{F},\mathcal{F})$; starting from this fact and considering the long exact sequences by taking $\Hom(\mathcal{I})$ to
+
+$$0\to \mathcal{I}\to R\to R/\mathcal{I}\to 0$$
+gives the result.
+
+\end{proof}
+
+
+Let $T_\lambda^{a,b}$ denote the $(a,b)$-isotypical component of $T_{\mathcal{I}_\lambda}\Hilb_n(\C^2)$.  Viewed as an element of $\Hom(\mathcal{I}_\lambda, R/\mathcal{I}_\lambda)$, any such map multiplies some subset of the monomials in $\mathcal{I}_\lambda$ by $cx^a y^b$, for some constant $c$, and sends the other monomials in $\mathcal{I}_\lambda$.  
+
+Let $P_\lambda$ be the boundary path of $\lambda$; for $(a,b)$ in $\Z^2$, let $P_\lambda(a,b)$ denote the boundary path of $\lambda$ shifted to the right by $a$ and up by $b$.
+
+\begin{lemma} Let $B_\lambda(a,b)$ be the set of bounded regions above $P_\lambda$ and below $P_\lambda(-a,-b)$.  For $b\in B_\lambda(a,b)$, let $f_b$ denote the map that multiplies monomials in $b$ by $x^ay^b$ and sends monomials not in $B_\lambda(a,b)$ to $0$.  Then the $f_b$ form a basis for $T_\lambda^{a,b}$.
+\end{lemma}
+
+\begin{proof}
+
+
+\end{proof}
+
+
+We now prove Lemma \ref{lem:torus-weights}.  First, observe that $T_\lambda^{(a,b)}$ is empty if $(a,b)$ are both negative or both non-negative.  If both are non-negative, then there are no cells at all below $P_\lambda(-a,-b)$ and $P_\lambda$.  If both are positive, then the cells below $P_\lambda(-a,-b)$ and $P_\lambda$ form one unbounded region.  
+
+\begin{tikzpicture}[scale=.5]
+\draw[thin] (0,0) grid (5,10);
+\begin{scope}[xshift=-.1cm, yshift=-.1cm]
+\draw[thick, red,  triangle 60 reversed-triangle 60] (0,10)--(0,7)--(1,7)--(1,4)--(2,4)--(2,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+\begin{scope}[xshift=.1cm, yshift=2.1cm]
+\draw[thick, blue,  triangle 60 reversed-triangle 60] (0,10)--(0,7)--(1,7)--(1,4)--(2,4)--(2,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+
+
+
+\end{tikzpicture}
+
+
+Thus, exactly one of $a,b$ is negative; assume it is $a$.  We must show that the elements of $B_\lambda(a,b)$ are in bijection with the cells $\square\in\lambda$ having  $a=\ell(\square)$ and $b=-a(\square)-1$ (recall the sign from Warning \ref{warning:action-sign}.
+
+Consider a region of cells above $P_\lambda$ and below $P_\lambda(-a,-b)$.  There are two possible directions this region could be unbounded -- along the positive $y$ or $x$-axes.  Since $b$ is positive, there are no squares far along the $x$-axis both below $P_\lambda(-a,-b)$  and above $P_\lambda$, and so the region is automatically bounded in that direction.  
+
+We must therefore guarantee the region is bounded at the bottom right.  This will happen when a South step of $P_\lambda$ starts at the same point as East step of $P_\lambda(-a,-b)$.  
+
+Bounded cells well thus be in bijection with pairs of such cells.  Translating the East step back $(a,b)$ to its original place on the boundary strip, we find these two steps give an inversion in the $P_\lambda$ and hence a cell of $\lambda$.  The arm length of this cell will be $b+1$, and the leg will have size $a$. 
+
+A similar argument shows that tangent directions with $b$ negative correspond to. 
+
+
+
+The topology of Hilbert schemes of points on surfaces was found by G\"ottsche.  A key point is that rather than study $\Hilb_n(S)$ for fixed $n$, it is easier to study them for all $n$ at once.
+
+
+
+
+
+\section{Background: Hilbert schemes of points on \texorpdfstring{$[\C^2/G]$}{[C^2/G]}}
+
+
+\subsection{Orbfiolds and stacks}
 We turn now to Hilbert schemes on orbifolds.  An orbifold is, first of all, a space where every point has a neighborhood isomorphic to $\C^n/G$, where $G$ is a finite group.  Viewed this way, orbifolds are mildly singular spaces.  
 
 Instead, it is often better to take the stacky point of view, in which we change categories, giving 
 
 
 In the naive point of view, the local model is $G$-invariant objects of $\C^n$; in the stacky point of view, this is replaced with $G$-equivariant behavior.  Rather than 
+
+
+
+\subsection{Orbifold Hilbert schemes}
+
+
 
 
 Thus, the Hilbert scheme of $n$ points on $\C^2/G$ should parameterize $G$-equivariant ideals of $R$, which are $G$-invariant ideals.  
@@ -366,130 +593,6 @@ However, even the one variable specialization $P_{\Z_3}(q,1,1)$ does not have a 
 \subsection{Hilbert schemes of points in the plane}
 
 
-\begin{theorem}[Ellingsrud and Str\o mme, 1987]
-$$\sum_{k,n \geq 0} b_k(\Hilb_n(\C^2))t^k q^n=\prod_{\ell=1}^\infty \frac{1}{1-t^{2\ell-2}q^\ell}$$
-\end{theorem}
-
-
-
-\subsubsection{Bia\l ynicki-Birula decomposition}
-Proved using the Bia\l ynicki-Birula decomposition.  The Bia\l ynicki-Birula decomosition should be understood in analogy with Morse theory.  
-
-The role of the Morse flow will be played by the flow $x\mapsto \varepsilon x$ as $\varepsilon\in\C^*$ tends toward zero.  We assume that the $\C^*$ action on $X$ is such that this limit point exists for all $x\in X$.  
-
-Let $p$ be a fixed point of the $\C^*$ action.  Then linearizing the $\C^*$ action on $X$ gives a $\C^*$ action on $T_pX$, and so $T_pX$ is not just a vector space but a $\C^*$ representation, and hence decomposes into a direct sum of irreducible representations.  Let $V_a$ denote the irreducible representation of $\C^*$ where $\varepsilon\in\C^*$ acts as $\varepsilon^a$.  
-
-Let $T_p^+X$ (respectively $T_p^-X$) denote the subspace of $T_pX$ where the $\C^*$ action acts with a positive (respectively negative) exponent.  I.e., if
-
-$$T_pX=\bigoplus_{n\in\Z} V_n^{e_n}$$
-then
-
-Let 
-$$\mathcal{S}_p=\{x\in X|\lim_{\varepsilon\to 0} \varepsilon x=p\}$$
-Then clearly we have $X=\sqcup_{p}\mathcal{S}_p$; the point is that $\mathcal{S}_p$ is a subvariety isomorphic to $\C^{\iota(p)}$.
-
-
-
-We first observe that $V_0$ cannot occur in $T_pX$, as 
-
-We saw in Section [REFER BACK TO ] that if $X$ is a variety with a $\C^*$ action with $k$ isolated fixed points, then $\chi(X)=k$.  If we know the weights of the $\C^*$ action on the tangent spaces of the fixed points, the Bia\l ynicki-Birula decomposition leverages this result to give the betti numbers of $X$, or even further the class of $X$ in the Grothendieck ring of varieties.
-
-\subsubsection{Tangent space to a monomial ideal}
-To apply the Bia\l ynicki-Birula decomposition to $\Hilb_n(\C^2)$, we need to calculate the weights of the $\C^*$ action on $T_\lambda\Hilb_n(\C^2)$.
-
-\begin{lemma}[Ellingsrud and Str\o mme \cite{ES}] \label{lem:torus-weights}
-$$T_\lambda \Hilb_n(\C^2)=\sum_{\square\in\lambda} \left(x^{-\ell(\square)} y^{a(\square)+1}+x^{\ell(\square)+1}y^{-a(\square)}\right)$$
-\end{lemma}
-
-\begin{proof}
-
-
-
-First, we use $T_\lambda\Hilb_n(\C^2)=\Hom_R(\mathcal{I}_\lambda,R/\mathcal{I}_\lambda)$.
-
-Analogy with the Grassmannian makes this intuitively plausible; indeed, if $V\subset W$ is a $k$ dimensional subspace, then $T_V Gr_k(W)=\Hom(V, V^\perp)=\Hom(V, W/V)$.  Thus, we understand the deformations of $\mathcal{I}_\lambda$ as a vector space; for the deformation to remain an ideal it is plausible that we should require the deformation to be a map of $R$ modules and not just vector spaces.
-
-More formally, it is a general fact that first order deformations of objects are given by $\Ext^1(\mathcal{F},\mathcal{F})$, and obstructions to these deformations are given by $\Ext^2(\mathcal{F},\mathcal{F})$; starting from this fact and considering the long exact sequences by taking $\Hom(\mathcal{I})$ to
-
-$$0\to \mathcal{I}\to R\to R/\mathcal{I}\to 0$$
-gives the result.
-
-\end{proof}
-
-
-Let $T_\lambda^{a,b}$ denote the $(a,b)$-isotypical component of $T_{\mathcal{I}_\lambda}\Hilb_n(\C^2)$.  Viewed as an element of $\Hom(\mathcal{I}_\lambda, R/\mathcal{I}_\lambda)$, any such map multiplies some subset of the monomials in $\mathcal{I}_\lambda$ by $cx^a y^b$, for some constant $c$, and sends the other monomials in $\mathcal{I}_\lambda$.  
-
-Let $P_\lambda$ be the boundary path of $\lambda$; for $(a,b)$ in $\Z^2$, let $P_\lambda(a,b)$ denote the boundary path of $\lambda$ shifted to the right by $a$ and up by $b$.
-
-\begin{lemma} Let $B_\lambda(a,b)$ be the set of bounded regions above $P_\lambda$ and below $P_\lambda(-a,-b)$.  For $b\in B_\lambda(a,b)$, let $f_b$ denote the map that multiplies monomials in $b$ by $x^ay^b$ and sends monomials not in $B_\lambda(a,b)$ to $0$.  Then the $f_b$ form a basis for $T_\lambda^{a,b}$.
-\end{lemma}
-
-\begin{proof}
-
-
-\end{proof}
-
-
-We now prove Lemma \ref{lem:torus-weights}.  First, observe that $T_\lambda^{(a,b)}$ is empty if $(a,b)$ are both negative or both non-negative.  If both are non-negative, then there are no cells at all below $P_\lambda(-a,-b)$ and $P_\lambda$.  If both are positive, then the cells below $P_\lambda(-a,-b)$ and $P_\lambda$ form one unbounded region.  
-
-\begin{tikzpicture}[scale=.5]
-\draw[thin] (0,0) grid (5,10);
-\begin{scope}[xshift=-.1cm, yshift=-.1cm]
-\draw[thick, red,  triangle 60 reversed-triangle 60] (0,10)--(0,7)--(1,7)--(1,4)--(2,4)--(2,1)--(4,1)--(4,0)--(5,0);
-\end{scope}
-\begin{scope}[xshift=.1cm, yshift=2.1cm]
-\draw[thick, blue,  triangle 60 reversed-triangle 60] (0,10)--(0,7)--(1,7)--(1,4)--(2,4)--(2,1)--(4,1)--(4,0)--(5,0);
-\end{scope}
-
-
-
-\end{tikzpicture}
-
-
-Thus, exactly one of $a,b$ is negative; assume it is $a$.  We must show that the elements of $B_\lambda(a,b)$ are in bijection with the cells $\square\in\lambda$ having  $a=\ell(\square)$ and $b=-a(\square)-1$ (recall the sign from Warning \ref{warning:action-sign}.
-
-Consider a region of cells above $P_\lambda$ and below $P_\lambda(-a,-b)$.  There are two possible directions this region could be unbounded -- along the positive $y$ or $x$-axes.  Since $b$ is positive, there are no squares far along the $x$-axis both below $P_\lambda(-a,-b)$  and above $P_\lambda$, and so the region is automatically bounded in that direction.  
-
-We must therefore guarantee the region is bounded at the bottom right.  This will happen when a South step of $P_\lambda$ starts at the same point as East step of $P_\lambda(-a,-b)$.  
-
-Bounded cells well thus be in bijection with pairs of such cells.  Translating the East step back $(a,b)$ to its original place on the boundary strip, we find these two steps give an inversion in the $P_\lambda$ and hence a cell of $\lambda$.  The arm length of this cell will be $b+1$, and the leg will have size $a$. 
-
-A similar argument shows that tangent directions with $b$ negative correspond to. 
-
-
-
-The topology of Hilbert schemes of points on surfaces was found by G\o ttsche.  A key point is that rather than study $\Hilb_n(S)$ for fixed $n$, it is easier to study them for all $n$ at once.
-
-
-\begin{theorem}[G\"ottsche, \cite{gottsche}]
-Let $S$ be a smooth quasiprojective surface, and when $b_i$ appears in isolation, let it be $b_i(S)$.  Then:
-$$\sum_{k,n} b_k(S^{[n]})t^k q^n=\prod_{\ell\geq 1} \frac{(1+t^{2\ell-1}q^\ell)^{b_1}(1+t^{2\ell+1}q^\ell)^{b_3}}{(1-t^{2\ell-2}q^\ell)^{b_0}(1-t^{2\ell}q^\ell)^{b_2}(1-t^{2\ell+2}q^\ell)^{b_4}}$$
-\end{theorem}
-
-G\"ottsche's original proof used the Weil conjectures to reduce to the local model of the smooth surfaces, $S=\C^2$, where his formula is exactly Ellingsrud and Str\o mme's result.
-
-Later proofs used power structures on the Grothendieck ring of varieties to  ...
-.  This power structure was extended to orbifolds in \cite{}, and so the missing piece is an analogous result to Ellingsrud-Str\o mme for the local models of orbifold surfaces, namely $\C^2/G$ for $G$ a finite group.  
-
-\subsubsection{Corollaries and extensions of G\o ttsche}
-We will also investigate orbifold analogs of several results closely related to G\o ttsche's formula.
-
-First, G\o ttsche observed the following easy corollary to his formula:
-\begin{corollary}  Suppose $S$ is connected.
-Then for fixed $k$ and large $n$, $b_{k}(S^{[n]})$ stabilizes
-\end{corollary}
-
-The point is that there is exactly one factor in the product formula that has no $t$'s, namely $1/(1-q)$.  If we remove this term, we may expand the product as a series in $t$ with coefficients polynomials in $q$.
-
-Grojnowski and Nakajima \cite{grojnowski, nakajimaheisenberg} gave another proof by categorifying G\"ottsche's formula.  The power series on the right hand side is the $(q,t)$ character of the highest weight representation of the Heisenberg algebra modeled on $H^*(S)$.  Thus, one is lead to hope that the vector space 
-$$\mathcal{H}_S=\bigoplus_{k\geq 0} H^k(S)$$
-can naturally be given an action of this Heisenberg algebra.  This is exactly what Grojnowski and Nakajima did, using nested Hilbert schemes of points.
-
-In case the quasiprojective surface $S$ is the minimal resolution of the ADE singularity, this Heisenberg action is part of a quantumn group action for the corresponding semisimple quantum group.
-
-
-
-
 That is, we look for 
 $$\DC_G(q,t):=\sum_{n,k\geq 0 } b_k(\Hilb_n([\C^2/G])) t^kq^n$$
 
@@ -626,9 +729,8 @@ The second place was in knowing that $\dim \Hilb_{\tilde{v}}=0$; we must include
 
 To state our conjectural formula, we will use the Pochhammer symbol $(a;x)_\infty:=\prod_{\ell\geq 0} (1-ax^\ell)$.
 \begin{example}
-Using the Pochhammer symbol, G\o ttsche's formula becomes:
-$$\sum_{n\geq 0} b_k(\Hilb_n(S))t^kq^n=
-\frac{(-qt;qt^2)_\infty^{b_1}(-qt^3;qt^2)_\infty^{b_3}}{(q;qt^2)_\infty^{b_0}}\frac{1}{(qt^2;qt^2)_\infty^{b_2}}\frac{1}{(qt^4;qt^2)_\infty^{b_4}}$$
+Using the Pochhammer symbol, G\"ottsche's formula becomes:
+$$\sum_{n\geq 0} b_k(\Hilb_n(S))t^kq^n=\frac{(-qt;qt^2)_\infty^{b_1}(-qt^3;qt^2)_\infty^{b_3}}{(q;qt^2)_\infty^{b_0}}\frac{1}{(qt^2;qt^2)_\infty^{b_2}}\frac{1}{(qt^4;qt^2)_\infty^{b_4}}$$
 \end{example}
 
 In \cite{GLMequivariant}, we have the following conjectural product formula 
