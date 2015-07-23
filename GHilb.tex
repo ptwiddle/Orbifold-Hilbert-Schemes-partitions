@@ -207,6 +207,11 @@ whenever $Y$ is a closed subvariety of $X$.
 
 The product structure is given by
 $$[X]\times [Y]=[X\times Y]$$
+
+Again, if $X$ is a graded space with positively graded pieces, then $[X]$ will be an element of $K_0(\Var_k)[[q]]$.
+
+In $K_0(\Var_k)$, affine spaces are denoted $\LL^k=[\C^k]$.
+
 \end{definition}
 
 \begin{example}[Projective space]
@@ -215,6 +220,9 @@ The fact that the Riemann sphere is obtained from $\C$ by adding a point at infi
 More generally, the decomposition $\proj^n=\C^n\cup \proj^{n-1}$ gives
 $$[\proj^n]=\LL^n+[\proj^{n-1}]=\LL^n+\LL^{n-1}+\cdots 1=\frac{1-\LL^{n+1}}{1-\LL}$$
 
+
+If we let $\proj=\sum \proj^nq^n$, then a short computation with the previous line gives
+$$[\proj]=\frac{1}{(1-q)(1-q\LL)}$$
 \end{example}
 
 
@@ -252,7 +260,11 @@ First, G\"ottsche observed the following easy corollary to his formula:
 Then for fixed $k$ and large $n$, $b_{k}(S^{[n]})$ stabilizes
 \end{corollary}
 
-The point is that there is exactly one factor in the product formula that has no $t$'s, namely $1/(1-q)$.  If we remove this term, we may expand the product as a series in $t$ with coefficients polynomials in $q$.
+\begin{proof}
+The point is that there is exactly one factor in the product formula that has no $t$'s, namely $1/(1-q)$.  If we remove this term, we may expand the rest of the product as a series \emph{in $t$}, and the coefficient of $t^k$ will be a polynomial $p_k(q)$ in $q$.  
+
+Adding the $1/(1-q)$ term back in means that once a monomial $q^kt^m$ occurs, it will now also occur for all higher powers of $k$.  Hence, we see that once $n\geq\text{deg}(p_k)$, we will have $b_k(\Hilb_n(S))=p_k(1)$.
+\end{proof}
 
 Grojnowski and Nakajima \cite{grojnowski, nakajimaheisenberg} gave another proof by categorifying G\"ottsche's formula.  The power series on the right hand side is the $(q,t)$ character of the highest weight representation of the Heisenberg algebra modeled on $H^*(S)$.  Thus, one is lead to hope that the vector space 
 $$H^*(\HG_S)=\bigoplus_{k\geq 0} H^k()$$
@@ -260,23 +272,84 @@ can naturally be given an action of this Heisenberg algebra.  This is exactly wh
 
 In case the quasiprojective surface $S$ is the minimal resolution of the ADE singularity, this Heisenberg action is part of a quantumn group action for the corresponding semisimple quantum group.
 
-Further categorifications of this action are areas of active study; the Heisenberg action on $\HG_{\C^2}$ is related to, while in case $S$ is the resolution of an ADE singularity the action has been further categorified by Cautis and Licata \cite{CL}, and the quantum group action in \cite{CL2}.
+Further categorifications of this action are areas of active study; the Heisenberg action on $\HG_{\C^2}$ is related to, while in case $S$ is the resolution of an ADE singularity the action has been further categorified by Cautis and Licata \cite{CL} to a ``categorical action'' on the derived category of Coherent sheaves $D(\Hilb_S)$; the quantum group action is categorified in \cite{CL2}.
 
-Heisenberg actions on $K^*(\HG_{\C^2})$ have been studied and related to shuffle algberas in \cite{FT, SV}.
+In another direction, Heisenberg actions on $K^*(\HG_{\C^2})$ have been studied and related to shuffle algberas in \cite{FT, SV}.
+
+
 
 
 \subsection{Proof of \texorpdfstring{Proof of Ellingsrud and Str\o mme}{Proof of Ellingsrud and Stromme}}
 
 In this section we present a detailed proof of Ellingsrud and Str\o mme's result.  Many proofs of this are in the literature; for instance \cite{cheah} (IS IT IN THIS OR ONLY THE THESIS?) gives a largely combinatorial one, and \cite{nakajimabook}   Our proof is essentially the combinatorial one in \cite{cheah}, or , but made more so in that we use the boundary path of the partition instead of ``systems of arrows''.  
 
+The main tool we use to understand the topology of $\Hilb_n(\C^2)$ is the $(\C^*)^2$ action induced by the $(\C^*)^2$ action on $\C^2$.  
 
+
+
+
+\subsubsection{Warm-up: Euler Characteristic of $\Hilb_n(\C^2)$}
+
+Setting $t=-1$ in Lemma  gives
+$$\chi(\Hilb_{\C^2})=\prod_{k\geq 0} \frac{1}{1-q^k}$$
+and so $\chi(\Hilb_n(\C^2))=p(n)$.
+
+The pertinent fact about the Euler characteristic that makes it easy to compute is that it is additive over subvarieties: if $X\subset Y$ closed, then $\chi(Y)=\chi(X)+\chi(Y\setminus X)$.
+
+Note that this is not true for real manifolds; take, the example of a point in $S^1$, both the point and its complement have euler characteristic 1, while $S^1$ has euler characteristic 0.  However, we briefly sketch the proof in case $X$ is a complex \emph{submanifold}.  If $U$ and $V$ are an open covering, then the Mayer-Vietoris sequence and the definition of $\chi$ give
+$$\chi(Y)=\chi(U)+\chi(V)-\chi(U\cap V)$$
+Taking $U=Y\setminus X$, and $V$ a tubular neighborhood of $X$, we see that $U\cap V$ we will be a homotopy equivalent to the normal sphere bundle of $X$ in $Y$.  Each sphere we will be the unit sphere sitting inside the normal bundle of $X$ -- since $X$ is a complex submanifold, this will be an odd dimensional sphere, having euler characteristic zero.  
+
+\begin{lemma}
+Suppose that $X$ has a $\C^*$ action, with fixed point set $X^{\C^*}$.  Then $\chi(X)=\chi(X^{\C^*})$.
+\end{lemma}
+
+\begin{proof}[idea]
+There is a stratification of $X$ according to its stabilizer subgroup.  For a subgroup $H\subset G$, we let $X^{(H)}$ denote the subset with stabilizer group $H$.  Then $X^{(H)}$ has a free action of $G/H$, and so is a $G/H$ bundle over the quotient $X^{(H)}/(G/H)$.  Since 
+
+We apply $\chi(X)=\chi(X^T)+\chi(X\setminus X^T)$.  The action of $\C^*$ on $X\setminus X^T$ will further decompose
+\end{proof}
+
+
+\begin{lemma}
+The $T$-fixed points on $\Hilb_n(\C^2)$ are the monomial ideals
+\end{lemma}
+
+\begin{proof}
+A monomial $x^\alpha y^\beta$ is just scaled by the action of $T$, and hence an ideal generated by monomials will be $T$ fixed.  
+
+In the other direction, suppose that an ideal is $T$ fixed, and $f\in\mathcal{I}$ is a generator that is not a monomial; we show all monomials in $f$ are actually in $\mathcal{I}$.  The idea is that $t\cdot f\in\mathcal{I}$ for any $t\in T$.  If $f$ is the sum of $k$ monomials, then there are $t_1,\cdots, t_k\in\C^*$ so that $t_i f$ are linearly independent over $\C$; inverting the matrix that expresses $t_i f$ in terms of the monomials $m_i$ we see that $m_i$ is a linear combination of the $f_i$ and hence in $\mathcal{I}$.
+\end{proof}
+
+But there is a bijection between monomial ideals with $\dim R/\mathcal{I}=n$ and partitions of $n$ -- the monomials not in $\mathcal{I}$ will form a basis for $\dim R/\mathcal{I}$, and will form the squares of a partition.
+
+\begin{center}
+\begin{tikzpicture}
+\draw[fill=red!20] (0,2) rectangle (1,3);
+\draw[fill=red!20] (1,1) rectangle (2,2);
+\draw[fill=red!20] (3,0) rectangle (4,1);
+
+
+\draw[thin, gray] (0,0) grid (4.5,3.5);
+\foreach \x in {0,...,4}
+   \foreach \y in {0,...,3}
+       \node at (\x+.5,\y+.5) {$x^\x y^\y$};
+\draw[ultra thick, black] (0,0)--(0,2)--(1,2)--(1,1)--(3,1)--(3,0)--cycle;
+
+\draw node at (7.5, 2) {$\begin{array}{cc} \mathcal{I} & \lambda \\ (x^3,xy,y^2) & (2,1,1) \end{array}$};
+\end{tikzpicture}
+\end{center}
 
 
 
 
 
 \subsubsection{Bia\l ynicki-Birula decomposition}
-Proved using the Bia\l ynicki-Birula decomposition.  The Bia\l ynicki-Birula decomosition should be understood in analogy with Morse theory.  
+
+To capture the Poincare polynomial instead of just the Euler characteristic, Ellingsrud and Str\o mme make use of the Bia\l ynicki-Birula decomposition of $\Hilb_n(\C^2)$ \cite{BB}, which is closely related to Morse theory. 
+
+
+
 
 The role of the Morse flow will be played by the flow $x\mapsto \varepsilon x$ as $\varepsilon\in\C^*$ tends toward zero.  We assume that the $\C^*$ action on $X$ is such that this limit point exists for all $x\in X$.  
 
@@ -306,19 +379,35 @@ $$T_\lambda \Hilb_n(\C^2)=\sum_{\square\in\lambda} \left(x^{-\ell(\square)} y^{a
 
 Before giving a proof, we show how Lemma \ref{lem:torus-weights} implies Ellingsrud and Str\o mme's results. 
 
-To apply Bia\l ynicki-Birula, one needs a $\C^*$ action with isolated fixed points, not a $(\C^*)^2$ action.  The solution is to pick any generic subtorus.  
+To apply Bia\l ynicki-Birula, one needs a $\C^*$ action with isolated fixed points, not a $(\C^*)^2$ action.  The solution is to pick any generic subtorus.  We will pick the action on $\C^2$ with weights $(\varepsilon,1)$, so that in the flow $\lambda\to 0$ the positive directions are the stable directions.  The choice of subtorus weights should really be integer numbers, and by $(1,\varepsilon)$ we mean an action $(N,1)$ with $N>>n$. Since $a(\square)$ and $\ell(square)$ are bounded by $n$, this means that we will always have $a(\square)\varepsilon<<1$, and similarly with $\ell(\square)$.
 
-The common choice is to pick the torus with action $(1,\varepsilon)$.  The choice of subtorus weights should be integer numbers, and by $(1,\varepsilon)$ we mean an action $(N,1)$ with $N>>1$.  
+Recall Warning \ref{warning:action-sign} that $\C^*$ will act with \emph{opposite} weights on $x$ and $y$, so that $t\cdot(x^\alpha y^\beta)=t^{-\alpha\varepsilon-\beta}x^\alpha y^\beta$.  
 
-When restricted to the subtorus with weights $(1,\varepsilon)$ the terms $x^{-\ell(\square)} y^{a(\square)+1}$ and $x^{\ell(\square)+1}y^{-a(\square)}$ in Lemma \ref{lem:torus-weights} become weights $(-\ell(square)+\varepsilon(a(\square)+1)$, which is positive if and only if $\ell(square)=0$, and $\ell(\square)+1 -\varepsilon a(\square)$, which is always positive.  
+Restricted to this subtorus, the term $x^{-\ell(\square)} y^{a(\square)+1}$ has weight $\varepsilon\ell(\square)-a(\square)-1$, which will never be positive or zero.  The term $x^{\ell(\square)+1}y^{-a(\square)}$ has weight $a(\square)-\varepsilon(\ell(\square)+1)$, which will be positive if and only if $a(\square)>0$.  $a(\square)=0$ exactly on the top square of each column of $\lambda$, and so viewing the columns as the parts of $\lambda$, we see that the $i$th column contributes $\lambda_i-1$ to $\dim^+(\lambda)$, as we meant to show.
 
-The squares with $\ell(square)=0$ are exactly the rightmost squares in each row of $\lambda$.  Hence if we view the rows of $\lambda$ as the parts, the number of squares with $\ell(\square)=0$ is precisely the length $\ell(\lambda)$.  Together with the Bia\l ynicki-Birula decomposition, and the sign convention, this proves Ellingsrud-Str\o mme. 
+
+
+
 
 
 It should be noted that although any generic $\C^*$ action will have isolated fixed points, and hence can be used to compute the cohomology of $\Hilb_n(\C^2)$, different $\C^*$ action will provide different statistics.  However, since all these statistics compute the same thing, they must be equidistributed.  This was apparently first observed geometrically by Haiman, and Loehr and Warrington gave a combinatorial proof in \cite{LW}, furthermore they extend the statistics to the non-isolated case.  It would be interesting to have a geometric understanding of the bijections in \cite{LW}.
 
 
 
+\begin{center}
+\begin{tikzpicture}[scale=.5]
+\draw[fill=red!20] (0,0) rectangle (1,2);
+\draw[fill=red!20] (0,0) rectangle (3,1);
+
+
+\draw[thin, gray] (0,0) grid (1,3);
+\draw[thin, gray] (1,0) grid (3,2);
+
+\draw[thick] (0,0)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--cycle;
+
+\draw (2,-1) node {$\dim^+(\lambda)$ is number of shaded squares};
+\end{tikzpicture}
+\end{center}
 
 \begin{proof}
 
