@@ -42,7 +42,7 @@
 \newcommand{\A}{\mathbf{A}}
 \newcommand{\OO}{\mathcal{O}}
 \newcommand{\LL}{\mathbf{L}}
-
+\newcommand{\PP}{\mathcal{P}} % partitions
 
 
 \newcommand{\proj}{\mathbf{P}}
@@ -117,7 +117,48 @@ Research on this work was supported by NSF grant NUMBER HERE, and CITE TOM's GRA
 
 Thanks to Amin Gholampour, Yunfeng Jiang, and Martijn Kool for asking a question that began this work, and to Tom Bridgeland for useful conversations.
 
+
+
 \section{Background: Hilbert schemes of points on smooth surfaces}
+
+\subsection{Partitions}
+
+
+A partition is of $n$ is a nondincreasing sequence of numbers $\lambda_1\geq \lambda_2\geq \cdots \geq \lambda_\ell > 0$ with $\sum \lambda_i=n$  The \emph{length} $\ell(\lambda)$ of a partition is the number of parts, the \emph{size} $|\lambda|$ is the sum of the parts.  We use $\PP$ to denote the set of all partitions, and $\PP_n$ to denote the partitions of $n$.
+
+Rather than a list of numbers, we usually view partitions in terms of their \emph{Young diagrams}.  We draw our Young diagrams as subsets of a grid in the first quadrant, with the square in the corner being $(0,0)$, and with the columns being the parts of $\lambda$.  
+
+We refer to a cells of a partition as $\square\in\lambda$.  The \emph{arm} of a square $\square\in\lambda$ is the number of cells above $\square$ and in $\lambda$; the \emph{leg} $\ell(\square)$ of a cell is the number of cells contained in $\lambda$ and to the right of $\square$.
+
+\begin{example}
+Below is the Young diagram of $\lambda=3+2+2+1$.  The cell $(2,1)$ is marked $s$; the cells in the arm and leg of $s$ are labeled $a$ and $l$, respectively.
+\begin{center}
+\begin{tikzpicture}[scale=.5]
+\draw[thin, gray] (0,0) grid (1,3);
+\draw[thin, gray] (1,0) grid (3,2);
+\draw[thick] (0,0)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--cycle;
+\draw (1.5,.5) node{$s$};
+\draw (1.5,1.5) node{$a$};
+\draw (2.5,.5) node{$l$};
+\draw (3.5,.5) node {$l$};
+\draw (8.5,1.5) node[align=left] {$a(s)=\# a=1$ \\ $\ell(s)=\# l=2$};
+\end{tikzpicture}
+\end{center}
+\end{example}
+
+The other combinatorial lens we will use to view partitions is the fermionic viewpoint, so named in .  
+
+The boundary path is the directed lattice path starting at postive infinity on the $y$ axis, descending along the $y$ axis, tracing the boundary of $\lambda$, and then going along the $x$-axis to positive infinity.  One way to view this is as a bi-infinte word consisting of the letters $S$s and $E$; we will use the \emph{Maya diagram}, this is, on the simplest level, just translating $S$'s into empty circles, and the $E$'s into filled in circles, or stones.  
+
+
+
+The cells $\square\in\lambda$ are in bijection with the
+\emph{inversions} of the boundary path; that is, by pairs of segments
+$(\text{step}_1, \text{step}_2)$, where $\text{step}_1$ occurs before $\text{step}_2$, but $\text{step}_1$ is traveling E and $\text{step}_2$ is traveing S.  The bijection sends $\square$ to the segments at the end of its arm and leg.
+
+
+
+
 
 \subsection{Introduction to Hilbert schemes}
 
@@ -355,18 +396,22 @@ The role of the Morse flow will be played by the flow $x\mapsto \varepsilon x$ a
 
 Let $p$ be a fixed point of the $\C^*$ action.  Then linearizing the $\C^*$ action on $X$ gives a $\C^*$ action on $T_pX$, and so $T_pX$ is not just a vector space but a $\C^*$ representation, and hence decomposes into a direct sum of irreducible representations.  Let $V_a$ denote the irreducible representation of $\C^*$ where $\varepsilon\in\C^*$ acts as $\varepsilon^a$.  
 
-Let $T_p^+X$ (respectively $T_p^-X$) denote the subspace of $T_pX$ where the $\C^*$ action acts with a positive (respectively negative) exponent.  I.e., if
+
+Let $T_p^+X$ (respectively $T_p^-X$) denote the subspace of $T_pX$ where the $\C^*$ action acts with a positive (respectively negative) exponent, and let $T_p^0(X)$ denote the subspace where $\C^*$ acts trivially.  Thus, if we consider the flow $X$ sending $\lambda$ toward 0, $T_p^+X$ are the directions that are flowing twoard $p$, and $T_p^-X$ are the directions flowing away from $p$.  
+
+Note that if $p$ is an isolated fixed point, then $T_p^0(X)=0$.
 
 $$T_pX=\bigoplus_{n\in\Z} V_n^{e_n}$$
 then
+$$T_p^+X=\bigoplus_{n>0} V_n^{e_n}$$
 
 Let 
 $$\mathcal{S}_p=\{x\in X|\lim_{\varepsilon\to 0} \varepsilon x=p\}$$
-Then clearly we have $X=\sqcup_{p}\mathcal{S}_p$; the point is that $\mathcal{S}_p$ is a subvariety isomorphic to $\C^{\iota(p)}$.
+Then the Bia\l ynicki-Birula decomposition states that $X=\sqcup_{p}\mathcal{S}_p$; the point is that $\mathcal{S}_p$ is a subvariety isomorphic to $A_k$.
 
 
 
-We first observe that $V_0$ cannot occur in $T_pX$, as 
+
 
 We saw in Section [REFER BACK TO ] that if $X$ is a variety with a $\C^*$ action with $k$ isolated fixed points, then $\chi(X)=k$.  If we know the weights of the $\C^*$ action on the tangent spaces of the fixed points, the Bia\l ynicki-Birula decomposition leverages this result to give the betti numbers of $X$, or even further the class of $X$ in the Grothendieck ring of varieties.
 
