@@ -759,15 +759,38 @@ Let $G$ be a finite group, and $W$ a representation of $G$.  The \emph{McKay gra
 
 The subgroups of $SU_2$ have an ADE classification.  There are two infinite series: cyclic groups, binary dihedral groups, and double covers of the isometries of the symmetries of the platonic solids.
 
-McKay observed that when $G\subset SL_2(\C)$, the McKay graph of the defining two dimension representation was the \emph{affine} version of the corresponding ADE Dynkin diagram.  Removing the vertex corresponding to the trivial representation gives the usual ADE Dynkin diagram.  Furthermore, the exceptional locus of the minimal resolution $\widetilde{S}_G$ of the corresponding singularity has all $-2$ curves, with dual graph the corresponding Dynkin diagram. 
+McKay observed \cite{McKay} that when $G\subset SL_2(\C)$, the McKay graph of the defining two dimension representation was the \emph{affine} version of the corresponding ADE Dynkin diagram.  Removing the vertex corresponding to the trivial representation gives the usual ADE Dynkin diagram.  Furthermore, the exceptional locus of the minimal resolution $\widetilde{S}_G$ of the corresponding singularity has all $-2$ curves, with dual graph the corresponding Dynkin diagram. 
 
-The description of the minimal resolution $\widetilde{S}_G$ as $G-\Hilb$ gives an explanation of this.  For an irrep $\rho$ of $G$, we have on the one hand a tautological bundle $\mathbb{E}_\rho$ over $G-\Hilb$, and on the other hand a vertex of the McKay graph.  
+A geometric explanation of this was first given by Gonzalez-Sprinberg and Verdier \cite{GSV}, by constructing vectors bundles $E_\rho$ on the minimal resolution $\widetilde{S}_G$, labeled by the irreducible representations $\rho$ of $G$, so that $c_1(E_\rho)$ was the corresponding component of the exception divisor.
+
+Ito and Nakamura observed the $G\Hilb$ is the minimal resolution \cite{IN}.
+
+The description of the minimal resolution $\widetilde{S}_G$ as $G-\Hilb$ gives a natural construction of these vector bundles: for each irrep $\rho$ of $G$, we have on the one hand a tautological bundle $\mathbb{E}_\rho$ over $G-\Hilb$, and on the other hand a vertex of the McKay graph.  
 
 $$c_1(\mathbb{E}_\rho)=E_\rho$$
 
+Furthermore, viewing the minimal resolution as a moduli space of objects on the orbifold gives rise to powerful tools using the derived category.  
+
+In dimensions higher than two, Hilbert schemes of points on a smooth surface are not smooth, and we no longer have any reason to expect that $G-\Hilb$ would be smooth, or a crepant resolution of $\C^n/G$ -- indeed, in dimensions 4 or higher, gorenstein quotient singularities need not have crepant resolutions.
+
+However, it turns out that in many cases of interest, $G-\Hilb$ is smooth in this case, and a crepant resolution of $\C^2/G$.  This was proven by Bridgeland, King and Reid in \cite{BKR} for dimension three, and Haiman's work on $\Hilb_n(\C^2)$ is essentially showing that it is $S_n-\Hilb(\C^n)$.
+
+
+
 \subsection{The special McKay correspondence}
 
-When $G$ is not in $SL_2$, the number of components in the exception divisor of $\widetilde{S}_G$ is strictly less than the number of nontrivial irreducible representations of $G$.  The special McKay correspondence picks out a subset of the irreps of $G$, called the \emph{special} representations, and gives a labeling of the irreducible components of the exception divisor of $G$ by the special representations, so that we still have $c_1(\mathbb{E}_\rho)=E_\rho$.
+When $G$ is not in $SL_2$, the number of components in the exception divisor of $\widetilde{S}_G$ is strictly less than the number of nontrivial irreducible representations of $G$.  The \emph{special McKay correspondence} started by Wunram \cite{wunram} picks out a subset of the irreps of $G$, called the \emph{special} representations, and gives a labeling of the irreducible components of the exception divisor of $G$ by the special representations, so that we still have $c_1(\mathbb{E}_\rho)=E_\rho$.
+
+Kidoh \cite{Kidoh} in the cyclic case and Ishii \cite{ishii} in the general case proved that we still have $G\Hilb$ is the minimal resolution.
+
+Ito \cite{ito} gave the following combinatorial description of the special representations.  
+
+\begin{theorem}[\cite[ito], 3.7]
+Defines $B(G)$ to be teh set of monomials which are not divisible by any $G$-invariant monomial, and defines $L(G)$ to be the set of monomials not divisible by $xy, x^{|G|}, y^{|G|}$.  Then a representation $\rho$ is special if and only if the corresponding monomial is not contained in $B(G)\setminus L(G)$.
+\end{theorem}
+
+
+Although we will work mainly at the level of homology, it is worth noting the McKay and special McKay correspondences hold at the level of derived categories.  (KAPRANOV-VASSEROT, ISHII)
 
 
 \subsection{Colored square counting}
