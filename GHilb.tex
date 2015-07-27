@@ -1,7 +1,7 @@
 \documentclass{amsart}[12pt]
 %\pdfoutput=1
 
-\usepackage{tikz}
+\usepackage{tikz}y
 \usetikzlibrary{arrows} %for arrowtips 
 \usepackage[sc]{mathpazo}
 \usepackage{hyperref}
@@ -490,30 +490,94 @@ Let $P_\lambda$ be the boundary path of $\lambda$; for $(a,b)$ in $\Z^2$, let $P
 To be a map of $R$-modules the map must commute with multipication by $x$ and $y$.  Thus, if $x^{\alpha-a+1}y^{\beta-b}\notin \mathcal{I}$, we must have $c_{\alpha+1,\beta}=c_{\alpha,\beta}$, and similarly with $y$.  Thus, to be a map of $R$-modules, we see that monomials in the same component must get multiplied by the same constant.
 
 If a region is not bounded, then one of the generators of $\mathcal{I}$ contained in that region would be mapped to a monomial with negative exponents, which it can't do; therefore it must be multiplied by 0.
-\end{proof}
-
-
-We now prove Lemma \ref{lem:torus-weights}.  First, observe that $T_\lambda^{(a,b)}$ is empty if $(a,b)$ are both negative or both non-negative.  If both are non-negative, then there are no cells at all below $P_\lambda(a,b)$ and above $P_\lambda$.  If both are positive, then the cells below $P_\lambda(a,b)$ and $P_\lambda$ form a single unbounded region.  
-
+\begin{center}
 \begin{tikzpicture}[scale=.5]
-\draw[thin] (0,0) grid (5,10);
+
+\fill[red!20!white] (0,5)--(0,3)--(1,3)--(1,5)--cycle;
+\fill[red!20!white] (1,3)--(2,3)--(2,2)--(1,2)--cycle;
+\fill[red!20!white] (3,2)--(4,2)--(4,1)--(3,1)--cycle;
+\fill[red!20!white] (4,1)--(5,1)--(5,0)--(4,0)--cycle;
+\draw[thin, gray] (0,0) grid (5,5);
+\draw (.5,3.5) node{$y^3$};
+\draw (1.5,2.5) node{$xy^2$};
+\draw (3.5,1.5) node{$x^3y$};
+\draw (4.5,.5) node{$x^4$};
+
 \begin{scope}[xshift=-.1cm, yshift=-.1cm]
-\draw[thick, red,  triangle 60 reversed-triangle 60] (0,10)--(0,7)--(1,7)--(1,4)--(2,4)--(2,1)--(4,1)--(4,0)--(5,0);
+\draw[thick, red,  triangle 60 reversed-triangle 60] (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
 \end{scope}
-\begin{scope}[xshift=.1cm, yshift=2.1cm]
-\draw[thick, blue,  triangle 60 reversed-triangle 60] (0,10)--(0,7)--(1,7)--(1,4)--(2,4)--(2,1)--(4,1)--(4,0)--(5,0);
+\begin{scope}[xshift=1.1cm, yshift=.1cm]
+\draw[thick, blue, dashed, triangle 60 reversed-triangle 60]  (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+
+\begin{scope}[xshift=8cm]
+\fill[red!20!white] (0,5)--(2,5)--(2,3)--(3,3)--(3,2)--(1,2)--(1,3)--(0,3)--cycle;
+\fill[red!20!white] (3,2)--(5,2)--(5,1)--(6,1)--(6,0)--(4,0)--(4,1)--(3,1)--cycle;
+
+\draw[thin, gray] (0,0) grid (5,5);
+\draw (.5,3.5) node{$y^3$};
+\draw (1.5,2.5) node{$xy^2$};
+\draw (3.5,1.5) node{$x^3y$};
+\draw (4.5,.5) node{$x^4$};
+\begin{scope}[xshift=-.1cm, yshift=-.1cm]
+\draw[thick, red,  triangle 60 reversed-triangle 60] (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+\begin{scope}[xshift=2.1cm, yshift=.1cm]
+\draw[thick, blue, dashed, triangle 60 reversed-triangle 60]  (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
 \end{scope}
 
 
 
 \end{tikzpicture}
+\end{center}
+The picture on the left shows $(1,0)$ is three dimensional.  The region containing $y^3$ is unbounded; indeed, $y^3$ would have to map to $x^{-1}y^3\notin R/\mathcal{I}$.  
+
+The picture on the right shows $(2,0)$ is one dimensional; $y^3$ ad $xy^2$ would each map to things not in $R/\mathcal{I}$ because they are in an unbounded region.  We also have that $x^3y$ and $x^4$ must get multiplied by the same constant, since $xf(x^3y)=x^2y=yf(x^4)$ and $x^2y\in R\mathcal{I}$.
+\end{proof}
 
 
+We now prove Lemma \ref{lem:torus-weights}.  First, observe that $T_\lambda^{(a,b)}$ is empty if $(a,b)$ are both negative or both non-negative.  If both are non-negative, then there are no cells at all below $P_\lambda(a,b)$ and above $P_\lambda$.  If both are positive, then the cells below $P_\lambda(a,b)$ and $P_\lambda$ form a single unbounded region.  
+\begin{center}
+\begin{tikzpicture}[scale=.5]
+\fill[blue!20!white] (0,5)--(1,5)--(1,4)--(2,4)--(2,3)--(4,3)--(4,2)--(5,2)--(5,0)--(4,0)--(4,1)--(3,1)--(3,2)--(1,2)--(1,3)--(0,3)--cycle;
+\draw (.5,3.5) node{$y^3$};
+\draw (1.5,2.5) node{$xy^2$};
+\draw (3.5,1.5) node{$x^3y$};
+\draw (4.5,.5) node{$x^4$};
+\draw[thin, gray] (0,0) grid (5,5);
+\begin{scope}[xshift=-.1cm, yshift=-.1cm]
+\draw[thick, red,  triangle 60 reversed-triangle 60] (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+\begin{scope}[xshift=1.1cm, yshift=1.1cm]
+\draw[thick, blue, dashed, triangle 60 reversed-triangle 60]  (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+
+\begin{scope}[xshift=9cm]
+\draw[thin, gray] (0,0) grid (5,5);
+\draw (.5,3.5) node{$y^3$};
+\draw (1.5,2.5) node{$xy^2$};
+\draw (3.5,1.5) node{$x^3y$};
+\draw (4.5,.5) node{$x^4$};
+\begin{scope}[xshift=-.1cm, yshift=-.1cm]
+\draw[thick, red,  triangle 60 reversed-triangle 60] (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+\begin{scope}[xshift=-.9cm, yshift=.1cm]
+\draw[thick, blue, dashed, triangle 60 reversed-triangle 60]  (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+The left shows that for $(1,1)$ are both positive, then there is a single unbounded region.  The right shows that for $(-1,0)$ there are no cells above $P_\lambda$ and below $P_\lambda(-1,0)$.
 Thus, exactly one of $a,b$ is negative; assume it is $a$.  We must show that the elements of $B_\lambda(a,b)$ are in bijection with the cells $\square\in\lambda$ having  $a=\ell(\square)$ and $b=-a(\square)-1$ (recall the sign from Warning \ref{warning:action-sign}.
 
 Consider a region of cells above $P_\lambda$ and below $P_\lambda(-a,-b)$.  There are two possible directions this region could be unbounded -- along the positive $y$ or $x$-axes.  Since $b$ is positive, there are no squares far along the $x$-axis both below $P_\lambda(-a,-b)$  and above $P_\lambda$, and so the region is automatically bounded in that direction.  
 
 We must therefore guarantee the region is bounded at the bottom right.  This will happen when a South step of $P_\lambda$ starts at the same point as East step of $P_\lambda(-a,-b)$.  
+
+
+
 
 Bounded cells well thus be in bijection with pairs of such cells.  Translating the East step back $(a,b)$ to its original place on the boundary strip, we find these two steps give an inversion in the $P_\lambda$ and hence a cell of $\lambda$.  The arm length of this cell will be $b+1$, and the leg will have size $a$. 
 
