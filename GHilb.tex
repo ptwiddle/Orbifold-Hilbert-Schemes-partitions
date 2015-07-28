@@ -1,7 +1,7 @@
 \documentclass{amsart}[12pt]
 %\pdfoutput=1
 
-\usepackage{tikz}y
+\usepackage{tikz}
 \usetikzlibrary{arrows} %for arrowtips 
 \usepackage[sc]{mathpazo}
 \usepackage{hyperref}
@@ -58,6 +58,7 @@
 \DeclareMathOperator{\DC}{DH}
 \DeclareMathOperator{\Sym}{Sym}
 \DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\cdim}{cdim}
 
 
 \newcommand{\HG}{\Hilb}
@@ -424,7 +425,7 @@ $$T_\lambda \Hilb_n(\C^2)=\sum_{\square\in\lambda} \left(x^{-\ell(\square)} y^{a
 
 Before giving a proof, we show how Lemma \ref{lem:torus-weights} implies Ellingsrud and Str\o mme's results. 
 
-To apply Bia\l ynicki-Birula, one needs a $\C^*$ action with isolated fixed points, not a $(\C^*)^2$ action.  The solution is to pick any generic subtorus.  We will pick the action on $\C^2$ with weights $(\varepsilon,1)$, so that in the flow $\lambda\to 0$ the positive directions are the stable directions.  The choice of subtorus weights should really be integer numbers, and by $(1,\varepsilon)$ we mean an action $(N,1)$ with $N>>n$. Since $a(\square)$ and $\ell(square)$ are bounded by $n$, this means that we will always have $a(\square)\varepsilon<<1$, and similarly with $\ell(\square)$.
+To apply Bia\l ynicki-Birula, one needs a $\C^*$ action with isolated fixed points, not a $(\C^*)^2$ action.  The solution is to pick any generic subtorus.  We will pick the action on $\C^2$ with weights $(\varepsilon,1)$, so that in the flow $\lambda\to 0$ the positive directions are the stable directions.  The choice of subtorus weights should really be integer numbers, and by $(1,\varepsilon)$ we mean an action $(N,1)$ with $N>>n$. Since $a(\square)$ and $\ell(\square)$ are bounded by $n$, this means that we will always have $a(\square)\varepsilon<<1$, and similarly with $\ell(\square)$.
 
 Recall Warning \ref{warning:action-sign} that $\C^*$ will act with \emph{opposite} weights on $x$ and $y$, so that $t\cdot(x^\alpha y^\beta)=t^{-\alpha\varepsilon-\beta}x^\alpha y^\beta$.  
 
@@ -785,8 +786,8 @@ Kidoh \cite{Kidoh} in the cyclic case and Ishii \cite{ishii} in the general case
 
 Ito \cite{ito} gave the following combinatorial description of the special representations.  
 
-\begin{theorem}[\cite[ito], 3.7]
-Defines $B(G)$ to be teh set of monomials which are not divisible by any $G$-invariant monomial, and defines $L(G)$ to be the set of monomials not divisible by $xy, x^{|G|}, y^{|G|}$.  Then a representation $\rho$ is special if and only if the corresponding monomial is not contained in $B(G)\setminus L(G)$.
+\begin{theorem}[\cite{ito}, Theorem 3.7]
+Defines $B(G)$ to be the set of monomials which are not divisible by any $G$-invariant monomial, and defines $L(G)$ to be the set of monomials not divisible by $xy, x^{|G|}, y^{|G|}$.  Then a representation $\rho$ is special if and only if the corresponding monomial is not contained in $B(G)\setminus L(G)$.
 \end{theorem}
 
 
@@ -877,6 +878,105 @@ But, it seems as $\delta\to\infty$, this second family of resolutions converges 
 
 
 \section{Warm-up: Cores, quotients, and the antidiagonal case}
+
+
+\subsection{Topology of orbifold Hilbert schemes}
+
+To determine the topology of $\Hilb([\C^2/G])$, it is convenient to view it as $\Hilb(\C^2)^G$.  When $G$ is abelian, it can be simultaneously diagonalized, and we can pick the torus $(\C^*)^2$ we have acting on $\C^2$ to be the one acting on the diagonal coordinates for $G$, so that the $G$ action commutes with the torus action.  
+
+Since the torus commutes with $G$, the torus action will act on $\Hilb_n([\C^2/G])$.  Since $G$ is in fact a subgroup of the torus, we see that $\Hilb_n(\C^2)^{\C^*}\subset\Hilb_n(\C^2)^G$, and so all the monomials ideals are $G$ invariant.  Thus, we see that as long as $G$ is abelian, we have
+$$\chi(\Hilb_{[\C^2/G]})=\chi(\Hilb_{\C^2})=\prod\frac{1}{1-q^n}$$
+
+Similarly, we can use the Ellingsrud-Str\o mme's calculation of torus weights on $T_\lambda\Hilb_n$ to use the Bia\l ynicki-Birula decomposition to find the Betti numbers of $\Hilb_n([\C^2/G])$.  The tangent directions to $\Hilb_n(\C^2)^G$ within $\Hilb_n(\C^2)$ are simply the $G$ invariant directions.  If $G$ is a cyclic group, a term in \ref{ } will be $G$ invariant if and only if the arm and leg satisfy some linear congruence relation; for $G$ a product of two cyclic groups, it will be a system of linear relations.
+
+\begin{definition}
+Let $\lambda$ be a partition of $n$, and $k<r$ relatively prime.  Then $\dim_{k/r}(\lambda)$ is the dimension of $T_\lambda\Hilb_n([\C^2/G_{k/r}])$.
+
+Furthermore, let $\C^*$ act on $\C^2$ with weights $(\varepsilon, 1)$, and consider the induced $\C^*$ action on $\Hilb_n([\C^2/G_{k/r}])$.  We define $\dim^{\pm}_r \lambda$ to be the dimension of the positive and negative eigenspaces of this action on $T_\lambda(\Hilb_n([\C^2/G_{k/r}])$. 
+\end{definition}
+
+\begin{lemma} We have
+
+\begin{align*}
+\dim_{k/r}(\lambda)&=\#\left\{\square\in\lambda \Big | \ell(\square)-k a(\square)\in\{-1,k\} \mod r\right\} \\
+\dim^+_{k/r}(\lambda)& =\#\left\{\square\in\lambda \Big | \ell(\square)-k a(\square)=-1 \mod r \text{ and } a(\square)>0\right\} \\
+\dim^-_{k/r} &= \dim_{k/r}-\dim^+_{k/r}
+\end{align*}
+\end{lemma}
+\begin{proof}
+Let $L$ denote the representation where the standard generator of $G_{k/r}$ acts as $\exp(2\pi i/r)$. Under the inclusion $i:G_{k/r}\in T$, we have $i^*(T_1)=L, i^*(T_2)=L^k$.  Thus, we see that as a $G_{k/r}$-rep, we have
+$$T_\lambda \Hilb_n(\C^2)=\sum_{\square\in\lambda} L^{-\ell(\square)+ka(\square)+k}+L^{\ell(\square)+1-ka(\square)}$$
+The tangent space to $\Hilb_n(\C^2/G_{k/r})$, being the $G$ invariant directions, will correspond to the exponents that are divisible by $r$.  This immediately gives the first line.
+
+To find the positive eigendirections, we intersect our answer to the first line with Prop whatever.
+
+The last line is just saying that all fixed points are isolated.
+\end{proof}
+
+Combinatorially, it seems awkward that cells with $a(\square)=0$ are included in the negative eigenspace instead of the positive eigenspace, and it is natural to make the following definition:
+\begin{definition}
+The \emph{combinatorial} positive and negative dimensions, $\cdim^\pm_{k/r}(\lambda)$ are defined by
+\begin{align*}
+\cdim^+_{k/r}(\lambda)&=\#\left\{\square\in\lambda \Big | \ell(\square)-k a(\square)=-1 \mod r\right\} \\
+\cdim^-_{k/r}(\lambda)&=\#\left\{\square\in\lambda \Big | \ell(\square)-k a(\square)=k \mod r\right\} \\
+\end{align*}
+\end{definition}
+The generating functions for $\cdim^+_{k/r}$ and $\dim^+_{k/r}$ are closely related.
+
+\begin{lemma}
+$$\prod_{m>0}(1-q^{mr}t^m)\sum_{\lambda\in\PP} q^{|\lambda|}t^{\cdim^+_{k/r}(\lambda)}=\prod_{m>0} (1-q^{mr}t^{m-1}) \sum_{\lambda\in\PP} q^{|\lambda|}t^{\dim^+_{k/r}(\lambda)}$$
+\end{lemma}
+\begin{proof}
+The two statistics $\cdim^+_{k/r}$ and $\dim_{k/r}$ both count cells $\square$ satisfying the congruence relation $\ell(\square)-ka(\square)=-1\mod r$; the combinatorial dimension includes those cells with $a(\square)=0$, while the usual dimension does not.  
+
+If a square satifies $a(\square)=0$ it is on the top of its column; when $a(\square)=0$ the congruence relation becomes simply asking that $\ell(\square)+1$ is divisible by $r$. Since $\square$ is at the top of its column, that means the two differ whenever we have a part of $\lambda$ appearing at least $kr$ times.  In particular, the two statistics agree on partitions $\lambda$ where no part has multiplicity $r$ or greater.
+
+If there are $r$ or more parts of size $m$ in $\lambda$, one may remove $r$ parts of them, resulting in removing an $r\times k$ rectangle of squares from $\lambda$.  Doing so will not change $\ell(\square)-ka(\square)\mod r$ for any square in $\lambda$ -- we haven't changed the arm or leg of any square to the right of the rectangle removed, while we have reduced the leg of any square to the right by $r$.  Furthermore, each row of squares we removed will contain exactly one square contributing to $\cdim^+_{k/r}(\lambda)$, since each square in a row has the same arm length, and as we move across the row from right to left the leg lengths decrease by 1.  
+
+Thus, we have seen that if we let $\P^{<r}$ to denote the set of partitions with multiplicities of all parts less than $r$, we have
+$$\prod_{m>0}\frac{1}{1-q^{mr}t^m}\sum_{\lambda\in\PP} q^{|\lambda|}t^{\cdim^+_{k/r}(\lambda)}=\sum_{\lambda\in\PP^{<r}}q^{|\lambda|}t^{\cdim^+_{k/r}(\lambda)}$$
+The same analysis holds for $\dim^+_{k/r}$, except now the top row of each rectangle removed does not contribute to $\dim^+$, explaining why the powers of $t$ in the product are one lower.
+
+
+\begin{tikzpicture}[scale=.5]
+
+\begin{scope}
+\fill[red!20!white] (0,1) rectangle (2,2);
+\fill[red!20!white] (2,2) rectangle (3,5);
+\fill[red!20!white] (2,1) rectangle (3,0);
+\fill[red!20!white] (3,1) rectangle (4,2);
+\fill[red!20!white] (4,2) rectangle (5,4);
+\fill[red!20!white] (4,0) rectangle (5,1);
+\fill[red!20!white] (6,1) rectangle (9,2);
+\fill[red!20!white] (9,1) rectangle (10,0);
+\fill[red!20!white] (11,1) rectangle (12,2);
+\fill[red!20!white] (12,1) rectangle (13,0);
+\fill[red!20!white] (16,1) rectangle (17,0);
+
+\draw[thick, dashed, red] (4.1,.1)--(4.1,3.9)--(6.9,3.9)--(6.9,.1)--cycle;
+\draw[thick, dashed, red] (8.1,.1)--(8.1,1.9)--(10.9,1.9)--(10.9,.1)--cycle;
+\draw[thick, dashed, red] (11.1,.1)--(11.1,1.9)--(13.9,1.9)--(13.9,.1)--cycle;
+\draw[thick, dashed, red] (16.1,.1)--(16.1,.9)--(18.9,.9)--(18.9,.1)--cycle;
+
+
+\path[clip, preaction={thick, draw}] (0,0)--(0,7)--(1,7)--(1,6)--(3,6)--(3,4)--(7,4)--(7,3)--(8,3)--(8,2)--(14,2)--(14,1)--(19,1)--(19,0)--cycle;
+\draw[thin, gray] (0,0) grid (20,7);
+\end{scope}
+
+\begin{scope}[yshift=-10cm]
+\fill[red!20!white] (0,1) rectangle (2,2);
+\fill[red!20!white] (2,2) rectangle (3,5);
+\fill[red!20!white] (2,1) rectangle (3,0);
+\fill[red!20!white] (3,1) rectangle (5,2);
+
+
+\path[clip, preaction={thick, draw}] (0,0)--(0,7)--(1,7)--(1,6)--(3,6)--(3,4)--(4,4)--(4,3)--(5,3)--(5,1)--(7,1)--(7,0)--cycle;
+\draw[thin, gray] (0,0) grid (7,7);
+\end{scope}
+
+\end{tikzpicture}
+\end{proof}
+
 
 
 
