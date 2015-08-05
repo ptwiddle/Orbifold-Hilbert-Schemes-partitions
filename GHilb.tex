@@ -2,7 +2,7 @@
 %\pdfoutput=1
 
 \usepackage{tikz}
-\usetikzlibrary{arrows} %for arrowtips 
+\usetikzlibrary{arrows} %for arrowtips  
 \usepackage[sc]{mathpazo}
 \usepackage{hyperref}
 \usepackage{microtype}
@@ -815,6 +815,23 @@ $$P_{\Z_2\times\Z_2}=\prod_{i=1}^\infty \frac{(1+q_{00}^jq_{01}^{j-1}q_{10}^{j-1
 \end{theorem}
 
 However, even the one variable specialization $P_{\Z_3}(q,1,1)$ does not have a nice infinite product expression, as observed by Bal\'azs Szendr\"oi \cite{Bmo}; as it has a root at $-e^{\pi/\sqrt{3}}$ \cite{Borwein2}.
+
+\subsection{Dijkgraaf, orbifold partitions, and the topology of Quot schemes}
+
+Specialization where one $q_i$ is set to $q$ and all others are set to one is studied in \cite{DS}, where they are all called \emph{orbifold partitions of the first type}.  There, they show that these specializations are characters of the affine Kac-Moody lie algebras.
+
+We briefly mention that they also introduce \emph{orbifold partitions of the second type}, where only cells of the given color are coordinated.  Combinatorially, this can be viewed as putting an equivalence relation on partitions, so that two partitions are equivalent if they contain exactly the same boxes of color $i$.  Algebraically, instead of considering $G$-equivariant ideals of $R$, this is working $G$-invariantly.  That is, we have the ring $R^G$ of $G$ invariant elements of $R$.  The ring $R$ is a module over $R^G$, and splits into a direct sum of modules indexed by the irreducible representations of $R$.  Rather than counting ideals in $R$ with quotient having length $n$, they are counting submodules of $R_i$ of colength $n$.  
+
+Geometrically, $R^G$ is the ring of functions on the singular space $\C^2/G$.  The modules $R_i$ are spaces of sections of sheave $\mathcal{F}_i$ that are .  These ideals are $T$ equivariant, and so they correspond to the euler characteristic of the quot scheme.  
+
+
+\begin{question}
+What can be said about the Quot?  Homology groups, decomposition in the grothendieck ring of varieites, etc.
+
+How are these related to the topo
+
+\end{question}
+
 
 
 \subsection{Hilbert schemes of points in the plane}
