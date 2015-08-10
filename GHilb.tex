@@ -932,7 +932,7 @@ To determine the topology of $\Hilb([\C^2/G])$, it is convenient to view it as $
 Since the torus commutes with $G$, the torus action will act on $\Hilb_n([\C^2/G])$.  Since $G$ is in fact a subgroup of the torus, we see that $\Hilb_n(\C^2)^{\C^*}\subset\Hilb_n(\C^2)^G$, and so all the monomials ideals are $G$ invariant.  Thus, we see that as long as $G$ is abelian, we have
 $$\chi(\Hilb_{[\C^2/G]})=\chi(\Hilb_{\C^2})=\prod\frac{1}{1-q^n}$$
 
-Similarly, we can use the Ellingsrud-Str\o mme's calculation of torus weights on $T_\lambda\Hilb_n$ to use the Bia\l ynicki-Birula decomposition to find the Betti numbers of $\Hilb_n([\C^2/G])$.  The tangent directions to $\Hilb_n(\C^2)^G$ within $\Hilb_n(\C^2)$ are simply the $G$ invariant directions.  If $G$ is a cyclic group, a term in \ref{ } will be $G$ invariant if and only if the arm and leg satisfy some linear congruence relation; for $G$ a product of two cyclic groups, it will be a system of linear relations.
+Similarly, we can use the Ellingsrud-Str\o mme's calculation of torus weights on $T_\lambda\Hilb_n$ to use the Bia\l ynicki-Birula decomposition to find the Betti numbers of $\Hilb_n([\C^2/G])$.  The tangent directions to $\Hilb_n(\C^2)^G$ within $\Hilb_n(\C^2)$ are simply the $G$ invariant directions.  If $G$ is a cyclic group, a term in Lemma \ref{lem:torus-weights} will be $G$ invariant if and only if the arm and leg satisfy some linear congruence relation; for $G$ a product of two cyclic groups, it will be a system of linear relations.
 
 \begin{definition}
 Let $\lambda$ be a partition of $n$, and $k<r$ relatively prime.  Then $\dim_{k/r}(\lambda)$ is the dimension of $T_\lambda\Hilb_n([\C^2/G_{k/r}])$.
@@ -966,6 +966,13 @@ The \emph{combinatorial} positive and negative dimensions, $\cdim^\pm_{k/r}(\lam
 \cdim^-_{k/r}(\lambda)&=\#\left\{\square\in\lambda \Big | \ell(\square)-k a(\square)=k \mod r\right\} \\
 \end{align*}
 \end{definition}
+
+\begin{example}[Hook Lengths]
+The case when $G\subset SL_2$ is $k=r-1$, or equivalently, $k=-1$.  In this case, we have
+$$\cdim^+_{-1/r}(\lambda)=\cdim^-_{-1/r}(\lambda)=\#\left\{\square\in\lambda \Big | h(\square)=0\mod r\right\} \\$$
+and so these statistics count the number of cells with hook lengths divisible by $r$.
+\end{example}
+
 The generating functions for $\cdim^+_{k/r}$ and $\dim^+_{k/r}$ are closely related.
 
 \begin{lemma}
@@ -1048,8 +1055,329 @@ The following are equivalent:
 \end{lemma}
 
 
+Many of these
+
+\subsection{Abacus construction}
+
+The abacus construction builds on the boundary path description of partitions in Section .
+
+Rather than working with bi-infinite strings of letters, we will prefer to work with \emph{Maya diagrams}, which we now describe.  The conventions in the following discussion are based on the ``fermionic'' viewpoint of partitions and lattice paths, based on Dirac's electron sea model, see \cite{KR} for more. 
 
 
+\subsection{Paths}
+
+We will use $\Z_{1/2}$ to denote the set of half integers $\Z+1/2$, i.e., $-1/2$ and $3/2$ are in $\Z_{1/2}$, but $2$ is not.  $\Z_{1/2}^+$ will denote the positive half integers, and $\Z_{1/2}^-$ will denote the negative.
+
+
+
+\begin{definition}
+A state $S$ is a subset $S\subset \Z^{1/2}$ so that the symmetric difference of $S$ with $\Z^-_{1/2}$ is finite; that is $S\cap\Z^+_{1/2}$ and $S^c\cap \Z^-_{1/2}$ are both finite.  We call $|S\cap \Z^-_{1/2}|-|S\cap \Z^+_{1/2}|$ the \emph{charge} of $S$.
+
+We will typically represent a state by a \emph{Maya diagram} -- this is a sequence of circles labeled by $\Z_{1/2}$, with the positive entries going to the left and the negative entries to the right.  A black bead is placed at each of the entries of $S$, and the entries not in $S$ are displayed as white circles.
+\end{definition}
+
+We now describe a bijection between the set of partitions $\mathcal{P}$ to the set of charge 0 states/
+
+
+\subsubsection{}
+We draw partitions in ``Russian notation'' -- rotated $\pi/4$ radians counterclockwise and scaled up
+by a factor of $\sqrt{2}$, so that each segment of the border path of $\lambda$ is centered above a half integer on the $x$-axis, with origin above the square 0.
+
+
+
+\begin{example} \label{ex:electronstopartitions}
+
+We illustrate the bijection in the case of $\lambda=3+2+2$.  The corresponding state $S_\lambda$ consists of two
+electrons with energy $5/2$ and $1/2$, and two positrons with energy
+$3/2$ and $5/2$.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{scope}[gray, very thin, scale=.6]
+\clip (-5.5, 5.5) rectangle (5.5, -5);
+\draw[rotate=45, scale=1.412] (0,0) grid (6,6);
+\end{scope}
+
+\begin{scope}[rotate=45, very thick, scale=.6*1.412]
+\draw (0,5.5) -- (0, 3) -- (1,3) -- (1,2) -- (3,2) -- (3,0) -- (5.5,0);
+\end{scope}
+
+\begin{scope}[scale=.6, dotted]
+
+\draw (-4.5,0) -- (-4.5, 4.5);
+\draw (-3.5,0) -- (-3.5, 3.5);
+\draw (-2.5,0) -- (-2.5, 3.5);
+\draw (-1.5,0) -- (-1.5, 3.5);
+\draw (-.5,0) -- (-.5, 3.5);
+\draw (.5,0) -- (.5, 4.5);
+\draw (1.5,0) -- (1.5, 4.5);
+\draw (2.5,0) -- (2.5, 3.5);
+\draw (3.5,0) -- (3.5, 3.5);
+\draw (4.5,0) -- (4.5, 4.5);
+\end{scope}
+
+
+\begin{scope}[scale=.6, yshift=-.5cm]
+\draw[solid] (0,-.5) -- (0,.5);
+\draw (-5.5,0) node{$\cdots$};
+\draw (-4.5,0) circle (.3) node[below=3pt]{$\frac{9}{2}$};
+\draw (-3.5,0) circle (.3) node[below=3pt]{$\frac{7}{2}$};
+\filldraw (-2.5,0) circle (.3) node[below=3pt]{$\frac{5}{2}$};
+\draw (-1.5,0) circle (.3) node[below=3pt]{$\frac{3}{2}$};
+\filldraw (-.5,0) circle (.3) node[below=3pt]{$\frac{1}{2}$};
+\filldraw (.5,0) circle (.3) node[below=3pt]{$\frac{-1}{2}$};
+\draw (1.5,0) circle (.3) node[below=3pt]{$\frac{-3}{2}$};
+\draw (2.5,0) circle (.3) node[below=3pt]{$\frac{-5}{2}$};
+\filldraw (3.5,0) circle (.3) node[below=3pt]{$\frac{-7}{2}$};
+\filldraw (4.5,0) circle (.3) node[below=3pt]{$\frac{-9}{2}$};
+\draw (5.5,0) node{$\cdots$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+\end{example}
+
+
+
+
+
+
+
+The bijection between partitions and states of charge zero may be
+modified to give a bijection between partitions and states of charge $c$ for any $c\in\Z$.   Simply translate the partition to the right by $c$.
+
+
+
+\subsection{Abaci}
+
+Rather than view the Maya diagram as a series of stones in a line, we
+now view it as beads on the runner of an abacus.  Sliding the beads
+to be right justified allows the charge of the state to be read off,
+as it is easy to see how many electrons have been added or are missing
+from the vacuum state.
+
+In what follows, we mix our metaphors and talk about electrons and protons on runners of an abacus.
+
+\begin{example} \label{ex:mayabijection}
+Consider Example \ref{ex:particles}, where the Maya diagram consists of
+two positrons and an electron.  Pushing the beads to be right
+justified, we see the first bead is one step to the right of zero, and
+hence the original state had charge 1.
+
+\begin{center}
+\begin{tikzpicture}[scale=.6]
+\draw (0,-.5) to (0,.5);
+\draw (-5.5,0) node{$\cdots$};
+\draw (-4.5,0) circle (.3) node[below=3pt]{$\frac{9}{2}$};
+\draw (-3.5,0) circle (.3) node[below=3pt]{$\frac{7}{2}$};
+\draw (-2.5,0) circle (.3) node[below=3pt]{$\frac{5}{2}$};
+\filldraw (-1.5,0) circle (.3) node[below=3pt]{$\frac{3}{2}$};
+\draw (-.5,0) circle (.3) node[below=3pt]{$\frac{1}{2}$};
+\draw (.5,0) circle (.3) node[below=3pt]{$\frac{-1}{2}$};
+\filldraw (1.5,0) circle (.3) node[below=3pt]{$\frac{-3}{2}$};
+\draw (2.5,0) circle (.3) node[below=3pt]{$\frac{-5}{2}$};
+\filldraw (3.5,0) circle (.3) node[below=3pt]{$\frac{-7}{2}$};
+\filldraw (4.5,0) circle (.3) node[below=3pt]{$\frac{-9}{2}$};
+\draw (5.5,0) node{$\cdots$};
+
+\begin{scope}[yshift=-2.5cm]
+\draw[-triangle 45, snake=snake,line after snake=1mm] (-4,0)--(4,0) node [above,  text centered,midway] {Push beads};
+
+\end{scope}
+
+\begin{scope}[yshift=-4cm]
+\draw (0,-.5) to (0,.5);
+\draw (-5.5,0) node{$\cdots$};
+\draw (-4.5,0) circle (.3) node[below=3pt]{$\frac{9}{2}$};
+\draw (-3.5,0) circle (.3) node[below=3pt]{$\frac{7}{2}$};
+\draw (-2.5,0) circle (.3) node[below=3pt]{$\frac{5}{2}$};
+\draw (-1.5,0) circle (.3) node[below=3pt]{$\frac{3}{2}$};
+\draw (-.5,0) circle (.3) node[below=3pt]{$\frac{1}{2}$};
+\draw (.5,0) circle (.3) node[below=3pt]{$\frac{-1}{2}$};
+\filldraw (1.5,0) circle (.3) node[below=3pt]{$\frac{-3}{2}$};
+\filldraw (2.5,0) circle (.3) node[below=3pt]{$\frac{-5}{2}$};
+\filldraw (3.5,0) circle (.3) node[below=3pt]{$\frac{-7}{2}$};
+\filldraw (4.5,0) circle (.3) node[below=3pt]{$\frac{-9}{2}$};
+\draw (5.5,0) node{$\cdots$};
+\end{scope}
+
+
+\end{tikzpicture}
+\end{center}
+\end{example}
+
+\subsubsection{Cells and hook lengths}
+
+The cells $\square\in\lambda$ are in bijection with the
+\emph{inversions} of the boundary path; that is, by pairs of segments
+$(\text{step}_1, \text{step}_2)$, where $\text{step}_1$ occurs before $\text{step}_2$,
+but $\text{step}_1$ is traveling NE and $\text{step}_2$ is traveing SE.  The bijection
+sends $\square$ to the segments at the end of its arm and leg.
+
+Translating to the fermionic viewpoint, cells of $\lambda$ are in
+bijection with pairs 
+$$\left\{(e, e-k)\big | e\in\Z_{1/2}, k>0\right\}$$ of a filled energy level $e$ and an
+empty energy level $e-k$ of lower energy; we call such a pair an \emph{inversion}.  
+
+The arm $a(\square)$ corresponds to the number of energy levels between $e$ and $e-k$ that are empty; the leg $\ell(\square)$ is the number of energy levels between $e$ and $e-k$ that are empty.  The hook length $h(\square)$ of the corresponding cell is $k$.
+
+If $(e,e-k)$ is such a pair, reducing the energy of the electron from
+$e$ to $e-k$ changes $\lambda$ by removing the
+rim hook corresponding to the cell $\square$.  This rim-hook has
+length $k$.
+
+
+
+\begin{example}
+The cell $\square=(2,1)$ of $\lambda=3+2+2$ (See Example \ref{ex:electronstopartitions}).
+Here, $h(\square)=3$, and corresponds to the electron in energy state $1/2$
+and the empty energy level $-5/2$; which are three apart.
+
+\end{example}
+
+\subsection{Bijections}
+
+Rather than place the electrons corresponding to $\lambda$ on one
+runner, place them on $a$ different runners, putting the energy
+levels $ka-i-1/2$ on runner $i$.
+
+If the hooklength $h(\square)=ka$ is divisible by $a$, then the two
+energy levels of $\textrm{inversion}(\square)$ lie on the same
+runner.  Similarly, any inversion of energy states on the same
+runner corresponds to a cell with hook length divisible by $a$.
+
+Thus, $\lambda$ is an $a$-core if and only if the beads on each runner of the $a$-abacus are right justified.  Although the total charge of all the runners must be zero, the charge need not be evenly divided among the runners.  Let
+$c_i$ be the charge on the $i$th runner; then we have $\sum c_i=0$, and the $c_i$ determine $\lambda$.
+
+Similarly, given any $\mathbf{c}=(c_0,\dots,c_{a-1})\in\Z^a$ with $\sum c_i=0$, there is a unique right justified abacus with charge  $c_i$ on the $i$th runner.  The coresponding partition is an $a$-core which we denote $\core_a(\mathbf{c})$.
+
+We have shown:
+
+\begin{lemma}
+There is a bijection $$\core_a:\{(c_0,\dots,c_{a-1}|c_i\in\Z, \sum c_i=0\}\to \{\lambda | \lambda \text{ is in $a$-core} \}$$
+\end{lemma}
+
+
+\begin{example}
+We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the boundary path illustrate which runner of the abacus that step belongs to.
+
+\begin{center}
+\begin{tikzpicture}
+
+\begin{scope}[gray, very thin, scale=.4]
+\clip (-11.5, 11.5) rectangle (11.5, -1);
+\draw[rotate=45, scale=1.412, gray!20!white, fill] (0,0)--(0,7)--(1,7)--(1,5)--(2,5)--(2,3)--(4,3)--(4,2)--(6,2)--(6,1)--(8,1)--(8,0)--cycle;
+\draw[rotate=45, scale=1.412] (0,0) grid (12,12);
+\end{scope}
+
+\begin{scope}[rotate=45, ultra thick, scale=.4*1.412]
+\begin{scope}[blue]
+\draw (0,8.5) node{$1$};
+\draw (1,6.5)node{$1$};
+\draw (2,4.5)node{$1$};
+\draw (3.5,3)node{$1$};
+\draw (5.5,2)node{$1$};
+\draw (7.5,1)node{$1$};
+\draw (9.5,0)node{$1$};
+\end{scope}
+\begin{scope}[red]
+\draw (0,10.5)node{$2$};
+\draw (0,7.5)node{$2$};
+\draw (1,5.5)node{$2$};
+\draw (2,3.5)node{$2$};
+\draw (4,2.5)node{$2$};
+\draw (6,1.5)node{$2$};
+\draw (8,.5)node{$2$};
+\draw (10.5,0)node{$2$};
+\end{scope}
+\begin{scope}[black!50!green]
+\draw (0,9.5)node{$3$};
+\draw (0.5, 7)node{$3$};
+\draw (0.5,7)node{$3$};
+\draw (1.5,5)node{$3$};
+\draw (2.5,3)node{$3$};
+\draw (4.5,2)node{$3$};
+\draw (6.5,1)node{$3$};
+\draw (8.5,0)node{$3$};
+\end{scope}
+
+\end{scope}
+
+
+
+
+
+
+\begin{scope}[scale=.4, yshift=-.5cm, blue]
+\draw(-11.5,0) circle(.3);
+\draw(-8.5, 0)  circle (.3);
+\draw(-5.5,0)  circle (.3);
+\draw(-2.5,0)  circle (.3);
+\filldraw(.5,0)  circle (.3);
+\filldraw(3.5,0)  circle (.3);
+\filldraw(6.5,0)  circle (.3);
+\filldraw(9.5,0)  circle (.3);
+\end{scope}
+
+\begin{scope}[scale=.4, yshift=-1.5cm, red]
+\draw(-10.5,0) circle(.3);
+\draw(-7.5, 0)  circle (.3);
+\draw(-4.5,0)  circle (.3);
+\draw(-1.5,0)  circle (.3);
+\draw(1.5,0)  circle (.3);
+\draw(4.5,0)  circle (.3);
+\draw(7.5,0)  circle (.3);
+\filldraw(10.5,0)  circle (.3);
+\end{scope}
+
+\begin{scope}[scale=.4, yshift=-2.5cm, black!50!green]
+\draw(-9.5,0) circle(.3);
+\filldraw(-6.5, 0)  circle (.3);
+\filldraw(-3.5,0)  circle (.3);
+\filldraw(-.5,0)  circle (.3);
+\filldraw(2.5,0)  circle (.3);
+\filldraw(5.5,0)  circle (.3);
+\filldraw(8.5,0)  circle (.3);
+\filldraw(11.5,0)  circle (.3);
+\end{scope}
+
+\begin{scope}[scale=.4]
+\draw (0,-3)--(0,0);
+\end{scope}
+
+
+\end{tikzpicture}
+\end{center}
+\end{example}
+
+
+
+
+\subsection{Size of an \texorpdfstring{$a$}{a}-core}
+
+
+\begin{theorem} \label{thm:quadratic}
+$$|\core_a(\mathbf{c})|=\frac{a}{2}\sum_{k=0}^{a-1} c_k^2+ kc_k$$
+\end{theorem}
+
+\begin{proof}
+ If  $c_k>0$ the $k$th runner has $c_k$ positrons, with
+ energies 
+\begin{align*}
+(k+1/2)&,\\
+(k+1/2)&+a, \\
+(k+1/2)&+2a,\\
+\vdots\quad &\quad \vdots \\
+ (k+1/2)&+(c_k-1)a
+\end{align*}
+ and so the
+ particles on the $k$th runner have total energy
+ $$\frac{a}{2}(c_k^2-c_k)+(k+1/2)c_k.$$
+
+ If $c_k<0$, the $k$th runner has $-c_k$ electrons, and a similar calculation shows they have a total energy of $$\frac{a}{2}(c_k^2+c_k)-c_k(a-k-1/2)=\frac{a}{2}(c_k^2-c_k)+(k+1/2)c_k.$$
+
+Since $\sum c_k=0$, the total energy of all particles simplifies to $\frac{a}{2}\sum (c_k^2+kc_k)$.
+\end{proof}
 
 
 \subsection{Riemann-Roch}
