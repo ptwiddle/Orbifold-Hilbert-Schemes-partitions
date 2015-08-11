@@ -1237,16 +1237,18 @@ and the empty energy level $-5/2$; which are three apart.
 
 \subsection{Bijections}
 
-Rather than place the electrons corresponding to $\lambda$ on one
-runner, place them on $a$ different runners, putting the energy
-levels $ka-i-1/2$ on runner $i$.
+The essence of the cores and quotient construction is that, rather than place the electrons corresponding to $\lambda$ on one runner, we place them on $a$ different runners, putting the energy levels $ka-i-1/2$ on runner $i$ -- i.e., every $a$th bead goes to the same runner, as in Figure \ref{ }
 
-If the hooklength $h(\square)=ka$ is divisible by $a$, then the two
-energy levels of $\textrm{inversion}(\square)$ lie on the same
-runner.  Similarly, any inversion of energy states on the same
-runner corresponds to a cell with hook length divisible by $a$.
+The charge $c_i$ on the $i$th runner need not be 0, but using the change, we may still view the beads on the $i$th runner as a Maya diagram of a partition; the collection of these $a$ partitions are called the $a$-quotient of $\lambda$.  
 
-Thus, $\lambda$ is an $a$-core if and only if the beads on each runner of the $a$-abacus are right justified.  Although the total charge of all the runners must be zero, the charge need not be evenly divided among the runners.  Let
+The process is reversible -- if we have $a$-different Maya diagrams whose charge sums to $0$, we may interleave the beads of them together as in Figure \ref{ }, and merge them to get a partition.  
+
+
+The $a$-quotient of $\lambda$ records information about the $a$-hooks of $\lambda$.  If we have a cell $\square\in\lambda$,  with hooklength $h(\square)=ka$ divisible by $a$, then the two energy levels of $\textrm{inversion}(\square)$ lie on the same runner.  Similarly, any inversion of energy states on the same runner corresponds to a cell with hook length divisible by $a$.  
+
+Thus, $\lambda$ is an $a$-core if and only if the beads on each runner of the $a$-abacus are right justified, that is, if the $a$-quotient of $\lambda$ is zero.  Moving a bead on the $a$-abacus, corresponds to removing a border strip of length $a$, and so sliding all the beads on each runner all the way to the right corresponds to removing all $a$-hooks in $\lambda$.  We see that the order we make the moves doesn't matter, as the end result will always be the same.
+
+  Although the total charge of all the runners must be zero, the charge need not be evenly divided among the runners.  Let
 $c_i$ be the charge on the $i$th runner; then we have $\sum c_i=0$, and the $c_i$ determine $\lambda$.
 
 Similarly, given any $\mathbf{c}=(c_0,\dots,c_{a-1})\in\Z^a$ with $\sum c_i=0$, there is a unique right justified abacus with charge  $c_i$ on the $i$th runner.  The coresponding partition is an $a$-core which we denote $\core_a(\mathbf{c})$.
@@ -1350,6 +1352,11 @@ We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the bound
 \end{center}
 \end{example}
 
+
+
+\subsection{Leaving and arriving word description}
+
+We now describe a slight shift in perspective on 
 
 
 
@@ -1589,6 +1596,19 @@ Appears Buryak-Feigin plays well with colored box counting from cores.
 
 
 \section{Generalized cores and applications}
+
+This section introduces the generalization of cores and quotients, with the goal of showing that it is a useful tool of studying $|\lambda|^G$ and $\cdim(\lambda)$ introduced.
+
+In particular, we use the $G$-cores and quotients to prove two results: that the topology of $\Hilb_v$ stabilizes, and that the size and dimensions of the small components are piecewise quadratic functions.
+
+\subsection{ }
+
+The construction of $G$-cores and quotients is exactly parallel to the 
+
+
+
+
+
 
 
 \section{Toward bijections: Generalized Dyson maps} \label{sec:dyson}
