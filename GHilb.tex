@@ -1219,7 +1219,80 @@ bijection with pairs
 $$\left\{(e, e-k)\big | e\in\Z_{1/2}, k>0\right\}$$ of a filled energy level $e$ and an
 empty energy level $e-k$ of lower energy; we call such a pair an \emph{inversion}.  
 
-The arm $a(\square)$ corresponds to the number of energy levels between $e$ and $e-k$ that are empty; the leg $\ell(\square)$ is the number of energy levels between $e$ and $e-k$ that are empty.  The hook length $h(\square)$ of the corresponding cell is $k$.
+The arm $a(\square)$ corresponds to the number of energy levels between $e$ and $e-k$ that are empty; the leg $\ell(\square)$ is the number of energy levels between $e$ and $e-k$ that are full.  The hook length $h(\square)$ of the corresponding cell is $k$, the distance between the two sets with 
+
+Recall that a \emph{rim hook} of length $a$ of $\lambda$ is a size $a$ subset of the cells of $\lambda$ so that removing the rim hook gives a small partition, and the rim hook does not contain a $2\times 2$ box.  
+
+\begin{lemma}
+Rimhooks of size $a$ in $\lambda$ are in bijection with cells $\square\in\lambda$ with $h(\square)=a$.  Removing the rimhook corresponds to moving the stone at $e$ and playing at $e-k$ instead.
+\end{lemma}
+
+This is illustrated in the following picture:
+
+\begin{tikzpicture}[scale=.8]
+\begin{scope}[gray, very thin, scale=.6]
+\clip (-5.5, 5.5) rectangle (5.5, -1);
+\draw[rotate=45, scale=1.412] (0,0) grid (6,6);
+\end{scope}
+\begin{scope}[rotate=45, very thick, scale=.6*1.412]
+\draw (0,5.5) -- (0, 3) -- (1,3) -- (1,2) -- (3,2) -- (3,0) -- (5.5,0);
+\end{scope}
+
+\begin{scope}[scale=.6, yshift=-.5cm]
+
+\draw (-5.5,0) node{$\cdots$};
+\draw (-4.5,0) circle (.3);
+\draw (-3.5,0) circle (.3);
+\filldraw (-2.5,0) circle (.3);
+\draw (-1.5,0) circle (.3);
+\filldraw[gray] (-.5,0) circle (.3);
+\filldraw (.5,0) circle (.3);
+\draw (1.5,0) circle (.3);
+\draw (2.5,0) circle (.3);
+\filldraw (3.5,0) circle (.3);
+\filldraw (4.5,0) circle (.3);
+\draw (5.5,0) node{$\cdots$};
+
+\node at (-.3, -.3) (start);
+\node at (2.3, -.3) (finish);
+\draw[->] (start) to [out=-30, in=210] (finish);
+
+\end{scope}
+
+\begin{scope}[xshift=8cm]
+\begin{scope}[gray, very thin, scale=.6]
+\clip (-5.5, 5.5) rectangle (5.5, -1);
+\draw[rotate=45, scale=1.412] (0,0) grid (6,6);
+\end{scope}
+\begin{scope}[rotate=45, very thick, scale=.6*1.412]
+\draw (0,5.5) -- (0, 3) -- (1,3) -- (1,1) -- (2,1) -- (2,0) -- (5.5,0);
+\end{scope}
+
+\begin{scope}[scale=.6, yshift=-.5cm]
+
+\draw (-5.5,0) node{$\cdots$};
+\draw (-4.5,0) circle (.3);
+\draw (-3.5,0) circle (.3);
+\filldraw (-2.5,0) circle (.3);
+\draw (-1.5,0) circle (.3);
+\draw (-.5,0) circle (.3);
+\filldraw (.5,0) circle (.3);
+\draw (1.5,0) circle (.3);
+\filldraw (2.5,0) circle (.3);
+\filldraw (3.5,0) circle (.3);
+\filldraw (4.5,0) circle (.3);
+\draw (5.5,0) node{$\cdots$};
+
+\node at (-.3, -.3) (start);
+\node at (2.3, -.3) (finish);
+
+
+\end{scope}
+\end{scope}
+
+\end{tikzpicture}
+
+
 
 If $(e,e-k)$ is such a pair, reducing the energy of the electron from
 $e$ to $e-k$ changes $\lambda$ by removing the
@@ -1239,7 +1312,35 @@ and the empty energy level $-5/2$; which are three apart.
 
 The essence of the cores and quotient construction is that, rather than place the electrons corresponding to $\lambda$ on one runner, we place them on $a$ different runners, putting the energy levels $ka-i-1/2$ on runner $i$ -- i.e., every $a$th bead goes to the same runner, as in Figure \ref{ }
 
-The charge $c_i$ on the $i$th runner need not be 0, but using the change, we may still view the beads on the $i$th runner as a Maya diagram of a partition; the collection of these $a$ partitions are called the $a$-quotient of $\lambda$.  
+The charge $c_i$ on the $i$th runner need not be 0, but using the change, we may still view the beads on the $i$th runner as a Maya diagram of a partition; the collection of these $a$ partitions are called the $a$-quotient of $\lambda$, which we will denote $\tilde{\lambda}$.  We will use $\tilde{\lambda}^i$ to denote the $i$th partition.  For a tuple $\tilde{\lambda}$ of partitions, the size is the sum of the sizes of the individual partitions: 
+$$|\tilde{\lambda}|=\sum_i |\tilde{\lambda}^i|$$
+
+\begin{lemma}
+We have
+$$|\lambda|=|\overline{\lambda}|+r|\tilde{\lambda}|$$
+$$\cdim^+_{-1/r}(\lambda)=|\tilde{\lambda}|$$
+\end{lemma}
+
+\begin{proof}
+To form the core of $\lambda$ from $\lambda$, we slide the beads on each runner of the abacus.  Each time we slide a bead one step, we are removing an $r$-strip from $\lambda$, and hence decreasing the size of $\lambda$ by one.  On the other hand, we are removing a single cell from $\tilde{\lambda}$.
+
+
+\end{proof}
+
+
+\begin{corollary} \label{cor:product-formulas-traditional-cores}
+
+Let $\mathcal{C}_r$ denote the set of $r$-core partitions.  We have
+$$\sum_{\lambda\in\mathcal{C}_a} q^{|\lambda|}=\frac{(q^r;q^r)_\infty^r}{(q;q)_\infty}$$
+Moreover, we have 
+$$\sum_{\lambda\in\mathcal{P}} q^{|\lambda|} t^{\cdim^+{-1/r}(\lambda)}=\frac{(q^r;q^r)_\infty^r}{(q;q)_\infty}\frac{1}{(q^rt;q^rt)_\infty^r}$$
+And hence:
+$$P_t(\Hilb_{[\C^2/G]})=\frac{(q^r;q^r)_\infty^r}{(q;q)_\infty}\frac{1}{(q^rt^2;q^rt^2)_\infty^{r-1}(q^r;q^rt^2)_\infty}$$
+\end{corollary}
+
+
+
+
 
 The process is reversible -- if we have $a$-different Maya diagrams whose charge sums to $0$, we may interleave the beads of them together as in Figure \ref{ }, and merge them to get a partition.  
 
@@ -1266,85 +1367,251 @@ We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the bound
 \begin{center}
 \begin{tikzpicture}
 
-\begin{scope}[gray, very thin, scale=.4]
-\clip (-11.5, 11.5) rectangle (11.5, -1);
-\draw[rotate=45, scale=1.412, gray!20!white, fill] (0,0)--(0,7)--(1,7)--(1,5)--(2,5)--(2,3)--(4,3)--(4,2)--(6,2)--(6,1)--(8,1)--(8,0)--cycle;
-\draw[rotate=45, scale=1.412] (0,0) grid (12,12);
+\begin{scope} %drawing of original partition
+
+   \begin{scope}[gray, very thin, scale=.4]
+      \clip (-11.5, 11.5) rectangle (11.5, -1);
+      \draw[rotate=45, scale=1.412, gray!20!white, fill] (0,0)--(0,10)--(1,10)--(1,8)--(3,8)--(3,4)--(5,4)--(5,3)--(6,3)--(6,1)--(8,1)--(8,0)--cycle;
+      \begin{scope}[rotate=45, scale=1.412, black!50!green] 
+         \draw (.5,6.5)node{$\spadesuit$};
+         \draw (1.5,6.5)node{$\spadesuit$};
+      \end{scope}
+
+      \begin{scope}[rotate=45, scale=1.412, blue] 
+         \draw (2.5,5.5)node{$\clubsuit$};
+         \draw (2.5,2.5)node{$\clubsuit$};
+         \draw (4.5,2.5)node{$\clubsuit$};
+      \end{scope}
+
+
+      \draw[rotate=45, scale=1.412] (0,0) grid (12,12);
+   \end{scope}
+
+   \begin{scope}[rotate=45, ultra thick, scale=.4*1.412]
+      \begin{scope}[blue]
+         \draw (1,9.5) node{$1$};
+         \draw (2.5,8)node{$1$};
+         \draw (3,5.5)node{$1$};
+         \draw (4.5,4)node{$1$};
+         \draw (6,2.5)node{$1$};
+         \draw (7.5,1)node{$1$};
+         \draw (9.5,0)node{$1$};
+      \end{scope}
+
+      \begin{scope}[red]
+         \draw (0,10.5)node{$2$};
+         \draw (1,8.5)node{$2$};
+         \draw (3,7.5)node{$2$};
+         \draw (3,4.5)node{$2$};
+         \draw (5,3.5)node{$2$};
+         \draw (6,1.5)node{$2$};
+         \draw (8,.5)node{$2$};
+         \draw (10.5,0)node{$2$};
+      \end{scope}
+
+      \begin{scope}[black!50!green]
+         \draw (.5,10)node{$3$};
+         \draw (1.5, 8)node{$3$};
+         \draw (3,6.5)node{$3$};
+         \draw (3.5,4)node{$3$};
+         \draw (5.5,3)node{$3$};
+         \draw (6.5,1)node{$3$};
+         \draw (8.5,0)node{$3$};
+      \end{scope}
+
+   \end{scope}
+
+   \begin{scope}[scale=.4, yshift=-.5cm, blue]
+      \draw(-11.5,0) circle(.3);
+      \draw(-8.5, 0)  circle (.3);
+      \filldraw(-5.5,0)  circle (.3);
+      \draw(-2.5,0)  circle (.3);
+      \filldraw(.5,0)  circle (.3);
+      \draw(3.5,0)  circle (.3);
+      \filldraw(6.5,0)  circle (.3);
+      \filldraw(9.5,0)  circle (.3);
+   \end{scope}
+
+   \begin{scope}[scale=.4, yshift=-1.5cm, red]
+      \draw(-10.5,0) circle(.3);
+      \draw(-7.5, 0)  circle (.3);
+      \draw(-4.5,0)  circle (.3);
+      \draw(-1.5,0)  circle (.3);
+      \draw(1.5,0)  circle (.3);
+      \draw(4.5,0)  circle (.3);
+      \draw(7.5,0)  circle (.3);
+      \filldraw(10.5,0)  circle (.3);
+   \end{scope}
+
+   \begin{scope}[scale=.4, yshift=-2.5cm, black!50!green]
+      \filldraw(-9.5,0) circle(.3);
+      \filldraw(-6.5, 0)  circle (.3);
+      \draw(-3.5,0)  circle (.3);
+      \filldraw(-.5,0)  circle (.3);
+      \filldraw(2.5,0)  circle (.3);
+      \filldraw(5.5,0)  circle (.3);
+      \filldraw(8.5,0)  circle (.3);
+      \filldraw(11.5,0)  circle (.3);
+   \end{scope}
+
+   \begin{scope}[scale=.4]
+      \draw (0,-3)--(0,0);
+   \end{scope}
 \end{scope}
 
-\begin{scope}[rotate=45, ultra thick, scale=.4*1.412]
-\begin{scope}[blue]
-\draw (0,8.5) node{$1$};
-\draw (1,6.5)node{$1$};
-\draw (2,4.5)node{$1$};
-\draw (3.5,3)node{$1$};
-\draw (5.5,2)node{$1$};
-\draw (7.5,1)node{$1$};
-\draw (9.5,0)node{$1$};
-\end{scope}
-\begin{scope}[red]
-\draw (0,10.5)node{$2$};
-\draw (0,7.5)node{$2$};
-\draw (1,5.5)node{$2$};
-\draw (2,3.5)node{$2$};
-\draw (4,2.5)node{$2$};
-\draw (6,1.5)node{$2$};
-\draw (8,.5)node{$2$};
-\draw (10.5,0)node{$2$};
-\end{scope}
-\begin{scope}[black!50!green]
-\draw (0,9.5)node{$3$};
-\draw (0.5, 7)node{$3$};
-\draw (0.5,7)node{$3$};
-\draw (1.5,5)node{$3$};
-\draw (2.5,3)node{$3$};
-\draw (4.5,2)node{$3$};
-\draw (6.5,1)node{$3$};
-\draw (8.5,0)node{$3$};
-\end{scope}
+\begin{scope}[yshift=-8cm] %drawing of the core
+
+   \begin{scope}[gray, very thin, scale=.4]
+      \clip (-11.5, 11.5) rectangle (11.5, -1);
+      \draw[rotate=45, scale=1.412, gray!20!white, fill] (0,0)--(0,7)--(1,7)--(1,5)--(2,5)--(2,3)--(4,3)--(4,2)--(6,2)--(6,1)--(8,1)--(8,0)--cycle;
+      \draw[rotate=45, scale=1.412] (0,0) grid (12,12);
+   \end{scope}
+
+   \begin{scope}[rotate=45, ultra thick, scale=.4*1.412]
+      \begin{scope}[blue]
+         \draw (0,8.5) node{$1$};
+         \draw (1,6.5)node{$1$};
+         \draw (2,4.5)node{$1$};
+         \draw (3.5,3)node{$1$};
+         \draw (5.5,2)node{$1$};
+         \draw (7.5,1)node{$1$};
+         \draw (9.5,0)node{$1$};
+      \end{scope}
+
+      \begin{scope}[red]
+         \draw (0,10.5)node{$2$};
+         \draw (0,7.5)node{$2$};
+         \draw (1,5.5)node{$2$};
+         \draw (2,3.5)node{$2$};
+         \draw (4,2.5)node{$2$};
+         \draw (6,1.5)node{$2$};
+         \draw (8,.5)node{$2$};
+         \draw (10.5,0)node{$2$};
+      \end{scope}
+
+      \begin{scope}[black!50!green]
+         \draw (0,9.5)node{$3$};
+         \draw (0.5, 7)node{$3$};
+         \draw (0.5,7)node{$3$};
+         \draw (1.5,5)node{$3$};
+         \draw (2.5,3)node{$3$};
+         \draw (4.5,2)node{$3$};
+         \draw (6.5,1)node{$3$};
+         \draw (8.5,0)node{$3$};
+      \end{scope}
+
+   \end{scope}
+
+   \begin{scope}[scale=.4, yshift=-.5cm, blue]
+      \draw(-11.5,0) circle(.3);
+      \draw(-8.5, 0)  circle (.3);
+      \draw(-5.5,0)  circle (.3);
+      \draw(-2.5,0)  circle (.3);
+      \filldraw(.5,0)  circle (.3);
+      \filldraw(3.5,0)  circle (.3);
+      \filldraw(6.5,0)  circle (.3);
+      \filldraw(9.5,0)  circle (.3);
+   \end{scope}
+
+   \begin{scope}[scale=.4, yshift=-1.5cm, red]
+      \draw(-10.5,0) circle(.3);
+      \draw(-7.5, 0)  circle (.3);
+      \draw(-4.5,0)  circle (.3);
+      \draw(-1.5,0)  circle (.3);
+      \draw(1.5,0)  circle (.3);
+      \draw(4.5,0)  circle (.3);
+      \draw(7.5,0)  circle (.3);
+      \filldraw(10.5,0)  circle (.3);
+   \end{scope}
+
+   \begin{scope}[scale=.4, yshift=-2.5cm, black!50!green]
+      \draw(-9.5,0) circle(.3);
+      \filldraw(-6.5, 0)  circle (.3);
+      \filldraw(-3.5,0)  circle (.3);
+      \filldraw(-.5,0)  circle (.3);
+      \filldraw(2.5,0)  circle (.3);
+      \filldraw(5.5,0)  circle (.3);
+      \filldraw(8.5,0)  circle (.3);
+      \filldraw(11.5,0)  circle (.3);
+   \end{scope}
+
+   \begin{scope}[scale=.4]
+      \draw (0,-3)--(0,0);
+   \end{scope}
 
 \end{scope}
 
 
+\begin{scope}[yshift=-12cm] %the quotients
+
+   \begin{scope}[xshift=-4cm] %blue quotient
+
+
+\draw (0,2) node{$\tilde{\lambda}^1=2+1$};
+      \begin{scope}[gray, very thin, scale=.4]
+         \clip (-5, 3.5) rectangle (5, -1);
+         \draw[rotate=45, scale=1.412, gray!20!white, fill] (0,0)--(0,2)--(1,2)--(1,1)--(2,1)--(2,0)--cycle;
+         \draw[rotate=45, scale=1.412] (0,0) grid (4,4);
+      \end{scope}
+
+      \begin{scope}[scale=.4, yshift=-.5cm, blue]
+         \draw(-3.5,0) circle(.3);
+         \draw(-2.5, 0)  circle (.3);
+         \filldraw(-1.5,0)  circle (.3);
+         \draw(-.5,0)  circle (.3);
+         \filldraw(.5,0)  circle (.3);
+         \draw(1.5,0)  circle (.3);
+         \filldraw(2.5,0)  circle (.3);
+         \filldraw(3.5,0)  circle (.3);
+      \end{scope}
+
+   \end{scope}
 
 
 
+   \begin{scope} %red quotient
+\draw (0,2) node{$\tilde{\lambda}^2=\emptyset$};
+      \begin{scope}[gray, very thin, scale=.4]
+         \clip (-5, 3.5) rectangle (5, -1);
+         \draw[rotate=45, scale=1.412] (0,0) grid (4,4);
+      \end{scope}
 
-\begin{scope}[scale=.4, yshift=-.5cm, blue]
-\draw(-11.5,0) circle(.3);
-\draw(-8.5, 0)  circle (.3);
-\draw(-5.5,0)  circle (.3);
-\draw(-2.5,0)  circle (.3);
-\filldraw(.5,0)  circle (.3);
-\filldraw(3.5,0)  circle (.3);
-\filldraw(6.5,0)  circle (.3);
-\filldraw(9.5,0)  circle (.3);
-\end{scope}
+      \begin{scope}[scale=.4, yshift=-.5cm, red]
+         \draw(-3.5,0) circle(.3);
+         \draw(-2.5, 0)  circle (.3);
+         \draw(-1.5,0)  circle (.3);
+         \draw(-.5,0)  circle (.3);
+         \filldraw(.5,0)  circle (.3);
+         \filldraw(1.5,0)  circle (.3);
+         \filldraw(2.5,0)  circle (.3);
+         \filldraw(3.5,0)  circle (.3);
+      \end{scope}
 
-\begin{scope}[scale=.4, yshift=-1.5cm, red]
-\draw(-10.5,0) circle(.3);
-\draw(-7.5, 0)  circle (.3);
-\draw(-4.5,0)  circle (.3);
-\draw(-1.5,0)  circle (.3);
-\draw(1.5,0)  circle (.3);
-\draw(4.5,0)  circle (.3);
-\draw(7.5,0)  circle (.3);
-\filldraw(10.5,0)  circle (.3);
-\end{scope}
+   \end{scope}
 
-\begin{scope}[scale=.4, yshift=-2.5cm, black!50!green]
-\draw(-9.5,0) circle(.3);
-\filldraw(-6.5, 0)  circle (.3);
-\filldraw(-3.5,0)  circle (.3);
-\filldraw(-.5,0)  circle (.3);
-\filldraw(2.5,0)  circle (.3);
-\filldraw(5.5,0)  circle (.3);
-\filldraw(8.5,0)  circle (.3);
-\filldraw(11.5,0)  circle (.3);
-\end{scope}
 
-\begin{scope}[scale=.4]
-\draw (0,-3)--(0,0);
+   \begin{scope}[xshift=4cm] %green quotient 
+\draw (0,2) node{$\tilde{\lambda}^3=1+1$};
+
+      \begin{scope}[gray, very thin, scale=.4]
+         \clip (-5, 3.5) rectangle (5, -1);
+         \draw[rotate=45, scale=1.412, gray!20!white, fill] (0,0)--(0,1)--(2,1)--(2,0)--cycle;
+         \draw[rotate=45, scale=1.412] (0,0) grid (4,4);
+      \end{scope}
+
+      \begin{scope}[scale=.4, yshift=-.5cm, black!50!green]
+         \draw(-3.5,0) circle(.3);
+         \draw(-2.5, 0)  circle (.3);
+         \draw(-1.5,0)  circle (.3);
+         \filldraw(-.5,0)  circle (.3);
+         \filldraw(.5,0)  circle (.3);
+         \draw(1.5,0)  circle (.3);
+         \filldraw(2.5,0)  circle (.3);
+         \filldraw(3.5,0)  circle (.3);
+      \end{scope}
+
+   \end{scope}
+
 \end{scope}
 
 
@@ -1356,12 +1623,12 @@ We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the bound
 
 \subsection{Leaving and arriving word description}
 
-We now describe a slight shift in perspective on 
+We now describe a slight shift in perspective on cores that will help when we generalize them.  One way to label the colors of the paths is in terms of the contents of the cells they border.  
 
 
 
 \subsection{Size of an \texorpdfstring{$a$}{a}-core}
-
+The core and quotient bijection above in particular gives a bijection between 
 
 \begin{theorem} \label{thm:quadratic}
 $$|\core_a(\mathbf{c})|=\frac{a}{2}\sum_{k=0}^{a-1} c_k^2+ kc_k$$
