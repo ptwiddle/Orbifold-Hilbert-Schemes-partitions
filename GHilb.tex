@@ -2,7 +2,7 @@
 %\pdfoutput=1
 
 \usepackage{tikz}
-\usetikzlibrary{arrows} %for arrowtips  
+\usetikzlibrary{arrows, snakes} %for arrowtips  
 \usepackage[sc]{mathpazo}
 \usepackage{hyperref}
 \usepackage{microtype}
@@ -85,7 +85,7 @@ We study the connection between the combinatoric of certain partition statistics
 
 This paper is written for two largely distinct audiences.  On the one hand, we write for algebraic geometers interested in Hilbert schemes of points and orbifold surfaces.  On the other hand, combinatorialists studying partitions.  As such, there is more expository material than perhaps is standard. 
 
-For geometers: there is much structure in the topology of Hilbert schemes of point on a smooth surface $S$: Gottsche, building on the work of Ellingsrud and Str\o mme for $\C^2$, found product formulas for generating functions of their cohomology.  Later, Grojnowski and Nakajima \cite{grojnowski, nakajimaheisenberg} explained these product formulas for geometric representation theory.  An important example here is when $S$ is the resolution of an ADE quotient signularity -- 
+For geometers: there is much structure in the topology of Hilbert schemes of point on a smooth surface $S$: Gottsche, building on the work of Ellingsrud and Str\o me for $\C^2$, found product formulas for generating functions of their cohomology.  Later, Grojnowski and Nakajima \cite{grojnowski, nakajimaheisenberg} explained these product formulas for geometric representation theory.  An important example here is when $S$ is the resolution of an ADE quotient signularity -- 
 
 Following and extending work of , we investigate the topology of the structure of Hilbert schemes of points on the local models $\C^2/\Z_r$.  We conjecture explicit product formulas in this case, reminiscent of Gottsche's formula, in terms of the Chen-Ruan cohomology of $[\C^2/\Z_r]$.  
 
@@ -110,6 +110,84 @@ $$\sum_{k,n} h^k(\Hilb_n(\C^2)^{\C^*})q^nt^k=\prod_{a+b } \frac{1}{1-q^\ell}\pro
 
 The proofs given by Buryak-Feigin, and Buryak-Feigin-Nakajima are algebraic geometric, and go through quiver varieties.  An obvious first step in trying to prove our conjectures combinatorially would be to prove Theorem \ref{thm:BFN} combinatorially.  We give some evidence in Section \ref{sec:dyson} that maps generalizing Dyson's map might be the approach for this.
 
+
+
+\begin{tikzpicture}[scale=.4]
+\begin{scope}
+\draw (3.5,8.5) node{(1/5,1/5)};
+       \clip (0,0) rectangle (7,7);
+\foreach \x in {0,...,6}{%
+    \foreach \y in {-2,...,2}{%
+       \draw[fill=red!20]  (\x, -\x+5*\y) rectangle (\x+1, -\x+5*\y+1); 
+       \draw[fill=green!20]  (\x, -\x+5*\y+1) rectangle (\x+1, -\x+5*\y+2); 
+       \draw[fill=blue!20]  (\x, -\x+5*\y+2) rectangle (\x+1, -\x+5*\y+3); 
+       \draw[fill=black]  (\x, -\x+5*\y+3) rectangle (\x+1, -\x+5*\y+4);
+        \draw  (\x, -\x+5*\y+4) rectangle (\x+1, -\x+5*\y+5); 
+}}
+\end{scope}     
+
+\begin{scope}[xshift=10cm]
+\draw (3.5,8.5) node{(1/5,2/5)};
+\begin{scope}[xscale=-1, rotate=90]
+       \clip (0,0) rectangle (7,7);
+\foreach \x in {0,...,6}{%
+    \foreach \y in {-4,...,2}{%
+       \draw[fill=red!20]  (\x, 3*\x+5*\y) rectangle (\x+1, 3*\x+5*\y+1); 
+       \draw[fill=green!20]  (\x, 3*\x+5*\y+1) rectangle (\x+1, 3*\x+5*\y+2); 
+       \draw[fill=blue!20]  (\x, 3*\x+5*\y+2) rectangle (\x+1, 3*\x+5*\y+3); 
+       \draw[fill=black]  (\x, 3*\x+5*\y+3) rectangle (\x+1, 3*\x+5*\y+4);
+        \draw  (\x, 3*\x+5*\y+4) rectangle (\x+1, 3*\x+5*\y+5); 
+}}
+\end{scope}
+\end{scope}     
+
+\begin{scope}[xshift=20cm]
+\draw (3.5,8.5) node{(1/5,-1/5)};
+\begin{scope}[xscale=-1, rotate=90]
+       \clip (0,0) rectangle (7,7);
+\foreach \x in {0,...,6}{%
+    \foreach \y in {-2,...,2}{%
+       \draw[fill=red!20]  (\x, \x+5*\y) rectangle (\x+1, \x+5*\y+1); 
+       \draw[fill=green!20]  (\x, \x+5*\y+1) rectangle (\x+1, \x+5*\y+2); 
+       \draw[fill=blue!20]  (\x, \x+5*\y+2) rectangle (\x+1, \x+5*\y+3); 
+       \draw[fill=black]  (\x, \x+5*\y+3) rectangle (\x+1, \x+5*\y+4);
+        \draw  (\x, \x+5*\y+4) rectangle (\x+1, \x+5*\y+5); 
+}}
+\end{scope}     
+\end{scope}
+
+\end{tikzpicture}
+
+By adding a $1\times r$ strip to the bottom right corner of a partition, it is immediate that if a class $v\in K(G)$ is represented by a partition, then $v+V_G$ is as well. 
+
+\begin{definition}
+The $\overline{K}(G)=K(G)/V_G$ 
+\end{definition}
+
+It is not hard to see that any class in $\overline{K}(G)$ is represented by a partition: a block staircase partition with blocks of size $|G|$ will be a multiple of $V_G$, and then modifications on each step can add a multiple of $G$ plus one of any given color.  Below, the bottom to stairs each have the effect of adding one white box in $\overline{K}(G)$, while the top two stairs each add one red box.
+
+\begin{tikzpicture}[scale=.3]
+\begin{scope}[xscale=-1, rotate=90]
+       \clip (0,0) rectangle (12,12);
+\foreach \x in {0,...,11}{%
+    \foreach \y in {-4,...,4}{%
+       \filldraw[red!20]  (\x, \x+3*\y) rectangle (\x+1, \x+3*\y+1); 
+       \filldraw[green!20]  (\x, \x+3*\y+1) rectangle (\x+1, \x+3*\y+2); 
+       \draw[gray] (0,0) grid (12,12);
+}}
+\end{scope}     
+\draw[very thick] (0,9)--(3,9)--(3,6)--(6,6)--(6,3)--(9,3)--(9,0);
+\draw[very thick, dashed] (0,10)--(1,10)--(1,9);
+\draw[very thick, dashed] (3,7)--(4,7)--(4,6);
+\draw [very thick, dashed] (6,6)--(8,6)--(8,4)--(9,4)--(9,3);
+\draw [very thick, dashed] (9,3)--(11,3)--(11,1)--(12,1)--(12,0);
+
+\end{tikzpicture}
+
+
+\begin{question}
+Given a class $\overline{v}\in \overline{K}(G)$, what is the smallest class $v\in K(G)$ represented by a partition?
+\end{question}
 
 
 \subsection{Acknowledgements}
@@ -282,7 +360,7 @@ Ellingsrud and Str\o mme actually focused more on $\Hilb_n(\proj^2)$.  We recoun
 
 
 
-G\"o ttsche extended 
+G\"ottsche extended 
 
 \begin{theorem}[G\"ottsche, \cite{gottsche}]
 Let $S$ be a smooth quasiprojective surface, and when $b_i$ appears in isolation, let it be $b_i(S)$.  Then:
@@ -1232,6 +1310,7 @@ This is illustrated in the following picture:
 \begin{tikzpicture}[scale=.8]
 \begin{scope}[gray, very thin, scale=.6]
 \clip (-5.5, 5.5) rectangle (5.5, -1);
+\draw[rotate=45, scale=1.412, fill, red!20!white] (1,1)--(1,2)--(3,2)--(3,0)--(2,0)--(2,1)--cycle;
 \draw[rotate=45, scale=1.412] (0,0) grid (6,6);
 \end{scope}
 \begin{scope}[rotate=45, very thick, scale=.6*1.412]
@@ -1283,8 +1362,8 @@ This is illustrated in the following picture:
 \filldraw (4.5,0) circle (.3);
 \draw (5.5,0) node{$\cdots$};
 
-\node at (-.3, -.3) (start);
-\node at (2.3, -.3) (finish);
+
+
 
 
 \end{scope}
@@ -1628,35 +1707,38 @@ We now describe a slight shift in perspective on cores that will help when we ge
 
 
 \subsection{Size of an \texorpdfstring{$a$}{a}-core}
-The core and quotient bijection above in particular gives a bijection between 
+The core and quotient bijection above in particular gives a bijection between $a$-cores and points in a lattice $a-1$ dimensional lattice.  We have parametrized the lattice above in the \emph{charge} coordinates.  
 
-\begin{theorem} \label{thm:quadratic}
+
+\begin{definition}
+The \emph{$r$-charge} of a partition $\lambda$ is the $c^G(\lambda)$ vector in $\Lambda_a=\{(c_i)|\sum c_i=0\}$ where $c_i^G(\lambda)$ is the charge of the $i$th runner of $\lambda$ when written on the $a$-abacus.
+\end{definition}
+
+
+
+
+\begin{theorem} \label{thm:quadratic-sl2}
+The size of a core is a quadratic function in the charge coordinates;
 $$|\core_a(\mathbf{c})|=\frac{a}{2}\sum_{k=0}^{a-1} c_k^2+ kc_k$$
+In fact, each colored cell count is a quadratic function in the charge coordinates.
+$$|\core_a(\mathbf{c})|^G_i=\frac{1}{2}\sum_{k=0}^{a-1} c_k^2+ \sum_{k>i}c_k$$
 \end{theorem}
 
-\begin{proof}
- If  $c_k>0$ the $k$th runner has $c_k$ positrons, with
- energies 
-\begin{align*}
-(k+1/2)&,\\
-(k+1/2)&+a, \\
-(k+1/2)&+2a,\\
-\vdots\quad &\quad \vdots \\
- (k+1/2)&+(c_k-1)a
-\end{align*}
- and so the
- particles on the $k$th runner have total energy
- $$\frac{a}{2}(c_k^2-c_k)+(k+1/2)c_k.$$
+We are not sure where Theorem \ref{thm:quadratic-sl2} originates; it is proved independently in \cite{GKS, DS}.  The proof is not difficult and uses the interaction of Frobenius coordinates and the abacus, see ; the first statement is proved in \cite{johnson} and is easily extended to the second statement. 
 
- If $c_k<0$, the $k$th runner has $-c_k$ electrons, and a similar calculation shows they have a total energy of $$\frac{a}{2}(c_k^2+c_k)-c_k(a-k-1/2)=\frac{a}{2}(c_k^2-c_k)+(k+1/2)c_k.$$
 
-Since $\sum c_k=0$, the total energy of all particles simplifies to $\frac{a}{2}\sum (c_k^2+kc_k)$.
-\end{proof}
+Note that since the quadratic part of $|\core_a(\mathbf{c})|^G_i$ is independent of $i$, the quadratic part is adding a number of copies of the regular representation.  Hence, Theorem \ref{thm:quadratic-sl2} implies:
+
+\begin{corollary} 
+There is a linear relation between the charge functions $c_i(\lambda)$ and the 
+\end{corollary}
+
+ that there is a linear change of variables between the charge coordinates and the colored box coordinates.  This second fact we will prove this second fact directly in Theorem \ref{ }
 
 
 \subsection{Riemann-Roch}
 
-Although groups $\Ext(\mathcal{F},\mathcal{G})$ depend delicately on the sheaves involved, the Euler pairing
+Although groups $\Ext^i(\mathcal{F},\mathcal{G})$ depend delicately on the sheaves involved, the Euler pairing
 $$\chi(\mathcal{F},\mathcal{G})=\sum_{i\geq 0} \Ext^i(\mathcal{F},\mathcal{G})$$
 only depends upon the $K$-theory classes of $\mathcal{F}$ and $\mathcal{G}$.
 
@@ -1867,6 +1949,16 @@ Appears Buryak-Feigin plays well with colored box counting from cores.
 This section introduces the generalization of cores and quotients, with the goal of showing that it is a useful tool of studying $|\lambda|^G$ and $\cdim(\lambda)$ introduced.
 
 In particular, we use the $G$-cores and quotients to prove two results: that the topology of $\Hilb_v$ stabilizes, and that the size and dimensions of the small components are piecewise quadratic functions.
+
+\begin{lemma}
+The class $[\lambda]^G\in\overline{K}(G)$ depends only on the $G$-core of $\lambda$, and furthermore the map $c\mapsto [\core^G(c)]^G$ is an isomorphism of lattices.
+\end{lemma}
+
+\begin{proof}
+Let $\Delta$ be a large triangular partition, with all horizontal steps being the same color.  It is obvious that we can take $\Delta$ large enough to contain both $\lambda$ and its $G$-core $\tilde{\lambda}^G$.  We claim that $\Delta\seminus\lambda$ and $\Delta\setminus\tilde{\lambda}^G$ have the same class in $\overline{K}(G)$.  
+
+\end{proof}
+
 
 \subsection{ }
 
