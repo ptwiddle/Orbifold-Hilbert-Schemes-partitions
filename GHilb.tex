@@ -417,7 +417,7 @@ and so $\chi(\Hilb_n(\C^2))=p(n)$.
 
 The pertinent fact about the Euler characteristic that makes it easy to compute is that it is additive over subvarieties: if $X\subset Y$ closed, then $\chi(Y)=\chi(X)+\chi(Y\setminus X)$.
 
-Note that this is not true for real manifolds; take, the example of a point in $S^1$, both the point and its complement have euler characteristic 1, while $S^1$ has euler characteristic 0.  However, we briefly sketch the proof in case $X$ is a complex \emph{submanifold}.  If $U$ and $V$ are an open covering, then the Mayer-Vietoris sequence and the definition of $\chi$ give
+Note that this is not true for real manifolds; take, the example of a point in $S^1$, both the point and its complement have euler characteristic 1, while $S^1$ has euler characteristic 0.  We briefly sketch the proof in case $X$ is a complex \emph{submanifold}.  If $U$ and $V$ are an open covering, then the Mayer-Vietoris sequence and the definition of $\chi$ give
 $$\chi(Y)=\chi(U)+\chi(V)-\chi(U\cap V)$$
 Taking $U=Y\setminus X$, and $V$ a tubular neighborhood of $X$, we see that $U\cap V$ we will be a homotopy equivalent to the normal sphere bundle of $X$ in $Y$.  Each sphere we will be the unit sphere sitting inside the normal bundle of $X$ -- since $X$ is a complex submanifold, this will be an odd dimensional sphere, having euler characteristic zero.  
 
@@ -529,7 +529,7 @@ Restricted to this subtorus, the term $x^{-\ell(\square)} y^{a(\square)+1}$ has 
 
 
 
-It should be noted that although any generic $\C^*$ action will have isolated fixed points, and hence can be used to compute the cohomology of $\Hilb_n(\C^2)$, different $\C^*$ action will provide different statistics.  However, since all these statistics compute the same thing, they must be equidistributed.  This was apparently first observed geometrically by Haiman, and Loehr and Warrington gave a combinatorial proof in \cite{LW}, furthermore they extend the statistics to the non-isolated case.  It would be interesting to have a geometric understanding of the bijections in \cite{LW}.
+It should be noted that although any generic $\C^*$ action will have isolated fixed points, and hence can be used to compute the cohomology of $\Hilb_n(\C^2)$, different $\C^*$ action will provide different statistics.  Since all these statistics compute the same thing, they must be equidistributed.  This was apparently first observed geometrically by Haiman, and Loehr and Warrington gave a combinatorial proof in \cite{LW}, furthermore they extend the statistics to the non-isolated case.  It would be interesting to have a geometric understanding of the bijections in \cite{LW}.
 
 
 
@@ -687,7 +687,7 @@ In the naive point of view, the local model is $G$-invariant objects of $\C^n$; 
 Thus, the Hilbert scheme of $n$ points on $\C^2/G$ should parameterize $G$-equivariant ideals of $R$, which are $G$-invariant ideals.  
 $$\Hilb_n(\C^2/G)=\{\mathcal{I}\subset R | \} =\Hilb_n(\C^2)^G$$
 
-Viewing $\Hilb_n([\C^2/G])$ as the fixed point set of the $G$ action on $\C^2$ is much simpler than the stack theoretic viewpoint, and will be our min way of dealing with the stacks.  However, the stack theoretic viewpoint our motivation -- from this point of view, orbifolds should be have like smooth spaces, and hence one is lead to look for analogs of G\"ottsche's formula for them.
+Viewing $\Hilb_n([\C^2/G])$ as the fixed point set of the $G$ action on $\C^2$ is much simpler than the stack theoretic viewpoint, and will be our min way of dealing with the stacks.  The stack theoretic viewpoint provides our motivation -- from this point of view, orbifolds should be have like smooth spaces, and hence one is lead to look for analogs of G\"ottsche's formula for them.
 
 
 As the fixed point of a finite group acting on a smooth space, we immediately see that $\Hilb_n([\C^2/G])$ are smooth.
@@ -732,7 +732,7 @@ The tautological bundle on $\Hilb_n$ splits into $r$ distinct tautological bundl
 
 This discussion also helps explain why increasing $n$ a point does not correspond to a smooth point of $\C^2/G$.  Smooth points of $\C^2/G$ correspond to points in $\C^2$ where $G$ acts freely.  If $\mathcal{O}_{Gp}$ is the structure sheaf of the orbit of such a point, then $G$ acts on $\mathcal{O}_{Gp}$ as the regular representation.  Thuss
 
-Thus, the generic point of $\Hilb_{\C[G]}({\C^2/G})$ -- often called $G-\Hilb$ in the literature -- will correspond to a smooth point of $\C^2/G$.  However, $G-\Hilb$ is smooth from our discussion before, and since the image of the Hilbert-Chow morphism is the $G$ invariant sets, we really have a map $G-\Hilb\to \C^2/G$ that is an isomorphism away from the singular points, and so we see $G-\Hilb$ is a resolution of $\C^2/G$. 
+Thus, the generic point of $\Hilb_{\C[G]}({\C^2/G})$ -- often called $G-\Hilb$ in the literature -- will correspond to a smooth point of $\C^2/G$.  As $G-\Hilb$ is smooth from our discussion before, and since the image of the Hilbert-Chow morphism is the $G$ invariant sets, we really have a map $G-\Hilb\to \C^2/G$ that is an isomorphism away from the singular points, and so we see $G-\Hilb$ is a resolution of $\C^2/G$. 
 
 \begin{center}
 \begin{tikzpicture}[scale=.5]
@@ -853,7 +853,7 @@ Furthermore, viewing the minimal resolution as a moduli space of objects on the 
 
 In dimensions higher than two, Hilbert schemes of points on a smooth surface are not smooth, and we no longer have any reason to expect that $G-\Hilb$ would be smooth, or a crepant resolution of $\C^n/G$ -- indeed, in dimensions 4 or higher, gorenstein quotient singularities need not have crepant resolutions.
 
-However, it turns out that in many cases of interest, $G-\Hilb$ is smooth in this case, and a crepant resolution of $\C^2/G$.  This was proven by Bridgeland, King and Reid in \cite{BKR} for dimension three, and Haiman's work on $\Hilb_n(\C^2)$ is essentially showing that it is $S_n-\Hilb(\C^n)$.
+It turns out that in many cases of interest, $G-\Hilb$ is smooth in this case, and a crepant resolution of $\C^2/G$.  This was proven by Bridgeland, King and Reid in \cite{BKR} for dimension three, and Haiman's work on $\Hilb_n(\C^2)$ is essentially showing that it is $S_n-\Hilb(\C^n)$.
 
 
 
@@ -1766,45 +1766,48 @@ only depends upon the $K$-theory classes of $\mathcal{F}$ and $\mathcal{G}$.
 \begin{example}
 Let $p$ and $q$ be two points of $\C^2$.  If $p\neq q$, then the structure sheaves $\mathcal{O}_p$ and $\mathcal{O}_q$ have disjoint support, and so $\Ext^i(\mathcal{O}_p,\mathcal{O}_q)=0$ for all $i$.
 
-If $p=q$, however, we have 
+If $p=q$ we have:
 \begin{eqnarray*}
 \Ext^0(\mathcal{O}_p,\mathcal{O}_p)&=&1\\
 \Ext^1(\mathcal{O}_p,\mathcal{O}_p)&=&2\\
 \Ext^2(\mathcal{O}_p,\mathcal{O}_p)&=&1 
 \end{eqnarray*}
 
-In both cases, however, we have $\chi(\mathcal{O}_p,\mathcal{O}_q)=0$.
+In both cases, $\chi(\mathcal{O}_p,\mathcal{O}_q)=0$.
 \end{example}
 
-Similarly, we have an orbifold Riemann-Roch pairing on $K^0([\C^2/G])$.  The Euler form is given by the McKay pairing with $\bigwedge^* \C^2$ in this case.  Note that $[V_G]$ is in the kernel of the McKay pairing -- geometrically, this corresponds to the fact that adding a smooth point on $[\C^2/G]$ will change the $K^0$ theory class by $V_G$, but the smooth point may be added disjoint from the support of the rest of the sheaf and the sheaf it is being paired with and hence not change.
+Similarly, we have an orbifold Riemann-Roch pairing on $K^0([\C^2/G])$.  The Euler form is given by the McKay pairing with the graded $\bigwedge^* \C^2$ in this case.  Note that pairing with $[V_G]$ just counts the dimension, and hence is in the kernel of the McKay pairing -- geometrically, this corresponds to the fact that adding a smooth point on $[\C^2/G]$ will change the $K^0$ theory class by $V_G$, but the smooth point may be added disjoint from the support of the rest of the sheaf and the sheaf it is being paired with and hence not change.
 
 Thus, the Euler pairing $\chi$ descends to a pairing on $K^0(G)/V_G$.  We will want to make use of a subspace of $K^0(G)$ instead of vectors summing to zero.  As vector spaces, thus subspace plus multiples of $V_G$ spans all of $K^0(G)$, but not as lattices; therefore for $G$ abelian we introduce the space 
 $$S^0_G=\left\{v\in K^0(G; \Z[1/|G|])\Bigg | \sum_{\chi\in\irreps(G)}(\chi, v)=0\right\}$$
 
 \begin{definition}
-Let $v\in S^0_G$.  Then $\core(v)\in K^0(G)$ is the smallest class so that $\Hilb_{\core(v)}(\C^2/G)$ is nonempty.
+Let $v\in S^0_G$.  Then let $\tilde{v}\in K^0(G)$ be the smallest class so that $\Hilb_{\core(v)}(\C^2/G)$ is nonempty.
 \end{definition}
 
 
+
 \begin{lemma} Suppose that $G\in SL_2$. Then
-$$\core(v)=v+(\frac{1}{2}Q_M(v,v)-v_0)[V_G]$$
-In particular, we see $\core(v)$ is a quadratic function of $v$.
+$$\tilde(v)=v+(\frac{1}{2}Q_M(v,v)-v_0)[V_G]$$
+In particular, we see $\tilde(v)$ is a quadratic function of $v$.
 \end{lemma}
 
 \begin{proof}
-By definition, $|\core(v)|^G=v+M[V_G]$ for some $M\in\Z[1/|G|]$; we must find $M$.
+By definition, $\tilde(v)=v+M[V_G]$ for some $M\in(1/|G|)\Z]$; we must find $M$.
 
-Let $\OO_v=R/\mathcal{I}$ for any element $\mathcal{I}\in\Hilb_{v+M[V_G]}$.  Expanding $\chi(v+M[V_G], v+M[V_G])$, we find on the one hand it will be
-$$\Ext^0(\OO_v,\OO_v)-\Ext^1(\OO_v,\OO_v)-\Ext^2(\OO_v,\OO_v)$$
-Since we know $G\in SL_2$, we know for that for the core we will have $\dim\Hilb_{v+M[V_G]}=0$, and hence $\Ext^1(\OO_v,\OO_v)=0$.
+Let $\OO_{\tilde{v}}=R/\mathcal{I}$ for some element $\mathcal{I}\in\Hilb_{\tilde{v}}$.  
 
-Since $\OO_v$ is a quotient of $R$, which is generated by a single element of trivial weight, $\Ext^0(\OO_v,\OO_v)=v_0+M$.
+Then 
+$$\chi(\tilde{v}, \tilde{v})=\Ext^0(\OO_{\tilde{v}},\OO_{\tilde{v}})-\Ext^1(\OO_{\tilde{v}},\OO_{\tilde{v}})+\Ext^2(\OO_{\tilde{v}},\OO_{\tilde{v}})$$
+Since $G\in SL_2$, and $\tilde{v}$ is the class of a core, we have $\dim\Hilb_{\tilde{v}}=0$, and hence $\Ext^1(\OO_{\tilde{v}},\OO_{\tilde{v}})=0$.
 
-Similarly, since $G\subset SL_2$, we have $K_{[C^2/G]}=\OO_{[\C^2/G]}$, and so Serre duality gives that $\Ext^2(\OO_v,\OO_v)=v_0+M$ as well.  Thus, we have found
-$$\chi(v+M[V_G],v+M[V_G])=2v_0+2M$$
-On the other hand, Riemann-Roch and the fact that $V_G\in\Ker(Q_{M})$ gives
+Since $\OO_{\tilde{v}}$ is a quotient of $R$, which is generated by a single element of trivial weight, $\Ext^0(\OO_v,\OO_v)=\tilde{v}_0=v_0+M$.
 
-gives that $\chi(v+M[V_G],v+M[V_G])=Q_M(v,v)$.  Thus, we have $M=\frac{1}{2}Q_M(v,v)-v_0$, as desired.
+Since $G\subset SL_2$, we have $K_{[C^2/G]}=\OO_{[\C^2/G]}$, and so Serre duality gives that $\Ext^2(\OO_{\tilde{v}},\OO_{\tilde{v}})=v_0+M$ as well.  Thus, we have found
+$$\chi(\tilde{v},\tilde{v})=2v_0+2M$$
+On the other hand, Riemann-Roch and the fact that $V_G\in\Ker(Q_{M})$ gives 
+$$\chi(\tilde{v},\tilde{v})=\chi(v+M[V_G],v+M[V_G])=Q_M(v+M[V_G],v+M[V_G])=Q_M(v,v)$$
+Thus $M=\frac{1}{2}Q_M(v,v)-v_0$.
 \end{proof}
 
 For $v\in S^0_G$
@@ -1813,15 +1816,29 @@ For $v\in S^0_G$
 Let $k$ be the index of $K_{[\C^2/G]}$.
 
 We have
-$$M_v=\frac{1}{2}\left(Q_M(v)+\dim\Hilb_{\tilde{v}} -v_0-v_k\right)$$
+$$M_v=\frac{1}{2}\left(Q_M(v)+\dim\Hilb_{\tilde{v}} -v_0-v_{k}\right)$$
 In particular, since we know $M_v$ is a piecewise quadratic function of $V$, we see that $\dim\Hilb_{\tilde{v}}$ is also a piecewise quadratic function of $v$.
 
 \end{lemma}
 
 \begin{proof}
-Note that in the proof we used $G\subset SL_2$ in two places.  Once was just for Serre duality.  Serre duality still holds for $G$ not in $SL_2$, we must just factor the canonical bundle $K_{[\C^2/G]}$ in.
+As before, we calculate $\chi(\tilde{v},\tilde{v})$ in two different ways.
 
-The second place was in knowing that $\dim \Hilb_{\tilde{v}}=0$; we must include that term as well now.
+Letting $\OO_{\tilde{v}}$ be any quotient sheaf with the right $K$-theory class, we first use the definition.
+
+We have $\Ext^0(\tilde{v},\tilde{v})=\tilde{v}_0=v_0+M$, as before.  Now $\Ext^1$ is no longer zero, but instead equal to $\dim \Hilb_{\tilde{v}}$.  Finally, by Serre duality 
+$$\Ext^2(\OO_{\tilde{v}}, \OO_{\tilde{v}})=\Ext^0(\OO_{\tilde{v}}, \OO_{\tilde{v}}\otimes K)$$ 
+Again, $\OO_{\tilde{v}}$ being a quotient of $R$ is generated by a single $G$ invariant element, which can be mapped to any $G$-invariant element of $\OO_{\tilde{v}}\otimes K$, which are the elements that act as the opposite of $k$ in $\OO_{tilde{v}}$.  
+
+Recalling Warning \ref{warning-} that $G$ acts on monomials with opposite action to the tangent bundle, we actually want a monomial that transf
+
+
+ and so $\Ext^2(\OO_{\tilde{v}}, \OO_{\tilde{v}})=M+v_{-k}$.  Putting all this together, we see that
+$$\chi(\tilde{v},\tilde{v})=2M+v_0+v_{-k}-\dim\Hilb_{\tilde{v}}$$
+Calculating the Euler pairing using Riemann-Roch works exactly the same way, and we have
+$$\chi(\tilde{v},\tilde{v})=Q_M(v,v)$$
+
+
 
 \end{proof}
 \section{Chen-Ruan cohomology and the disconnected conjecture}
@@ -1976,7 +1993,7 @@ The class $[\lambda]^G\in\overline{K}(G)$ depends only on the $G$-core of $\lamb
 \end{lemma}
 
 \begin{proof}
-Let $\Delta$ be a large triangular partition, with all horizontal steps being the same color.  It is obvious that we can take $\Delta$ large enough to contain both $\lambda$ and its $G$-core $\tilde{\lambda}^G$.  We claim that $\Delta\seminus\lambda$ and $\Delta\setminus\tilde{\lambda}^G$ have the same class in $\overline{K}(G)$.  
+Let $\Delta$ be a large triangular partition, with all horizontal steps being the same color.  It is obvious that we can take $\Delta$ large enough to contain both $\lambda$ and its $G$-core $\tilde{\lambda}^G$.  We claim that $\Delta\setminus\lambda$ and $\Delta\setminus\tilde{\lambda}^G$ have the same class in $\overline{K}(G)$.  
 
 \end{proof}
 
