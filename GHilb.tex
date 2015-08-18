@@ -1745,7 +1745,7 @@ In fact, each colored cell count is a quadratic function in the charge coordinat
 $$|\core_a(\mathbf{c})|^G_i=\frac{1}{2}\sum_{k=0}^{a-1} c_k^2+ \sum_{k>i}c_k$$
 \end{theorem}
 
-We are not sure where Theorem \ref{thm:quadratic-sl2} originates; it is proved independently in \cite{GKS, DS}.  The proof is not difficult and uses the interaction of Frobenius coordinates and the abacus, see ; the first statement is proved in \cite{johnson} and is easily extended to the second statement. 
+We are not sure where Theorem \ref{thm:quadratic-sl2} originates; it is proved independently in \cite{GKS, DS}.  The proof is not difficult and uses the interaction of Frobenius coordinates and the abacus, see ; the first statement is proved in \cite{jsimultaneous} and is easily extended to the second statement. 
 
 
 Note that since the quadratic part of $|\core_a(\mathbf{c})|^G_i$ is independent of $i$, the quadratic part is adding a number of copies of the regular representation.  Hence, Theorem \ref{thm:quadratic-sl2} implies:
@@ -1757,11 +1757,12 @@ There is a linear relation between the charge functions $c_i(\lambda)$ and the
  that there is a linear change of variables between the charge coordinates and the colored box coordinates.  This second fact we will prove this second fact directly in Theorem \ref{ }
 
 
-\subsection{Riemann-Roch}
+\section{Riemann-Roch calculation}
 
-Although groups $\Ext^i(\mathcal{F},\mathcal{G})$ depend delicately on the sheaves involved, the Euler pairing
+\subsection{Riemann-Roch Theorem}
+Although the ext groups $\Ext^i(\mathcal{F},\mathcal{G})$ between two sheaves depend delicately on the sheaves involved, the Euler pairing
 $$\chi(\mathcal{F},\mathcal{G})=\sum_{i\geq 0} \Ext^i(\mathcal{F},\mathcal{G})$$
-only depends upon the $K$-theory classes of $\mathcal{F}$ and $\mathcal{G}$.
+only depends upon the $K$-theory classes of $\mathcal{F}$ and $\mathcal{G}$.  
 
 \begin{example}
 Let $p$ and $q$ be two points of $\C^2$.  If $p\neq q$, then the structure sheaves $\mathcal{O}_p$ and $\mathcal{O}_q$ have disjoint support, and so $\Ext^i(\mathcal{O}_p,\mathcal{O}_q)=0$ for all $i$.
@@ -1776,71 +1777,97 @@ If $p=q$ we have:
 In both cases, $\chi(\mathcal{O}_p,\mathcal{O}_q)=0$.
 \end{example}
 
-Similarly, we have an orbifold Riemann-Roch pairing on $K^0([\C^2/G])$.  The Euler form is given by the McKay pairing with the graded $\bigwedge^* \C^2$ in this case.  Note that pairing with $[V_G]$ just counts the dimension, and hence is in the kernel of the McKay pairing -- geometrically, this corresponds to the fact that adding a smooth point on $[\C^2/G]$ will change the $K^0$ theory class by $V_G$, but the smooth point may be added disjoint from the support of the rest of the sheaf and the sheaf it is being paired with and hence not change.
+The Riemann-Roch formula gives an evaluation of the Euler pairing strictly in terms of the $K$-theory class.  Since our orbifolds are global quotients we can just use an equivariant Riemann-Roch formula, and since there are isolated fixed points it has a particularly nice form
 
-Thus, the Euler pairing $\chi$ descends to a pairing on $K^0(G)/V_G$.  We will want to make use of a subspace of $K^0(G)$ instead of vectors summing to zero.  As vector spaces, thus subspace plus multiples of $V_G$ spans all of $K^0(G)$, but not as lattices; therefore for $G$ abelian we introduce the space 
-$$S^0_G=\left\{v\in K^0(G; \Z[1/|G|])\Bigg | \sum_{\chi\in\irreps(G)}(\chi, v)=0\right\}$$
+In particular, for $\C^2/G$, the Euler pairing will be equivalent to 
+
+The exterior algebra of $\C^2$ is a graded $G$ representation, with $\bigwedge^0\C^2$ the trivial representation, and $\bigwedge^2\C^2$ in piece 0, and $\bigwedge^1\C^2=\C^2$ in degree 1.  
 
 \begin{definition}
-Let $v\in S^0_G$.  Then let $\tilde{v}\in K^0(G)$ be the smallest class so that $\Hilb_{\core(v)}(\C^2/G)$ is nonempty.
+The super McKay pairing is $Q_{SM}(V,W)=\dim (V\otimes W^\vee\otimes\bigwedge^*\C^2)^G$.
 \end{definition}
 
 
+\begin{theorem}[Equivariant Riemann-Roch]
+$$\chi(\mathcal{F},\mathcal{G})=Q_{SM}([\mathcal{F}],[\mathcal{G}])$$
+\end{theorem}
 
-\begin{lemma} Suppose that $G\in SL_2$. Then
-$$\tilde(v)=v+(\frac{1}{2}Q_M(v,v)-v_0)[V_G]$$
-In particular, we see $\tilde(v)$ is a quadratic function of $v$.
-\end{lemma}
 
-\begin{proof}
-By definition, $\tilde(v)=v+M[V_G]$ for some $M\in(1/|G|)\Z]$; we must find $M$.
+\subsection{Application to cores}
 
-Let $\OO_{\tilde{v}}=R/\mathcal{I}$ for some element $\mathcal{I}\in\Hilb_{\tilde{v}}$.  
+We now apply the Riemann-Roch theorem to the dimension and $K$-theory classes of cores.  Specifically, we will address the following question: given a class $v\in \overline{K}(G)$, what can we say about the dimension and $K$-theory class of the core Hilbert scheme in class $v$?
 
-Then 
-$$\chi(\tilde{v}, \tilde{v})=\Ext^0(\OO_{\tilde{v}},\OO_{\tilde{v}})-\Ext^1(\OO_{\tilde{v}},\OO_{\tilde{v}})+\Ext^2(\OO_{\tilde{v}},\OO_{\tilde{v}})$$
-Since $G\in SL_2$, and $\tilde{v}$ is the class of a core, we have $\dim\Hilb_{\tilde{v}}=0$, and hence $\Ext^1(\OO_{\tilde{v}},\OO_{\tilde{v}})=0$.
+First, note that pairing with $[V_G]$ just counts the dimension, and since the super dimension of $\bigwedge^*\C^2$ is zero, it is in the kernel of the McKay pairing.  Geometrically, this corresponds to the fact that adding the structure sheaf of a smooth point on $[\C^2/G]$ will change the $K^0$ theory class by $V_G$, but the smooth point may be added disjoint from the support of the rest of the sheaf and the sheaf it is being paired with and hence not change any of the ext groups.
 
-Since $\OO_{\tilde{v}}$ is a quotient of $R$, which is generated by a single element of trivial weight, $\Ext^0(\OO_v,\OO_v)=\tilde{v}_0=v_0+M$.
 
-Since $G\subset SL_2$, we have $K_{[C^2/G]}=\OO_{[\C^2/G]}$, and so Serre duality gives that $\Ext^2(\OO_{\tilde{v}},\OO_{\tilde{v}})=v_0+M$ as well.  Thus, we have found
-$$\chi(\tilde{v},\tilde{v})=2v_0+2M$$
-On the other hand, Riemann-Roch and the fact that $V_G\in\Ker(Q_{M})$ gives 
-$$\chi(\tilde{v},\tilde{v})=\chi(v+M[V_G],v+M[V_G])=Q_M(v+M[V_G],v+M[V_G])=Q_M(v,v)$$
-Thus $M=\frac{1}{2}Q_M(v,v)-v_0$.
-\end{proof}
+Thus, the Euler pairing $\chi$ descends to a pairing on $\overline{K}(G)=K^0(G)/V_G$.  Given a class $v\in \overline{K}(G)$, what is the minimum lift to $\tilde{v}\in K^0(G)$ with $[\tilde{v}]=v$ and $\Hilb_{\tilde{v}}$ nonempty?
 
-For $v\in S^0_G$
+As vector spaces, $\overline{K}(G)$ is isomorphic to the subset of $K^0(G)$ with entries summing to zero, but quite as lattices.  Therefore for $G$ abelian we introduce the space 
+$$S^0_G=\left\{v\in K^0(G; \Z[1/|G|])\Bigg | \sum_{\chi\in\irreps(G)}(\chi, v)=0\right\}$$
+and we have an isomorphism $S^0_G$ and $\overline{K}(G)$.  
+
 
 \begin{lemma}
-Let $k$ be the index of $K_{[\C^2/G]}$.
+Let $k$ be the index of $K_{[\C^2/G]}\in K(G)$.
 
-We have
-$$M_v=\frac{1}{2}\left(Q_M(v)+\dim\Hilb_{\tilde{v}} -v_0-v_{k}\right)$$
-In particular, since we know $M_v$ is a piecewise quadratic function of $V$, we see that $\dim\Hilb_{\tilde{v}}$ is also a piecewise quadratic function of $v$.
-
+Then
+$$\tilde{v}=v+\frac{1}{2}\left(Q_M(v)+\dim\Hilb_{\tilde{v}} -v_0-v_{k}\right)[V_G]$$
 \end{lemma}
 
+
+
 \begin{proof}
-As before, we calculate $\chi(\tilde{v},\tilde{v})$ in two different ways.
+We calculate $\chi(\tilde{v},\tilde{v})$ in two different ways, once from the definition, and once using the Riemann-Roch theorem.
 
-Letting $\OO_{\tilde{v}}$ be any quotient sheaf with the right $K$-theory class, we first use the definition.
+Let $\OO_{\tilde{v}}$ be any quotient sheaf with the right $K$-theory class.  
 
-We have $\Ext^0(\tilde{v},\tilde{v})=\tilde{v}_0=v_0+M$, as before.  Now $\Ext^1$ is no longer zero, but instead equal to $\dim \Hilb_{\tilde{v}}$.  Finally, by Serre duality 
-$$\Ext^2(\OO_{\tilde{v}}, \OO_{\tilde{v}})=\Ext^0(\OO_{\tilde{v}}, \OO_{\tilde{v}}\otimes K)$$ 
-Again, $\OO_{\tilde{v}}$ being a quotient of $R$ is generated by a single $G$ invariant element, which can be mapped to any $G$-invariant element of $\OO_{\tilde{v}}\otimes K$, which are the elements that act as the opposite of $k$ in $\OO_{tilde{v}}$.  
+We first use
+$$\chi(\tilde{v}, \tilde{v})=\dim\Ext^0(\OO_{\tilde{v}},\OO_{\tilde{v}})-\dim\Ext^1(\OO_{\tilde{v}},\OO_{\tilde{v}})+\dim\Ext^2(\OO_{\tilde{v}},\OO_{\tilde{v}})$$
 
-Recalling Warning \ref{warning-} that $G$ acts on monomials with opposite action to the tangent bundle, we actually want a monomial that transf
+By definition $\Ext^0(\OO_{\tilde{v}},\OO_{\tilde{v}})=\Hom_R(R/\mathcal{I},R/\mathcal{I})^G$.  Now since $\OO_v$ is a quotient of $R$ it is generated by $1$, and so to define a homomorphism we just need to say where $1$ maps. Since $\mathcal{I}$ is an ideal, it can map to any entry of $R/\mathcal{I}$.  Since one is fixed by $G$, for the homomorphism to be $G$ invariant we must preserve weight and map to something invariant.  So $\dim\Ext^0(\OO_{\tilde{v}},\OO_{\tilde{v}})=\tilde{v}_0$.  
 
+Using Serre-duality, $\dim\Ext^2(\OO_{\tilde{v}},\OO_{\tilde{v}})=\dim\Ext^0(\OO_{\tilde{v}},K\otimes\OO_{\tilde{v}})$.  The effect of tensoring by $K$ is just to change the $G$ action -- an invariant vector of $\OO_{\tilde{v}}\otimes K$ is just a vector that transforms as $K^\vee$ in $\OO_{\tilde{v}}$.  
+So $\dim\Ext^2(\OO_{\tilde{v}},\OO_{\tilde{v}})=\tilde{v}_{-k}$.  
 
- and so $\Ext^2(\OO_{\tilde{v}}, \OO_{\tilde{v}})=M+v_{-k}$.  Putting all this together, we see that
-$$\chi(\tilde{v},\tilde{v})=2M+v_0+v_{-k}-\dim\Hilb_{\tilde{v}}$$
-Calculating the Euler pairing using Riemann-Roch works exactly the same way, and we have
-$$\chi(\tilde{v},\tilde{v})=Q_M(v,v)$$
+Finally $\dim\Ext^2(\OO_{\tilde{v}},\OO_{\tilde{v}})=\dim\Hilb_{\tilde{v}}$.  So, on the one hand we have see $\chi(\tilde{v},\tilde{v})=\tilde{v}_0+\tilde{v}_{-k}-\dim\Hilb_{\tilde{v}}$.
 
+If we write $\tilde{v}=v+M [V_G]$, then we see $\tilde{v}_i=v_i+M$, and so we may rewrite this as 
+\begin{equation} \label{eq:EXT-evaluation}
+\chi(\tilde{v},\tilde{v})=v_o+v_{-k}+2M-\dim\Hilb_{\tilde{v}} 
+\end{equation}
 
+On the other hand, using Euler pairing using Riemann-Roch works exactly the same way, and we have
+\begin{equation} \label{eq:RR-evaluation}
+\chi(\tilde{v},\tilde{v})=Q_{SM}(v+M[V_G],v+M[V_G])=Q_M(v,v)
+\end{equation}
+using the fact that $[V_G]$ is in the kernel of $Q_{SM}$.  
+
+Setting Equations \ref{eq:EXT-evaluation} and \ref{eq:RR-evaluation} equal and solving for $M$ gives the desired result.
 
 \end{proof}
+
+
+\begin{corollary}
+The map $v\mapsto \dim\Hilb_{\tilde{v}}$ is a piecewise quadratic function.
+\end{corollary}
+
+\begin{proof}
+Using cores, we have already seen that $\tilde{v}$ is a piecewise quadratic function of $v$.  
+\end{proof}
+
+
+\begin{corollary}  If $G\in SL_2$. Then
+$$\tilde{v}=v-v_0+\frac{1}{2}Q_M(v,v)[V_G]$$
+In particular, we see $\tilde{v}$ is a quadratic function of $v$.
+\end{corollary}
+
+\begin{proof}
+When $G\in SL_2$, we the canonical bundle $K_{[\C^2/G]}$ is trivial, and so $k=0$.  Furthermore, when $G\in SL_2$, the core partitions are isolated points and hence have dimension 0.
+\end{proof}
+
+
+
+
 \section{Chen-Ruan cohomology and the disconnected conjecture}
 
 
