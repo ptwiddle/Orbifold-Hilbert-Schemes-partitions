@@ -1,17 +1,127 @@
 \documentclass{amsart}
+\usepackage{tikz}
+
+
 \DeclareMathOperator{\Hilb}{Hilb}
+\DeclareMathOperator{\dusty}{pdim}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\C}{\mathbb{C}}
+
 
 \title{Bit of number theory from Zurich}
 
 \begin{document}
 
-Let $a,r$ be a pair of positive integers, so that $(a,r)=1$ and $(a+1,r)=1$, and let $G$ be $\Z_r$ acting with weights $(1/r, a/r)$.  The first condition is equivalent to nonidentiy elements of $G$ only fixing the origin, the second condition is equivalent to $G$ having trivial intersection with $SL_2$. 
+My proposed formula for the product formula was in terms of the Chen-Ruan cohomology; Dusty instead changed arm to coleg to obtain a combinatorial formula.  Our goal here is to show these viewpoints are consistent in the case when the intersection with $SL_2$ is trivial.
 
-In this case, the generating function for the topology of Hilbert schemes of points appears to have a product formula that is just the Euler formula with some $t$'s inserted in a particular nice format.  If $P_t$ denotes the poincare polynomial, then it appears
+$$\dusty_{k/r}(\lambda)=\#\left\{\square\in\lambda\Big| \ell(\square)-kco\ell(\square)=-1\mod r\right\}$$
+ 
+Linear combinations of leg and co-leg depend only on the box's position within its row; hence every row of length $L$ will contribute the same amount to $\dusty_{k/r}(\lambda)$, and it is immediate that the joint distribution of $|\lambda|$ and $\dusty_{k/r}(\lambda)$ will be a $t$-deformation of the Euler product.  It remains to check that this is the $t$-deformation predicted by our conjecture.
 
-$$\sum_{n} P_t(\Hilb_n([\C^2/G]))q^n=\prod_{m=1}^r \frac{1}{(q^mt^{\varepsilon{m}};q^at^2)_\infty}$$
+Consider $\ell(\square)+1-kco\ell(\square)$; for the first square in a row of length $L$, this quantity will be $L$, and each square to the right we move the quantity will drop by $k+1$, as illustrated in the following dia
+
+\begin{tikzpicture}[scale=.5]
+
+\draw (0,0) grid (1,1);
+\draw (.5,.5) node{$1$};
+
+
+\begin{scope}[yshift=-1.5cm]
+\draw (0,0) grid (2,1);
+\draw (.5,.5) node{$2$};
+\draw (1.5,.5) node{$0$};
+
+\begin{scope}[yshift=-1.5cm]
+\draw (0,0) grid (3,1);
+\draw (.5,.5) node{$3$};
+\draw (1.5,.5) node{$1$};
+\draw (2.5,.5) node{$-1$};
+
+
+\begin{scope}[yshift=-1.5cm]
+\draw (0,0) grid (4,1);
+\draw (.5,.5) node{$4$};
+\draw (1.5,.5) node{$2$};
+\draw (2.5,.5) node{$0$};
+\draw (3.5,.5) node{$-2$};
+
+
+
+\begin{scope}[yshift=-1.5cm]
+\draw (0,0) grid (5,1);
+\draw (.5,.5) node{$5$};
+\draw (1.5,.5) node{$3$};
+\draw (2.5,.5) node{$1$};
+\draw (3.5,.5) node{$-1$};
+\draw (4.5,.5) node{$-3$};
+\end{scope}
+\end{scope}
+\end{scope}
+\end{scope}
+
+
+
+\begin{scope}[xshift=8cm]
+
+\draw (0,0) grid (1,1);
+\draw (.5,.5) node{$1$};
+
+
+\begin{scope}[yshift=-1.5cm]
+\draw (0,0) grid (2,1);
+\draw (.5,.5) node{$2$};
+\draw (1.5,.5) node{$-1$};
+
+\begin{scope}[yshift=-1.5cm]
+\draw (0,0) grid (3,1);
+\draw (.5,.5) node{$3$};
+\draw (1.5,.5) node{$0$};
+\draw (2.5,.5) node{$-3$};
+
+
+\begin{scope}[yshift=-1.5cm]
+\draw (0,0) grid (4,1);
+\draw (.5,.5) node{$4$};
+\draw (1.5,.5) node{$1$};
+\draw (2.5,.5) node{$-2$};
+\draw (3.5,.5) node{$-5$};
+
+
+
+\begin{scope}[yshift=-1.5cm]
+\draw (0,0) grid (5,1);
+\draw (.5,.5) node{$5$};
+\draw (1.5,.5) node{$2$};
+\draw (2.5,.5) node{$-1$};
+\draw (3.5,.5) node{$-4$};
+\draw (4.5,.5) node{$-7$};
+\end{scope}
+\end{scope}
+\end{scope}
+\end{scope}
+\end{scope}
+\end{tikzpicture}
+When the intersection of $G$ and $SL_2$ is trivial, i.e. when $k+1$ is relatively prime to $r$, we see that adding $r$ boxes to a row will add one box of each residue class mod $r$, and thus proving the conjectures are equivalent reduces to checking the same number of boxes for rows of length less than $r$.  
+
+For a row of length $L<r$ to contribute to the homological degree, we need 
+\begin{align*}
+0 &\in \{L, L-(k+1),\dots, L-(L-1)(k+1) \} \\
+-L &\in \{0, -(k+1),\dots,-(L-1)(k+1) \} \\
+\frac{-L}{k+1} &\in \{0, -1, \dots, -(L-1) \} \\
+\end{align*}
+Equivalently, if we choose the representative of $[-L/(k+1)]\in \mathbb{Z}/r\mathbb{Z}$ in $\{0,\dots, r-1\}$, then we need $-L/(k+1)>-L$.
+
+From the Chen-Ruan point of view, for $\lambda \in \mathbb{Z}/r\mathbb{Z}$ a part with length $M<r, M\cong-(k+1)\lambda\mod r$ will contribute if we have to carry when we add $\lambda $ and $k\lambda$, that is
+\begin{align*}
+k \lambda &\in -1,\dots, -\lambda \\
+(k+1)\lambda &\in 0,\dots, \lambda-1 \\
+M\in 0,-1,\dots, -\lambda+1 \\
+M \in 0, -1,\dots, M/(k+1)+1
+\end{align*}
+That is, we need $M>M/(k+1)$.
+
+
+
 
 
 
