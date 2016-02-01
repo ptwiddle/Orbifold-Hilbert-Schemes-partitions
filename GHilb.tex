@@ -1,6 +1,8 @@
 \documentclass{amsart}[12pt]
 %\pdfoutput=1
 
+
+
 \usepackage{tikz}
 \usetikzlibrary{arrows, snakes} %for arrowtips  
 \usepackage[sc]{mathpazo}
@@ -43,6 +45,7 @@
 \newcommand{\OO}{\mathcal{O}}
 \newcommand{\LL}{\mathbf{L}}
 \newcommand{\PP}{\mathcal{P}} % partitions
+\newcommand{\coleg}{\text{co}\ell}
 
 
 \newcommand{\proj}{\mathbf{P}}
@@ -54,7 +57,7 @@
 
 
 
-
+\DeclareMathOperator{\dusty}{pdim}
 \DeclareMathOperator{\Hilb}{Hilb}
 \DeclareMathOperator{\Ext}{Ext}
 \DeclareMathOperator{\Hom}{Hom}
@@ -67,6 +70,9 @@
 \newcommand{\HG}{\Hilb}
 
 \begin{document}
+
+
+
 \begin{abstract}
 We study the connection between the combinatoric of certain partition statistics and the topology of the Hilbert schemes of certain orbifold surfaces.
 \end{abstract}
@@ -81,7 +87,7 @@ We study the connection between the combinatoric of certain partition statistics
 
 
 \maketitle
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{1}
 \tableofcontents
 This paper is written for two largely distinct audiences.  On the one hand, we write for algebraic geometers interested in Hilbert schemes of points and orbifold surfaces.  On the other hand, combinatorialists studying partitions.  As such, there is more expository material than perhaps is standard.  In particular, we have two introductions, one for geometers, and one for combinatorialists.
 
@@ -91,16 +97,77 @@ This paper is written for two largely distinct audiences.  On the one hand, we w
 
 From the geometric point of view, this paper studies the topology of Hilbert schemes of points on $$\C^2/G$$, where $$G$$ is an abelian group.  
 
+The motivation here is much structure in the topology of Hilbert schemes of point on a smooth surface $S$: Gottsche, building on the work of Ellingsrud and Str\o me for $\C^2$, found product formulas for generating functions of their cohomology, which implied a stabilization result on their homology.  Later, Grojnowski and Nakajima \cite{grojnowski, nakajimaheisenberg} explained these product formulas using geometric representation theory.  This background is discussed at length in Section \ref{sec:smoothbackground}.
 
-For geometers: there is much structure in the topology of Hilbert schemes of point on a smooth surface $S$: Gottsche, building on the work of Ellingsrud and Str\o me for $\C^2$, found product formulas for generating functions of their cohomology.  Later, Grojnowski and Nakajima \cite{grojnowski, nakajimaheisenberg} explained these product formulas for geometric representation theory.  An important example here is when $S$ is the resolution of an ADE quotient signularity -- 
+With the philosophy that, viewed as stacks, orbifolds should be behave just as well as smooth surfaces, it is a natural question to ask whether similar structure is found in the topology of Hilbert schemes on orbifold surfaces.  It is natural to start with the local models $[\C^2/G]$.  When $G$ is abelian, the techniques of Ellingsrud and Str\o mme adapt to give a combinatorial recipe for computing $H_k(\Hilb_n([\C^2/G]))$ in terms of the partitions of $n$.
+
+This direction was taken by Guese-Zade, Luengo, and Melle-Hernandez in \cite{GLM} -- this paper is largely an extension of work done there.  In particular, they made the following conjecture:
+
+\begin{conjecture}{Guesein-Zade, Luengo, Melle-Hern\'a ndez}
+Let $\Z/3\Z$ act on $\C^2$ diagonally.  Then
+\begin{equation*}
+\begin{split}
+\sum_{k, n\geq 0} h_k(\Hilb_n([\C^2/\Z/3\Z]))q^nt^k =&\frac{1}{(1-q)}
+\frac{1}{(1-t^2q^2)}\frac{1}{(1-q^3)} \cdot \\
+&\frac{1}{(1-t^2q^4)}\frac{1}{(1-t^4q^5)}\frac{1}{(1-t^2q^6)}\cdot \\
+&\frac{1}{(1-t^4q^7)}\frac{1}{(1-t^6q^8)}\frac{1}{(1-t^4q^9)}\cdots
+\end{split}
+\end{equation*}
+\end{conjecture}
+
+It is clear from the work of GLM that similar formulas should hold for any cyclic group $G$, but no explicit conjecture that holds for all $G$ was made.  Our first new contribution is to remedy this; we give an explicit product formula for, involving the Chen-Ruan cohomology of $[\C^2/G]$.
+
 
 Following and extending work of , we investigate the topology of the structure of Hilbert schemes of points on the local models $\C^2/\Z_r$.  We conjecture explicit product formulas in this case, reminiscent of Gottsche's formula, in terms of the Chen-Ruan cohomology of $[\C^2/\Z_r]$.  
 
-Turning to the connected components, we prove a stability result for the cohomology of orbifold Hilbert schemes, reminiscent of G\"ottsche's, as more and more \emph{smooth} points (equivalently, copies of the regular representation) are added.  We investigate components stuck of the origin, and show their dimension and the dimension of the corresponding ideals are given by piecewise quadratic functions, where the quadratic part is the intersection pairing on the minimal resolution.  We conjecture the action of a Heisenberg group modeled on the minimal resolution.
+The bulk of work, however, concerns a subtlety that does not arise in the case of a smooth surface.  When $X$ is a smooth surface, $\Hilb_n(X)$ is always connected; however, $\Hilb_n([\C^2/G])$ is usually not connected.  The tautological bundle $\C[x,y]/\mathcal{I}$ over a point $\mathcal{I}\subset\Hilb_n([\C^2/G])$ is a $n$-dimensional represention of $G$, and so its class in $K^0(G)$ is a discrete invariant.  For $v$ an $n$-dimensional representation of $G$, denote by $\Hilb_v([\C^2/G])\subset \Hilb_n([\C^2/G])$ the locus of ideals with $\C[x,y]/\mathcal{I}\cong v$ as $G$-representations.  When $G$ is abelian, it turns out that the $\Hilb_v([\C^2/G])$ are connected.  
+
+In this point of view, the regular representation of $G$, which we will denote $R$, plays a special role.  Adding a smooth point of $[\C^2/G]$ corresponds to adding a copy of the regular representation.  Furthermore, for some representations $v$, the ideals in $\Hilb_v([\C^2/G])$ will be supported only over the singular points in $\C^2/G$.  For instance, $\Hilb_1([\C^2/G])$ will always be isomorphic to the $G$ fixed locus $(\C^2)^G$.
+
+It dependence of $\Hilb_v([\C^2/G])$ on $v$ behaves very differently in the direction of the regular representation and the other directions.  In the direction of the regular representation, we prove:
+
+\begin{theorem}
+Let $v\in K^0(G)$ be arbitrary.  As $n\to \infty$, and $k$ fixed, the homology $h_k(\Hilb_{v+nR}([\C^2/\mathbb{Z}/r\mathbb{Z}]))$ stabilizes.  The generating function of the stable homology is
+$$\prod_{m\geq 1} \frac{1}{(1-t^{2m})^{|r|}}$$
+\end{theorem}
+
+The proof is combinatorial; a conjectural topological meaning is that all the cohomology of $\Hilb_v$ is \emph{tautological}, and that in the stable limit there are no relations among the tautological generators.
+
+
+
+\begin{conjecture}
+Let $v$ be any representation so that $\Hilb_v([\C^2/\Z_r])$ is concentrated over the origin.  Then the cohomology
+
+$$\bigoplus_{m\geq 0} \Hilb_{v+mR} $$ 
+
+carries an action of the Heisenberg algebra modeled on the cohomology of the minimal resolution of $\C^2/\Z_r$; it is an infinite sum of highest weight representations.
+
+\end{conjecture}
+
+\subsection{Piecewise quadratic behavior of ``small'' representations}
+
+
+\begin{theorem}
+For every class in $\overline{v}\in K^0(G)/R$ there is a unique representative $\tilde{v}\in K^0(G)$, so that $\Hilb_{\tilde{v}}([\C^2/\Z_r])$ is small.  
+
+We have that $\dim \tilde{v}$ and $\dim \Hilb_{\tilde{v}}([\C^2/\Z_r])$ are piecewise quadratic functions on $K^0(G)/R$.
+\end{theorem}
+
+The geometric meaning or origin of $\dim \tilde{v}$ is piecewise quadratic is not clear to us; the proof and motivation for stating this theorem are both combinatorial.  That $\dim \Hilb_{\tilde{v}}$ is piecewise quadratic follows from Riemann-Roch and the fact that $\dim \tilde{v}$ is.    
+
+
+We believe the quadratic part to be related to the intersection pairing of the minimal resolution of $\C^2/\Z_r$, and speculate that the piecewise behavior is related to stability conditions for the McKay quiver.
+
 
 
 
 \section{Introduction for combinatorialists}
+
+The combinatorial content of our work is a generalization of cores and quotients.  
+
+Cores and quotients are useful in studying the following statistics on 
+
+
 
 For combinatorialists: Cores and quotients of partitions initially arose in the study of the modular representation theory of the symmetric group, but have found roles in number theory and representation theory, among others.  A lesser known occurence is in the geometry of Hilbert schemes of points.  
 
@@ -119,7 +186,9 @@ Let $\C^*$ act on $\C^2$ by $t\cdot (x,y)=(t^ax, t^by), a,b\geq 0$.  Then
 $$\sum_{k,n} h^k(\Hilb_n(\C^2)^{\C^*})q^nt^k=\prod_{a+b } \frac{1}{1-q^\ell}\prod_{(a+b)|\ell} \frac{1}{1-q^\ell t}$$
 \end{theorem}
 
-The proofs given by Buryak-Feigin, and Buryak-Feigin-Nakajima are algebraic geometric, and go through quiver varieties.  An obvious first step in trying to prove our conjectures combinatorially would be to prove Theorem \ref{thm:BFN} combinatorially.  We give some evidence in Section \ref{sec:dyson} that maps generalizing Dyson's map might be the approach for this.
+The proofs given by Buryak-Feigin, and Buryak-Feigin-Nakajima are algebraic geometric, and go through quiver varieties.  An obvious first step in trying to prove our conjectures combinatorially would be to prove Theorem \ref{thm:BFN} combinatorially.  
+
+
 
 
 
@@ -220,17 +289,27 @@ Rather than a list of numbers, we usually view partitions in terms of their \emp
 We write $\square\in\lambda$ to mean a cell contained in the $\lambda$.  The \emph{arm} $a(\square)$ of a square $\square\in\lambda$ is the number of cells above $\square$ and in $\lambda$; the \emph{leg} $\ell(\square)$ of a cell is the number of cells contained in $\lambda$ and to the right of $\square$.  We will occasionally need to refer to the \emph{coarm} and \emph{coleg} of a square, which we will denote $a^\prime(\square)$ and $\ell^\prime(\square)$, and which refer to the number of cells contained in $\lambda$ and below and to the left of $\square$, respectively. 
 
 \begin{example}
-Below is the Young diagram of $\lambda=3+2+2+1$.  The cell $(2,1)$ is marked $s$; the cells in the arm and leg of $s$ are labeled $a$ and $l$, respectively.
+Below is the Young diagram of $\lambda=4+4+3+2+2+2$.  The cell $(3,1)$ is marked $s$; the cells in the arm and leg of $s$ are labeled $a$ and $l$, respectively, and the cells in the coarm and coleg of $s$ are labeled $ca$ and $cl$, respectively/
 \begin{center}
 \begin{tikzpicture}[scale=.5]
-\draw[thin, gray] (0,0) grid (1,3);
-\draw[thin, gray] (1,0) grid (3,2);
-\draw[thick] (0,0)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--cycle;
-\draw (1.5,.5) node{$s$};
-\draw (1.5,1.5) node{$a$};
-\draw (2.5,.5) node{$l$};
-\draw (3.5,.5) node {$l$};
-\draw (8.5,1.5) node[align=left] {$a(s)=\# a=1$ \\ $\ell(s)=\# l=2$};
+\draw[thin, gray] (0,0) grid (2,4);
+\draw[thin, gray] (0,0) grid (3,3);
+\draw[thin, gray] (1,0) grid (6,2);
+
+\draw[thick] (0,0)--(0,4)--(2,4)--(2,3)--(3,3)--(3,2)--(6,2)--(6,0)--cycle;
+\draw (2.5,1.5) node{$s$};
+\draw (2.5,2.5) node{$a$};
+\draw (3.5,1.5) node{$l$};
+\draw (4.5,1.5) node {$l$};
+\draw (5.5,1.5) node {$l$};
+
+
+\draw (0.5,1.5) node {$cl$};
+\draw (1.5,1.5) node {$cl$};
+\draw (2.5,0.5) node {$ca$};
+
+
+\draw (10,2) node[align=left] {$a(s)=\# a=1$ \\ $\ell(s)=\# l=3$ \\ $a^\prime(s)=\# ca=1$ \\ $\ell^\prime(s)=\# cl=2$};
 \end{tikzpicture}
 \end{center}
 \end{example}
@@ -250,7 +329,7 @@ $(\text{step}_1, \text{step}_2)$, where $\text{step}_1$ occurs before $\text{ste
 
 
 \section{Background: Hilbert schemes of points on smooth surfaces}
-
+\label{sec:smoothbackground}
 
 
 
@@ -1324,68 +1403,54 @@ This is illustrated in the following picture:
 
 \begin{tikzpicture}[scale=.8]
 \begin{scope}[gray, very thin, scale=.6]
-\clip (-5.5, 5.5) rectangle (5.5, -1);
-\draw[rotate=45, scale=1.412, fill, red!20!white] (1,1)--(1,2)--(3,2)--(3,0)--(2,0)--(2,1)--cycle;
-\draw[rotate=45, scale=1.412] (0,0) grid (6,6);
+   \clip (-5.5, 5.5) rectangle (5.5, -1);
+   \draw[rotate=45, scale=1.412, fill, red!20!white] (1,1)--(1,2)--(3,2)--(3,0)--(2,0)--(2,1)--cycle;
+   \draw[rotate=45, scale=1.412] (0,0) grid (6,6);
 \end{scope}
 \begin{scope}[rotate=45, very thick, scale=.6*1.412]
-\draw (0,5.5) -- (0, 3) -- (1,3) -- (1,2) -- (3,2) -- (3,0) -- (5.5,0);
+   \draw (0,5.5) -- (0, 3) -- (1,3) -- (1,2) -- (3,2) -- (3,0) -- (5.5,0);
 \end{scope}
-
 \begin{scope}[scale=.6, yshift=-.5cm]
-
-\draw (-5.5,0) node{$\cdots$};
-\draw (-4.5,0) circle (.3);
-\draw (-3.5,0) circle (.3);
-\filldraw (-2.5,0) circle (.3);
-\draw (-1.5,0) circle (.3);
-\filldraw[gray] (-.5,0) circle (.3);
-\filldraw (.5,0) circle (.3);
-\draw (1.5,0) circle (.3);
-\draw (2.5,0) circle (.3);
-\filldraw (3.5,0) circle (.3);
-\filldraw (4.5,0) circle (.3);
-\draw (5.5,0) node{$\cdots$};
-
-\node at (-.3, -.3) (start);
-\node at (2.3, -.3) (finish);
-\draw[->] (start) to [out=-30, in=210] (finish);
-
+   \draw (-5.5,0) node{$\cdots$};
+   \draw (-4.5,0) circle (.3);
+   \draw (-3.5,0) circle (.3);
+   \filldraw (-2.5,0) circle (.3);
+   \draw (-1.5,0) circle (.3);
+   \filldraw[gray] (-.5,0) circle (.3);
+   \filldraw (.5,0) circle (.3);
+   \draw (1.5,0) circle (.3);
+   \draw (2.5,0) circle (.3);
+   \filldraw (3.5,0) circle (.3);
+   \filldraw (4.5,0) circle (.3);
+   \draw (5.5,0) node{$\cdots$};
+   \node (start) at (-.3, -.3) {};
+   \node(finish) at (2.3, -.3) {};
+   \draw[->] (start) to [out=-30, in=210] (finish);
 \end{scope}
-
 \begin{scope}[xshift=8cm]
-\begin{scope}[gray, very thin, scale=.6]
-\clip (-5.5, 5.5) rectangle (5.5, -1);
-\draw[rotate=45, scale=1.412] (0,0) grid (6,6);
+   \begin{scope}[gray, very thin, scale=.6]
+      \clip (-5.5, 5.5) rectangle (5.5, -1);
+      \draw[rotate=45, scale=1.412] (0,0) grid (6,6);
+   \end{scope}
+   \begin{scope}[rotate=45, very thick, scale=.6*1.412]
+      \draw (0,5.5) -- (0, 3) -- (1,3) -- (1,1) -- (2,1) -- (2,0) -- (5.5,0);
+   \end{scope}
+   \begin{scope}[scale=.6, yshift=-.5cm]
+      \draw (-5.5,0) node{$\cdots$};
+      \draw (-4.5,0) circle (.3);
+      \draw (-3.5,0) circle (.3);
+      \filldraw (-2.5,0) circle (.3);
+      \draw (-1.5,0) circle (.3);
+      \draw (-.5,0) circle (.3);
+      \filldraw (.5,0) circle (.3);
+      \draw (1.5,0) circle (.3);
+      \filldraw (2.5,0) circle (.3);
+      \filldraw (3.5,0) circle (.3);
+      \filldraw (4.5,0) circle (.3);
+      \draw (5.5,0) node{$\cdots$};
+   \end{scope}
 \end{scope}
-\begin{scope}[rotate=45, very thick, scale=.6*1.412]
-\draw (0,5.5) -- (0, 3) -- (1,3) -- (1,1) -- (2,1) -- (2,0) -- (5.5,0);
-\end{scope}
-
-\begin{scope}[scale=.6, yshift=-.5cm]
-
-\draw (-5.5,0) node{$\cdots$};
-\draw (-4.5,0) circle (.3);
-\draw (-3.5,0) circle (.3);
-\filldraw (-2.5,0) circle (.3);
-\draw (-1.5,0) circle (.3);
-\draw (-.5,0) circle (.3);
-\filldraw (.5,0) circle (.3);
-\draw (1.5,0) circle (.3);
-\filldraw (2.5,0) circle (.3);
-\filldraw (3.5,0) circle (.3);
-\filldraw (4.5,0) circle (.3);
-\draw (5.5,0) node{$\cdots$};
-
-
-
-
-
-\end{scope}
-\end{scope}
-
 \end{tikzpicture}
-
 
 
 If $(e,e-k)$ is such a pair, reducing the energy of the electron from
@@ -1779,36 +1844,89 @@ In fact, an explicit form of this linear change of variables will hold in genera
 
 
 
-\section{Chen-Ruan cohomology and the disconnected conjecture}
+\section{Conjectured product formula}
 
 
-\subsection{Conjectural product formula}
+In this section we state the conjectured product formula.  Section \ref{sec:prod-start} gives some examples and describes the general form the product formula takes.  In Section \ref{sec:prod-CR} we give an explicit conjectural formula in terms of Chen-Ruan cohomology, while in Section \ref{sec:prod-comb} we give an explicit conjectural formula relating interchanging arms and co-legs.  Section \ref{sec:prod-equiv} proves the equivalence of the two formulations of the conjecture.
 
-To state our conjectural formula, we will use the Pochhammer symbol $(a;x)_\infty:=\prod_{\ell\geq 0} (1-ax^\ell)$.
-\begin{example}
+
+\subsection{Initial observations toward the product formula}
+\label{sec:prod-start}
+
+To state our conjectural product formula, we will use the Pochhammer symbol 
+$$(a;x)_\infty:=\prod_{\ell\geq 0} (1-ax^\ell)$$
+We will also use the following extension of the Pochhammer symbol:
+$$(a_1,\dots, a_n; x)_\infty=\prod_{i=1}^n (a_i;x)_\infty$$
+
+
+\begin{example}{G\"ottsche's formula}
 Using the Pochhammer symbol, G\"ottsche's formula becomes:
-$$\sum_{n\geq 0} b_k(\Hilb_n(S))t^kq^n=\frac{(-qt;qt^2)_\infty^{b_1}(-qt^3;qt^2)_\infty^{b_3}}{(q;qt^2)_\infty^{b_0}}\frac{1}{(qt^2;qt^2)_\infty^{b_2}}\frac{1}{(qt^4;qt^2)_\infty^{b_4}}$$
+$$\sum_{n\geq 0} b_k(\Hilb_n(S))t^kq^n=\frac{(-qt;qt^2)_\infty^{b_1}(-qt^3;qt^2)_\infty^{b_3}}{(q;qt^2)_\infty^{b_0}(qt^2;qt^2)_\infty^{b_2}(qt^4;qt^2)_\infty^{b_4}}$$
 \end{example}
 
-In \cite{GLMequivariant}, we have the following conjectural product formula 
-{Conjecture (Gusein-Zade, Luengo, Melle-Hern\'andez)}
 
-$$\DC_{1/3}=\frac{1}{(q;t^2q^3)_\infty}\frac{1}{(q^2t^2;t^2q^3)_\infty}\frac{1}{(q^3;t^2q^3)_\infty}$$
 
-Setting $t=1$ should just give the partition function; indeed, we see that this is just the Euler product expansion with some factors of $t$ inserted, with the power of $t$ multiplying $q^n$ depends on $n$ mod 3:
+Using the Bia\l ynicki-Birula calculation of Section \ref{ }, it is easy to write code to compute the generating function; see for instance the Sage code at \cite{ }.  Having gathered this data, one can then take log of the generating function and begin to look for product formulas.  For a given group $G$, such formulas are readily found, the difficulty is then finding a general pattern.  We begin with some initial observations in this direction.  
 
-$$\DC_{1/3}=\frac{1}{(1-q)}\frac{1}{(1-qt^2)}\frac{1}{(1-q^3)}\frac{1}{(1-q^4t^2)}
-\frac{1}{(1-q^5t^4)}\frac{1}{(1-q^6t^2)}\cdots$$
+\begin{example}{GLM's $\Z_3$ example}
+In \cite{GLM}, Gusein-Zade, Luengo, Melle-Hern\'andez conjectured
+$$\DC_{1/3}=\frac{1}{(1-q)}\frac{1}{(1-qt^2)}\frac{1}{(1-q^3)}\frac{1}{(1-q^4t^2)}\frac{1}{(1-q^5t^4)}\frac{1}{(1-q^6t^2)}\cdots$$
+Using the Pochhammer symbol, this becomes
+\begin{equation*}
+\begin{split}
+\DC_{1/3}&=\frac{1}{(q;t^2q^3)_\infty}\frac{1}{(q^2t^2;t^2q^3)_\infty}\frac{1}{(q^3;t^2q^3)_\infty} \\
+&=\frac{1}{(q,q^2t^2,q^3;t^2q^3)_\infty}
+\end{split}
+\end{equation*}
+\end{example}
 
- It seems in general that if $G\cap SL_2=\{1\}$ then
+\begin{example}{$\Z_5$ actions}
+For $\Z_5$, there are two groups not contained in $SL_2$.  The diagonal action has a similar form to the diagonal $\Z_3$:
+
+$$\DC_{1/5}=\frac{1}{(q,q^2t^2,q^3,q^4t^2, q^5; q^5t^2)_\infty}$$
+That is, if we set $t=-1$, we obtain the usual Euler product.  The term $q^n$ term in the product occurs with coefficient $t^{2w(n)}$, where $w(n)=\lfloor n/5\rfloor + \epsilon_{1/5}(n)$, and 
+
+$$\epsilon_{1/5}(n)=\left\{\begin{array}{ll} 0 & n\cong 0,1,3 \pmod 5 \\ 1 & n\cong 2,4 \pmod 5\end{array}\right.$$
+
+For the other action, we have:
+$$\DC_{2/5}=\frac{1}{(q,q^2,q^3t^2,q^4t^2, q^5; q^5t^2)_\infty}$$
+Equivalently, the term $q^n$ term in the product occurs with coefficient $t^{2w(n)}$, where $w(n)=\lfloor n/5\rfloor + \epsilon_{2/5}(n)$, and 
+
+$$\epsilon_{2/5}(n)=\left\{\begin{array}{ll} 0 & n\cong 0,1,2 \pmod 5 \\ 1 & n\cong 3,4 \pmod 5\end{array}\right.$$
+
+\end{example}
+
+\begin{example}{Diagonal $\Z_4$-conjecture of GLM}
+In the previous two examples the intersection of $G$ with $SL_2$ was trivial; while in Section \ref{ } we saw how cores and quotients gave a product formula for the case when $G\subset SL_2$.  When $G$ is not contained in $SL_2$ but has a nontrivial intersection, the generating function $\DC_G$ appears to contain elements from both.
+
+When $\Z_4$ acts diagonally, Gusein-Zade, Luengo, Melle-Hern\'andez made the following conjecture:
+
+$$\DC_{1/4}=\frac{(q^2;q^2)^2_\infty}{(q;q^2)_\infty} \frac{1}{(q^2, t^2q^2, q^4, t^2q^4;t^2q^4)_\infty}$$
+
+\end{example}
+
+
+
+
+
+
+\subsubsection{Summary}
+It seems in general that if $G\cap SL_2=\{1\}$ then $\DC_G$ has a product formula that is a simple $t$-deformation of the usual Euler-product.  More specificly, it seems that
 $$\DC_{G}=\prod_{h=1}^r \frac{1}{(q^h t^{\epsilon(h)}; q^r t^2)_\infty}$$
-with $\epsilon(h)$ either 2 or 0; the question is then to describe $\epsilon(h)$.
+with $\epsilon(h)$ either 0 or 2; the question is then to describe $\epsilon(h)$.
 
-In G\"ottsche's formula, $\epsilon(h)=0$ corresponds to $b_0$, and $\epsilon(h)=2$ corresponds to $b_2$, and so we might hope for a description of the $\epsilon(h)$ in terms of the cohomology of the stack $[\C^2/G]$.  That is exactly what we propose, using Chen-Ruan cohomology.
+When $G\cap SL_2=\Z_k$, then it appears that $\DC_G$ is a $t$-deformation of the usual $k$-core and quotient product formula, with the $t$-terms only affecting the $k$-quotient terms.  More specifically, it seems that
+$$\DC_G=\frac{(q^k;q^k)^k_\infty}{(q;q)_\infty}
+\prod_{m=1}^{r/k}\frac{1}{(q^{km}t^{\epsilon_{1,m}},q^{km}t^{\epsilon_{2,m}},\dots,q^{km}t^{\epsilon_{k,m}} ;q^rt^2))}$$
+with $\epsilon_{i,j}$ either 0 or 2; the question is then to describe $\epsilon_{i,j}$.
 
 
+In G\"ottsche's formula, terms with $\epsilon(h)=0$ correspond to elements of $J_0(S)$, and terms with $\epsilon(h)=2$ corresponds to elements of $H_2(S)$. Thus, one might hope for a description of the $\epsilon(h)$ in terms of the cohomology of the stack $[\C^2/G]$.  The correct cohomology theory to use appears to be Chen-Ruan cohomology.
 
-\subsection{Chen-Ruan cohomology}
+\subsection{Product formula: geometry}
+\label{sec:prod-CR}
+
+\subsubsection{Chen-Ruan cohomology}
 
 The Chen-Ruan cohomology $H_{CR}^*(\mathcal{X})$ of an orbifold $\mathcal{X}$ was discovered as a byproduct of defining the quantum cohomology of such orbifolds \cite{chenruancohomology}.  As a vector space, the Chen-Ruan cohomology is the usual cohomology of the inertial orbifold $\mathcal{IX}$ of $\mathcal{X}$.  As a set $\mathcal{IX}$ is the space of constant maps from $S^1$ to $\mathcal{X}$; more algebraically, 
 $$\mathcal{IX}=\{(x, (g)| x\in \mathcal{X}, (g)\in\textrm{conj}(G_x)\}$$
@@ -1873,7 +1991,7 @@ Our conjectural product formula for $\DC_G$ is easiest to state in case $G\cap S
 Let $F(g)$ and $I(g)$ denote the fractional and integral parts of $\iota(g)$. 
 
 If $G\cap SL_2=\{1\}$, then $F(G)$ gives a bijection between $G$ and $\{0, 1/r,\dots, (r-1)/r\}$.
-\begin{conjecture}[Johnson]
+\begin{conjecture}[Johnson] \label{conj:CR}
 Let $G$ be cyclic, and define $k=|G\cap SL_2|$
 
 $$\mathcal{H}_G(q,t)= \frac{(q^k;q^k)^k_\infty}{(q,q)_\infty} \prod_{g\in G}\frac{1}{(q^{r(1-F(g))} t^{2I(g)},q^rt^2)_\infty}$$
@@ -1891,9 +2009,6 @@ In the limit as $r\to\infty$ odd, we get Buryak-Feigin's result
 $$\prod_{n \text{ odd}} \frac{1}{1-q^n}\prod_{m \text{ even}}\frac{1}{1-tq^m}$$
 \end{example}
 
-In the examples that follow, we will use the following extension of the Pochhammer symbol:
-
-$$(a_1,\dots, a_n; b)_\infty=\prod_{i=1}^n (a_i;b)_\infty$$
 
 \begin{example}[$S_{2/5}$]
 We have
@@ -1916,8 +2031,96 @@ $$
 \end{example}
 
 
-Appears Buryak-Feigin plays well with colored box counting from cores.
+\subsection{Product formula: combinatorics}
+\label{sec:prod-comb}
 
+We now give a different description of the product formula, at least for the case when $G\subset SL_2=1$, with motivation coming from combinatorics.  In particular, our conjecture is a strengthening of results of Bacher-Manivel \cite{BM} and Bessenrodt \cite{Bess}, which show that the total number cells in all partitions of $n$ with arm length $A$ and leg length $L$ is equal to the total number of parts of size $A+L+1$ in partitions of $n$.
+
+\subsubsection{ }
+
+The combinatorial motivation for the distribution of $\cdim_{k/r}(\lambda)$ is to define a new statistic, $\dusty_{k/r}$ that simply replaces arm with the co-leg.
+\begin{definition}
+$$\dusty_{k/r}(\lambda)=\#\left\{\square\in\lambda\Big| \ell(\square)-k\coleg(\square)=-1\mod r\right\}$$
+\end{definition}
+
+The immediate benefit of this definition is that this both $\ell(\square)$ and $\coleg(square)$ depend only on the row $\square$ is in, and not on the global shape of the partition.  Thus, viewing the rows of the partition as the parts of the partition, it is immediate that the $(q,t)$-enumeration of partitions has a product formula that is just a $t$-deformation of the standard Euler product, that is, we have
+
+$$\sum_{\lambda\in \PP} q^{|\lambda|} t^{|\dusty_{k/r}(\lambda)|}=\prod_{m\geq 1} \frac{1}{1-q^mt^{z_{k/r}(m)}}$$
+for some function $z(m)$.
+
+It is an easy observation that when $k+1$ is relatively prime to $r$, then $z_{k/r}(m)$ has the same basic structure as the weights $w_{k/r}(m)$ appearing in the distribution of 
+
+\begin{lemma} \label{lem:dusty-lemma}
+If $(k+1,r)=1$, then 
+$$w_{k/r}(m)=\varepsilon_{k/r}(m)+\lfloor m/r\rfloor$$
+where $\varepsilon_{k/r}(m)$ is either 0 or 1 and only depends on $m\mod r$.
+\end{lemma}
+
+\begin{proof}
+This follows from the fact that, as we move one box to the left in a row, $\ell(\square)-k\coleg(\square)$ increases by $k+1$.  Thus, when $k+1$ is relatively prime to $r$, in any string of $r$ boxes in a single row, $\ell(\square)-k\coleg(\square)$ will take on every residue class $\mod r$ exactly once. 
+\end{proof}
+
+\begin{conjecture} \label{conj:dusty}
+$$\sum_{\lambda\in \PP} q^{|\lambda|} t^{|\dusty_{k/r}(\lambda)|}=\sum_{\lambda\in \PP} q^{|\lambda|} t^{|\cdim_{k/r}(\lambda)|}$$
+\end{conjecture}
+
+
+\begin{example}
+Consider $\dusty_{1/r}$, for $r$ 
+
+\end{example}
+
+
+\begin{proposition}
+If we take the first derivative of Conjecture \ref{conj:dusty} with respect to $t$, and then set $t=1$, then the resulting equation is true.  
+\end{proposition}
+
+\begin{proof}
+First, consider the left hand side; $\sum_{\lambda\in\PP} q^{|\lambda|} t^{\cdim(\lambda)}$.  If we take the derivative of $t$ and set $t=1$, we get 
+$$\sum_{n} q^n\sum_{\lambda\in\PP_n}\sum_{\square\in\lambda} \delta(\ell(\square)-k\coleg(\square)=-1\mod r),$$
+that is, the coefficient of $q^n$ is the total number of squares in all partions of $n$ that have $\ell(\square)-k\coleg(square)=-1\mod r$.  
+
+  Here, a part of length $L$ will contribute 
+
+Similarly, when we take the derivative with respect to $t$ and set $t=1$ on the right hand side, the coefficient of $q^n$ is the total number of squares in all partitions of $n$ with $\ell(\square)-k a(\square)=-1\mod r$. 
+
+For any possible non-negative values $L$ and $A$ satisfying $L-kA=-1\mod r$, we can count the number of squares $\square$ in all partitions of $n$ with $a(\square)=A$ and $\ell(\square)=L$.  By the results of Bacher Manivel and Bessenrodt, this is equal to the number of all parts of length $A+L+1$ in all partitions of $n$.  
+
+But for any such values of $L$ and $A$, in every part of size $A+L+1$ there will be a unique $\square$ with $\coleg(\square)=A$ and $\ell(\square)=L$, and and this square will contribute to the left hand side.
+
+
+\end{proof}
+
+
+
+\subsection{Equivalence of the two product formulas}
+\label{sec:prod-equiv}
+
+\begin{proposition}
+Conjecture \ref{conj:CR} is equivalent to Conjecture \ref{conj:dusty}
+\end{proposition}
+
+\begin{proof}
+By Lemma \ref{prop:dusty-lemma}, we only need to prove that the powers of $t$ in the two conjectural product formulas agree for the first $r$ terms; that is, we need to show that $\epsilon_{k/r}(m)=\varepsilon_{k/r}(m)$ for $1\leq m\leq r$.  
+
+Now, for $\varepsilon_{k/r}(m)=1$, we need 
+\begin{align*}
+0 &\in \{m, m-(k+1),\dots, m-(m-1)(k+1) \} \\
+-m &\in \{0, -(k+1),\dots,-(m-1)(k+1) \} \\
+\frac{-m}{k+1} &\in \{0, -1, \dots, -(L-1) \} \\
+\end{align*}
+Where we have worked in $\mathbb{Z}_r$.  Equivalently, if we choose the representative of $[-m/(k+1)]\in \mathbb{Z}/r\mathbb{Z}$ to be in in $\{0,\dots, r-1\}$, then we need $-m/(k+1)>-m$.
+
+From the Chen-Ruan point of view, a part of length $m<r$, with $ m\cong-(k+1)s\mod r$ will contribute if we have to carry when we add $s$ and $ks$, that is 
+\begin{align*}
+k s &\in\{ -1,\dots, -s \}\\
+(k+1)s &\{\in 0,\dots, s-1\} \\
+m&\in\{ 0,-1,\dots, -s+1\} \\
+m& \in \{0, -1,\dots, m/(k+1)+1\}
+\end{align*}
+That is, we need $m>m/(k+1)$, if we choose the representative of $m/(k+1)\in\Z_r$ to be $<r$.
+
+\end{proof}
 
 
 \section{Generalized cores and applications}
