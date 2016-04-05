@@ -1,4 +1,4 @@
-\documentclass{amsart}[12pt]
+y\documentclass{amsart}[12pt]
 %\pdfoutput=1
 
 
@@ -2114,7 +2114,7 @@ Where we have worked in $\mathbb{Z}_r$.  Equivalently, if we choose the represen
 From the Chen-Ruan point of view, a part of length $m<r$, with $ m\cong-(k+1)s\mod r$ will contribute if we have to carry when we add $s$ and $ks$, that is 
 \begin{align*}
 k s &\in\{ -1,\dots, -s \}\\
-(k+1)s &\{\in 0,\dots, s-1\} \\
+(k+1)s &\in\{ 0,\dots, s-1\} \\
 m&\in\{ 0,-1,\dots, -s+1\} \\
 m& \in \{0, -1,\dots, m/(k+1)+1\}
 \end{align*}
@@ -2125,29 +2125,19 @@ That is, we need $m>m/(k+1)$, if we choose the representative of $m/(k+1)\in\Z_r
 
 \section{Generalized cores and applications}
 
-This section introduces the generalization of cores and quotients, with the goal of showing that it is a useful tool of studying $|\lambda|^G$ and $\cdim(\lambda)$ introduced.
+This section introduces \emph{rational cores and quotients}, amd applies them to the study of $|\lambda|_G$ and $\cdim(\lambda)$.  In particular, we prove two results: the topology of $\Hilb_v$ stabilizes, and that the size of $k/r$-cores is piecewise quadratic.
 
-In particular, we use the $G$-cores and quotients to prove two results: that the topology of $\Hilb_v$ stabilizes, and that the size and dimensions of the small components are piecewise quadratic functions.
+The basic construction of $k/r$-cores and quotients is the $k/r$-abacus.  This parallels the usual abacus construction of regular cores and quotients, but is more complicated: rather than regularly cycling through the $r$ runners, the runners the electrons/beads are placed on depends on whether the previous state was filled with an electron or left empty.  
 
-\begin{lemma}
-  The map class $[\lambda]^G\in\overline{K}(G)$ depends only on $c^G(\lambda)$.  
-More specifically, let $e_i$ be the vector that adds 1 to the $i$th charge, $w_i=e_{i+a}-e_i\in\Lambda^G$ and $f_i\in\overline{K}(G)$ the vector that adds 1 to the $i$th color, and define an isomorphism of lattices $\varphi:\Lambda^G\to\overline{K}(G)$ by $\varphi(w_i)=f_i$.
+The construction is also essentially the arriving/departing word construction of \cite{LW}.  We begin by making this explicit, and explaining usual $r$-cores in terms of leaving words.
 
-Then $[\lambda]^G=\varphi(c^G(\lambda))$.
-\end{lemma}
 
-\begin{proof}
-First, note $\varphi$ is an isomorphism of lattices, as the $w_i$ and $f_i$ generate each lattice subject to the relation $\sum w_i=0, \sum f_i=0$.
+\subsection{The regular abacus in terms of leaving words} \label{sec:leaving-words}
 
-It suffices to show that if $\mu$ is obtained from $\lambda$ by removing a single box $\square$, then $[\lambda]^G-[\mu]^G=\varphi(c^G(\lambda)-c^G(\mu)$.  Suppose that $\square$ had color $i$; then in $\lambda$ the border path travels above $\square$ and has color $i$, while in $\mu$ the border path travels below $\square$ and has color $i+a$.  All other up-sloping steps of $\lambda$ and $\mu$ agree.  In removing the box, we deleted a box of color $i$ from $\lambda$, and thus $[\lambda]^G-[\mu]^G=f_i$.  We also removed one bead from the $i$th runner, increasing $c^G_i$ by 1, and added a bead to the $i+a$ runner, decreasing $c^G_{i+a}$ by 1.
+To conne
 
 
 
-
-\end{proof}
-
-
-\subsection{ }
 
 The construction of $G$-cores and quotients is exactly parallel to the 
 
@@ -2166,6 +2156,7 @@ The construction of $G$-cores and quotients is exactly parallel to the
        \draw[fill=green!7]  (\x, -\x+3*\y) rectangle (\x+1, -\x+3*\y+1); 
        \draw[fill=blue!7]  (\x, -\x+3*\y+1) rectangle (\x+1, -\x+3*\y+2); 
        \draw[fill=red!7]  (\x, -\x+3*\y+2) rectangle (\x+1, -\x+3*\y+3); 
+
 }}
 
 \begin{scope}
@@ -2175,6 +2166,7 @@ The construction of $G$-cores and quotients is exactly parallel to the
        \draw[fill=green!23]  (\x, -\x+3*\y) rectangle (\x+1, -\x+3*\y+1); 
        \draw[fill=blue!23]  (\x, -\x+3*\y+1) rectangle (\x+1, -\x+3*\y+2); 
        \draw[fill=red!23]  (\x, -\x+3*\y+2) rectangle (\x+1, -\x+3*\y+3); 
+
 }}
 \end{scope}
 
@@ -2458,6 +2450,26 @@ The construction of $G$-cores and quotients is exactly parallel to the
 
 \end{tikzpicture}
 \end{center}
+
+
+
+\begin{lemma}
+  The map class $[\lambda]^G\in\overline{K}(G)$ depends only on $c^G(\lambda)$.  
+More specifically, let $e_i$ be the vector that adds 1 to the $i$th charge, $w_i=e_{i+a}-e_i\in\Lambda^G$ and $f_i\in\overline{K}(G)$ the vector that adds 1 to the $i$th color, and define an isomorphism of lattices $\varphi:\Lambda^G\to\overline{K}(G)$ by $\varphi(w_i)=f_i$.
+
+Then $[\lambda]^G=\varphi(c^G(\lambda))$.
+\end{lemma}
+
+\begin{proof}
+First, note $\varphi$ is an isomorphism of lattices, as the $w_i$ and $f_i$ generate each lattice subject to the relation $\sum w_i=0, \sum f_i=0$.
+
+It suffices to show that if $\mu$ is obtained from $\lambda$ by removing a single box $\square$, then $[\lambda]^G-[\mu]^G=\varphi(c^G(\lambda)-c^G(\mu)$.  Suppose that $\square$ had color $i$; then in $\lambda$ the border path travels above $\square$ and has color $i$, while in $\mu$ the border path travels below $\square$ and has color $i+a$.  All other up-sloping steps of $\lambda$ and $\mu$ agree.  In removing the box, we deleted a box of color $i$ from $\lambda$, and thus $[\lambda]^G-[\mu]^G=f_i$.  We also removed one bead from the $i$th runner, increasing $c^G_i$ by 1, and added a bead to the $i+a$ runner, decreasing $c^G_{i+a}$ by 1.
+
+
+
+
+\end{proof}
+
 
 
 \section{Riemann-Roch calculation}
