@@ -54,7 +54,7 @@ y\documentclass{amsart}[12pt]
 \newcommand{\irreps}{\text{irreps}}
 \newcommand{\Var}{\mathbf{Var}}
 \newcommand{\Top}{\mathbf{Top}}
-
+\newcommand{\Sur}{\mathcal{S}}
 
 
 \DeclareMathOperator{\dusty}{pdim}
@@ -443,9 +443,9 @@ $$[\proj]=\frac{1}{(1-q)(1-q\LL)}$$
 The first such product formula was the following result of 
 
 The study of the topology of $\Hilb_n(S)$ began with the following result:
-\begin{theorem}[Ellingsrud and Str\o mme \cite{ES}]
-$$P_t(\HG_S)=\prod_{\ell=1}^\infty \frac{1}{1-t^{2\ell-2}q^\ell}$$
-$$[\HG_S]=\prod_{\ell=1}^\infty \frac{1}{1-\LL^{\ell +1}q^\ell}$$
+\begin{theorem}[Ellingsrud and Str\o mme \cite{ES}] \labl{thm:ES}
+$$P_t(\HG_{\C^2})=\prod_{\ell=1}^\infty \frac{1}{1-t^{2\ell-2}q^\ell}$$
+$$[\HG_{\C^2}]=\prod_{\ell=1}^\infty \frac{1}{1-\LL^{\ell +1}q^\ell}$$
 \end{theorem}
 
 
@@ -471,7 +471,7 @@ We will also investigate orbifold analogs of several results closely related to 
 
 First, G\"ottsche observed the following easy corollary to his formula:
 \begin{corollary}  Suppose $S$ is connected.
-Then for fixed $k$ and large $n$, $b_{k}(S^{[n]})$ stabilizes
+Then for fixed $k$ and large $n$, $b_{k}(\Hilb_n(S))$ stabilizes
 \end{corollary}
 
 \begin{proof}
@@ -504,7 +504,7 @@ The main tool we use to understand the topology of $\Hilb_n(\C^2)$ is the $(\C^*
 
 \subsubsection{Warm-up: Euler Characteristic of $\Hilb_n(\C^2)$}
 
-Setting $t=-1$ in Lemma  gives
+Setting $t=-1$ in Theorem \ref{thm:ES} gives
 $$\chi(\Hilb_{\C^2})=\prod_{k\geq 0} \frac{1}{1-q^k}$$
 and so $\chi(\Hilb_n(\C^2))=p(n)$.
 
@@ -762,56 +762,64 @@ An analogous argument shows that tangent directions with $b$ negative correspond
 \section{Background: Hilbert schemes of points on orbifolds}
 
 
-\subsection{Orbfiolds and stacks}
-We turn now to Hilbert schemes on orbifolds.  An orbifold is, first of all, a space where every point has a neighborhood isomorphic to $\C^n/G$, where $G$ is a finite group.  Viewed this way, orbifolds are mildly singular spaces.  
+\subsection{Orbifolds and stacks}
+We turn now to Hilbert schemes on orbifolds.  From a naive perspective, an orbifold is a space where every point has a neighborhood isomorphic to $\C^n/G$, where $G$ is a finite group.  An object on the local chart $\C^n/G$ is a $G$-invariant object on $\C^n$: for example, a map to $\C^n/G$ is a $G$ invariant map to $\C^n$, and a sheaf on $\C^n/G$ is a $G$-invariant sheaf on $\C^n$.  Viewed in this way, orbifolds are mildly singular spaces, with the singularities the points where $G$ does not act freely.
 
-Instead, it is often better to take the stacky point of view, in which we change categories, giving 
+An alternate point of view is to enlarge our category and view orbifolds as stacks with finite stabilizers.  We will use brackets $[\C^n/G]$, or calligraphic letters $\mathcal{X}$ to denote that we are working with a stack rather than a variety.  
+
+Stacks have a reputation for being technically formidable, but we will not need much stack machinery -- just the naive point of $[\C^n/G]$ is something so that objects on $[\C^n/G]$ are $G$-\emph{equivariant} objects on $\C^n$.  
 
 
-In the naive point of view, the local model is $G$-invariant objects of $\C^n$; in the stacky point of view, this is replaced with $G$-equivariant behavior.  Rather than 
-
+One benefit of the stacky point of view is that $[\C^n/G]$ is a smooth object in the category of stacks, and the idea that theorems for smooth spaces should have analogs for smooth stacks.
 
 
 \subsection{Orbifold Hilbert schemes}
 
+With the above point of view, the Hilbert scheme of $n$ points on $[\C^2/G]$ should parameterize $G$-equivariant ideals of $R$.  Since $R$ has an action of $G$, and ideals are subsets of $R$, the $G$ action on an ideal is forced upon us, and $G$-equivariant ideals are just $G$-invariant ideals.  Thus, the Hilbert scheme of $n$ points on $[\C^2/G]$ is just the $G$-fixed locus of the Hilbert scheme of $n$ points on $\C^2$:
+
+$$\Hilb_n([\C^2/G])=\{\mathcal{I}\subset R |\dim R/\mathcal{I}=n, g\cdot \mathcal{I}=\mathcal{I}\forall g\in G \} =\Hilb_n(\C^2)^G$$
+
+This is potentially confusing, given the discussion in the previous section that passing from the singular space $\C^2/G$ to the smooth stack $[\C^2/G]$ is passing from $G$-invariant objects to $G$-equivariant objects.  The Hilbert scheme of $n$-points on the singular space $\C^2/G$ is the space of ideals in the ring of invariants $R^G$
+
+$$\Hilb_n(\C^2/G_=\{\mathcal{I}\susbet R^G | \dim R^G/\mathcal{I}=n\}$$
+
+
+Viewing $\Hilb_n([\C^2/G])$ as the fixed point set of the $G$ action on $\C^2$ is much simpler than the stack theoretic viewpoint, and will be our main way of working with the Hilbert schemes.  We write $\Hilb_n([\C^2/G])$ instead of $\Hilb_n(\C^2)^G$ because our motivation comes from the results about Hilbert schemes of points on smooth surfaces in section.
+
+
+We highlight that $\Hilb_n([\C^2/G])$ is just a space, even though $\C^2/G$ is a stack.  Furthermore, as the fixed point set of a finite group acting on a smooth space, we immediately see that $\Hilb_n([\C^2/G])$ are smooth, giving a first hint that they behave in a similar manner.
 
 
 
-Thus, the Hilbert scheme of $n$ points on $\C^2/G$ should parameterize $G$-equivariant ideals of $R$, which are $G$-invariant ideals.  
-$$\Hilb_n(\C^2/G)=\{\mathcal{I}\subset R | \} =\Hilb_n(\C^2)^G$$
-
-Viewing $\Hilb_n([\C^2/G])$ as the fixed point set of the $G$ action on $\C^2$ is much simpler than the stack theoretic viewpoint, and will be our min way of dealing with the stacks.  The stack theoretic viewpoint provides our motivation -- from this point of view, orbifolds should be have like smooth spaces, and hence one is lead to look for analogs of G\"ottsche's formula for them.
-
-
-As the fixed point of a finite group acting on a smooth space, we immediately see that $\Hilb_n([\C^2/G])$ are smooth.
-
+For $G$ any finite group acting on $\C^2$, we will write $\mathcal{S}_G$ to denote the stack $[\C^2/G]$. Let $G$ be the group $\mathbb{Z}/r\mathbb{Z}$, acting with weights $1/k, k/r$, with $k$ relatively prime to $r$.  Any cyclic group acting on $\C^2$ so that only the origin has a nontrivial stabilizer will be of this form after changing coordinates on $\mathbb{C}^2$ and changing generator of $\mathbb{Z}/r\mathbb{Z}$.  We will write $\mathcal{S}_{k/r}$ to denote $\mathcal{S}_G$ in this case.
 
 
 \begin{example}
-$\Hilb_1([X/G])=X^G$, the fixed point set of $G$.  This is distractly different behavior than Hilbert schemes on spaces, where $\Hilb_1(S)=S$.
+Let $X$ be any variety.  Then $\Hilb_1([X/G])=\Hilb_1(X)^G=X^G$, the fixed point set of $G$.  In particular, we have that $\Hilb_1(\Sur_{k/r})$ is a point.
+
+Note this behaviour is very different than Hilbert schemes on spaces, where $\Hilb_1(X)=X$, and suggests that for orbifolds, it is wrong to think of $n$ as counting the number of points.
 \end{example}
 
 \begin{example}
-We now look at $\Hilb_2([\C^2/G])$ for $G=\Z_2, \Z_3$.  
+We now look at $\Hilb_2(\Sur_{k/r})$.  
 
-First, we examine $\Z_2$, where the nontrivial elements acts on $\C^2$ by multiplication by $-1: (s,t)\mapsto (-s,-t)$.  First, we look at the fixed points where the two points are distinct: it sends a pair of distinct pounts $\{p,q\}$ to $\{-p,-q\}$, and so this is fixed if and only if $p=-q$.  As long as $p\neq 0, -p\neq p$, and so we see that this locus is isomrophic to $\C^2\setminus\{(0,0)/\Z^2$.
+First, consider the $G$ action on the locus of $\Hilb_2(\C^2)$ consisting of two distinct points $\{p, q\}$.  To be $G$-invariant, we need this set of points to be a union of $G$-orbits.   As only the origin has nontrivial stabilizer, every $G$-orbit on $\C^2$ is either the origin, consisting of one point, or consits of $|G|=r$ distinct points.  So, if $r>2$, there are no points in $\Hilb_2(\C^2)^G$ consisting of distinct points.  
 
-Now we examine this action over the locus where the two points are identical.  First, if the scheme is supported at $p$, then its image under the $\Z_2$ action is supported at $-p$, and so to be fixed it must be supported over $0$.  Furthermore, any ideal supported at $0$ will be $\Z_2$ invariant -- the group action just multiplies $x, y$ by $-1$, and we had a basis that was
+If $r=2$, we must have $k=1$, the nontrivial element of $G=\Z/2\Z$ acts as multiplication by -1, andso the points of $\Hilb_2(\C^2)^G$ consisting of distinct points is exactly the sets $\{p,-p}$
 
-There are two $\Z_3$ actions on $\C^2$ with an isolated fixed point -- the diagonal action and the anti-diagonal action.
+Now we consider the action of the locus where the ideal is supported at one point.  For the ideal to be $G$ invariant, this point needs to be $G$-fixed, and so must be the origin.  Thus, we are considering ideals of the form $\mathcal{I}_{0, v}$ for $v\in T_0C^2$.  For this to be $G$ invariant, we must have that $v$ is an eigenvector for the $G$ action.  For $k=1$, the $G$ action is diagonal, and so every vector $v$ is an eigenvector, and there is a $\proj^1$ worth of points over the origin.  If $r>2$, these are the only points, and so we have $\Hilb_2(\mathcal{S}_{1/r})=\proj^1$.  
 
-In either case, there are no fixed points on $\Hilb_2(\C^2)$ away from the locus where both points are supported at 0.  
 
-In the diagonal case, the same argument as in the $\Z_2$ case shows that any ideal supported over the origin will be invariant, and we have
-$$\Hilb_2(S_{1/3})=\proj^1$$.
+If $k\neq 1$, there are two distinct eigenvectors, and so in this case we see that $\Hilb_2(\mathcal{S}_{k/r})$ consists of two points.
 
-In the anti-diagonal case, $x$ and $y$ are scaled by different numbers.  So the only linear generator of $\mathcal{I}, bx-ay$, will not be fixed unless $b=0$ or $a=0$, and so we see that $\Hilb_2(S_{2/3})$ consists of two points.  
-
-Here we have another marked difference from the case of non-orbifold surfaces: Hilbert schemes of points on orbifolds need not be connected.
 
 \end{example}
 
-The fact that orbifold Hilbert schemes are disconnected is easily explained by a discrete invariant.  Since $R, \mathcal{I}$ both have $G$ actions, the module $R/\mathcal{I}$ is not just a vector space but a representation of $G$.  These are discrete invariants, and so obviously one representation of $G$ cannot deform into another.  
+The example showed that, in contrast to smooth Hilbert schemes, $\Hilb_n(\Sur_G)$ need not be connected.  There is an obvious discrete invariant that explains this.
+
+ Since $R$ and $\mathcal{I}$ both have $G$ actions, the module $R/\mathcal{I}$ is not just a vector space but a representation of $G$.  Since $G$ is finite, the set of representations are discrete, and $\mathcal{I}$ and $\mathcal{J}$ can't be deformed into each other if $R/\mathcal{I}$ isn't isomorphic to $R/\mathcal{J}$ as a representation of $G$.  
+
+Thus, instead of just recording the dimension of a $R/\mathcal{I}$ we should record which representation it is:
 
 \begin{definition}
 For $v$ a representation of $G$, we define
@@ -820,12 +828,13 @@ $$\Hilb_v(\C^2/G)=\{\mathcal{I}|R/\mathcal{I}=v\}$$
 
 It turns out the $\Hilb_v$ are connected.  
 
-The tautological bundle on $\Hilb_n$ splits into $r$ distinct tautological bundles, according to how the group $G$ acts 
 
 
-This discussion also helps explain why increasing $n$ a point does not correspond to a smooth point of $\C^2/G$.  Smooth points of $\C^2/G$ correspond to points in $\C^2$ where $G$ acts freely.  If $\mathcal{O}_{Gp}$ is the structure sheaf of the orbit of such a point, then $G$ acts on $\mathcal{O}_{Gp}$ as the regular representation.  Thuss
 
-Thus, the generic point of $\Hilb_{\C[G]}({\C^2/G})$ -- often called $G-\Hilb$ in the literature -- will correspond to a smooth point of $\C^2/G$.  As $G-\Hilb$ is smooth from our discussion before, and since the image of the Hilbert-Chow morphism is the $G$ invariant sets, we really have a map $G-\Hilb\to \C^2/G$ that is an isomorphism away from the singular points, and so we see $G-\Hilb$ is a resolution of $\C^2/G$. 
+
+The discussion also helps explain why increasing $n$ a point does not correspond to a smooth point of $\C^2/G$.  Smooth points of $\C^2/G$ correspond to points in $\C^2$ where $G$ acts freely.  If $\mathcal{O}_{Gp}$ is the structure sheaf of the orbit of such a point, then $G$ acts on $\mathcal{O}_{Gp}$ as the regular representation.  Thus, a smooth point of $\C^2/G$ correspond to copies of the regular representation.
+
+Thus, the generic point of $\Hilb_{\C[G]}({\C^2/G})$ -- often called $G\Hilb$ in the literature -- will correspond to a smooth point of $\C^2/G$.  As $G\Hilb$ is smooth from our discussion before, and since the image of the Hilbert-Chow morphism is the $G$ invariant sets, we really have a map $G\Hilb\to \C^2/G$ that is an isomorphism away from the singular points, and so we see $G\Hilb$ is a resolution of $\C^2/G$. 
 
 \begin{center}
 \begin{tikzpicture}[scale=.5]
@@ -933,6 +942,11 @@ Let $G$ be a finite group, and $W$ a representation of $G$.  The \emph{McKay gra
 The subgroups of $SU_2$ have an ADE classification.  There are two infinite series: cyclic groups, binary dihedral groups, and double covers of the isometries of the symmetries of the platonic solids.
 
 McKay observed \cite{McKay} that when $G\subset SL_2(\C)$, the McKay graph of the defining two dimension representation was the \emph{affine} version of the corresponding ADE Dynkin diagram.  Removing the vertex corresponding to the trivial representation gives the usual ADE Dynkin diagram.  Furthermore, the exceptional locus of the minimal resolution $\widetilde{S}_G$ of the corresponding singularity has all $-2$ curves, with dual graph the corresponding Dynkin diagram. 
+
+
+
+
+
 
 A geometric explanation of this was first given by Gonzalez-Sprinberg and Verdier \cite{GSV}, by constructing vectors bundles $E_\rho$ on the minimal resolution $\widetilde{S}_G$, labeled by the irreducible representations $\rho$ of $G$, so that $c_1(E_\rho)$ was the corresponding component of the exception divisor.
 
@@ -1051,7 +1065,7 @@ has positive coefficients; but higher powers start giving negative coefficients.
 \subsubsection{Resolutions of $(\C^2/G)^n/S_n$}
 One family of resolutions
 
-Let $X_G$ be the minimal resolution of $\C^2/G$.  Then $\Hilb_n(X_G)$ is a resolution of $(\C^2/G)^n/S_n$.
+Let $S_G$ be the minimal resolution of $\C^2/G$.  Then $\Hilb_n(S_G)$ is a resolution of $(\C^2/G)^n/S_n$.
 
 
 Another family of resolutions
