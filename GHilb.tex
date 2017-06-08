@@ -41,10 +41,13 @@
 \newcommand{\C}{\mathbf{C}}
 \newcommand{\N}{\mathbf{N}}
 \newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
 \newcommand{\A}{\mathbf{A}}
 \newcommand{\OO}{\mathcal{O}}
 \newcommand{\LL}{\mathbf{L}}
 \newcommand{\PP}{\mathcal{P}} % partitions
+\newcommand{\II}{\mathcal{I}}
+
 \newcommand{\coleg}{\text{co}\ell}
 
 
@@ -68,6 +71,7 @@
 
 
 \newcommand{\HG}{\Hilb}
+\newcommand{\Gcomb}{\mathcal{GC}}
 
 \begin{document}
 
@@ -89,21 +93,19 @@ We study the connection between the combinatoric of certain partition statistics
 \maketitle
 \setcounter{tocdepth}{1}
 \tableofcontents
-This paper is written for two largely distinct audiences.  On the one hand, we write for algebraic geometers interested in Hilbert schemes of points and orbifold surfaces.  On the other hand, combinatorialists studying partitions.  As such, there is more expository material than perhaps is standard.  In particular, we have two introductions, one for geometers, and one for combinatorialists.
+This paper is written for two largely distinct audiences: algebraic geometers interested in Hilbert schemes of points and orbifold surfaces, and combinatorialists studying partitions -- particularly the construction of cores and quotients.  As such, there is more expository material than perhaps is standard.  In particular, we have two introductions, one for geometers, and one for combinatorialists.
 
 
 \section{Introduction for Geometers}
-\cite{GLMpower}
+From the geometric point of view, this paper studies the topology of Hilbert schemes of points on $\C^2/G$, where $G$ is an abelian group.  
 
-From the geometric point of view, this paper studies the topology of Hilbert schemes of points on $$\C^2/G$$, where $$G$$ is an abelian group.  
+Our motivation is the structure found in the topology of Hilbert schemes of point on a smooth surface $S$.G\"ottsche, building on the work of Ellingsrud and Str\o me for $\C^2$, found product formulas for generating functions of their cohomology, which implied a stabilization result on their homology.  Later, Grojnowski and Nakajima \cite{grojnowski, nakajimaheisenberg} explained these product formulas using geometric representation theory.  This background is discussed at length in Section \ref{sec:smoothbackground.}
 
-The motivation here is much structure in the topology of Hilbert schemes of point on a smooth surface $S$: Gottsche, building on the work of Ellingsrud and Str\o me for $\C^2$, found product formulas for generating functions of their cohomology, which implied a stabilization result on their homology.  Later, Grojnowski and Nakajima \cite{grojnowski, nakajimaheisenberg} explained these product formulas using geometric representation theory.  This background is discussed at length in Section \ref{sec:smoothbackground}.
+With the philosophy that, viewed as stacks, orbifolds should be behave just as well as smooth surfaces, it is a natural question to ask whether similar structure is found in the topology of Hilbert schemes on orbifold surfaces.  One then is lead to first start with the local models $[\C^2/G]$.  When $G$ is abelian, the techniques of Ellingsrud and Str\o mme adapt to give a combinatorial recipe for computing $H_k(\Hilb_n([\C^2/G]))$ in terms of the partitions of $n$.
 
-With the philosophy that, viewed as stacks, orbifolds should be behave just as well as smooth surfaces, it is a natural question to ask whether similar structure is found in the topology of Hilbert schemes on orbifold surfaces.  It is natural to start with the local models $[\C^2/G]$.  When $G$ is abelian, the techniques of Ellingsrud and Str\o mme adapt to give a combinatorial recipe for computing $H_k(\Hilb_n([\C^2/G]))$ in terms of the partitions of $n$.
+This direction was taken by Gusein-Zade, Luengo, and Melle-Hern\'andez in \cite{GLM}, which we refer to as GLMZH from here.  In particular, they conjecture:
 
-This direction was taken by Guese-Zade, Luengo, and Melle-Hernandez in \cite{GLM} -- this paper is largely an extension of work done there.  In particular, they made the following conjecture:
-
-\begin{conjecture}{Guesein-Zade, Luengo, Melle-Hern\'a ndez}
+\begin{conjecture}{Gusein-Zade, Luengo, Melle-Hern\'andez}
 Let $\Z/3\Z$ act on $\C^2$ diagonally.  Then
 \begin{equation*}
 \begin{split}
@@ -115,12 +117,15 @@ Let $\Z/3\Z$ act on $\C^2$ diagonally.  Then
 \end{equation*}
 \end{conjecture}
 
-It is clear from the work of GLM that similar formulas should hold for any cyclic group $G$, but no explicit conjecture that holds for all $G$ was made.  Our first new contribution is to remedy this; we give an explicit product formula for, involving the Chen-Ruan cohomology of $[\C^2/G]$.
+The right hand side is a $t$-analog of the Euler product, where the power of $t$ that is attached to $q^n$ is roughly $n/3$, with the some rounding up or down depending on the residue of $n$ mod 3.
 
+It is implicit GZLMH that similar formulas should hold for any cyclic group $G$, but no explicit conjecture that holds for all $G$ was made.  Our first new contribution is to remedy this; we give an explicit product formula for.  Fittingly, our formula can be interpretted as being analogous to G\"ottsche's formula, but involving the Chen-Ruan cohomology of $[\C^2/G]$.
 
-Following and extending work of , we investigate the topology of the structure of Hilbert schemes of points on the local models $\C^2/\Z_r$.  We conjecture explicit product formulas in this case, reminiscent of Gottsche's formula, in terms of the Chen-Ruan cohomology of $[\C^2/\Z_r]$.  
+These product formulas are inadequate for fully understanding the topology of $\Hilb_n([\C^2/G])$.  When $X$ is a smooth surface, $\Hilb_n(X)$ is connected; however, $\Hilb_n([\C^2/G])$ is usually \emph{not} connected.  The tautological bundle $\C[x,y]/\II$ over a point $\II\subset\Hilb_n([\C^2/G])$ is a $n$-dimensional represention of $G$, and so its class in $K^0(G)$ is a discrete invariant.
 
-The bulk of work, however, concerns a subtlety that does not arise in the case of a smooth surface.  When $X$ is a smooth surface, $\Hilb_n(X)$ is always connected; however, $\Hilb_n([\C^2/G])$ is usually not connected.  The tautological bundle $\C[x,y]/\mathcal{I}$ over a point $\mathcal{I}\subset\Hilb_n([\C^2/G])$ is a $n$-dimensional represention of $G$, and so its class in $K^0(G)$ is a discrete invariant.  For $v$ an $n$-dimensional representation of $G$, denote by $\Hilb_v([\C^2/G])\subset \Hilb_n([\C^2/G])$ the locus of ideals with $\C[x,y]/\mathcal{I}\cong v$ as $G$-representations.  When $G$ is abelian, it turns out that the $\Hilb_v([\C^2/G])$ are connected.  
+For $v$ an $n$-dimensional representation of $G$, denote by $\Hilb_v([\C^2/G])\subset \Hilb_n([\C^2/G])$ the locus of ideals with $\C[x,y]/\II\cong v$ as $G$-representations.  Generalizing Evain \cite{evain1}, Maclaglan and Smith showed that $\Hilb_v([\C^2/G])$ is connected \cite{MS}.
+
+We show in Proposition \ref{prop:connected} that in the cases we consider, $\Hilb_v([\C^2/G])$ are connected.  
 
 In this point of view, the regular representation of $G$, which we will denote $R$, plays a special role.  Adding a smooth point of $[\C^2/G]$ corresponds to adding a copy of the regular representation.  Furthermore, for some representations $v$, the ideals in $\Hilb_v([\C^2/G])$ will be supported only over the singular points in $\C^2/G$.  For instance, $\Hilb_1([\C^2/G])$ will always be isomorphic to the $G$ fixed locus $(\C^2)^G$.
 
@@ -131,8 +136,7 @@ Let $v\in K^0(G)$ be arbitrary.  As $n\to \infty$, and $k$ fixed, the homology $
 $$\prod_{m\geq 1} \frac{1}{(1-t^{2m})^{|r|}}$$
 \end{theorem}
 
-The proof is combinatorial; a conjectural topological meaning is that all the cohomology of $\Hilb_v$ is \emph{tautological}, and that in the stable limit there are no relations among the tautological generators.
-
+The proof is combinatorial, involving a generalization of the classical notion of ``cores and quotients'' of partitions.  A conjectural topological interpretation of the product formula is that all the cohomology of $\Hilb_v$ is \emph{tautological}, and that in the stable limit there are no relations among the tautological generators.
 
 
 \begin{conjecture}
@@ -141,7 +145,6 @@ Let $v$ be any representation so that $\Hilb_v([\C^2/\Z_r])$ is concentrated ove
 $$\bigoplus_{m\geq 0} \Hilb_{v+mR} $$ 
 
 carries an action of the Heisenberg algebra modeled on the cohomology of the minimal resolution of $\C^2/\Z_r$; it is an infinite sum of highest weight representations.
-
 \end{conjecture}
 
 \subsection{Piecewise quadratic behavior of ``small'' representations}
@@ -162,16 +165,69 @@ We believe the quadratic part to be related to the intersection pairing of the m
 
 
 \section{Introduction for combinatorialists}
+In this work, we introduce and study a generalization of cores and quotients of partitions.  Cores and quotients of partitions initially arose in the study of the modular representation theory of the symmetric group, but have found wider roles in combinatorics, number theory and representation theory, among others.  A lesser known occurence is in the geometry of Hilbert schemes of points on orbifolds; it is this occurence that leads to our generalization.  
 
-The combinatorial content of our work is a generalization of cores and quotients.  
+\subsection{}
+A partition is of $n$ is a nondincreasing sequence of numbers $\lambda_1\geq \lambda_2\geq \cdots \geq \lambda_\ell > 0$ with $\sum \lambda_i=n$  The \emph{length} $\ell(\lambda)$ of a partition is the number of parts, the \emph{size} $|\lambda|$ is the sum of the parts.  We use $\PP$ to denote the set of all partitions, and $\PP_n$ to denote the partitions of $n$.
 
-Cores and quotients are useful in studying the following statistics on 
+Rather than a list of numbers, we usually view a partition as being equivalent to its \emph{Young diagrams}.  We draw our Young diagrams as subsets of a grid in the first quadrant, with the square in the corner being $(0,0)$, and with the columns being the parts of $\lambda$.
+
+We write $\square\in\lambda$ to mean a cell contained in the $\lambda$.  The \emph{arm} $a(\square)$ of a square $\square\in\lambda$ is the number of cells above $\square$ and in $\lambda$; the \emph{leg} $\ell(\square)$ of a cell is the number of cells contained in $\lambda$ and to the right of $\square$.  We will occasionally need to refer to the \emph{coarm} and \emph{coleg} of a square, which we will denote $a^\prime(\square)$ and $\ell^\prime(\square)$, and which refer to the number of cells contained in $\lambda$ and below and to the left of $\square$, respectively. 
+
+\begin{example}
+Below is the Young diagram of $\lambda=4+4+3+2+2+2$.  The cell $(3,1)$ is marked $s$; the cells in the arm and leg of $s$ are labeled $a$ and $l$, respectively, and the cells in the coarm and coleg of $s$ are labeled $ca$ and $cl$, respectively/
+\begin{center}
+\begin{tikzpicture}[scale=.5]
+\draw[thin, gray] (0,0) grid (2,4);
+\draw[thin, gray] (0,0) grid (3,3);
+\draw[thin, gray] (1,0) grid (6,2);
+
+\draw[thick] (0,0)--(0,4)--(2,4)--(2,3)--(3,3)--(3,2)--(6,2)--(6,0)--cycle;
+\draw (2.5,1.5) node{$s$};
+\draw (2.5,2.5) node{$a$};
+\draw (3.5,1.5) node{$l$};
+\draw (4.5,1.5) node {$l$};
+\draw (5.5,1.5) node {$l$};
+
+
+\draw (0.5,1.5) node {$cl$};
+\draw (1.5,1.5) node {$cl$};
+\draw (2.5,0.5) node {$ca$};
+
+
+\draw (10,2) node[align=left] {$a(s)=\# a=1$ \\ $\ell(s)=\# l=3$ \\ $a^\prime(s)=\# ca=1$ \\ $\ell^\prime(s)=\# cl=2$};
+\end{tikzpicture}
+\end{center}
+\end{example}
+
+
+Recall that the \emph{hook length} $h(\square)=a(\square)+\ell(\square)+1$.  Define $h_r(\lambda)$ to be the number of $\square\in\lambda$ with hooklength $h(\square)$ divisible by $r$.  Partitions with $h_r(\lambda)=0$ are called $r$-cores.  The classical notion of cores and quotients proves the following product formula
+
+\[\sum_{\lambda\in\PP} q^{|\lambda|}t^{h_r(\lambda)}=\prod_{m\geq 1} \frac{(1-q^{rm})^r}{(1-q^m)}\prod_{m\geq 1}\frac{1}{(1-q^{rm}t^m)^r}\]
+The first product here is the generating function for $r$-cores, and the second product is a generating function for $r$-quotients; $h_r(\lambda)$ is the size of the $r$-quotient of $\lambda$.  
+
+Es
+For $k, r$ integers, we define
+\[\cdim^+_{k/r}(\lambda)=\#\left\{\square\in\lambda \Big | \ell(\square)-k a(\square)=-1 \mod r\right\}. \]
+We see this family of statistics is related to cores and quotients because $h_r(\lambda)=\cdim^+{-1/r}(\lambda)$.
+
+\begin{conjecture}
+  The generating function
+  \[ \Gcomb_{k/r}(q,t)=\sum_{\lambda\in\PP}q^{|\lambda|}t^{\cdim^+_{k/r}(\lambda)}\]
+has a product formula that is a $t$ analog of the Euler product when $(k+1,r)=1$, and of the $s$-cores and quotient product when $(k+1,r)=s$.
+\end{conjecture}
+
+The precise form of this conjecture, and a geometric interpretation of it, is given in.  
+
+\subsection{Quadratic forms}
+Another part of the cores and quotients story is that $r$-core partitions are in bijection with a lattice $\Z^{r-1}$, so that the size $|\lambda|$ of a given $r$ core becomes a quadratic function on the lattice.
 
 
 
-For combinatorialists: Cores and quotients of partitions initially arose in the study of the modular representation theory of the symmetric group, but have found roles in number theory and representation theory, among others.  A lesser known occurence is in the geometry of Hilbert schemes of points.  
 
 Using this geometry as motivation, we introduce here some new partitions statistics, and use a generalization of cores and quotients of partitions to study them.  Our first statistic turns out out to be the size of our generalized quotient, and it counts cells where certain linear combinations of the arm and leg lengths satisfy a congruence condition.  We conjecture that $(q,t)$ counting partitions with respsect to size and this new statistic satisfy explicit product formulas that are $t$-analogs of the Euler product (or more generally, $t$-analogs of the formula for partitions coming from cores and quotients).  
+
+
 
 We prove that ``$G$-core'' partitions are in bijection with lattice points, and their size is given by a piecewise quadratic function.  
 
@@ -282,38 +338,6 @@ Thanks to Amin Gholampour, Yunfeng Jiang, and Martijn Kool for asking a question
 \subsection{Partitions}
 
 
-A partition is of $n$ is a nondincreasing sequence of numbers $\lambda_1\geq \lambda_2\geq \cdots \geq \lambda_\ell > 0$ with $\sum \lambda_i=n$  The \emph{length} $\ell(\lambda)$ of a partition is the number of parts, the \emph{size} $|\lambda|$ is the sum of the parts.  We use $\PP$ to denote the set of all partitions, and $\PP_n$ to denote the partitions of $n$.
-
-Rather than a list of numbers, we usually view partitions in terms of their \emph{Young diagrams}.  We draw our Young diagrams as subsets of a grid in the first quadrant, with the square in the corner being $(0,0)$, and with the columns being the parts of $\lambda$.
-
-We write $\square\in\lambda$ to mean a cell contained in the $\lambda$.  The \emph{arm} $a(\square)$ of a square $\square\in\lambda$ is the number of cells above $\square$ and in $\lambda$; the \emph{leg} $\ell(\square)$ of a cell is the number of cells contained in $\lambda$ and to the right of $\square$.  We will occasionally need to refer to the \emph{coarm} and \emph{coleg} of a square, which we will denote $a^\prime(\square)$ and $\ell^\prime(\square)$, and which refer to the number of cells contained in $\lambda$ and below and to the left of $\square$, respectively. 
-
-\begin{example}
-Below is the Young diagram of $\lambda=4+4+3+2+2+2$.  The cell $(3,1)$ is marked $s$; the cells in the arm and leg of $s$ are labeled $a$ and $l$, respectively, and the cells in the coarm and coleg of $s$ are labeled $ca$ and $cl$, respectively/
-\begin{center}
-\begin{tikzpicture}[scale=.5]
-\draw[thin, gray] (0,0) grid (2,4);
-\draw[thin, gray] (0,0) grid (3,3);
-\draw[thin, gray] (1,0) grid (6,2);
-
-\draw[thick] (0,0)--(0,4)--(2,4)--(2,3)--(3,3)--(3,2)--(6,2)--(6,0)--cycle;
-\draw (2.5,1.5) node{$s$};
-\draw (2.5,2.5) node{$a$};
-\draw (3.5,1.5) node{$l$};
-\draw (4.5,1.5) node {$l$};
-\draw (5.5,1.5) node {$l$};
-
-
-\draw (0.5,1.5) node {$cl$};
-\draw (1.5,1.5) node {$cl$};
-\draw (2.5,0.5) node {$ca$};
-
-
-\draw (10,2) node[align=left] {$a(s)=\# a=1$ \\ $\ell(s)=\# l=3$ \\ $a^\prime(s)=\# ca=1$ \\ $\ell^\prime(s)=\# cl=2$};
-\end{tikzpicture}
-\end{center}
-\end{example}
-
 The other combinatorial lens we will use to view partitions is the fermionic viewpoint, so named in .  
 
 The boundary path is the directed lattice path starting at postive infinity on the $y$ axis, descending along the $y$ axis, tracing the boundary of $\lambda$, and then going along the $x$-axis to positive infinity.  One way to view this is as a bi-infinte word consisting of the letters $S$s and $E$; we will use the \emph{Maya diagram}, this is, on the simplest level, just translating $S$'s into empty circles, and the $E$'s into filled in circles, or stones.  
@@ -337,8 +361,8 @@ $(\text{step}_1, \text{step}_2)$, where $\text{step}_1$ occurs before $\text{ste
 
 Throughout, $R=\C[x,y]$ will be the polynomial ring in two variables.  
 
-The Hilbert scheme of points in the plane parameterizes ideals $\mathcal{I}$ of $R$ of codimension $n$:
-$$\Hilb_n(\C^2)=\{\mathcal{I}\subset R | \dim_\C R/\mathcal{I}=n\}$$
+The Hilbert scheme of points in the plane parameterizes ideals $\II$ of $R$ of codimension $n$:
+$$\Hilb_n(\C^2)=\{\II\subset R | \dim_\C R/\II=n\}$$
 The space $\Hilb_n(\C^2)$ is smooth and connected of dimension $2n$.
 
 Geometrically, $\Hilb_n(\C^2)$ should is a resolution of the set of $n$ points in the plane, as we now describe.
@@ -347,33 +371,32 @@ Geometrically, $\Hilb_n(\C^2)$ should is a resolution of the set of $n$ points i
 
 Let $P=\{p_1,p_2,\dots, p_n\}$ be a set of $n$ distinct points in the plane, and hence a smooth point point of $\Sym^n(\C^2)$.  
 
-Given $P$, we can also form the ideal $\mathcal{I}_P$ of polynomials vanishing on $P$:
- $$\mathcal{I}_{P}=\{f\in R| f(p)=0 \text{ for }p\in \mathbf{p}\},$$  
+Given $P$, we can also form the ideal $\II_P$ of polynomials vanishing on $P$:
+ $$\II_{P}=\{f\in R| f(p)=0 \text{ for }p\in \mathbf{p}\},$$  
 this is a point of $\Hilb_n(\C^2)$.  Thus, there is a locus in $\Hilb_n(\C^2)$ that agrees with the smooth locus of $\Sym^n(\C^2)$. 
 
- If two of the points collide, there is still a limiting ideal $\mathcal{I}$.  This ideal has some non-reduced structure that ``remembers how the points collided''.  This is best illustrated with an example.
+ If two of the points collide, there is still a limiting ideal $\II$.  This ideal has some non-reduced structure that ``remembers how the points collided''.  This is best illustrated with an example.
 
 
 \begin{example}
-Let $(a,b)\neq (0,0)\in\C^2$, and let $P_t$ be the pair of distinct points $(0,0)$ and $(at,bt)$.  What is the limit of $\mathcal{I}_{P_t}$ as $t\to 0$?
+Let $(a,b)\neq (0,0)\in\C^2$, and let $P_t$ be the pair of distinct points $(0,0)$ and $(at,bt)$.  What is the limit $\II_{P_0}$ of $\II_{P_t}$ as $t\to 0$?
 
-
-The ideal $\mathcal{I}_{P_t}$ of functions vanishing on these points is 
+The ideal $\II_{P_t}$ can be written as follows: 
 $$(\{x,y\})(\{x-at,y-bt\})=(\{x(x-at),x(y-bt), y(x-at), y(y-bt)\}$$
-Setting $t=0$, we see that the limiting ideal should contain $x^2, xy$ and $y^2$.  If it were just the ideal generated by these three monomials, it would have codimension 3, not two, so it must contain something else.
+Setting $t=0$, we see that $\II_{P_0}$ should contain $x^2, xy$ and $y^2$.  Since $(x^2,xy,y^2)$ has codimension three instead of two, $\II_{P_0}$ must contain a linear term.
 
-Taking the difference of the the middle two generators, we see that $\mathcal{I}_{P_t}$ contains the element $btx-aty$, and since it is an ideal and $t$ is a nonzero scalar, it must contain $bx-ay$.  Since this element is in every $\mathcal{I}_{P_t}$, it certainly should be contained in the limit as well.  Including this along with all monomials of degree two or higher gives an ideal $\mathcal{I}_{P_0}$ of codimension 2.
+Taking the difference of the the middle two generators of $\II_{P_t}$, we see that it contains $btx-aty$. As $\II_{P_t}$ is an ideal and $t$ is a nonzero scalar, it must contain $bx-ay$.  Now as $bx-ay\in \II_{P_t}$ for $t\neq 0$, it certainly should be contained in the limit as well.  
 
-Another way of writing the ideal $\mathcal{I}_{P_0}$ is as 
-$$\mathcal{I}_{P_0}=\{f\in R| f(0)=\partial_vf(0)=0\}$$
-where here $v=(a,b)$ is the direction the two points collided in.  Thus, the non-reduced scheme structure at $\mathcal{I}_{P_0}$ \emph{remembers} the direction the in which the points collided. 
+Another way to describe $\II_{P_0}$ is
+$$\II_{P_0}=\{f\in R| f(0)=\partial_vf(0)=0\}$$
+where $v=(a,b)$ is the direction the two points collided in.  Thus, the non-reduced scheme structure at $\II_{P_0}$ \emph{remembers} the direction the in which the points collided. 
 \end{example}
 
 We have seen that $\Hilb_n(\C^2)$ and $\Sym^n(\C^2)$ agree for the smooth locus of $\Sym^n(\C^2)$, but that $\Hilb_n(\C^2)$ is larger over the singular locus of $\Sym^n(\C^2)$, where the points are not distinct.  It turns out that $\Hilb_n(\C^2)$ is smooth, and a resolution of singularities of $\Sym^n(\C^2)$; the resolution map is the Hilbert-Chow morphism:
 
 \begin{definition}
-The \emph{Hilbert-Chow morphism} $HC:\Hilb_n(S)\to\Sym^n(S)$ sends an ideal $\mathcal{I}$ to the support of $R/\mathcal{I}$, weighted by its multiplicity
-$$HC:\mathcal{I}\mapsto \sum_{p\in S} \dim_p (R/\mathcal{I})$$
+The \emph{Hilbert-Chow morphism} $HC:\Hilb_n(S)\to\Sym^n(S)$ sends an ideal $\II$ to the support of $R/\II$, weighted by its multiplicity
+$$HC:\II\mapsto \sum_{p\in S} \dim_p (R/\II)$$
 \end{definition}
 
 
@@ -387,19 +410,16 @@ $$HC:\mathcal{I}\mapsto \sum_{p\in S} \dim_p (R/\mathcal{I})$$
 \subsection{Topology of Hilbert schemes}
 
 
-The main motivation of this work is the structure found in the topology of Hilbert schemes of points in surfaces.  This section recalls this structure.
-
-A key point is that this structure is simpler to state when looking at the Hilbert schemes together for all $n$, rather than just for any fixed $n$.  
+We now summarize the results on the Hilbert schemes of smooth surfaces that motivate our conjecture.  A key point is that this structure is simpler to state when looking at the Hilbert schemes together for all $n$, rather than just for any fixed $n$.  
 
 \begin{definition}
 A \emph{graded space} $X$ is a disjoint union $$X=\coprod_{n=0}^\infty X_n$$
-Often our spaces will be positively graded, and we will denote the graded space as formal power series with coefficients in $\Var, \Top$, etc.
-
+We will be lazy and write graded spaces as formal power series with coefficients in $\Var, \Top$, etc.
 $$X=\sum_{n=0}^\infty X_nq^n$$
 \end{definition}
 
+The Hilbert schemes of points on a surface $S$ naturally form a graded space.
 
-Graded spaces are just a convenient way to deal with the Hilbert schemes of points for all $n$ at the same time.
 \begin{definition}
 Let $S$ be a smooth surface.  We define:
 $$\HG_S=\sum_{n=0}^\infty \Hilb_n(S)q^n$$
@@ -412,8 +432,6 @@ If $X$ is a graded space with finite dimensional graded pieces, then $P_t(X)$ is
 \end{definition}
  
 Though for familiarity we will work with cohomology, most of our work could be done in the Grothendieck ring of varieties.
-
-
 
 \begin{definition}
 The \emph{Grothendieck ring of varieties} $K_0(\Var_k)$ is a quotient of the free abelian group on the set of isomorphism classes of varities over $k$.  We quotient out by relations of the form
@@ -435,7 +453,7 @@ Before we turn to Hilbert schemes, we illustrate the use of graded spaces and th
 \begin{example}[Projective space]
 The fact that the Riemann sphere is obtained from $\C$ by adding a point at infinity translates to the identity $[\proj^1]=\LL+1$.
 
-More generally, the decomposition $\proj^n=\C^n\cup \proj^{n-1}$ gives
+More generally, the decomposition $\proj^n=\C^n\amalg \proj^{n-1}$ gives
 $$[\proj^n]=\LL^n+[\proj^{n-1}]=\LL^n+\LL^{n-1}+\cdots 1=\frac{1-\LL^{n+1}}{1-\LL}$$
 
 
@@ -443,6 +461,7 @@ We now put all projective spaces together into a graded space
 $$\proj=\sum_{n\geq 0} \proj^nq^n$$ 
 A short computation with the previous line gives
 $$[\proj]=\frac{1}{(1-q)(1-q\LL)}$$
+
 \end{example}
 
 
@@ -453,21 +472,19 @@ $$P_t(\HG_{\C^2})=\prod_{\ell=1}^\infty \frac{1}{1-t^{2\ell-2}q^\ell}$$
 $$[\HG_{\C^2}]=\prod_{\ell=1}^\infty \frac{1}{1-\LL^{\ell +1}q^\ell}$$
 \end{theorem}
 
+Building on this, we have:
 
-
-In the next section, we review Ellingsrud and Str\o mme's methods, as they already contains most of the geometric material we will need.  For now, we turn to G\"ottsche's extension of Ellingsrud and Str\o mme's result:
-
-\begin{theorem}[G\"ottsche, \cite{gottsche}]
+\begin{theorem}[G\"ottsche, \cite{gottsche}] \label{thm:gprod}
 Let $S$ be a smooth quasiprojective surface, and let $b_i$ denote $b_i(S)$.  Then:
 $$P_t(\HG_S)=\prod_{\ell\geq 1} \frac{(1+t^{2\ell-1}q^\ell)^{b_1}(1+t^{2\ell+1}q^\ell)^{b_3}}{(1-t^{2\ell-2}q^\ell)^{b_0}(1-t^{2\ell}q^\ell)^{b_2}(1-t^{2\ell+2}q^\ell)^{b_4}}$$
 \end{theorem}
 
-Note that if we take $S=\C^2$, G\"ottsche's theorem is precisely Ellingsrud-Str\o mme's work.  G\"ottsche's original proof used the Weil conjectures to reduce to the local model of the smooth surfaces, $S=\C^2$.  
+When $S=\C^2$, G\"ottsche's theorem reduces to Ellingsrud-Str\o mme's result.  G\"ottsche's original proof used the Weil conjectures to reduce to the local model of the smooth surfaces, $S=\C^2$.  
 
-G\"ottsche observed the following easy corollary to his formula:
-\begin{corollary}  Suppose further that $S$ is connected.
+Our first conjecture is an analog of Theorem \ref{thm:gprod} for $S=[\C^2/G]$; our main theorem is an analog of the following corollary to G\"ottsche's formula:
+
+\begin{corollary} \label{cor:gstab} Suppose further that $S$ is connected.
 Then for fixed $k$ and large $n$, $b_{k}(\Hilb_n(S))$ stabilizes.
-
 \end{corollary}
 
 \begin{proof}
@@ -476,342 +493,20 @@ The point is that there is exactly one factor in the product formula that has no
 Adding the $1/(1-q)$ term back in means that once a monomial $q^kt^m$ occurs, it will now also occur for all higher powers of $k$.  Hence, we see that once $n\geq\text{deg}(p_k)$, we will have $b_k(\Hilb_n(S))=p_k(1)$.
 \end{proof}
 
-Grojnowski and Nakajima \cite{grojnowski, nakajimaheisenberg} gave another proof by categorifying G\"ottsche's formula.  The power series on the right hand side is the $(q,t)$ character of the highest weight representation of the Heisenberg algebra modeled on $H^*(S)$.  Thus, one is lead to hope that the vector space 
+Our third conjecture is an analog of the work of Grojnowski and Nakajima \cite{grojnowski, nakajimaheisenberg}. who reproved Theorem \ref{thm-gprod} by categorifying it.  They observed that power series on the right hand side of Theorem \ref{thm-gprod} is the $(q,t)$ character of the highest weight representation of the Heisenberg algebra generated by $H^*(S)$.  This lead them to hope that the vector space 
 $$H^*(\HG_S)=\bigoplus_{\substack{n\geq 0 \\ k\geq 0}} H^k(\Hilb_n(S))$$
-can naturally be given an action of this Heisenberg algebra.  This is exactly what Grojnowski and Nakajima did, using nested Hilbert schemes of points.  This result categorifies G\"ottsche's formula, and gives another proof of it.
+has a natural action of this Heisenberg algebra.  This is exactly what Grojnowski and Nakajima did, using nested Hilbert schemes of points.  
 
-In case the quasiprojective surface $S$ is the minimal resolution of the ADE singularity, this Heisenberg action is part of a quantumn group action for the corresponding semisimple quantum group.
+\begin{theorem} \label{thm:grojnowskinakajima}
+$H^*(\HG_S)$ is an irreducible heighest weight representation of the Heisenberg algebra generated by $H^*(S)$.
+  \end{theorem}
 
-Further categorifications of this action are areas of active study; the Heisenberg action on $\HG_{\C^2}$ is related to, while in case $S$ is the resolution of an ADE singularity the action has been further categorified by Cautis and Licata \cite{CL} to a ``categorical action'' on the derived category of Coherent sheaves $D(\Hilb_S)$; the quantum group action is categorified in \cite{CL2}.
+Moreover, in case the quasiprojective surface $S$ is the minimal resolution of the ADE singularity, this Heisenberg action is part of a quantumn group action for the corresponding semisimple quantum group.
 
-In another direction, Heisenberg actions on $K^*(\HG_{\C^2})$ have been studied and related to shuffle algberas in \cite{FT, SV}.
+Further categorifications and extensions of this Heisenberg action are an area of active study, see e.g. \cite{CL, CL2, FT, SV}.
 
 
 
-
-\subsection{Proof of \texorpdfstring{Ellingsrud and Str\o mme}{Ellingsrud and Stromme}}
-
-In this section we present a detailed proof of Ellingsrud and Str\o mme's result.  The main tool we use to understand the topology of $\Hilb_n(\C^2)$ is the $(\C^*)^2$ action induced by the $(\C^*)^2$ action on $\C^2$.  
-
-The torus $(\C^*)^2$ acts on the plane $\C^2$ in the obvious way, $(s,t)\cdot (\alpha,\beta)=(s\alpha,t\beta)$ and hence on $R=\C[x,y]$ and $\Hilb_n(\C^2)$.  
-
-\begin{warning} \label{warning:action-sign}
-
- The elements of $R$ are functions on $\C^2$, and thus $(\C^*)^2$ acts with \emph{opposite} weights as might naively be expected, that is 
-$$(s,t)\cdot x^ny^m=s^{-n}t^{-m}x^ny^m$$
-
-\end{warning}
-
-
-
-
-Many proofs of this are in the literature; for instance \cite{cheah} (IS IT IN THIS OR ONLY THE THESIS?) gives a largely combinatorial one, and \cite{nakajimabook}   Our proof is essentially the combinatorial one in \cite{cheah}, or , but made more so in that we use the boundary path of the partition instead of ``systems of arrows''.  
-
-
-
-
-
-
-\subsubsection{Warm-up: Euler Characteristic of $\Hilb_n(\C^2)$}
-
-To illustrate how the torus action is used, we first compute the Euler characteristic of $\Hilb_n(\C^2)$.
-
-
-
-
-\begin{proposition} \label{prop:hilbchi}
-$$\chi(\Hilb_n(\C^2))=p(n).$$
-Or, in terms of generating functions:
-$$\chi(\Hilb_{\C^2})=\prod_{k\geq 0} \frac{1}{1-q^k}.$$
-\end{proposition}
-
-As a consistency check, this is what's obtained by setting $t=-1$ in Theorem \ref{thm:ES}.
-
-
-Proposition \ref{prop:hilbchi} follows immediately from the following three lemmas.
-
-\begin{lemma} \label{lem:toruschi}
-Suppose that $X$ has a $T=(\C^*)^n$ action, with fixed point set $X^T$.  Then $\chi(X)=\chi(X^T)$.
-\end{lemma}
-
-\begin{lemma} \label{lem:Tmonomials}
-The $T$-fixed points on $\Hilb_n(\C^2)$ are the monomial ideals.
-\end{lemma}
-
-\begin{lemma} \label{lem:monomialspartitions}
-There is a bijection between monomial ideals $\mathcal{I}\subset R$ with $\dim_\C R/\mathcal{I}=n$ and partitions of $n$.
-\end{lemma}
-
-\begin{proof}[Sketch of Lemma \ref{lem:toruschi}]
-
-The pertinent fact about the Euler characteristic that makes it easy to compute is that it is additive over subvarieties: if $X\subset Y$ closed, then $\chi(Y)=\chi(X)+\chi(Y\setminus X)$.  Note that this is not true of real submanifolds, and in some view is essentially because complex submanifolds have even codimension.
-
-
-%Note that this is not true for real manifolds; take, the example of a point in $S^1$, both the point and its complement have euler characteristic 1, while $S^1$ has euler characteristic 0.  We briefly sketch the proof in case $X$ is a complex \emph{submanifold}.  If $U$ and $V$ are an open covering, then the Mayer-Vietoris sequence and the definition of $\chi$ give
-%$$\chi(Y)=\chi(U)+\chi(V)-\chi(U\cap V)$$
-%Taking $U=Y\setminus X$, and $V$ a tubular neighborhood of $X$, we see that $U\cap V$ we will be a homotopy equivalent to the normal sphere bundle of $X$ in $Y$.  Suppose that $X$ has complex codimension $k$; then $\chi(U\cap V)=\chi(X)\chi(S^{2k-1})=0$, since odd dimensional spheres have euler characteristic 0.
-
-
-There is a stratification of $X$ according to its stabilizer subgroup.  For a subgroup $H\subset G$, we let $X^{(H)}\subset X$ denote the subset with stabilizer group $H$.  Then we have
-$$\chi(X)=\sum_{H\subset G} \chi\left(X^{(H)}\right)$$
-and the result follows if $\chi(X^{(H)})=0$ unless $H=G$.  But $X^{(H)}$ has a free action of $G/H$, and so is a $G/H$ bundle over the quotient $X^{(H)}/(G/H)$.  For any fiber bundle $Y$ with fiber $F$ and base space $B$ we have $\chi(Y)=\chi(B)\cdot \chi(F)$.  Since $G/H$ is itself a torus it has $\chi(G/H)=0$ unless $G=H$.  
-
-\end{proof}
-
-
-
-
-
-
-We now prove the $T$ fixed ideals are precisely the monomial ideas.
-\begin{proof}[Proof of Lemma \ref{lem:Tmonomials}]
-The torus $T$ acts on a monomial $x^\alpha y^\beta$ by scaling.  If $m\in \mathcal{I}$ is a monomial, and $g\in T$ then $g\cdot m=am\in \mathcal{I}$ for some $a\in \C$.  Hence an ideal generated by monomials will be $T$ fixed.  
-
-In the other direction, suppose that $\mathcal{I}$ is $T$ fixed, and $f\in\mathcal{I}$.  We show all monomials in $f$ are in $\mathcal{I}$.  Suppose that $f$ is a linear combination of $k$ monomials $m_i$. Then there are $t_1,\cdots, t_k\inT$ so that $f_i=t_i \cdot f\in \mathcal{I}$ are linearly independent over $\C$. Inverting the matrix that expresses $f_i$ in terms of the monomials $m_i$, we see that $m_i$ is a linear combination of the $f_i$, and hence $\m_i\in\mathcal{I}$.
-\end{proof}
-
-
-
-\begin{proof}[Proof of Lemma \ref{lem:monomialspartitions}]
-
-The bijection between monomial ideals with y$\dim R/\mathcal{I}=n$ and partitions of $n$ is best illustrated by example: 
-
-\begin{center}
-\begin{tikzpicture}
-\draw[fill=red!20] (0,2) rectangle (1,3);
-\draw[fill=red!20] (1,1) rectangle (2,2);
-\draw[fill=red!20] (3,0) rectangle (4,1);
-
-
-\draw[thin, gray] (0,0) grid (4.5,3.5);
-\foreach \x in {0,...,4}
-   \foreach \y in {0,...,3}
-       \node at (\x+.5,\y+.5) {$x^\x y^\y$};
-\draw[ultra thick, black] (0,0)--(0,2)--(1,2)--(1,1)--(3,1)--(3,0)--cycle;
-
-\draw node at (7.5, 2) {$\begin{array}{cc} \mathcal{I} & \lambda \\ (x^3,xy,y^2) & (2,1,1) \end{array}$};
-\end{tikzpicture}
-\end{center}
-
-The monomials \emph{not} in $\mathcal{I}$ form a basis for $R/\mathcal{I}$, and correspond to the cells of a partition $\mathcal{I}_\lambda$.  The generators of $\mathcal{I}_\lambda$ correspond to the monomials in the exterior corners of $\lambda$, the squares in red above.
-
-\end{proof}
-
-
-
-
-
-
-
-
-
-
-
-
-\subsubsection{Bia\l ynicki-Birula decomposition}
-
-To capture the Poincare polynomial instead of just the Euler characteristic, Ellingsrud and Str\o mme make use of the Bia\l ynicki-Birula decomposition of $\Hilb_n(\C^2)$ \cite{BB}, which is closely related to Morse theory. 
-
-In Morse theory, the topology of $X$ is determined by the critical points of a function $f$, the morse flow is the downward gradient flow of $f$; the stable manifold $S_p$ of a critical point $p$ is the set of all points of $X$ that flow to $p$.  At each critical point $p$, the tangent space $T_pX$ splits into $T^+_pX$, the tangent directions flowing into $p$, and $T_p^-X$, the tangent directions flowing out of $p$.
-
-
-The role of the Morse flow will be played by the flow $x\mapsto \varepsilon x$ as $\varepsilon\in\C^*$ tends toward zero.  We assume that the $\C^*$ action on $X$ is such that this limit point exists for all $x\in X$.  
-
-Let $p$ be a fixed point of the $\C^*$ action.  Then $\C^*$ acts on $T_pX$, and so $T_pX$ is not just a vector space but a $\C^*$ representation.   and hence decomposes into a direct sum of irreducible representations.  Let $V_a$ denote the irreducible representation of $\C^*$ where $\varepsilon\in\C^*$ acts as $\varepsilon^a$.  
-
-
-Let $T_p^+X$ (respectively $T_p^-X$) denote the subspace of $T_pX$ where the $\C^*$ action acts with a positive (respectively negative) exponent, and let $T_p^0(X)$ denote the subspace where $\C^*$ acts trivially.  Thus, if we consider the flow $X$ sending $\lambda$ toward 0, $T_p^+X$ are the directions that are flowing twoard $p$, and $T_p^-X$ are the directions flowing away from $p$.  
-
-Note that if $p$ is an isolated fixed point, then $T_p^0(X)=0$.
-
-$$T_pX=\bigoplus_{n\in\Z} V_n^{e_n}$$
-then
-$$T_p^+X=\bigoplus_{n>0} V_n^{e_n}$$
-
-Let 
-$$\mathcal{S}_p=\{x\in X|\lim_{\varepsilon\to 0} \varepsilon x=p\}$$
-Then the Bia\l ynicki-Birula decomposition states that $X=\sqcup_{p}\mathcal{S}_p$; the point is that $\mathcal{S}_p$ is a subvariety isomorphic to $A_k$.
-
-
-
-
-
-We saw in Section [REFER BACK TO ] that if $X$ is a variety with a $\C^*$ action with $k$ isolated fixed points, then $\chi(X)=k$.  If we know the weights of the $\C^*$ action on the tangent spaces of the fixed points, the Bia\l ynicki-Birula decomposition leverages this result to give the betti numbers of $X$, or even further the class of $X$ in the Grothendieck ring of varieties.
-
-\subsubsection{Tangent space to a monomial ideal}
-To apply the Bia\l ynicki-Birula decomposition to $\Hilb_n(\C^2)$, we need to determine the $T$ weights on each tangent space $T_\lambda\Hilb_n(\C^2)$.
-
-\begin{lemma}[Ellingsrud and Str\o mme \cite{ES}] \label{lem:torus-weights}
-$$T_\lambda \Hilb_n(\C^2)=\sum_{\square\in\lambda} \left(x^{-\ell(\square)} y^{a(\square)+1}+x^{\ell(\square)+1}y^{-a(\square)}\right)$$
-\end{lemma}
-
-Before giving the proof,  we show how Lemma \ref{lem:torus-weights} implies Ellingsrud and Str\o mme's results. 
-
-\begin{proof}[Ellingsrud-Str\o mme]
-
-To apply Bia\l ynicki-Birula, we need a $\C^*$ action with isolated fixed points, not a $(\C^*)^2$ action.   We use the subtorus $\C^*$ that acts on $\C^2$ with weights $(\varepsilon,1)$, for $\varepsilon$ very small.  In the flow $\lambda\to 0$ the positive directions are the stable directions.  The choice of subtorus weights should really be integer numbers, and by $(\varepsilon, 1)$ we really mean an action $(1, N)$ with $N>>n$. Since $a(\square)$ and $\ell(\square)$ are bounded by $n$, this means that we will always have $a(\square)<<N$, and so thinking about $\varepsilon$ as $1/N$, we have $a(\square)\varepsilon<<1$, and similarly with $\ell(\square)$.
-
-Recall Warning \ref{warning:action-sign} that $\C^*$ will act with \emph{opposite} weights on $x$ and $y$, so that $$t\cdot x^\alpha y^\beta=t^{-\alpha\varepsilon-\beta}x^\alpha y^\beta.$$  
-
-We now determine $\dim^+(\lambda)$ using this subtorus.  The term $x^{-\ell(\square)} y^{a(\square)+1}$ has weight $\varepsilon\ell(\square)-a(\square)-1$, which will never be positive or zero.  The term $x^{\ell(\square)+1}y^{-a(\square)}$ has weight $a(\square)-\varepsilon(\ell(\square)+1)$, which will be positive if and only if $a(\square)>0$.  $a(\square)=0$ exactly on the top square of each column of $\lambda$, and so viewing the columns as the parts of $\lambda$, we see that the $i$th column contributes $\lambda_i-1$ to $\dim^+(\lambda)$, as we meant to show.
-
-
-
-\begin{center}
-\begin{tikzpicture}[scale=.5]
-\draw[fill=red!20] (0,0) rectangle (1,2);
-\draw[fill=red!20] (0,0) rectangle (3,1);
-
-
-\draw[thin, gray] (0,0) grid (1,3);
-\draw[thin, gray] (1,0) grid (3,2);
-
-\draw[thick] (0,0)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--cycle;
-
-\draw (2,-1) node {$\dim^+(\lambda)$ is number of shaded squares};
-\end{tikzpicture}
-\end{center}
-
-\end{proof}
-
-\begin{remark}
-It should be noted that although any generic $\C^*$ action will have isolated fixed points, and hence can be used to compute the cohomology of $\Hilb_n(\C^2)$, different $\C^*$ action will provide different statistics.  Since all these statistics compute the same thing, they must be equidistributed.  This was apparently first observed geometrically by Haiman, and Loehr and Warrington gave a combinatorial proof in \cite{LW}, furthermore they extend the statistics to the non-isolated case.  It would be interesting to have a geometric understanding of the bijections in \cite{LW}.
-\end{remark}
-
-
-
-We begin with the following the description of the the tangent space to the Hilbert scheme:
-
-
-\begin{lemma} \label{lem:tangent-hom}
-$$T_{\mathcal{I}}\Hilb_n(\C^2)=\Hom_R(\mathcal{I},R/\mathcal{I})$$
-\end{lemma}
-
-Lemma \ref{lem:tangent-hom} actually holds in any dimension, for any smooth variety.
-
-Before giving a quick proof, we give a plausibility argument in analogy with the Grassmannian.  If $V\subset W$ is a $k$ dimensional subspace, then 
-$$T_V Gr_k(W)\cong \Hom(V, V^\perp) \cong \Hom(V, W/V).$$
-TThis gives a description of the deformations of $\mathcal{I}$ as a vector subspace of $R$.  For the deformation to remain an ideal it is plausible that we should require the deformation to be a map of $R$ modules and not just vector spaces.
-
-\begin{proof}
-More formally, it is a general fact that first order deformations of objects are given by $\Ext^1(\mathcal{F},\mathcal{F})$, and obstructions to these deformations are given by $\Ext^2(\mathcal{F},\mathcal{F})$. 
-
-The long exact sequence obtained by applying $\Hom(\mathcal{I}, -)$ to the short exact sequence
-$$0\to \mathcal{I}\to R\to R/\mathcal{I}\to 0$$
-gives 
-$$0\to\Hom(\mathcal{I},\mathcal{I})\to \Hom(\mathcal{I}, R)\to\Hom(\mathcal{I},R/\mathcal{I})\to\Ext^1(\mathcal{I}, \mathcal{I})\to\Ext^1(\mathcal{I},R)$$
-Since $\mathcal{I}$ is an ideal that eventually contains $x^n, y^m$, we have $\Hom(\mathcal{I},\mathcal{I})\cong\Hom(\mathcal{I}, R)$ and $\Ext^1(\mathcal{I},R)=0$, and so indeed we have $\Hom(\mathcal{I},R/\mathcal{I})\cong\Ext^1(\mathcal{I}, \mathcal{I})$.
-\end{proof}
-
-We can now complete the proof of the tangent weight statement.
-
-
-Let $T_\lambda^{a,b}$ denote the $(a,b)$-isotypical component of $T_{\mathcal{I}_\lambda}\Hilb_n(\C^2)$.  Let $f\in\Hom(\mathcal{I}_\lambda, R/\mathcal{I}_\lambda)$ have weight $(a,b)$, so that:
-$$f(x^{\alpha}y^\beta)=c_{\alpha,\beta} x^{\alpha-a}y^{\beta-b}$$
-for some constant $c_{\alpha, \beta}$ (that can be different for different monomials).  
-
-
-Let $P_\lambda$ be the boundary path of $\lambda$; for $(a,b)$ in $\Z^2$, let $P_\lambda(a,b)$ denote the boundary path of $\lambda$ shifted to the right by $a$ and up by $b$.
-
-\begin{lemma} Let $B_\lambda(a,b)$ be the set of bounded regions above $P_\lambda$ and below $P_\lambda(a,b)$.  For $U\in B_\lambda(a,b)$, let $f_U$ denote the map that multiplies monomials in $U$ by $x^{-a}y^{-b}$ and sends monomials not in $B_\lambda(a,b)$ to $0$.  Then the $f_U$ form a basis for $T_\lambda^{a,b}$.
-\end{lemma}
-
-\begin{proof}
-To be a map of $R$-modules the map must commute with multipication by $x$ and $y$.  Thus, if $x^{\alpha-a+1}y^{\beta-b}\notin \mathcal{I}$, we must have $c_{\alpha+1,\beta}=c_{\alpha,\beta}$, and similarly with $y$.  Thus, to be a map of $R$-modules, we see that monomials in the same component must get multiplied by the same constant.
-
-If a region is not bounded, then one of the generators of $\mathcal{I}$ contained in that region would be mapped to a monomial with negative exponents, which it can't do; therefore it must be multiplied by 0.
-\begin{center}
-\begin{tikzpicture}[scale=.5]
-
-\fill[red!20!white] (0,5)--(0,3)--(1,3)--(1,5)--cycle;
-\fill[red!20!white] (1,3)--(2,3)--(2,2)--(1,2)--cycle;
-\fill[red!20!white] (3,2)--(4,2)--(4,1)--(3,1)--cycle;
-\fill[red!20!white] (4,1)--(5,1)--(5,0)--(4,0)--cycle;
-\draw[thin, gray] (0,0) grid (5,5);
-\draw (.5,3.5) node{$y^3$};
-\draw (1.5,2.5) node{$xy^2$};
-\draw (3.5,1.5) node{$x^3y$};
-\draw (4.5,.5) node{$x^4$};
-
-\begin{scope}[xshift=-.1cm, yshift=-.1cm]
-\draw[thick, red,  triangle 60 reversed-triangle 60] (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
-\end{scope}
-\begin{scope}[xshift=1.1cm, yshift=.1cm]
-\draw[thick, blue, dashed, triangle 60 reversed-triangle 60]  (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
-\end{scope}
-
-\begin{scope}[xshift=8cm]
-\fill[red!20!white] (0,5)--(2,5)--(2,3)--(3,3)--(3,2)--(1,2)--(1,3)--(0,3)--cycle;
-\fill[red!20!white] (3,2)--(5,2)--(5,1)--(6,1)--(6,0)--(4,0)--(4,1)--(3,1)--cycle;
-
-\draw[thin, gray] (0,0) grid (5,5);
-\draw (.5,3.5) node{$y^3$};
-\draw (1.5,2.5) node{$xy^2$};
-\draw (3.5,1.5) node{$x^3y$};
-\draw (4.5,.5) node{$x^4$};
-\begin{scope}[xshift=-.1cm, yshift=-.1cm]
-\draw[thick, red,  triangle 60 reversed-triangle 60] (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
-\end{scope}
-\begin{scope}[xshift=2.1cm, yshift=.1cm]
-\draw[thick, blue, dashed, triangle 60 reversed-triangle 60]  (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
-\end{scope}
-\end{scope}
-
-
-
-\end{tikzpicture}
-\end{center}
-The picture on the left shows $(1,0)$ is three dimensional.  The region containing $y^3$ is unbounded; indeed, $y^3$ would have to map to $x^{-1}y^3\notin R/\mathcal{I}$.  
-
-The picture on the right shows $(2,0)$ is one dimensional; $y^3$ ad $xy^2$ would each map to things not in $R/\mathcal{I}$ because they are in an unbounded region.  We also have that $x^3y$ and $x^4$ must get multiplied by the same constant, since $xf(x^3y)=x^2y=yf(x^4)$ and $x^2y\in R\mathcal{I}$.
-\end{proof}
-
-
-We now prove Lemma \ref{lem:torus-weights}.  First, observe that $T_\lambda^{(a,b)}$ is empty if $(a,b)$ are both negative or both non-negative.  If both are non-negative, then there are no cells at all below $P_\lambda(a,b)$ and above $P_\lambda$.  If both are positive, then the cells below $P_\lambda(a,b)$ and $P_\lambda$ form a single unbounded region.  
-\begin{center}
-\begin{tikzpicture}[scale=.5]
-\fill[blue!20!white] (0,5)--(1,5)--(1,4)--(2,4)--(2,3)--(4,3)--(4,2)--(5,2)--(5,0)--(4,0)--(4,1)--(3,1)--(3,2)--(1,2)--(1,3)--(0,3)--cycle;
-\draw (.5,3.5) node{$y^3$};
-\draw (1.5,2.5) node{$xy^2$};
-\draw (3.5,1.5) node{$x^3y$};
-\draw (4.5,.5) node{$x^4$};
-\draw[thin, gray] (0,0) grid (5,5);
-\begin{scope}[xshift=-.1cm, yshift=-.1cm]
-\draw[thick, red,  triangle 60 reversed-triangle 60] (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
-\end{scope}
-\begin{scope}[xshift=1.1cm, yshift=1.1cm]
-\draw[thick, blue, dashed, triangle 60 reversed-triangle 60]  (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
-\end{scope}
-
-\begin{scope}[xshift=9cm]
-\draw[thin, gray] (0,0) grid (5,5);
-\draw (.5,3.5) node{$y^3$};
-\draw (1.5,2.5) node{$xy^2$};
-\draw (3.5,1.5) node{$x^3y$};
-\draw (4.5,.5) node{$x^4$};
-\begin{scope}[xshift=-.1cm, yshift=-.1cm]
-\draw[thick, red,  triangle 60 reversed-triangle 60] (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
-\end{scope}
-\begin{scope}[xshift=-.9cm, yshift=.1cm]
-\draw[thick, blue, dashed, triangle 60 reversed-triangle 60]  (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
-\end{scope}
-\end{scope}
-
-\end{tikzpicture}
-\end{center}
-The left shows that for $(1,1)$ are both positive, then there is a single unbounded region.  The right shows that for $(-1,0)$ there are no cells above $P_\lambda$ and below $P_\lambda(-1,0)$.
-Thus, exactly one of $a,b$ is negative; assume it is $a$.  We must show that the elements of $B_\lambda(a,b)$ are in bijection with the cells $\square\in\lambda$ having  $a=\ell(\square)$ and $b=-a(\square)-1$ (recall the sign from Warning \ref{warning:action-sign}).
-
-Consider a region of cells above $P_\lambda$ and below $P_\lambda(-a,-b)$.  There are two possible directions this region could be unbounded -- along the positive $y$ or $x$-axes.  Since $b$ is positive, there are no squares far along the $x$-axis both below $P_\lambda(-a,-b)$  and above $P_\lambda$, and so the region is automatically bounded in that direction.  
-
-We must therefore guarantee the region is bounded at the bottom right.  This will happen when a South step of $P_\lambda$ starts at the same point as East step of $P_\lambda(-a,-b)$.  
-
-
-
-
-Bounded cells well thus be in bijection with pairs of such cells.  Translating the East step back $(a,b)$ to its original place on the boundary strip, we find these two steps give an inversion in the $P_\lambda$ and hence a cell of $\lambda$.  The arm length of this cell will be $b+1$, and the leg will have size $a$. 
-
-An analogous argument shows that tangent directions with $b$ negative correspond to the other terms in the sum.
 
 
 
@@ -834,11 +529,11 @@ One benefit of the stacky point of view is that $[\C^n/G]$ is a smooth object in
 
 With the above point of view, the Hilbert scheme of $n$ points on $[\C^2/G]$ should parameterize $G$-equivariant ideals of $R$.  Since $R$ has an action of $G$, and ideals are subsets of $R$, the $G$ action on an ideal is forced upon us, and $G$-equivariant ideals are just $G$-invariant ideals.  Thus, the Hilbert scheme of $n$ points on $[\C^2/G]$ is just the $G$-fixed locus of the Hilbert scheme of $n$ points on $\C^2$:
 
-$$\Hilb_n([\C^2/G])=\{\mathcal{I}\subset R |\dim R/\mathcal{I}=n, g\cdot \mathcal{I}=\mathcal{I}\forall g\in G \} =\Hilb_n(\C^2)^G$$
+$$\Hilb_n([\C^2/G])=\{\II\subset R |\dim R/\II=n, g\cdot \II=\II\forall g\in G \} =\Hilb_n(\C^2)^G$$
 
 This is potentially confusing, given the discussion in the previous section that passing from the singular space $\C^2/G$ to the smooth stack $[\C^2/G]$ is passing from $G$-invariant objects to $G$-equivariant objects.  The Hilbert scheme of $n$-points on the singular space $\C^2/G$ is the space of ideals in the ring of invariants $R^G$
 
-$$\Hilb_n(\C^2/G_=\{\mathcal{I}\subset R^G | \dim R^G/\mathcal{I}=n\}$$
+$$\Hilb_n(\C^2/G_=\{\II\subset R^G | \dim R^G/\II=n\}$$
 
 
 Viewing $\Hilb_n([\C^2/G])$ as the fixed point set of the $G$ action on $\C^2$ is much simpler than the stack theoretic viewpoint, and will be our main way of working with the Hilbert schemes.  We write $\Hilb_n([\C^2/G])$ instead of $\Hilb_n(\C^2)^G$ because our motivation comes from the results about Hilbert schemes of points on smooth surfaces in section.
@@ -864,7 +559,7 @@ First, consider the $G$ action on the locus of $\Hilb_2(\C^2)$ consisting of two
 
 If $r=2$, we must have $k=1$, the nontrivial element of $G=\Z/2\Z$ acts as multiplication by -1, and any point of $\Hilb_2(\C^2)^G$ consisting of distinct points of $\C^2$ is of the form $\{p,-p\}$
 
-Now we consider the action of the locus where the ideal is supported at one point.  For the ideal to be $G$ invariant, this point needs to be $G$-fixed, and so must be the origin.  Thus, we are considering ideals of the form $\mathcal{I}_{0, v}$ for $v\in T_0C^2$.  For this to be $G$ invariant, we must have that $v$ is an eigenvector for the $G$ action.  For $k=1$, the $G$ action is diagonal, and so every vector $v$ is an eigenvector, and there is a $\proj^1$ worth of points over the origin.  If $r>2$, these are the only points, and so we have $\Hilb_2(\mathcal{S}_{1/r})=\proj^1$.  
+Now we consider the action of the locus where the ideal is supported at one point.  For the ideal to be $G$ invariant, this point needs to be $G$-fixed, and so must be the origin.  Thus, we are considering ideals of the form $\II_{0, v}$ for $v\in T_0C^2$.  For this to be $G$ invariant, we must have that $v$ is an eigenvector for the $G$ action.  For $k=1$, the $G$ action is diagonal, and so every vector $v$ is an eigenvector, and there is a $\proj^1$ worth of points over the origin.  If $r>2$, these are the only points, and so we have $\Hilb_2(\mathcal{S}_{1/r})=\proj^1$.  
 
 
 If $k\neq 1$, there are two distinct eigenvectors, and so in this case we see that $\Hilb_2(\mathcal{S}_{k/r})$ consists of two points.
@@ -874,13 +569,13 @@ If $k\neq 1$, there are two distinct eigenvectors, and so in this case we see th
 
 The example showed that, in contrast to smooth Hilbert schemes, $\Hilb_n(\Sur_G)$ need not be connected.  There is an obvious discrete invariant that explains this.
 
- Since $R$ and $\mathcal{I}$ both have $G$ actions, the module $R/\mathcal{I}$ is not just a vector space but a representation of $G$.  Since $G$ is finite, the set of representations are discrete, and $\mathcal{I}$ and $\mathcal{J}$ can't be deformed into each other if $R/\mathcal{I}$ isn't isomorphic to $R/\mathcal{J}$ as a representation of $G$.  
+ Since $R$ and $\II$ both have $G$ actions, the module $R/\II$ is not just a vector space but a representation of $G$.  Since $G$ is finite, the set of representations are discrete, and $\II$ and $\mathcal{J}$ can't be deformed into each other if $R/\II$ isn't isomorphic to $R/\mathcal{J}$ as a representation of $G$.  
 
-Thus, instead of just recording the dimension of a $R/\mathcal{I}$ we should record which representation it is:
+Thus, instead of just recording the dimension of a $R/\II$ we should record which representation it is:
 
 \begin{definition}
 For $v$ a representation of $G$, we define
-$$\Hilb_v(\C^2/G)=\{\mathcal{I}|R/\mathcal{I}=v\}$$
+$$\Hilb_v(\C^2/G)=\{\II|R/\II=v\}$$
 \end{definition}
 
 It turns out the $\Hilb_v$ are connected.  
@@ -1163,9 +858,9 @@ The \emph{content} $c(\square)$ of a cell $\square=(i,j)\in\lambda$ is $c(\squar
 \end{tikzpicture}
 
 
-It is immediate from the definition, that if we let $\C^*_{1,-1}$ be the torus that acts on $x$ with weight 1 and $y$ with weight $0$, then the content $c(\square)$ is just the weight of the $\C^*$ action on the corresponding monomial in $R/\mathcal{I}_\lambda$.
+It is immediate from the definition, that if we let $\C^*_{1,-1}$ be the torus that acts on $x$ with weight 1 and $y$ with weight $0$, then the content $c(\square)$ is just the weight of the $\C^*$ action on the corresponding monomial in $R/\II_\lambda$.
 
-Furthermore, the multiset of the contents of $\lambda \mod r$ is just the class of $[R/\mathcal{I}]\in K^0(\Z_r)$.
+Furthermore, the multiset of the contents of $\lambda \mod r$ is just the class of $[R/\II]\in K^0(\Z_r)$.
 
 
 \subsection{Topology of orbifold Hilbert schemes}
@@ -1188,7 +883,7 @@ Similarly, we can use the Ellingsrud-Str\o mme's calculation of torus weights on
 
 In general, if $G$ is a group acting on a manifold $M$ and $p\in M^G$ is a fixed point, the tangent directions of $M^G$ at $p$ are just the $G$-fixed tangent directions to $p$ in $M$: $T_p(M^G)=(T_pM)^G$.  
 
-Thus, if $\mathcal{I}\in \Hilb_n([\C^2/G])$ is a monomial ideal, the tangent space $T_{\mathcal{I}}\Hilb_n([\C^2/G])$ is just the $G$ invariant part of Ellingsurd and Str\o mme's calculation.  For $G$ a finite cycle group, a term in Lemma \ref{lem:torus-weights} will be $G$ invariant if and only if the arm and leg satisfy some linear congruence relation; for $G$ a product of two cyclic groups, it will be a system of linear relations.
+Thus, if $\II\in \Hilb_n([\C^2/G])$ is a monomial ideal, the tangent space $T_{\II}\Hilb_n([\C^2/G])$ is just the $G$ invariant part of Ellingsurd and Str\o mme's calculation.  For $G$ a finite cycle group, a term in Lemma \ref{lem:torus-weights} will be $G$ invariant if and only if the arm and leg satisfy some linear congruence relation; for $G$ a product of two cyclic groups, it will be a system of linear relations.
 
 
 \begin{definition}
@@ -1307,7 +1002,7 @@ The following are equivalent:
 \item $\lambda$ has no cells $\square$ with $t|h(\square)$
 \item It is not possible to remove one square of each content from $\lambda$
 \item $\lambda$ is the only partition with its set of contents
-\item $\mathcal{I}_\lambda$ is an isolated point in $\Hilb_n([\C^2/G_{-1/t}])$
+\item $\II_\lambda$ is an isolated point in $\Hilb_n([\C^2/G_{-1/t}])$
 \end{enumerate}
 
 
@@ -2553,10 +2248,16 @@ First, note $\varphi$ is an isomorphism of lattices, as the $w_i$ and $f_i$ gene
 It suffices to show that if $\mu$ is obtained from $\lambda$ by removing a single box $\square$, then $[\lambda]^G-[\mu]^G=\varphi(c^G(\lambda)-c^G(\mu)$.  Suppose that $\square$ had color $i$; then in $\lambda$ the border path travels above $\square$ and has color $i$, while in $\mu$ the border path travels below $\square$ and has color $i+a$.  All other up-sloping steps of $\lambda$ and $\mu$ agree.  In removing the box, we deleted a box of color $i$ from $\lambda$, and thus $[\lambda]^G-[\mu]^G=f_i$.  We also removed one bead from the $i$th runner, increasing $c^G_i$ by 1, and added a bead to the $i+a$ runner, decreasing $c^G_{i+a}$ by 1.
 
 
-
-
 \end{proof}
 
+
+\begin{proposition} \label{prop:connected}
+If $G$ is abelian, and $v$ any representation of $G$, then $\Hilb_v([\C^2/G])$ is connected.  
+\end{proposition}
+\begin{proof}
+
+\end{proof}
+For $G=\C^*$, this Theorem was proven by Evain \cite{evain1}.
 
 
 \section{Riemann-Roch calculation}
@@ -2626,7 +2327,7 @@ Let $\OO_{\tilde{v}}$ be any quotient sheaf with the right $K$-theory class.
 We first use
 $$\chi(\tilde{v}, \tilde{v})=\dim\Ext^0(\OO_{\tilde{v}},\OO_{\tilde{v}})-\dim\Ext^1(\OO_{\tilde{v}},\OO_{\tilde{v}})+\dim\Ext^2(\OO_{\tilde{v}},\OO_{\tilde{v}})$$
 
-By definition $\Ext^0(\OO_{\tilde{v}},\OO_{\tilde{v}})=\Hom_R(R/\mathcal{I},R/\mathcal{I})^G$.  Now since $\OO_v$ is a quotient of $R$ it is generated by $1$, and so to define a homomorphism we just need to say where $1$ maps. Since $\mathcal{I}$ is an ideal, it can map to any entry of $R/\mathcal{I}$.  Since one is fixed by $G$, for the homomorphism to be $G$ invariant we must preserve weight and map to something invariant.  So $\dim\Ext^0(\OO_{\tilde{v}},\OO_{\tilde{v}})=\tilde{v}_0$.  
+By definition $\Ext^0(\OO_{\tilde{v}},\OO_{\tilde{v}})=\Hom_R(R/\II,R/\II)^G$.  Now since $\OO_v$ is a quotient of $R$ it is generated by $1$, and so to define a homomorphism we just need to say where $1$ maps. Since $\II$ is an ideal, it can map to any entry of $R/\II$.  Since one is fixed by $G$, for the homomorphism to be $G$ invariant we must preserve weight and map to something invariant.  So $\dim\Ext^0(\OO_{\tilde{v}},\OO_{\tilde{v}})=\tilde{v}_0$.  
 
 Using Serre-duality, $\dim\Ext^2(\OO_{\tilde{v}},\OO_{\tilde{v}})=\dim\Ext^0(\OO_{\tilde{v}},K\otimes\OO_{\tilde{v}})$.  The effect of tensoring by $K$ is just to change the $G$ action -- an invariant vector of $\OO_{\tilde{v}}\otimes K$ is just a vector that transforms as $K^\vee$ in $\OO_{\tilde{v}}$.  
 So $\dim\Ext^2(\OO_{\tilde{v}},\OO_{\tilde{v}})=\tilde{v}_{-k}$.  
@@ -2668,6 +2369,338 @@ When $G\in SL_2$, we the canonical bundle $K_{[\C^2/G]}$ is trivial, and so $k=0
 
 
 
+
+
+\appendix
+
+\section{Review of Ellingsrud-Str\o mme}
+This appendix reviews Ellingsrud-Str\o mme's computation of the poincare polynomial of $\Hilb_n(\C^2)$; it is aimed at combinatorialists.  
+
+The main tool is the $(\C^*)^2$ action on $\Hilb_n(\C^2)$ induced by the $(\C^*)^2$ action on $\C^2$.  The torus $(\C^*)^2$ acts on the plane $\C^2$ in the obvious way: $(s,t)\cdot (\alpha,\beta)=(s\alpha,t\beta)$.  This induces an action on $R=\C[x,y]$ and on $\Hilb_n(\C^2)$.  
+
+\begin{warning} \label{warning:action-sign}
+
+ The elements of $R$ are functions on $\C^2$, and thus $(\C^*)^2$ acts with \emph{opposite} weights as might naively be expected, that is 
+$$(s,t)\cdot x^ny^m=s^{-n}t^{-m}x^ny^m$$
+\end{warning}
+
+
+
+
+Many proofs of this are in the literature; for instance \cite{cheah} (IS IT IN THIS OR ONLY THE THESIS?) gives a largely combinatorial one, and \cite{nakajimabook}   Our proof is essentially the combinatorial one in \cite{cheah}, or , but made more so in that we use the boundary path of the partition instead of ``systems of arrows''.  
+
+
+
+
+
+
+\subsection{Warm-up: Euler Characteristic of $\Hilb_n(\C^2)$} \label{sec:Teuler}
+
+To illustrate how the torus action is used, we first compute the Euler characteristic of $\Hilb_n(\C^2)$.
+
+
+
+
+\begin{proposition} \label{prop:hilbchi}
+$$\chi(\Hilb_n(\C^2))=p(n).$$
+Or, in terms of generating functions:
+$$\chi(\Hilb_{\C^2})=\prod_{k\geq 0} \frac{1}{1-q^k}.$$
+\end{proposition}
+
+As a consistency check, this is what's obtained by setting $t=-1$ in Theorem \ref{thm:ES}.
+
+
+Proposition \ref{prop:hilbchi} follows immediately from the following three lemmas.
+
+\begin{lemma} \label{lem:toruschi}
+Suppose that $X$ has a $T=(\C^*)^n$ action, with fixed point set $X^T$.  Then $\chi(X)=\chi(X^T)$.
+\end{lemma}
+
+\begin{lemma} \label{lem:Tmonomials}
+The $T$-fixed points on $\Hilb_n(\C^2)$ are the monomial ideals.
+\end{lemma}
+
+\begin{lemma} \label{lem:monomialspartitions}
+There is a bijection between monomial ideals $\II\subset R$ with $\dim_\C R/\II=n$ and partitions of $n$.
+\end{lemma}
+
+\begin{proof}[Sketch of Lemma \ref{lem:toruschi}]
+
+  The pertinent fact about the Euler characteristic that makes it easy to compute is that it is additive over subvarieties: if $X\subset Y$ is a closed subvariety, then we have
+  \[\chi(Y)=\chi(X)+\chi(Y\setminus X)\]
+Note that this is not true of real submanifolds (take, e.g. $\{1\}\subset S^1$ as $X\subset Y$), and in some view is essentially because complex submanifolds have even codimension.
+
+
+%Note that this is not true for real manifolds; take, the example of a point in $S^1$, both the point and its complement have euler characteristic 1, while $S^1$ has euler characteristic 0.  We briefly sketch the proof in case $X$ is a complex \emph{submanifold}.  If $U$ and $V$ are an open covering, then the Mayer-Vietoris sequence and the definition of $\chi$ give
+%$$\chi(Y)=\chi(U)+\chi(V)-\chi(U\cap V)$$
+%Taking $U=Y\setminus X$, and $V$ a tubular neighborhood of $X$, we see that $U\cap V$ we will be a homotopy equivalent to the normal sphere bundle of $X$ in $Y$.  Suppose that $X$ has complex codimension $k$; then $\chi(U\cap V)=\chi(X)\chi(S^{2k-1})=0$, since odd dimensional spheres have euler characteristic 0.
+
+To apply this fact to the case when $T$ acts on $X$, we stratify $X$ according to its stabilizer subgroup.  For any subgroup $H\subset G$, we let $X^{(H)}\subset X$ denote the subset with stabilizer group $H$.  Then we have
+\[\chi(X)=\sum_{H\subset G} \chi\left(X^{(H)}\right)\]
+is a union of locally closed sets, to hence Lemma \ref{lem:toruschi} reduces to showing $\chi(X^{(H)})=0$ unless $H=G$.
+
+The point now is that $X^{(H)}$ has a free action of $G/H$, and so is a $G/H$ bundle over the quotient $X^{(H)}/(G/H)$.  For any fiber bundle $Y$ with fiber $F$ and base space $B$ we have $\chi(Y)=\chi(B)\cdot \chi(F)$.  Since $G/H$ is itself a torus it has $\chi(G/H)=0$ unless $G=H$.  
+\end{proof}
+
+
+We now prove the $T$ fixed ideals are precisely the monomial ideas.
+\begin{proof}[Proof of Lemma \ref{lem:Tmonomials}]
+The torus $T$ acts on a monomial $x^\alpha y^\beta$ by scaling.  If $m\in \II$ is a monomial, and $g\in T$ then $g\cdot m=am\in \II$ for some $a\in \C$.  Hence an ideal generated by monomials will be $T$ fixed.  
+
+In the other direction, suppose that $\II$ is $T$ fixed, and $f\in\II$.  We show all monomials in $f$ are in $\II$.  Suppose that $f$ is a linear combination of $k$ monomials $m_i$. Then there are $t_1,\cdots, t_k\in T$ so that $f_i=t_i \cdot f\in \II$ are linearly independent over $\C$. Inverting the matrix that expresses $f_i$ in terms of the monomials $m_i$, we see that $m_i$ is a linear combination of the $f_i$, and hence $m_i\in\II$.
+\end{proof}
+
+
+
+\begin{proof}[Proof of Lemma \ref{lem:monomialspartitions}]
+
+The bijection between monomial ideals with $\dim R/\II=n$ and partitions of $n$ is best illustrated by example: 
+
+\begin{center}
+\begin{tikzpicture}
+\draw[fill=red!20] (0,2) rectangle (1,3);
+\draw[fill=red!20] (1,1) rectangle (2,2);
+\draw[fill=red!20] (3,0) rectangle (4,1);
+
+
+\draw[thin, gray] (0,0) grid (4.5,3.5);
+\foreach \x in {0,...,4}
+   \foreach \y in {0,...,3}
+       \node at (\x+.5,\y+.5) {$x^\x y^\y$};
+\draw[ultra thick, black] (0,0)--(0,2)--(1,2)--(1,1)--(3,1)--(3,0)--cycle;
+
+\draw node at (7.5, 2) {$\begin{array}{cc} \II & \lambda \\ (x^3,xy,y^2) & (2,1,1) \end{array}$};
+\end{tikzpicture}
+\end{center}
+
+The monomials \emph{not} in $\II$ form a basis for $R/\II$, and correspond to the cells of a partition $\II_\lambda$.  The generators of $\II_\lambda$ correspond to the monomials in the exterior corners of $\lambda$, the squares in red above.
+
+\end{proof}
+
+Thus, we have proven Ellingsrud-Str\o mme on the level of Euler characteristic.  To updgrade this poincare polynomial, we must use the Bia\l ynicki-Birula decomposition.
+
+
+
+\subsection{Bia\l ynicki-Birula decomposition}
+
+The Bia\l ynicki-Birula decomposition is essentially an algebraic version of Morse theory.
+
+Morse theory describes the topology of a smooth manifold $X$ of dimension $n$ in terms of a generic smooth function $f:X\to\R$.  The critical points of such a function will be nondegenerate, that is, have non-degenerate Hessian matrix, and hence be locally of the form
+\[f=a+x_1^2+x_2^2+\cdots +x_k^2-x_{k+1}^2-x_{k+2}^2-\cdots -x_n^2\]
+
+The Morse flow is the downward gradient flow of $f$; the stable manifold $S_p$ of a critical point $p$ is the set of all points of $X$ that flow to $p$.  At each critical point $p$, the tangent space $T_pX$ splits into $T^+_pX$, the tangent directions flowing into $p$, and $T_p^-X$, the tangent directions flowing out of $p$.
+
+
+The role of the Morse flow will be played by the flow $x\mapsto \varepsilon x$ as $\varepsilon\in\C^*$ tends toward zero.  We assume that the $\C^*$ action on $X$ is such that this limit point exists for all $x\in X$.  
+
+Let $p$ be a fixed point of the $\C^*$ action.  Then $\C^*$ acts on $T_pX$, and so $T_pX$ is not just a vector space but a $\C^*$ representation.   and hence decomposes into a direct sum of irreducible representations.  Let $V_a$ denote the irreducible representation of $\C^*$ where $\varepsilon\in\C^*$ acts as $\varepsilon^a$.  
+
+
+Let $T_p^+X$ (respectively $T_p^-X$) denote the subspace of $T_pX$ where the $\C^*$ action acts with a positive (respectively negative) exponent, and let $T_p^0(X)$ denote the subspace where $\C^*$ acts trivially.  Thus, if we consider the flow $X$ sending $\lambda$ toward 0, $T_p^+X$ are the directions that are flowing twoard $p$, and $T_p^-X$ are the directions flowing away from $p$.  
+
+Note that if $p$ is an isolated fixed point, then $T_p^0(X)=0$.
+
+$$T_pX=\bigoplus_{n\in\Z} V_n^{e_n}$$
+then
+$$T_p^+X=\bigoplus_{n>0} V_n^{e_n}$$
+
+Let 
+$$\mathcal{S}_p=\{x\in X|\lim_{\varepsilon\to 0} \varepsilon x=p\}$$
+Then the Bia\l ynicki-Birula decomposition states that $X=\sqcup_{p}\mathcal{S}_p$; the point is that $\mathcal{S}_p$ is a subvariety isomorphic to $A_k$.
+
+
+We saw in Section \ref{sec:Teuler} that if $X$ is a variety with a $\C^*$ action with $k$ isolated fixed points, then $\chi(X)=k$.  If we know the weights of the $\C^*$ action on the tangent spaces of the fixed points, the Bia\l ynicki-Birula decomposition leverages this extra information to give the Betti numbers of $X$, or further, the class of $X$ in the Grothendieck ring of varieties.
+
+\subsection{Applying Bia\l ynicki-Birula to $\Hilb_n(\C^2)$}
+To apply the Bia\l ynicki-Birula decomposition to $\Hilb_n(\C^2)$, we need to determine the torus weights on each tangent space $T_\lambda\Hilb_n(\C^2)$.
+
+\begin{lemma}[Ellingsrud and Str\o mme \cite{ES}] \label{lem:torus-weights}
+$$T_\lambda \Hilb_n(\C^2)=\sum_{\square\in\lambda} \left(x^{-\ell(\square)} y^{a(\square)+1}+x^{\ell(\square)+1}y^{-a(\square)}\right)$$
+\end{lemma}
+
+Before giving a proof, we show how Lemma \ref{lem:torus-weights} implies Ellingsrud and Str\o mme's result. 
+
+\begin{proof}[Ellingsrud-Str\o mme]
+
+  We have a described a $(\C^*)^2$ action on $\Hilb_n(\C^2)$.  To apply Bia\l ynicki-Birula, however, we need a $\C^*$ action with isolated fixed points.  The solution is to pass to a generic one dimensional subtorus -- we use the subtorus $\C^*$ that acts on $\C^2$ with weights $(\varepsilon,1)$, for $\varepsilon$ very small.
+
+  The choice of subtorus weights should really be integer numbers, and by $(\varepsilon, 1)$ we really mean an action $(1, N)$ with $N>>n$. Since $a(\square)$ and $\ell(\square)$ are bounded by $n$, this means that we will always have $a(\square)<<N$, and so thinking about $\varepsilon$ as $1/N$, we have $a(\square)\varepsilon<<1$, and similarly with $\ell(\square)$.
+
+In the flow $\lambda\to 0$ the positive directions are the stable directions.
+  
+Recall Warning \ref{warning:action-sign} that $\C^*$ will act with \emph{opposite} weights on $x$ and $y$, so that $$t\cdot x^\alpha y^\beta=t^{-\alpha\varepsilon-\beta}x^\alpha y^\beta.$$  
+
+We now determine $\dim^+(\lambda)$ using this subtorus.  The term $x^{-\ell(\square)} y^{a(\square)+1}$ has weight $\varepsilon\ell(\square)-a(\square)-1$, which will never be positive, and hence will never contribute to $\dim^+(\lambda)$.
+
+The term $x^{\ell(\square)+1}y^{-a(\square)}$ has weight $a(\square)-\varepsilon\ell(\square)-\varepsilon$, which will be positive if and only if $a(\square)>0$.  The squares with $a(\square)=0$ are exactly those at the top of eacg column of $\lambda$. Viewing the columns as the parts of $\lambda$, we see that the $i$th column contributes $\lambda_i-1$ to $\dim^+(\lambda)$.
+
+
+\begin{center}
+\begin{tikzpicture}[scale=.5]
+\draw[fill=red!20] (0,0) rectangle (1,2);
+\draw[fill=red!20] (0,0) rectangle (3,1);
+
+
+\draw[thin, gray] (0,0) grid (1,3);
+\draw[thin, gray] (1,0) grid (3,2);
+
+\draw[thick] (0,0)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--cycle;
+
+\draw (2,-1) node {$\dim^+(\lambda)$ is number of shaded squares};
+\end{tikzpicture}
+\end{center}
+
+\end{proof}
+
+\begin{remark}
+  While we picked the subtorus $(\varepsilon, 1)$, any generic $\C^*$ action (say, $(s,1)$, with $s\in\R\setminus\Q$) will have isolated fixed points, and hence can be used to compute the cohomology of $\Hilb_n(\C^2)$.  Using a different $\C^*$ action will give a different dimension statistic $\dim_s^-(\lambda)$:
+
+\[ \dim_s^-(\lambda)=\left|\left\{\square\in\lambda : \frac{a(\square)}{\ell(\square)+1}<s<\frac{a(\square)+1}{\ell(\square)}\right\}\right| \]
+
+However, since each of these statistics compute $P_t(\Hilb_n(\C^2)$, we see that
+\begin{equation} \label{eq:lw} \sum_{\lambda\in\PP} q^{|\lambda|}t^{\dim_s^-(\lambda)}=\prod_{m=1}^\infty \frac{1}{1-tq^m}
+  \end{equation}
+
+This was apparently first observed by Haiman, and in \cite{LW} Loehr and Warrington gave a combinatorial proof of Equation \ref{eq:lw}, and furthermore extending the statistic to the non-isolated case -- that is, to rational $s$.  It may be interesting to have a geometric understanding of the bijections in \cite{LW}.
+\end{remark}
+
+
+\subsection{Determination of the tangent weights}
+
+It remains to prove Lemma \ref{lem:torus-weights}, which will also be the main tool needed in the body of the text.  There are many proofs; the one we present is as bijective as possible, and as far as we know does not appear in the literature, although an expert told us: ``Everyone who studies this subject discovers this proof; nobody's written it down because it's awkward to draw the pictures''.
+
+
+We begin with the following the description of the the tangent space to the Hilbert scheme:
+\begin{lemma} \label{lem:tangent-hom}
+$$T_{\II}\Hilb_n(\C^2)=\Hom_R(\II,R/\II)$$
+\end{lemma}
+Lemma \ref{lem:tangent-hom} actually holds in any dimension, for any smooth variety.
+
+Before giving a proof, for intuition we give a plausibility argument in analogy with the Grassmannian.  If $V\subset W$ is a $k$ dimensional subspace, then the tangent space is the way to deform $V$ slightly inside of $W$, which we see is
+\[T_V Gr_k(W)\cong \Hom(V, V^\perp) \cong \Hom(V, W/V).\]
+Thus, we see that  \emph{$\C$-linear maps} from $\II$ to $R/II$ give deformations of $\II$ as a \emph{vector subspace} of $R$.  It is reasonable to guess that if we want the deformation to remain an ideal, we should require it to be $R$-linear instead of just $\C$-linear.
+
+\begin{proof}
+More formally, it is a general fact that first order deformations of objects are given by $\Ext^1(\mathcal{F},\mathcal{F})$, and obstructions to these deformations are given by $\Ext^2(\mathcal{F},\mathcal{F})$. 
+
+The long exact sequence of $R$-modules obtained by applying $\Hom_R(\II, -)$ to the short exact sequence
+$$0\to \II\to R\to R/\II\to 0$$
+gives 
+$$0\to\Hom_R(\II,\II)\to \Hom_R(\II, R)\to\Hom_R(\II,R/\II)\to\Ext_R^1(\II, \II)\to\Ext_R^1(\II,R)$$
+Since $\II$ is an ideal that eventually contains $x^n, y^m$, one can check that  $\Hom_R(\II,\II)\cong\Hom_R(\II, R)$;  and $\Ext^1(\II,R)=0$, and so indeed we have $\Hom_R(\II,R/\II)\cong\Ext_R^1(\II, \II)$.
+\end{proof}
+
+
+SYSTEMS OF ARROWS
+
+We can now complete the proof of the tangent weight statement.
+
+As the isomorphism was, it will respect the $(C^*)^2$ action.  Let $T_\lambda^{a,b}$ denote the $(a,b)$-isotypical component of $T_{\II_\lambda}\Hilb_n(\C^2)$.  Then vectors $v\in T_\lambda^{a,b}$ correspond to module homomorphisms $f\in\Hom_R(\II_\lambda, R/\II_\lambda)$ of weight $(a,b)$, i.e., with
+$$f(x^{\alpha}y^\beta)=c_{\alpha,\beta} x^{\alpha-a}y^{\beta-b}$$
+for some constant $c_{\alpha, \beta}$ (that can be different for different monomials).  
+
+
+Let $P_\lambda$ be the boundary path of $\lambda$; for $(a,b)$ in $\Z^2$, let $P_\lambda(a,b)$ denote the boundary path of $\lambda$ shifted to the right by $a$ and up by $b$.
+
+\begin{lemma} Let $B_\lambda(a,b)$ be the set of bounded regions above $P_\lambda$ and below $P_\lambda(a,b)$.  For $U\in B_\lambda(a,b)$, let $f_U$ denote the map that multiplies monomials in $U$ by $x^{-a}y^{-b}$ and sends monomials not in $B_\lambda(a,b)$ to $0$.  Then the $f_U$ form a basis for $T_\lambda^{a,b}$.
+\end{lemma}
+
+\begin{proof}
+To be a map of $R$-modules the map must commute with multipication by $x$ and $y$.  Thus, if $x^{\alpha-a+1}y^{\beta-b}\notin \II$, we must have $c_{\alpha+1,\beta}=c_{\alpha,\beta}$, and similarly with $y$.  Thus, to be a map of $R$-modules, we see that monomials in the same component must get multiplied by the same constant.
+
+If a region is not bounded, then one of the generators of $\II$ contained in that region would be mapped to a monomial with negative exponents, which it can't do; therefore it must be multiplied by 0.
+\begin{center}
+\begin{tikzpicture}[scale=.5]
+
+\fill[red!20!white] (0,5)--(0,3)--(1,3)--(1,5)--cycle;
+\fill[red!20!white] (1,3)--(2,3)--(2,2)--(1,2)--cycle;
+\fill[red!20!white] (3,2)--(4,2)--(4,1)--(3,1)--cycle;
+\fill[red!20!white] (4,1)--(5,1)--(5,0)--(4,0)--cycle;
+\draw[thin, gray] (0,0) grid (5,5);
+\draw (.5,3.5) node{$y^3$};
+\draw (1.5,2.5) node{$xy^2$};
+\draw (3.5,1.5) node{$x^3y$};
+\draw (4.5,.5) node{$x^4$};
+
+\begin{scope}[xshift=-.1cm, yshift=-.1cm]
+\draw[thick, red,  triangle 60 reversed-triangle 60] (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+\begin{scope}[xshift=1.1cm, yshift=.1cm]
+\draw[thick, blue, dashed, triangle 60 reversed-triangle 60]  (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+
+\begin{scope}[xshift=8cm]
+\fill[red!20!white] (0,5)--(2,5)--(2,3)--(3,3)--(3,2)--(1,2)--(1,3)--(0,3)--cycle;
+\fill[red!20!white] (3,2)--(5,2)--(5,1)--(6,1)--(6,0)--(4,0)--(4,1)--(3,1)--cycle;
+
+\draw[thin, gray] (0,0) grid (5,5);
+\draw (.5,3.5) node{$y^3$};
+\draw (1.5,2.5) node{$xy^2$};
+\draw (3.5,1.5) node{$x^3y$};
+\draw (4.5,.5) node{$x^4$};
+\begin{scope}[xshift=-.1cm, yshift=-.1cm]
+\draw[thick, red,  triangle 60 reversed-triangle 60] (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+\begin{scope}[xshift=2.1cm, yshift=.1cm]
+\draw[thick, blue, dashed, triangle 60 reversed-triangle 60]  (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+\end{scope}
+
+
+
+\end{tikzpicture}
+\end{center}
+The picture on the left shows $(1,0)$ is three dimensional.  The region containing $y^3$ is unbounded; indeed, $y^3$ would have to map to $x^{-1}y^3\notin R/\II$.  
+
+The picture on the right shows $(2,0)$ is one dimensional; $y^3$ ad $xy^2$ would each map to things not in $R/\II$ because they are in an unbounded region.  We also have that $x^3y$ and $x^4$ must get multiplied by the same constant, since $xf(x^3y)=x^2y=yf(x^4)$ and $x^2y\in R\II$.
+\end{proof}
+
+
+We now prove Lemma \ref{lem:torus-weights}.  First, observe that $T_\lambda^{(a,b)}$ is empty if $(a,b)$ are both negative or both non-negative.  If both are non-negative, then there are no cells at all below $P_\lambda(a,b)$ and above $P_\lambda$.  If both are positive, then the cells below $P_\lambda(a,b)$ and $P_\lambda$ form a single unbounded region.  
+\begin{center}
+\begin{tikzpicture}[scale=.5]
+\fill[blue!20!white] (0,5)--(1,5)--(1,4)--(2,4)--(2,3)--(4,3)--(4,2)--(5,2)--(5,0)--(4,0)--(4,1)--(3,1)--(3,2)--(1,2)--(1,3)--(0,3)--cycle;
+\draw (.5,3.5) node{$y^3$};
+\draw (1.5,2.5) node{$xy^2$};
+\draw (3.5,1.5) node{$x^3y$};
+\draw (4.5,.5) node{$x^4$};
+\draw[thin, gray] (0,0) grid (5,5);
+\begin{scope}[xshift=-.1cm, yshift=-.1cm]
+\draw[thick, red,  triangle 60 reversed-triangle 60] (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+\begin{scope}[xshift=1.1cm, yshift=1.1cm]
+\draw[thick, blue, dashed, triangle 60 reversed-triangle 60]  (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+
+\begin{scope}[xshift=9cm]
+\draw[thin, gray] (0,0) grid (5,5);
+\draw (.5,3.5) node{$y^3$};
+\draw (1.5,2.5) node{$xy^2$};
+\draw (3.5,1.5) node{$x^3y$};
+\draw (4.5,.5) node{$x^4$};
+\begin{scope}[xshift=-.1cm, yshift=-.1cm]
+\draw[thick, red,  triangle 60 reversed-triangle 60] (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+\begin{scope}[xshift=-.9cm, yshift=.1cm]
+\draw[thick, blue, dashed, triangle 60 reversed-triangle 60]  (0,5)--(0,3)--(1,3)--(1,2)--(3,2)--(3,1)--(4,1)--(4,0)--(5,0);
+\end{scope}
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+The left shows that for $(1,1)$ are both positive, then there is a single unbounded region.  The right shows that for $(-1,0)$ there are no cells above $P_\lambda$ and below $P_\lambda(-1,0)$.
+Thus, exactly one of $a,b$ is negative; assume it is $a$.  We must show that the elements of $B_\lambda(a,b)$ are in bijection with the cells $\square\in\lambda$ having  $a=\ell(\square)$ and $b=-a(\square)-1$ (recall the sign from Warning \ref{warning:action-sign}).
+
+Consider a region of cells above $P_\lambda$ and below $P_\lambda(-a,-b)$.  There are two possible directions this region could be unbounded -- along the positive $y$ or $x$-axes.  Since $b$ is positive, there are no squares far along the $x$-axis both below $P_\lambda(-a,-b)$  and above $P_\lambda$, and so the region is automatically bounded in that direction.  
+
+We must therefore guarantee the region is bounded at the bottom right.  This will happen when a South step of $P_\lambda$ starts at the same point as East step of $P_\lambda(-a,-b)$.  
+
+
+
+
+Bounded cells well thus be in bijection with pairs of such cells.  Translating the East step back $(a,b)$ to its original place on the boundary strip, we find these two steps give an inversion in the $P_\lambda$ and hence a cell of $\lambda$.  The arm length of this cell will be $b+1$, and the leg will have size $a$. 
+
+An analogous argument shows that tangent directions with $b$ negative correspond to the other terms in the sum.
 
 
 
