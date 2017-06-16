@@ -10,6 +10,7 @@
 \usepackage{microtype}
 \usepackage{tikz}
 \usepackage{graphicx}
+\usepackage{wrapfig}
 %\usepackage{mathtools} %for \mathclap, fixing long subscripts in a summation
 \linespread{1.2}
 \usepackage{xcolor}
@@ -29,7 +30,7 @@
 \newtheorem{lemma}[dummy]{Lemma}
 \newtheorem{example}[dummy]{Example}
 \newtheorem{corollary}[dummy]{Corollary}
-\newtheorem{definition}[dummy]{Definition}
+v\newtheorem{definition}[dummy]{Definition}
 \newtheorem{remark}[dummy]{Remark}
 \newtheorem{proposition}[dummy]{Proposition}
 \newtheorem{observation}{Observation}
@@ -38,7 +39,7 @@
 \newtheorem{warning}[dummy]{Warning}
 
 \newcommand{\Z}{\mathbf{Z}}
-\newcommand{\C}{\mathbf{C}}
+v\newcommand{\C}{\mathbf{C}}
 \newcommand{\N}{\mathbf{N}}
 \newcommand{\R}{\mathbf{R}}
 \newcommand{\Q}{\mathbf{Q}}
@@ -47,6 +48,7 @@
 \newcommand{\LL}{\mathbf{L}}
 \newcommand{\PP}{\mathcal{P}} % partitions
 \newcommand{\II}{\mathcal{I}}
+\newcommand{\Reg}{\mathbf{G}}
 
 \newcommand{\coleg}{\text{co}\ell}
 
@@ -206,11 +208,6 @@ Recall that the \emph{hook length} $h(\square)=a(\square)+\ell(\square)+1$.  Def
 \[\sum_{\lambda\in\PP} q^{|\lambda|}t^{h_r(\lambda)}=\prod_{m\geq 1} \frac{(1-q^{rm})^r}{(1-q^m)}\prod_{m\geq 1}\frac{1}{(1-q^{rm}t^m)^r}\]
 The first product here is the generating function for $r$-cores, and the second product is a generating function for $r$-quotients; $h_r(\lambda)$ is the size of the $r$-quotient of $\lambda$.  
 
-Es
-For $k, r$ integers, we define
-\[\cdim^+_{k/r}(\lambda)=\#\left\{\square\in\lambda \Big | \ell(\square)-k a(\square)=-1 \mod r\right\}. \]
-We see this family of statistics is related to cores and quotients because $h_r(\lambda)=\cdim^+{-1/r}(\lambda)$.
-
 \begin{conjecture}
   The generating function
   \[ \Gcomb_{k/r}(q,t)=\sum_{\lambda\in\PP}q^{|\lambda|}t^{\cdim^+_{k/r}(\lambda)}\]
@@ -218,6 +215,11 @@ has a product formula that is a $t$ analog of the Euler product when $(k+1,r)=1$
 \end{conjecture}
 
 The precise form of this conjecture, and a geometric interpretation of it, is given in.  
+
+For $k, r$ integers, we define
+\[\cdim^+_{k/r}(\lambda)=\#\left\{\square\in\lambda \Big | \ell(\square)-k a(\square)=-1 \pmod r\right\}. \]
+We see this family of statistics is related to cores and quotients because $h_r(\lambda)=\cdim^+{-1/r}(\lambda)$.
+
 
 \subsection{Quadratic forms}
 Another part of the cores and quotients story is that $r$-core partitions are in bijection with a lattice $\Z^{r-1}$, so that the size $|\lambda|$ of a given $r$ core becomes a quadratic function on the lattice.
@@ -246,84 +248,6 @@ The proofs given by Buryak-Feigin, and Buryak-Feigin-Nakajima are algebraic geom
 
 
 
-
-
-\begin{tikzpicture}[scale=.4]
-\begin{scope}
-\draw (3.5,8.5) node{(1/5,1/5)};
-       \clip (0,0) rectangle (7,7);
-\foreach \x in {0,...,6}{%
-    \foreach \y in {-2,...,2}{%
-       \draw[fill=red!20]  (\x, -\x+5*\y) rectangle (\x+1, -\x+5*\y+1); 
-       \draw[fill=green!20]  (\x, -\x+5*\y+1) rectangle (\x+1, -\x+5*\y+2); 
-       \draw[fill=blue!20]  (\x, -\x+5*\y+2) rectangle (\x+1, -\x+5*\y+3); 
-       \draw[fill=black]  (\x, -\x+5*\y+3) rectangle (\x+1, -\x+5*\y+4);
-        \draw  (\x, -\x+5*\y+4) rectangle (\x+1, -\x+5*\y+5); 
-}}
-\end{scope}     
-
-\begin{scope}[xshift=10cm]
-\draw (3.5,8.5) node{(1/5,2/5)};
-\begin{scope}[xscale=-1, rotate=90]
-       \clip (0,0) rectangle (7,7);
-\foreach \x in {0,...,6}{%
-    \foreach \y in {-4,...,2}{%
-       \draw[fill=red!20]  (\x, 3*\x+5*\y) rectangle (\x+1, 3*\x+5*\y+1); 
-       \draw[fill=green!20]  (\x, 3*\x+5*\y+1) rectangle (\x+1, 3*\x+5*\y+2); 
-       \draw[fill=blue!20]  (\x, 3*\x+5*\y+2) rectangle (\x+1, 3*\x+5*\y+3); 
-       \draw[fill=black]  (\x, 3*\x+5*\y+3) rectangle (\x+1, 3*\x+5*\y+4);
-        \draw  (\x, 3*\x+5*\y+4) rectangle (\x+1, 3*\x+5*\y+5); 
-}}
-\end{scope}
-\end{scope}     
-
-\begin{scope}[xshift=20cm]
-\draw (3.5,8.5) node{(1/5,-1/5)};
-\begin{scope}[xscale=-1, rotate=90]
-       \clip (0,0) rectangle (7,7);
-\foreach \x in {0,...,6}{%
-    \foreach \y in {-2,...,2}{%
-       \draw[fill=red!20]  (\x, \x+5*\y) rectangle (\x+1, \x+5*\y+1); 
-       \draw[fill=green!20]  (\x, \x+5*\y+1) rectangle (\x+1, \x+5*\y+2); 
-       \draw[fill=blue!20]  (\x, \x+5*\y+2) rectangle (\x+1, \x+5*\y+3); 
-       \draw[fill=black]  (\x, \x+5*\y+3) rectangle (\x+1, \x+5*\y+4);
-        \draw  (\x, \x+5*\y+4) rectangle (\x+1, \x+5*\y+5); 
-}}
-\end{scope}     
-\end{scope}
-
-\end{tikzpicture}
-
-By adding a $1\times r$ strip to the bottom right corner of a partition, it is immediate that if a class $v\in K(G)$ is represented by a partition, then $v+V_G$ is as well. 
-
-\begin{definition}
-The $\overline{K}(G)=K(G)/V_G$ 
-\end{definition}
-
-It is not hard to see that any class in $\overline{K}(G)$ is represented by a partition: a block staircase partition with blocks of size $|G|$ will be a multiple of $V_G$, and then modifications on each step can add a multiple of $G$ plus one of any given color.  Below, the bottom to stairs each have the effect of adding one white box in $\overline{K}(G)$, while the top two stairs each add one red box.
-
-\begin{tikzpicture}[scale=.3]
-\begin{scope}[xscale=-1, rotate=90]
-       \clip (0,0) rectangle (12,12);
-\foreach \x in {0,...,11}{%
-    \foreach \y in {-4,...,4}{%
-       \filldraw[red!20]  (\x, \x+3*\y) rectangle (\x+1, \x+3*\y+1); 
-       \filldraw[green!20]  (\x, \x+3*\y+1) rectangle (\x+1, \x+3*\y+2); 
-       \draw[gray] (0,0) grid (12,12);
-}}
-\end{scope}     
-\draw[very thick] (0,9)--(3,9)--(3,6)--(6,6)--(6,3)--(9,3)--(9,0);
-\draw[very thick, dashed] (0,10)--(1,10)--(1,9);
-\draw[very thick, dashed] (3,7)--(4,7)--(4,6);
-\draw [very thick, dashed] (6,6)--(8,6)--(8,4)--(9,4)--(9,3);
-\draw [very thick, dashed] (9,3)--(11,3)--(11,1)--(12,1)--(12,0);
-
-\end{tikzpicture}
-
-
-\begin{question}
-Given a class $\overline{v}\in \overline{K}(G)$, what is the smallest class $v\in K(G)$ represented by a partition?
-\end{question}
 
 
 \subsection{Acknowledgements}
@@ -378,7 +302,7 @@ this is a point of $\Hilb_n(\C^2)$.  Thus, there is a locus in $\Hilb_n(\C^2)$ t
  If two of the points collide, there is still a limiting ideal $\II$.  This ideal has some non-reduced structure that ``remembers how the points collided''.  This is best illustrated with an example.
 
 
-\begin{example}
+\begin{example} \label{ex:twopoints}
 Let $(a,b)\neq (0,0)\in\C^2$, and let $P_t$ be the pair of distinct points $(0,0)$ and $(at,bt)$.  What is the limit $\II_{P_0}$ of $\II_{P_t}$ as $t\to 0$?
 
 The ideal $\II_{P_t}$ can be written as follows: 
@@ -387,9 +311,9 @@ Setting $t=0$, we see that $\II_{P_0}$ should contain $x^2, xy$ and $y^2$.  Sinc
 
 Taking the difference of the the middle two generators of $\II_{P_t}$, we see that it contains $btx-aty$. As $\II_{P_t}$ is an ideal and $t$ is a nonzero scalar, it must contain $bx-ay$.  Now as $bx-ay\in \II_{P_t}$ for $t\neq 0$, it certainly should be contained in the limit as well.  
 
-Another way to describe $\II_{P_0}$ is
-$$\II_{P_0}=\{f\in R| f(0)=\partial_vf(0)=0\}$$
-where $v=(a,b)$ is the direction the two points collided in.  Thus, the non-reduced scheme structure at $\II_{P_0}$ \emph{remembers} the direction the in which the points collided. 
+Let $v=(a,b)\in T_0\C^2$ be the direction the two points collided in.  Then another way to describe $\II_{P_0}$ is as $\II_v$, where
+$$\II_{v}=\{f\in R| f(0)=\partial_vf(0)=0\}$$
+This is what we mean when we say the non-reduced scheme structure at $\II_{P_0}$ \emph{remembers} the direction the in which the points collided. 
 \end{example}
 
 We have seen that $\Hilb_n(\C^2)$ and $\Sym^n(\C^2)$ agree for the smooth locus of $\Sym^n(\C^2)$, but that $\Hilb_n(\C^2)$ is larger over the singular locus of $\Sym^n(\C^2)$, where the points are not distinct.  It turns out that $\Hilb_n(\C^2)$ is smooth, and a resolution of singularities of $\Sym^n(\C^2)$; the resolution map is the Hilbert-Chow morphism:
@@ -511,7 +435,18 @@ Further categorifications and extensions of this Heisenberg action are an area o
 
 
 
-\section{Background: Hilbert schemes of points on orbifolds}
+\section{Hilbert schemes of points on orbifolds}
+
+
+We will now introduce notation for the group actions we are interested in.  In principle, one can study $\Hilb_n([\C^2/G])$ for any $G$.  The localization techniques that reduce their topology to the study of partitions requires that $G$ be abelian.  The case of $\C^*$ has been studied by Buryak, Feigin, and Nakajima, so in this paper we focus on finite abelian groups.  From both the geometric and combinatorial perspective, groups with isolated fixed points -- i.e., groups that fix only the origin, and not all of $\C^2$ or a line in $\C^2$, behave better and are more interesting.  The only abelian groups that act with an isolated fixed point are cyclic.
+
+Thus, let $\Z_r$ act on $\C^2$, and let $g\in\Z_r$ be a generator.   We can choose coordinates so that this action is diagonal, and hence $g\cdot (x,y)=(\zeta^a x, \zeta^by)$.  We will denote this group action by $\frac{1}{r}(a, b)$.  
+
+Since the action has isolated fixed points, we can find a generator $h\in\Z_r$ so that $h\cdot (x,y)=(\zeta x, \zeta^by)$; we will sometimes use $a/r$ to refer to this group. Switching the roles of $x$ and $y$, we see that that if $bc=1\in\Z_r$, then $b/r$ is equivalent to $c/r$.
+
+For $G$ any finite group acting on $\C^2$, we will write $\Sur_G$ to denote the stack $[\C^2/G]$. Let $G$ be the group $\mathbb{Z}/r\mathbb{Z}$, acting with weights $1/k, k/r$, with $k$ relatively prime to $r$.  Any cyclic group acting on $\C^2$ so that only the origin has a nontrivial stabilizer will be of this form after changing coordinates on $\mathbb{C}^2$ and changing generator of $\mathbb{Z}/r\mathbb{Z}$.  We will write $\Sur_{k/r}$ to denote $\Sur_G$ in this case.
+
+
 
 
 \subsection{Orbifolds and stacks}
@@ -527,67 +462,91 @@ One benefit of the stacky point of view is that $[\C^n/G]$ is a smooth object in
 
 \subsection{Orbifold Hilbert schemes}
 
-With the above point of view, the Hilbert scheme of $n$ points on $[\C^2/G]$ should parameterize $G$-equivariant ideals of $R$.  Since $R$ has an action of $G$, and ideals are subsets of $R$, the $G$ action on an ideal is forced upon us, and $G$-equivariant ideals are just $G$-invariant ideals.  Thus, the Hilbert scheme of $n$ points on $[\C^2/G]$ is just the $G$-fixed locus of the Hilbert scheme of $n$ points on $\C^2$:
+With the above point of view, the Hilbert scheme of $n$ points on $[\C^2/G]$ should parameterize $G$-equivariant ideals of $R$.  Since $R$ has an action of $G$, and ideals are subsets of $R$, the $G$ action on an ideal is forced upon us, and $G$-equivariant ideals are just $G$-invariant ideals.  Thus, the Hilbert scheme of $n$ points on $[\C^2/G]$ is just the $G$-fixed locus of the Hilbert scheme of $n$ points on $\C^2$.
 
-$$\Hilb_n([\C^2/G])=\{\II\subset R |\dim R/\II=n, g\cdot \II=\II\forall g\in G \} =\Hilb_n(\C^2)^G$$
+\begin{definition}
+$$\Hilb_n([\C^2/G])=\Hilb_n(\C^2)^G$$
+\end{definition}
 
-This is potentially confusing, given the discussion in the previous section that passing from the singular space $\C^2/G$ to the smooth stack $[\C^2/G]$ is passing from $G$-invariant objects to $G$-equivariant objects.  The Hilbert scheme of $n$-points on the singular space $\C^2/G$ is the space of ideals in the ring of invariants $R^G$
+\begin{remark}
+This is potentially confusing, given the discussion in the previous section that passing from the singular space $\C^2/G$ to the smooth stack $[\C^2/G]$ is done by replacing $G$-invariant objects with $G$-equivariant objects.  It is therefore worth mentioning that the Hilbert scheme of $n$-points on the singular space $\C^2/G$ is the space of ideals in the ring of invariants $R^G$:
+$$\Hilb_n(\C^2/G)=\{\II\subset R^G | \dim R^G/\II=n\}$$
+\end{remark}
 
-$$\Hilb_n(\C^2/G_=\{\II\subset R^G | \dim R^G/\II=n\}$$
+Viewing $\Hilb_n([\C^2/G])$ as the fixed point set of the $G$ action on $\C^2$ is much simpler than the stack theoretic viewpoint, and will be our main way of working with the Hilbert schemes.  However, we will continue to write $\Hilb_n([\C^2/G])$ instead of $\Hilb_n(\C^2)^G$ because our motivation comes from the philosophy that results for smooth spaces should extend to smooth stacks.
 
+We also highlight that $\Hilb_n([\C^2/G])$ is a space and not a stack, even though $\C^2/G$ is a stack.  In fact, we have the following:
 
-Viewing $\Hilb_n([\C^2/G])$ as the fixed point set of the $G$ action on $\C^2$ is much simpler than the stack theoretic viewpoint, and will be our main way of working with the Hilbert schemes.  We write $\Hilb_n([\C^2/G])$ instead of $\Hilb_n(\C^2)^G$ because our motivation comes from the results about Hilbert schemes of points on smooth surfaces in section.
+\begin{lemma} For any $n$ and $G$, $\Hilb_n([\C^2/G])$ is smooth.
+\end{lemma}
 
+\begin{proof}  
+  We have $\Hilb_n([\C^2/G])=\Hilb_n(\C^2)^G$ is the fixed point set of a group acting on a smooth space, and hence smooth.
+  \end{proof}
 
-We highlight that $\Hilb_n([\C^2/G])$ is just a space, even though $\C^2/G$ is a stack.  Furthermore, as the fixed point set of a finite group acting on a smooth space, we immediately see that $\Hilb_n([\C^2/G])$ are smooth, giving a first hint that they behave in a similar manner.
-
-
-
-For $G$ any finite group acting on $\C^2$, we will write $\mathcal{S}_G$ to denote the stack $[\C^2/G]$. Let $G$ be the group $\mathbb{Z}/r\mathbb{Z}$, acting with weights $1/k, k/r$, with $k$ relatively prime to $r$.  Any cyclic group acting on $\C^2$ so that only the origin has a nontrivial stabilizer will be of this form after changing coordinates on $\mathbb{C}^2$ and changing generator of $\mathbb{Z}/r\mathbb{Z}$.  We will write $\mathcal{S}_{k/r}$ to denote $\mathcal{S}_G$ in this case.
-
+To build intuition, we now look at $\Hilb_n([\C^2/G])$ when $n$ is one or two.
 
 \begin{example}
-Let $X$ be any variety.  Then $\Hilb_1([X/G])=\Hilb_1(X)^G=X^G$, the fixed point set of $G$.  In particular, we have that $\Hilb_1(\Sur_{k/r})$ is a point.
-
-Note this behaviour is very different than Hilbert schemes on spaces, where $\Hilb_1(X)=X$, and suggests that for orbifolds, it is wrong to think of $n$ as counting the number of points.
+Let $X$ be any variety.  Then $\Hilb_1([X/G])=\Hilb_1(X)^G$, and since $\Hilb_1(X)=X$, we see this that $\Hilb_1([X/G])=X^G$, the fixed point set of $G$ acting on $X$.  In particular, we have that $\Hilb_1(\Sur_{k/r})$ is a point.
 \end{example}
 
-\begin{example}
+Note this behaviour is very different than Hilbert schemes on spaces, where $\Hilb_1(X)=X$, and suggests that for orbifolds, it is wrong to think of $n$ as counting the number of points.
+
+\begin{example} \label{ex:twopointsorbifold}
 We now look at $\Hilb_2(\Sur_{k/r})$.  
 
 First, consider the $G$ action on the locus of $\Hilb_2(\C^2)$ consisting of two distinct points $\{p, q\}$.  To be $G$-invariant, we need this set of points to be a union of $G$-orbits.   As only the origin has nontrivial stabilizer, every $G$-orbit on $\C^2$ is either the origin, consisting of one point, or consits of $|G|=r$ distinct points.  So, if $r>2$, there are no points in $\Hilb_2(\C^2)^G$ consisting of distinct points.  
 
-If $r=2$, we must have $k=1$, the nontrivial element of $G=\Z/2\Z$ acts as multiplication by -1, and any point of $\Hilb_2(\C^2)^G$ consisting of distinct points of $\C^2$ is of the form $\{p,-p\}$
-
-Now we consider the action of the locus where the ideal is supported at one point.  For the ideal to be $G$ invariant, this point needs to be $G$-fixed, and so must be the origin.  Thus, we are considering ideals of the form $\II_{0, v}$ for $v\in T_0C^2$.  For this to be $G$ invariant, we must have that $v$ is an eigenvector for the $G$ action.  For $k=1$, the $G$ action is diagonal, and so every vector $v$ is an eigenvector, and there is a $\proj^1$ worth of points over the origin.  If $r>2$, these are the only points, and so we have $\Hilb_2(\mathcal{S}_{1/r})=\proj^1$.  
+If $r=2$, we must have $k=1$, the nontrivial element of $G=\Z/2\Z$ acts as multiplication by -1. Then the points of $\Hilb_2(\C^2)^G$ consisting of distinct points of $\C^2$ are precisely those of the form $\{p,-p\}$.  These are the free orbits of $\Z_2$ on $\C^2$, and so we see the locus in $\Hilb_2(\C^2)^G$ consisting of distinct points is isomorphic to the smooth part of $\C^2/\Z_2$.
 
 
-If $k\neq 1$, there are two distinct eigenvectors, and so in this case we see that $\Hilb_2(\mathcal{S}_{k/r})$ consists of two points.
+Now consider the action on the locus where the two points have collided -- that is, the ideal is supported at one point $p$.  For the ideal to be $G$ invariant, this point needs to be $G$-fixed, and so we must have $p=(0,0)$.  Thus, we are considering ideals of the form $\II_{0, v}$ for $v\in T_{0,0}C^2$ from Example \ref{ex:twopoints}.  For $\II_{v}$ to be $G$ invariant, we must have that $v$ is an eigenvector for the $G$ action.
 
+When $k=1$, the $G$ action is diagonal, and so every tangent vector $v$ is an eigenvector.  Thus, in this case there is a $\proj^1$ worth of points over the origin.  If $r>2$, these are the only points, and so we have $\Hilb_2(\Sur_{1/r})=\proj^1$.  If $r=2$, then we see $\Hilb_2(\Sur_{1/2})$ is isomorphic to $\C^2/\Z_r$ away from the origin, but is smooth and replaces the singular point of $\C^2/\Z_2$ with a $\proj^1$ -- that is, it is a resolution of $\C^2/Z_2$.
+
+Finally, in the case that $k> 1$, a generator $g\in\Z_r$ acts on $\C^2$ as $(\zeta, \zeta^k)$, and we see there are two distinct eigenvectors $(1,0)$ and $(0,1)$.  Thus, when $k>1$ we see that $\Hilb_2(\mathcal{S}_{k/r})$ consists of two points.
 
 \end{example}
 
-The example showed that, in contrast to smooth Hilbert schemes, $\Hilb_n(\Sur_G)$ need not be connected.  There is an obvious discrete invariant that explains this.
 
- Since $R$ and $\II$ both have $G$ actions, the module $R/\II$ is not just a vector space but a representation of $G$.  Since $G$ is finite, the set of representations are discrete, and $\II$ and $\mathcal{J}$ can't be deformed into each other if $R/\II$ isn't isomorphic to $R/\mathcal{J}$ as a representation of $G$.  
+\subsection{Connected components of $\Hilb_n(\Sur_{k/r})$}
+Example \ref{ex:twopointsorbifold} shows that, in contrast to Hilbert schemes of smooth surfaces, Hilbert schemes of stacks need not be connected.   There is an obvious discrete invariant that explains this.
 
-Thus, instead of just recording the dimension of a $R/\II$ we should record which representation it is:
+ Since $R$ and $\II$ both have $G$ actions, the quotient $R/\II$ is not just a module but a representation of $G$.  Since $G$ is finite, the set of representations are discrete, and $\II$ and $\mathcal{J}$ can't be deformed into each other if $R/\II$ isn't isomorphic to $R/\mathcal{J}$ as a representation of $G$.  
+
+Thus, instead of just recording the dimension of $R/\II$, we should record which representation of $G$ it is.
 
 \begin{definition}
-For $v$ a representation of $G$, we define
-$$\Hilb_v(\C^2/G)=\{\II|R/\II=v\}$$
+Let $G$ be any group acting on $\C^2$, and $V$ an $n$-dimensional representation of $G$. We define $\Hilb_V([\C^2/G])\subset \Hilb_V(\C^2)^G$ by
+ $$\Hilb_V([\C^2/G])=\{\II|R/\II\cong V\}$$
 \end{definition}
 
-It turns out the $\Hilb_v$ are connected.  
+It turns out that this is the only discrete invariant, as shown by Maclagan and Smith \cite{MS} in a more general setting, following work of Evain \cite{evain1} when $G=\C^*$:
+
+\begin{lemma}[Maclagan Smith] 
+  Let $G$ be an abelian group.  Then $\Hilb_V([\C^2/G])$ is connected.
+\end{lemma}
 
 
+For $0\leq m< r$ let $V_m$ be the one dimensional representation of $\Z_r$ where $g$ acts by $\zeta^m$.  
 
+\begin{example}
+We saw that $\Hilb_2(\Sur_{k/r})$ consisted of two points when $k>1$; these two points were the ideals $(x,y^2)$ and $(x^2,y)$.  In the first case, $R/\II$ has a basis given by $1$ and $y$, and so $R/\II\cong V_0\oplus V_k$.  In the second case, $R/\II$ has a basis given by $1$ and $x$, and so $R/\II\cong V_0\oplus V_1$.
+\end{example}
 
+\begin{remark} \label{rmk:smoothregular}
+The discussion also clarifies why the $n$ in $\Hilb_n([\C^2/G])$ does not correspond to the number of points.   Smooth points of $\C^2/G$ correspond to points in $\C^2$ where $G$ acts freely, that is, the orbit $Gp$ consists of $|G|$ distinct points.
 
-The discussion also helps explain why increasing $n$ a point does not correspond to a smooth point of $\C^2/G$.  Smooth points of $\C^2/G$ correspond to points in $\C^2$ where $G$ acts freely.  If $\mathcal{O}_{Gp}$ is the structure sheaf of the orbit of such a point, then $G$ acts on $\mathcal{O}_{Gp}$ as the regular representation.  Thus, a smooth point of $\C^2/G$ correspond to copies of the regular representation.
+If $\mathcal{O}_{Gp}$ is the structure sheaf of the orbit of such a point, then the action $G$ on $\mathcal{O}_{Gp}$ is the induced representation of $G$ acting on itself, that is, the regular representation $\C[G]$. Thus, a smooth point of $\C^2/G$ correspond to copies of the regular representation.
+\end{remark}
 
-Thus, the generic point of $\Hilb_{\C[G]}({\C^2/G})$ -- often called $G\Hilb$ in the literature -- will correspond to a smooth point of $\C^2/G$.  As $G\Hilb$ is smooth from our discussion before, and since the image of the Hilbert-Chow morphism is the $G$ invariant sets, we really have a map $G\Hilb\to \C^2/G$ that is an isomorphism away from the singular points, and so we see $G\Hilb$ is a resolution of $\C^2/G$. 
+\begin{example}
+  Consider $\Hilb_{\C[G]}([\C^2/G])$, often called $G-\Hilb$ in the literature.  The above discussion shows that the locus parameterizing ideals $\II\in\R$ with support at $|G|$ distinct points will be isomorphic to the smooth locus of $\C^2/G$.
 
+  Since the image of the Hilbert-Chow morphism is the $G$ invariant sets, we really have a map $G\Hilb\to \C^2/G$ that is an isomorphism away from the singular points.  Finally, we know $G\Hilb$ is smooth, and and so we see $G-\Hilb$ is a resolution of $\C^2/G$. 
+\end{example}
+
+  
 \begin{center}
 \begin{tikzpicture}[scale=.5]
 \draw(0,-4) node{$\widetilde{S}_{1/2}$};
@@ -619,167 +578,497 @@ Thus, the generic point of $\Hilb_{\C[G]}({\C^2/G})$ -- often called $G\Hilb$ in
 In fact, singularities of the form $\C^2/G$ have a unique minimal resolution, and $G-\Hilb$ is this resolution:
 
 
-
-
-
 \begin{theorem} \label{thm:GHilb-resolution}
-The map $G-\Hilb\to \C^2/G$ is the minimal resolution.
+The Hilbert-chow morphism $G-\Hilb\to \C^2/G$ is the minimal resolution.
 \end{theorem}
 
-Theorem \ref{thm:GHilb-resolution} is useful because it gives a modular interpretation of the minimal resolution.  It also shows the geometry of the minimal resolution appearing.
 
-The resolution of the $\C^2/G$ singularity is rational; hence the exceptional locus is a tree of $\proj^1$'s joining together.  In case $G$ is cyclic, the resolution is actually a chain of rational curves with negative self intersection.  See Chapter 10 of \cite{toric} for a thorough discussion of this.
+\subsection{Topology of orbifold Hilbert schemes}
 
-\begin{center}
-\begin{tikzpicture}[xscale=.75]
-\draw plot [smooth, tension=1] coordinates {(0,0) (2,.5) (4,0)};
-\draw plot [smooth, tension=1] coordinates {(3,0) (5,.5) (7,0)};
-\draw plot [smooth, tension=1] coordinates {(6,0) (8,.5) (10,0)};
-\draw plot [smooth, tension=1] coordinates {(9,0) (11,.5) (13,0)};
+The methods used to study the topology of Hilbert schemes of points on $\C^2$ adapts easily to Hilbert schemes of points on $[\C^2/G]$ when $G$ is abelian.  We view $\Hilb([\C^2/G])$ as $\Hilb(\C^2)^G$.  When $G$ is abelian, its action can be simultaneously diagonalized.  We use the $T=(\C^*)^2$ to be the one acting on the diagonal coordinates for $G$, so that $G\subset T$, and the actions of $G$ and $T$ commute. 
 
-\draw (2,1) node{$-2$};
-\draw (5,1) node{$-4$};
-\draw (8,1) node{$-3$};
-\draw (11,1) node{$-3$};
-
-\end{tikzpicture}
-\end{center}
-
-$$
-\begin{bmatrix}
--2 & 1 & 0 & 0 \\
-1 & -4 & 1 & 0 \\
-0 & 1 & -3 & 1 \\
-0 & 0 & 1 & -3 
-\end{bmatrix}
-$$
-
-The number and self-intersection of the components of the exception divisor are given by the \emph{Hirzebruch-Jung} continued fraction expansion of $r/a$.  That is, if we write
-$$
-\frac{r}{a}=b_1-\cfrac{1}{b_2-\cfrac{1}{b_3-\cfrac{1}{\cdots - \cfrac{1}{b_r}}}}
-$$  
-then the exception divisor as $r$ components in a chain, and the $i$th component has self-intersection $-b_i$. 
-
-\begin{example}[Diagonal action]
-Consider the diagonal action of $\Z_r$ on $\C^2$; this corresponds to $a=1$, and so the Hirzebruch-Jung continued fraction is simply $r/1=r$.  The exceptional divisor consists of one component with self intersection $-r$.
-
-\end{example}
+Since $T$ commutes with $G$, the $T$ action will preserve $G$ fixed point sets, and we get a $T$ action on $\Hilb_n(\C^2)^G$.  Using this $T$ action, we can determine the topology of $\Hilb_n(\C^2)^G$ in exactly the same manner as we did $\Hilb_n(\C^2)$.
 
 
-\begin{example}[The anti-diagonal case]  
-In this case, the Hirzebruch-Jung continued fraction is
-$$r/(r-1)=\underbrace{2-\cfrac{1}{2-\cfrac{1}{\cdots-\cfrac{1}{2}}}}_{\text{$r-1$ times}}$$
-Thus, the resolution consists of a chain $r-1$ -2 curves.
-\end{example}
 
-\begin{example}[The other $\Z_5$ case]
-As a final example, consder $\Z_5$ acting with weights $(1,2)$.  Switching the role of $x$ and $y$, this is equivalent to $\Z_5$ acting with weights $(1,3)$.
+\begin{lemma} Let $G$ be an abelian group acting on $\C^2$.  Then
+\[ \chi( \Hilb_n([\C^/G]))=p(n) \]
+\end{lemma}
 
-We have the continued fraction expansions
-$$5/2=3-\cfrac{1}{2}$$
-$$5/3=2-\cfrac{1}{3}$$
-The minimal resolution thus consists of a -3 curve meeting a -2 curve; the choice of which direction we choose as $x$ and $y$ corresponds to which edge of the chain we start at.
-\end{example}
+\begin{proof}
+Since $G\subset T$, we have $\Hilb_n(\C^2)^{\C^*}\subset\Hilb_n(\C^2)^G$, and so all the monomials ideals are $G$ invariant.  
+\end{proof}
 
-The intersection pairing of the minimal resolution $\widetilde{S}_{a/r}$ will play an important role later.  The components of the exception curve form a basis for 
+Similarly, we can use the Ellingsrud-Str\o mme's calculation of torus weights on $T_\lambda\Hilb_n$ to use the Bia\l ynicki-Birula decomposition to find the Betti numbers of $\Hilb_n([\C^2/G])$.  
 
+In general, if $G$ is a group acting on a manifold $M$ and $p\in M^G$ is a fixed point, the tangent directions of $M^G$ at $p$ are just the $G$-fixed tangent directions to $p$ in $M$: $T_p(M^G)=(T_pM)^G$.  
 
-\subsection{McKay Correspondence}
-The McKay correspondence is relates the geometry of $\widetilde{S}_G$ to the representation theory of $G$.
+Thus, if $\II\in \Hilb_n([\C^2/G])$ is a monomial ideal, we have
+$$T_{\II}\Hilb_n(\Sur_G)=\left(T_{\II}\Hilb_n(\C^2)\right)^G$$
+i.e., the tangent space to $\Hilb_n(\Sur_G)$ consists of the $G$ invariant part of the whole tangent space.
+
+Thus, Ellingsurd and Str\o mme's calculation quickly adapts to compute the bett.  For $G$ a finite cycle group, a term in Lemma \ref{lem:torus-weights} will be $G$ invariant if and only if the arm and leg satisfy some linear congruence relation; for $G$ a product of two cyclic groups, it will be a system of linear relations.
+
 
 \begin{definition}
-Let $G$ be a finite group, and $W$ a representation of $G$.  The \emph{McKay graph} $\Gamma_V$ is the directed graph with vertex set $\irreps(G)$, and if $U$ and $V$ are two irreps of $G$, the multiplicity of the edges from $U$ to $V$ is the multiplicity of $V$ in $U\otimes W$.
+Let $\lambda$ be a partition of $n$, and $k<r$ relatively prime.  We define 
+\[\dim_{k/r}(\lambda)=\dim T_\lambda\Hilb_n(\Sur_{k/r})\]
+Furthermore, let $\C^*$ act on $\C^2$ with weights $(\varepsilon, 1)$, and consider the induced $\C^*$ action on $\Hilb_n(\Sur_{k/r})$.  We define 
+\[\dim^{\pm}_r \lambda =\dim T^\pm_\lambda(\Hilb_n(\Sur_{k/r})\]
+to be the dimensions of the positive and negative eigenspaces of this action. 
 \end{definition}
 
-The subgroups of $SU_2$ have an ADE classification.  There are two infinite series: cyclic groups, binary dihedral groups, and double covers of the isometries of the symmetries of the platonic solids.
+\begin{lemma} \label{lem:dimkr}
+  We have
+\begin{align*}
+\dim_{k/r}(\lambda)&=\#\left\{\square\in\lambda \Big | \ell(\square)-k a(\square)\in\{-1,k\} \pmod r\right\} \\
+\dim^+_{k/r}(\lambda)& =\#\left\{\square\in\lambda \Big | \ell(\square)-k a(\square)=-1 \pmod r \text{ and } a(\square)>0\right\} \\
+\dim^-_{k/r} &= \dim_{k/r}-\dim^+_{k/r}
+\end{align*}
+\end{lemma}
+\begin{proof}
+Let $L$ denote the representation where the standard generator of $G_{k/r}$ acts as $\exp(2\pi i/r)$. Under the inclusion $i:G_{k/r}\in T$, we have $i^*(T_1)=L, i^*(T_2)=L^k$.  Thus, we see that as a $G_{k/r}$-rep, we have
+$$T_\lambda \Hilb_n(\C^2)=\sum_{\square\in\lambda} L^{-\ell(\square)+ka(\square)+k}+L^{\ell(\square)+1-ka(\square)}$$
+The tangent space to $\Hilb_n(\Sur_{k/r})$, being the $G$ invariant directions, will correspond to the exponents that are divisible by $r$.  This immediately gives the first line.
 
-McKay observed \cite{McKay} that when $G\subset SL_2(\C)$, the McKay graph of the defining two dimension representation was the \emph{affine} version of the corresponding ADE Dynkin diagram.  Removing the vertex corresponding to the trivial representation gives the usual ADE Dynkin diagram.  Furthermore, the exceptional locus of the minimal resolution $\widetilde{S}_G$ of the corresponding singularity has all $-2$ curves, with dual graph the corresponding Dynkin diagram. 
+To find the dimension of positive and negative eigenspaces  we intersect our answer to the first line with Prop whatever.
+
+The last line follows since fixed $\C^*$ fixed points are isolated, and hence there are now eigenvectors with eigenvalue 0.
+\end{proof}
+
+\begin{definition}
+We define $\Hilb_{k/r}=\sum_{n=0}^\infty \Hilb_{n}(\Sur_{k/r})q^n$.
+\end{definition}
+
+\begin{corollary} \label{cor:orbibettipartitions}
+\begin{align*} [P_t(\Hilb_{k/r})&=\sum_{\lambda\in\PP}q^{|\lambda|}t^{2\cdim^+_{k/r}(\lambda)} \\
+  [\Hilb_{k/r}]&=\sum_{\lambda\in\PP}q^{|\lambda|}\LL^{\cdim^-_{k/r}(\lambda)}
+\end{align*}
+\end{corollary}
+
+Corollary \ref{cor:orbibettipartitions} reduces the computation of $P_t(\Hilb_{k/r})$ to the combinatorics of partitions.  The right hand side is easily implemented by computer to allow for the computation of these generating functions.  We have implemented this in Sage math, and from this have conjectured an infinite product formula for $P_t(\Hilb_{k/r})$, which we present in the next section.
+
+\section{Conjectured product formula}
+
+In this section we state the conjectured product formula.  Section \ref{sec:prod-start} gives some examples and describes the general form the product formula takes.  In Section \ref{sec:prod-CR} we give an explicit conjectural formula in terms of Chen-Ruan cohomology, while in Section \ref{sec:prod-comb} we give an explicit conjectural formula relating interchanging arms and co-legs.  Section \ref{sec:prod-equiv} proves the equivalence of the two formulations of the conjecture.
+
+
+\subsection{Initial observations toward the product formula}
+\label{sec:prod-start}
+
+To state our conjectural product formula, it is convenient to use the Pochhammer symbol 
+$$(a;x)_\infty:=\prod_{\ell\geq 0} (1-ax^\ell)$$
+We will also use the following extension of the Pochhammer symbol:
+$$(a_1,\dots, a_n; x)_\infty=\prod_{i=1}^n (a_i;x)_\infty$$
+
+\begin{example}{G\"ottsche's formula}
+Using the Pochhammer symbol, G\"ottsche's formula becomes:
+$$\sum_{n\geq 0} b_k(\Hilb_n(S))t^kq^n=\frac{(-qt;qt^2)_\infty^{b_1}(-qt^3;qt^2)_\infty^{b_3}}{(q;qt^2)_\infty^{b_0}(qt^2;qt^2)_\infty^{b_2}(qt^4;qt^2)_\infty^{b_4}}$$
+\end{example}
+
+\begin{example}[The antidiagonal action: $Z_r\subset SL_2$] \label{ex:tcorequot}
+In case $G=\frac{1}{r}(1,-1)\subset SL_2$, product formulas are already known, and can be proven geometrically using , or combinatorially using cores and quotients (as we illustrate in Section ):
+
+$$P_t(\Hilb_{-1/r})=\prod_{m\geq 1} \frac{(1-q^{mr})^r}{1-q^m} \prod_{k\geq 1} \frac{1}{(1-q^{rk})}\frac{1}{(1-t^{2k}q^{rk})^k}$$
+Here, the product over $m$ is the generating function for $r$-cores, and the product over $k$ is a $t$-analog of the generating function for $r$-quotients.
+\end{example}
+
+Before stating our general conjectured product formula, we first look at the simplest examples:
+
+\begin{example}[GZLMH's $\Z_3$ example]
+In \cite{GLM}, Gusein-Zade, Luengo, Melle-Hern\'andez conjectured
+$$P_t(\Hilb_{1/3})\stackrel{?}{=}\frac{1}{(1-q)}\frac{1}{(1-qt^2)}\frac{1}{(1-q^3)}\frac{1}{(1-q^4t^2)}\frac{1}{(1-q^5t^4)}\frac{1}{(1-q^6t^2)}\cdots$$
+Using the Pochhammer symbol, this becomes
+\begin{equation*}
+\begin{split}
+\DC_{1/3}&\stackrel{?}{=}\frac{1}{(q;t^2q^3)_\infty}\frac{1}{(q^2t^2;t^2q^3)_\infty}\frac{1}{(q^3;t^2q^3)_\infty} \\
+&\stackrel{?}{=}\frac{1}{(q,q^2t^2,q^3;t^2q^3)_\infty}
+\end{split}
+\end{equation*}
+\end{example}
+
+\begin{example}[$\Z_5$ actions]
+  For $\Z_5$, there are two groups not contained in $SL_2$, the diagonal action $\frac{1}{5}(1,1)$ and $\frac{1}{5}(1,2)=\frac{1}{5}(1,3)$.  From computations, it appears that:
+  \begin{align*}
+    \DC_{1/5}&\stackrel{?}{=}\frac{1}{(q,q^2t^2,q^3,q^4t^2, q^5; q^5t^2)_\infty} \\
+    \DC_{2/5}&\stackrel{?}{=}\frac{1}{(q,q^2,q^3t^2,q^4t^2, q^5; q^5t^2)_\infty}
+    \end{align*}
+
+  Both product formulas are $t^2$-analogs of the usual Euler product, where the power of $t^2$ attached to $q^n$ grows roughly as $n/5$, and we round up or down depending on the residue of $n\pmod 5$.
+
+  More specifically, in each case we have $\DC_G=\prod(1-q^nt^{2w_G(n)})$, where $w_G(n)=\lfloor n/5\rfloor + \epsilon_G(n)$, and
+\begin{align*}
+\epsilon_{1/5}(n)&=\left\{\begin{array}{ll} 0 & n\cong 0,1,3 \pmod 5 \\ 1 & n\cong 2,4 \pmod 5\end{array}\right. \\
+\epsilon_{2/5}(n)&=\left\{\begin{array}{ll} 0 & n\cong 0,1,2 \pmod 5 \\ 1 & n\cong 3,4 \pmod 5\end{array}\right.
+\end{align*}
+
+
+\end{example}
+
+  In the previous two examples the intersection of $G$ with $SL_2$ was trivial, it appeared that $P_t(\Hilb_G)$ was a $t^2$-analog of the Euler product.  Meanwhile, Example \ref{ex:tcorequot} shows that when $G\subset SL_2$, $P_t(\Hilb_G)$ is a $t^2$-analog of the cores and quotients infinite product.
+
+  When $G$ is not contained in $SL_2$ but has a nontrivial intersection, the generating function $\DC_G$ appears to contain elements from both.
+
+\begin{example}[Diagonal $\Z_4$-conjecture of GZLMH]
+
+  When $G=\frac{1}{4}(1,1)$ is $\Z_4$ acting diagonally, then $G\cap SL_2=Z_2$.
+
+  Gusein-Zade, Luengo, Melle-Hern\'andez made the following conjecture:
+$$\DC_{1/4}=\frac{(q^2;q^2)^2_\infty}{(q;q^2)_\infty} \frac{1}{(q^2, t^2q^2, q^4, t^2q^4;t^2q^4)_\infty}$$
+We see that this is a $t^2$-analog of the 2-cores and quotients product.
+\end{example}
+
+To summarize these, and extensive other computer examples, it appears that if $|G\cap SL_2|=k$, then $P_t(\Hilb_G)$ is a $t^2$-analog of the $k$-cores and quotient product (where we take the 1-core and quotient product to be the Euler product).  
+
+More specifically, it seems that
+$$P_t(\Hilb_G)=\frac{(q^k;q^k)^k_\infty}{(q;q)_\infty}
+\prod_{m=1}^{r/k}\frac{1}{(q^{km}t^{\epsilon^G_{1,m}},q^{km}t^{\epsilon^G_{2,m}},\dots,q^{km}t^{\epsilon^G_{k,m}} ;q^rt^2)_\infty}$$
+with $\epsilon^G_{i,j}$ either 0 or 2; the question is then to describe $\epsilon^G_{i,j}$.
+
+
+In G\"ottsche's formula, terms with $\epsilon(h)=0$ correspond to elements of $H_0(S)$, and terms with $\epsilon(h)=2$ corresponds to elements of $H_2(S)$. Thus, one might hope for a description of the $\epsilon(h)$ in terms of the cohomology of the stack $[\C^2/G]$.  The correct cohomology theory to use appears to be Chen-Ruan cohomology.
+
+\subsection{Product formula: geometry}
+\label{sec:prod-CR}
+
+\subsubsection{Chen-Ruan cohomology}
+
+The Chen-Ruan cohomology $H_{CR}^*(\mathcal{X})$ of an orbifold $\mathcal{X}$ was discovered as a byproduct of defining the quantum cohomology of such orbifolds \cite{chenruancohomology}.  As a vector space, the Chen-Ruan cohomology is the usual cohomology of the inertial orbifold $\mathcal{IX}$ of $\mathcal{X}$.  As a set $\mathcal{IX}$ is the space of constant maps from $S^1$ to $\mathcal{X}$; more algebraically, 
+$$\mathcal{IX}=\{(x, (g)| x\in \mathcal{X}, (g)\in\textrm{conj}(G_x)\}$$
+Every isotropy group $G_x$ has an identity element $e_x$, the subset of $(x, e_x)$ naturally forms a copy of $X$.  Elements $(x,(g))$ with $(g)$ nontrivial form other components of $\mathcal{IX}$ called \emph{twisted sectors}.
+
+Thus, for $\mathcal{X}=[\C^2/G]$, we see that 
+$$H_{CR}^*(\mathcal{X}) =H^*(\mathcal{IX})=\oplus_{g\in\textrm{conj}(G)} (\C^2)^g$$
+has a basis indexed by conjugacy classes of $G$.
+
+However, Chen-Ruan cohomology has a different product and grading than $H^*(\mathcal{IX})$.  Each twisted sector has a \emph{degree shifting number}, or \emph{age} $\iota(g)$, obtained as follows.
+
+Since $g\in G_x$, and $g$ acts on $T_x$.  It acts trivially on the tangent directions to fix($g$), and nontrivial on the normal directions.  Diagonalizing the action on the normal bundle, we see that $g$ is a diagonal matrix with entries 
+$$(\exp(2\pi i a_1/r), \exp(2\pi i a_2/r), \cdots \exp(2\pi i a_m))$$
+for some integers $0<a_i<r$.
+Then $\iota(g)=\sum a_i/r$; sometimes called the logarithmic trace of $g$.
 
 
 
+The grading shift number is in general only a rational number: $\iota(g)\in \Z$ if and only if the determinant of $g$ is trivial.  Thus, in case all isotropy groups $G_x$ are in $SL_2$, then the Chen-Ruan cohomology is integrally graded.
+
+\begin{example}[The diagonal action]
+Let $\Z_r$ act diagonally, with element $g_k$ acting as $(\exp(k2\pi i/r),\exp(k2\pi i/r))$.  Then we have $\iota(g_k)=2k/r$.
+\end{example}
 
 
+\begin{example}[Antidiagonal action]
+When $G\subset SL_2$, we have that 
+$$\iota(g)=\left\{\begin{array}{rl} 0 & g=0 \\
+1 & g\neq 0 \end{array}\right.
+$$
 
-A geometric explanation of this was first given by Gonzalez-Sprinberg and Verdier \cite{GSV}, by constructing vectors bundles $E_\rho$ on the minimal resolution $\widetilde{S}_G$, labeled by the irreducible representations $\rho$ of $G$, so that $c_1(E_\rho)$ was the corresponding component of the exception divisor.
+Thus, the dimension of $H_{CR}^*([\C^2/G])$ is equal to the number of conjugacy classes of $G$.  We have $H_{CR}^0$ is one dimensional, with all other classes having cohomological degree 2.  Since the number of conjugacy classes is the number of irreps, then comparing this with the McKay correspondence \ref{ }gives:
+$$H_{CR}^*([\C^2/G])\cong H^*(\widetilde{S}_G)$$
+as graded vector spaces (actually, as rings in this case).  
+\end{example}
 
-Ito and Nakamura observed the $G\Hilb$ is the minimal resolution \cite{IN}.
+In fact, the Chen-Ruan cohomology agreeing with a cohomology of a particularly nice resolution was one of the motivations for its introduction.  Recall that a resolution $f:X\to Y$ is \emph{crepant} if $f^*(K_Y)=K_X$.  
 
-The description of the minimal resolution $\widetilde{S}_G$ as $G-\Hilb$ gives a natural construction of these vector bundles: for each irrep $\rho$ of $G$, we have on the one hand a tautological bundle $\mathbb{E}_\rho$ over $G-\Hilb$, and on the other hand a vertex of the McKay graph.  
-
-$$c_1(\mathbb{E}_\rho)=E_\rho$$
-
-Furthermore, viewing the minimal resolution as a moduli space of objects on the orbifold gives rise to powerful tools using the derived category.  
-
-In dimensions higher than two, Hilbert schemes of points on a smooth surface are not smooth, and we no longer have any reason to expect that $G-\Hilb$ would be smooth, or a crepant resolution of $\C^n/G$ -- indeed, in dimensions 4 or higher, gorenstein quotient singularities need not have crepant resolutions.
-
-It turns out that in many cases of interest, $G-\Hilb$ is smooth in this case, and a crepant resolution of $\C^2/G$.  This was proven by Bridgeland, King and Reid in \cite{BKR} for dimension three, and Haiman's work on $\Hilb_n(\C^2)$ is essentially showing that it is $S_n-\Hilb(\C^n)$.
-
-
-
-\subsection{The special McKay correspondence}
-
-When $G$ is not in $SL_2$, the number of components in the exception divisor of $\widetilde{S}_G$ is strictly less than the number of nontrivial irreducible representations of $G$.  The \emph{special McKay correspondence} started by Wunram \cite{wunram} picks out a subset of the irreps of $G$, called the \emph{special} representations, and gives a labeling of the irreducible components of the exception divisor of $G$ by the special representations, so that we still have $c_1(\mathbb{E}_\rho)=E_\rho$.
-
-Kidoh \cite{Kidoh} in the cyclic case and Ishii \cite{ishii} in the general case proved that we still have $G\Hilb$ is the minimal resolution.
-
-Ito \cite{ito} gave the following combinatorial description of the special representations.  
-
-\begin{theorem}[\cite{ito}, Theorem 3.7]
-Defines $B(G)$ to be the set of monomials which are not divisible by any $G$-invariant monomial, and defines $L(G)$ to be the set of monomials not divisible by $xy, x^{|G|}, y^{|G|}$.  Then a representation $\rho$ is special if and only if the corresponding monomial is not contained in $B(G)\setminus L(G)$.
+\begin{theorem}[Yasuda \cite{yasuda}] \label{thm:yasuda}
+Let $\mathcal{X}$ an effective orbifold, and $\widetilde{X}\to|\mathcal{X}|$ a crepant resolution of the coarse moduli space.  Then :
+$$H_{CR}^*(\mathcal{X})=H^*(\widetilde{X})$$
+as graded vector spaces.  
 \end{theorem}
 
+Note that the ring structure of $H_{CR}^*(\mathcal{X})$ and $H^*(\widetilde{X})$ will not in general agree, so called ``quantumn corrections'' may be needed.  The \emph{Crepant Resolution Conjecture} states that, properly understood, the quantumn cohomology of $\mathcal{X}$ and $\widetilde{X}$ should agree.  See \cite{CoatesRuan} for discussion of the details and reference to other sources.
 
-Although we will work mainly at the level of homology, it is worth noting the McKay and special McKay correspondences hold at the level of derived categories.  (KAPRANOV-VASSEROT, ISHII)
+Let $\rho:G\to\C^*$ be the action of $G$ on $\wedge^2T^*\C^2$.  Then $\rho(g)=\exp\big(-2\pi i \iota(g)\big)$, and the kernel of $\rho$ is precisely $G\cap SL_2$.
 
 
-\subsection{Colored square counting}
 
-The core construction helps us with the colored box square counting:
 
-Consider the function
+Our conjectural product formula for $\DC_G$ is easiest to state in case $G\cap SL_2=1$.  In this case, the action of $G$ on $\wedge T^*\C^2$ is faithful; taking $r$ times the logarithmic trace of this action gives a bijection between $G$ and $\{0,\dots, r-1\}$.
+
+
+Let $F(g)$ and $I(g)$ denote the fractional and integral parts of $\iota(g)$. 
+
+If $G\cap SL_2=\{1\}$, then $F(G)$ gives a bijection between $G$ and $\{0, 1/r,\dots, (r-1)/r\}$.
+\begin{conjecture}[Johnson] \label{conj:CR}
+Let $G$ be cyclic, and define $k=|G\cap SL_2|$
+
+$$\mathcal{H}_G(q,t)= \frac{(q^k;q^k)^k_\infty}{(q,q)_\infty} \prod_{g\in G}\frac{1}{(q^{r(1-F(g))} t^{2I(g)},q^rt^2)_\infty}$$
+
+\end{conjecture}
+
+
+\begin{example}[Diagonal action, $r$-odd] \label{ex:diagonalconjecture}
+Let $r=2k+1$.   The element of $\Z_r$ that acts on $K$ as $\exp(2\pi i/r)$ acts on the tangent space as $\exp(2\pi i k/r)$, and thus as $\iota=2k/(2k+1)<1$.  
+
+Odd powers of this element will have $\iota<1$, while even powers will have $\iota>1$, giving
+$$P_t(\Hilb_{1/r})\stackrel{?}{=} \prod_{k\leq r \text{ odd}} \frac{1}{(q^k; q^rt^2)_\infty} \prod_{k<r \text{ even}} \frac{1}{(q^kt^2; q^rt^2)_\infty}$$
+
+\end{example}
+
+
+\begin{remark}
+  Buryak-Feigin give an infinite product formula for the topology of $\C^*$-fixed point loci, where $\C^*$ acts as $t\cdot(x,y)=(t^ax,t^by)$.  There results arise naturally as limits of our product formula as $r\to \infty$, where we take finite groups $\Z_r$ acting as $\frac{1}{r}(a,b)$ for appropriate values of $r$.
+  For example, if we take $r\to\infty$, along odd $r$, for  along our conjecture 
+  In the limit as $r\to\infty$ odd, we get Buryak-Feigin's result
+  $$\prod_{n \text{ odd}} \frac{1}{1-q^n}\prod_{m \text{ even}}\frac{1}{1-tq^m}$$
+
+
+
+\end{remark}
+
+
+\begin{example}[$S_{2/5}$]
+We have
+$$\begin{array}{r|c|l}
+g & r(1-F(g)) & I(g) \\
+\hline
+1 & 2 & 0 \\
+2 & 4 & 1 \\
+3 & 1 & 0 \\
+4 & 3 & 1 \\
+\end{array}
+$$
+
+Thus, we have
+
+
+$$
+\frac{1}{(q, q^2,q^3t, q^4t, q^5t^2; q^5t^2)_\infty}
+$$
+\end{example}
+
+
+\subsection{Product formula: combinatorics}
+\label{sec:prod-comb}
+
+We now give a different description of the product formula, at least for the case when $G\subset SL_2=1$, with motivation coming from combinatorics.  In particular, our conjecture is a strengthening of results of Bacher-Manivel \cite{BM} and Bessenrodt \cite{Bess}, which show that the total number cells in all partitions of $n$ with arm length $A$ and leg length $L$ is equal to the total number of parts of size $A+L+1$ in partitions of $n$.
+
+\subsubsection{ }
+
+The combinatorial motivation for the distribution of $\cdim_{k/r}(\lambda)$ is to define a new statistic, $\dusty_{k/r}$ that simply replaces arm with the co-leg.
+\begin{definition}
+$$\dusty_{k/r}(\lambda)=\#\left\{\square\in\lambda\Big| \ell(\square)-k\coleg(\square)=-1\pmod r\right\}$$
+\end{definition}
+
+The immediate benefit of this definition is that this both $\ell(\square)$ and $\coleg(square)$ depend only on the row $\square$ is in, and not on the global shape of the partition.  Thus, viewing the rows of the partition as the parts of the partition, it is immediate that the $(q,t)$-enumeration of partitions has a product formula that is just a $t$-deformation of the standard Euler product, that is, we have
+
+$$\sum_{\lambda\in \PP} q^{|\lambda|} t^{|\dusty_{k/r}(\lambda)|}=\prod_{m\geq 1} \frac{1}{1-q^mt^{z_{k/r}(m)}}$$
+for some function $z(m)$.
+
+It is an easy observation that when $k+1$ is relatively prime to $r$, then $z_{k/r}(m)$ has the same basic structure as the weights $w_{k/r}(m)$ appearing in the distribution of 
+
+\begin{lemma} \label{lem:dusty-lemma}
+If $(k+1,r)=1$, then 
+$$w_{k/r}(m)=\varepsilon_{k/r}(m)+\lfloor m/r\rfloor$$
+where $\varepsilon_{k/r}(m)$ is either 0 or 1 and only depends on $m\pmod r$.
+\end{lemma}
+
+\begin{proof}
+This follows from the fact that, as we move one box to the left in a row, $\ell(\square)-k\coleg(\square)$ increases by $k+1$.  Thus, when $k+1$ is relatively prime to $r$, in any string of $r$ boxes in a single row, $\ell(\square)-k\coleg(\square)$ will take on every residue class $\pmod r$ exactly once. 
+\end{proof}
+
+\begin{conjecture} \label{conj:dusty}
+$$\sum_{\lambda\in \PP} q^{|\lambda|} t^{|\dusty_{k/r}(\lambda)|}=\sum_{\lambda\in \PP} q^{|\lambda|} t^{|\cdim_{k/r}(\lambda)|}$$
+\end{conjecture}
+
+
+\begin{example}
+Consider $\dusty_{1/r}$, for $r$ 
+
+\end{example}
+
+
+\begin{proposition}
+If we take the first derivative of Conjecture \ref{conj:dusty} with respect to $t$, and then set $t=1$, then the resulting equation is true.  
+\end{proposition}
+
+\begin{proof}
+First, consider the left hand side; $\sum_{\lambda\in\PP} q^{|\lambda|} t^{\cdim(\lambda)}$.  If we take the derivative of $t$ and set $t=1$, we get 
+$$\sum_{n} q^n\sum_{\lambda\in\PP_n}\sum_{\square\in\lambda} \delta(\ell(\square)-k\coleg(\square)=-1\pmod r),$$
+that is, the coefficient of $q^n$ is the total number of squares in all partions of $n$ that have $\ell(\square)-k\coleg(square)=-1\pmod r$.  
+
+  Here, a part of length $L$ will contribute 
+
+Similarly, when we take the derivative with respect to $t$ and set $t=1$ on the right hand side, the coefficient of $q^n$ is the total number of squares in all partitions of $n$ with $\ell(\square)-k a(\square)=-1\pmod r$. 
+
+For any possible non-negative values $L$ and $A$ satisfying $L-kA=-1\pmod r$, we can count the number of squares $\square$ in all partitions of $n$ with $a(\square)=A$ and $\ell(\square)=L$.  By the results of Bacher Manivel and Bessenrodt, this is equal to the number of all parts of length $A+L+1$ in all partitions of $n$.  
+
+But for any such values of $L$ and $A$, in every part of size $A+L+1$ there will be a unique $\square$ with $\coleg(\square)=A$ and $\ell(\square)=L$, and and this square will contribute to the left hand side.
+
+
+\end{proof}
+
+
+
+\subsection{Equivalence of the two product formulas}
+\label{sec:prod-equiv}
+
+\begin{proposition}
+Conjecture \ref{conj:CR} is equivalent to Conjecture \ref{conj:dusty}
+\end{proposition}
+
+\begin{proof}
+By Lemma \ref{prop:dusty-lemma}, we only need to prove that the powers of $t$ in the two conjectural product formulas agree for the first $r$ terms; that is, we need to show that $\epsilon_{k/r}(m)=\varepsilon_{k/r}(m)$ for $1\leq m\leq r$.  
+
+Now, for $\varepsilon_{k/r}(m)=1$, we need 
+\begin{align*}
+0 &\in \{m, m-(k+1),\dots, m-(m-1)(k+1) \} \\
+-m &\in \{0, -(k+1),\dots,-(m-1)(k+1) \} \\
+\frac{-m}{k+1} &\in \{0, -1, \dots, -(L-1) \} \\
+\end{align*}
+Where we have worked in $\mathbb{Z}_r$.  Equivalently, if we choose the representative of $[-m/(k+1)]\in \mathbb{Z}/r\mathbb{Z}$ to be in in $\{0,\dots, r-1\}$, then we need $-m/(k+1)>-m$.
+
+From the Chen-Ruan point of view, a part of length $m<r$, with $ m\cong-(k+1)s\pmod r$ will contribute if we have to carry when we add $s$ and $ks$, that is 
+\begin{align*}
+k s &\in\{ -1,\dots, -s \}\\
+(k+1)s &\in\{ 0,\dots, s-1\} \\
+m&\in\{ 0,-1,\dots, -s+1\} \\
+m& \in \{0, -1,\dots, m/(k+1)+1\}
+\end{align*}
+That is, we need $m>m/(k+1)$, if we choose the representative of $m/(k+1)\in\Z_r$ to be $<r$.
+
+\end{proof}
+
+
+
+
+
+
+\subsection{Colored boxes}
+
+We have computed reduced the betti numbers of $\Hilb_n(\Sur_{k/r})$ to partition combinatorics.  We would now like to extend this and understand the betti numbers of each individual component $\Hilb_V(\Sur_G)$ for a representation $V$ of $G$.  This is easily done by \emph{coloured box counting}.
+
+Let $\lambda$ be a partition of $n$; we want to know $R/\II_\lambda$ as a representation of $\Z_r$.  The monomials within $\lambda$ give a basis of $R/\II_\lambda$, and $\Z_r$ acts diagonally on this basis: $x^ay^b$ has weight $a+bk\pmod r$.
+
+To visualize this, it is convenient to colour the squares in the first quadrant with $r$ different colours, which we identify with the elements of $\Z_r^*$.  We colour the square $(a,b)$ with colour $a+bk\pmod r$.  
+
+
+The follow picture illustrates this with the three actions of $\Z_r$; the action for $\frac{1}{5}(1,3)$ is obtained from that for $\frac{1}{5}(1,2)$ by interchanging the $x$ and $y$ axes.
+
+\begin{tikzpicture}[scale=.4]
+\begin{scope}
+\draw (3.5,8.5) node{$\frac{1}{5}(1,1)$};
+       \clip (0,0) rectangle (7,7);
+\foreach \x in {0,...,6}{%
+    \foreach \y in {-2,...,2}{%
+       \draw[fill=red!20]  (\x, -\x+5*\y) rectangle (\x+1, -\x+5*\y+1); 
+       \draw[fill=green!20]  (\x, -\x+5*\y+1) rectangle (\x+1, -\x+5*\y+2); 
+       \draw[fill=blue!20]  (\x, -\x+5*\y+2) rectangle (\x+1, -\x+5*\y+3); 
+       \draw[fill=black]  (\x, -\x+5*\y+3) rectangle (\x+1, -\x+5*\y+4);
+        \draw  (\x, -\x+5*\y+4) rectangle (\x+1, -\x+5*\y+5); 
+}}
+\end{scope}     
+
+\begin{scope}[xshift=10cm]
+\draw (3.5,8.5) node{$\frac{1}{5}(1,2)=\frac{1}{5}(3,1)$};
+\begin{scope}[xscale=-1, rotate=90]
+       \clip (0,0) rectangle (7,7);
+\foreach \x in {0,...,6}{%
+    \foreach \y in {-4,...,2}{%
+       \draw[fill=red!20]  (\x, 3*\x+5*\y) rectangle (\x+1, 3*\x+5*\y+1); 
+       \draw[fill=green!20]  (\x, 3*\x+5*\y+1) rectangle (\x+1, 3*\x+5*\y+2); 
+       \draw[fill=blue!20]  (\x, 3*\x+5*\y+2) rectangle (\x+1, 3*\x+5*\y+3); 
+       \draw[fill=black]  (\x, 3*\x+5*\y+3) rectangle (\x+1, 3*\x+5*\y+4);
+        \draw  (\x, 3*\x+5*\y+4) rectangle (\x+1, 3*\x+5*\y+5); 
+}}
+\end{scope}
+\end{scope}     
+
+\begin{scope}[xshift=20cm]
+\draw (3.5,8.5) node{$\frac{1}{5}(1,4)$};
+\begin{scope}[xscale=-1, rotate=90]
+       \clip (0,0) rectangle (7,7);
+\foreach \x in {0,...,6}{%
+    \foreach \y in {-2,...,2}{%
+       \draw[fill=red!20]  (\x, \x+5*\y) rectangle (\x+1, \x+5*\y+1); 
+       \draw[fill=green!20]  (\x, \x+5*\y+1) rectangle (\x+1, \x+5*\y+2); 
+       \draw[fill=blue!20]  (\x, \x+5*\y+2) rectangle (\x+1, \x+5*\y+3); 
+       \draw[fill=black]  (\x, \x+5*\y+3) rectangle (\x+1, \x+5*\y+4);
+        \draw  (\x, \x+5*\y+4) rectangle (\x+1, \x+5*\y+5); 
+}}
+\end{scope}     
+\end{scope}
+
+\end{tikzpicture}
+
+\begin{definition} \label{def:coloredsize}
+  Let $G$ be a finite abelian group acting on $\C^2$, and $\lambda$ a partition.  We define:
+  $$|\lambda|^G=[R/\II_\lambda]\in K^0(G)$$
+  Following Definition , we write $|\lambda|^G_i$ to be the dimension of the $i$th isotypical componentof $R/\II_\lambda$.  Equivalently, $|\lambda|^G_i$ is the number of boxes with color $i$ in $\lambda$.
+  When $G=\frac{1}{r}(1,k)$, we will write $|\lambda|^{k/r}$ for $|\lambda|^G$, which is potentially confusing, but we will never a have reason to raise $|\lambda|$ to a power.
+\end{definition}
+
+Given Definition \eqref{def:coloredsize}, it is natural to consider the function
 $$P_G(q_0,\dots,q_{r-1})=\sum_{\lambda\in\mathcal{P}} \mathbf{q}^{|\lambda|^G}$$
 where 
 $$\mathbf{q}^{|\lambda|_G}=\prod_{i=0}^{r-1} q_i^{|\lambda|^G_i}$$
-that counts partitions according to their full colored square count as opposed to just their size; alternatively, the coefficient of $\mathbf{q}^v$ is the euler characteristic of $\Hilb_v([\C^2/G])$.
+that counts partitions according to their full colored square count as opposed to just their size.  Geometrically, the coefficient of $\mathbf{q}^v$ is the euler characteristic of $\Hilb_v([\C^2/G])$, and hence $P_G(q_0,\dots,q_{r-1})$ could be viewed as the Euler characteristic of an obvious multigraded space version Hilbert scheme.
 
-What can we say about $P_G$?  First, we consider the case where $G\subset SL_2$.  Let $Q=q_0q_1\cdots q_{r-1}$.  The core construction gives
-$$P_G=\prod_{i=1}^\infty\frac{1}{(1-Q^i)^r} \sum_{w} Q^{A(w)}\mathbf{q}^w $$
-Thus, we see in this case $P_G$ is a multivariable theta function.
 
-In case $r=2$, this has an infinite product expansion using the Jacobi identity.  In fact, work of Boulet shows that actually the case $G=\Z_2\times \Z_2$ has an infinite product expansion.  Letting $q_{00}, q_{01}, q_{10}, q_{11}$ denote the variables, we have
+We will not say too much about $P_G$, but summarize a few results from the literature.  Let $G=Z_r\subset SL_2$, and set $Q=q_0q_1\cdots q_{r-1}$.  We will see later using cores and quotients that in this case $P_G$ is essentially a multivariable theta function.  
+
+Since $P_G$ is then closely related to modular forms, one might then ask if it has an infinite product formula.  When $r=2$, the Jacobi triple product formula provides just this.  In fact, Boulet \cite{boulet} shows that actually the case $G=\Z_2\times \Z_2$ has an infinite product expansion.  Letting $q_{00}, q_{01}, q_{10}, q_{11}$ denote the variables, we have
 
 \begin{theorem}[Boulet \cite{boulet}]
 $$P_{\Z_2\times\Z_2}=\prod_{i=1}^\infty \frac{(1+q_{00}^jq_{01}^{j-1}q_{10}^{j-1}q_{11}^{j-1})(1+q_{00}^jq_{01}^jq_{10}^jq_{11}^{j-1})}{(1-q_{00}^jq_{01}^jq_{10}^jq_{11}^j)(1-q_{00}^jq_{01}^jq_{10}^{j-1}q_{11}^{j-1})(1-q_{00}^jq_{01}^{j-1}q_{10}^{j}q_{11}^{j-1})}$$
 \end{theorem}
 
-However, even the one variable specialization $P_{\Z_3}(q,1,1)$ does not have a nice infinite product expression, as observed by Bal\'azs Szendr\"oi \cite{Bmo}; as it has a root at $-e^{\pi/\sqrt{3}}$ \cite{Borwein2}.
+However, even the one variable specialization $P_{\Z_3}(q,1,1)$ does not have a nice infinite product expression, as observed by Bal\'azs Szendr\"oi \cite{Bmo}: it has a root at $-e^{\pi/\sqrt{3}}$ \cite{Borwein2}.
 
-\subsection{Dijkgraaf, orbifold partitions, and the topology of Quot schemes}
+However, coloured box counting will still play an important role for us.  As observed in Remark \ref{rmk:smoothregular}, adding a smooth point of $[\C^2/G]$ corresponded not to increasing the dimension of $R/\II$ by 1, but by a copy of the regular representation.  In terms of colored boxes, this corresponds to adding one box of each color.  We will let $\Reg\in K^0(G)$ denote the class of the regular representation.
 
-Specialization where one $q_i$ is set to $q$ and all others are set to one is studied in \cite{DS}, where they are all called \emph{orbifold partitions of the first type}.  There, they show that these specializations are characters of the affine Kac-Moody lie algebras.
+Let $v\in K^0(G)$.  Geometrically, it is clear that if $\Hilb_v$ is nonempety, then so is $\Hilb_{v+\Reg}$, as we can just add a generic smooth point.  Combinatorially, this translates to the following. Suppose that $|\lambda|^G=v$, and let $\lambda^\prime$ be obtained from $\lambda$ by adding a $1\times r$ strip to the bottom right corner $\lambda$.  Then $|\lambda^\prime|=v+\Reg$.
 
-We briefly mention that they also introduce \emph{orbifold partitions of the second type}, where only cells of the given color are coordinated.  Combinatorially, this can be viewed as putting an equivalence relation on partitions, so that two partitions are equivalent if they contain exactly the same boxes of color $i$.  Algebraically, instead of considering $G$-equivariant ideals of $R$, this is working $G$-invariantly.  That is, we have the ring $R^G$ of $G$ invariant elements of $R$.  The ring $R$ is a module over $R^G$, and splits into a direct sum of modules indexed by the irreducible representations of $R$.  Rather than counting ideals in $R$ with quotient having length $n$, they are counting submodules of $R_i$ of colength $n$.  
-
-Geometrically, $R^G$ is the ring of functions on the singular space $\C^2/G$.  The modules $R_i$ are spaces of sections of sheave $\mathcal{F}_i$ that are .  These ideals are $T$ equivariant, and so they correspond to the euler characteristic of the quot scheme.  
-
-
-\begin{question}
-What can be said about the Quot?  Homology groups, decomposition in the grothendieck ring of varieites, etc.
-
-How are these related to the topo
-
-\end{question}
+\begin{lemma}
+Let $v\in K^0(G)$.  Then there exists an $m$ so that $\Hilb_{v+m\Reg}$ is non-empty, i.e., there exists a $\lambda$ with $|\lambda|^G=v+m\Reg$.
+\end{lemma}
 
 
+\begin{wrapfigure}{r}{.3\textwidth}
+\begin{tikzpicture}[scale=.3]
+\begin{scope}[xscale=-1, rotate=90]
+       \clip (0,0) rectangle (12,12);
+\foreach \x in {0,...,11}{%
+    \foreach \y in {-4,...,4}{%
+       \filldraw[red!20]  (\x, \x+3*\y) rectangle (\x+1, \x+3*\y+1); 
+       \filldraw[green!20]  (\x, \x+3*\y+1) rectangle (\x+1, \x+3*\y+2); 
+       \draw[gray] (0,0) grid (12,12);
+}}
+\end{scope}     
+\draw[very thick] (0,9)--(3,9)--(3,6)--(6,6)--(6,3)--(9,3)--(9,0);
+\draw[very thick, dashed] (0,10)--(1,10)--(1,9);
+\draw[very thick, dashed] (3,7)--(4,7)--(4,6);
+\draw [very thick, dashed] (6,6)--(8,6)--(8,4)--(9,4)--(9,3);
+\draw [very thick, dashed] (9,3)--(11,3)--(11,1)--(12,1)--(12,0);
+\end{tikzpicture}
+\end{wrapfigure}
+Let $\mu$ be a block staircase partition, with blocks squares with side length $|G|$; for instance, take $\mu$ to be the space under the thick line in the diagram to the right.  Then clearly $|\mu|=m\Reg$ for some $m$.  If we then add a $k\times |G|$ rectangle to a given step of $\mu$, we have added $k\Reg$ to the colored box count; we can then add one more box to a given step to add one box of whichever colour we want.  In the figure at right, the top two steps each add a red box, the bottom two steps each add a white box.
+Clearly, taking $\mu$ large enough, we can modify the steps appropriately to get $v+n\Reg$ for any $v$ and some $n$.
 
-\subsection{Hilbert schemes of points in the plane}
+It is then natural to ask the following questions: given $v\in K^0(G)$, what is the lowest $n\in\Z$ so that there is a partition $\lambda$ with $|\lambda|^G=v+n\Reg$?  Can we describe these $\lambda$?  
+\begin{definition}
+A partition $\lambda$ is called a $k/r$-core if $\cdim^+_{k/r}(\lambda)=0$/
+\end{definition}
+  
+\begin{lemma}
+Let $\overline{K}(G)=K(G)/\Reg$.  Then for every $\overline{v}\in\overline{K}(G)$, there is a unique $k/r$-core $\lambda$ with $|\lambda|^{k/r}=\overline{v}$.
+\end{lemma}
 
 
-That is, we look for 
-$$\DC_G(q,t):=\sum_{n,k\geq 0 } b_k(\Hilb_n([\C^2/G])) t^kq^n$$
 
 
 
+
+%\subsection{Dijkgraaf, orbifold partitions, and the topology of Quot schemes}
+
+%Specialization where one $q_i$ is set to $q$ and all others are set to one is studied in \cite{DS}, where they are all called \emph{orbifold partitions of the first type}.  There, they show that these specializations are characters of the affine Kac-Moody lie algebras.
+
+%We briefly mention that they also introduce \emph{orbifold partitions of the second type}, where only cells of the given color are coordinated.  Combinatorially, this can be viewed as putting an equivalence relation on partitions, so that two partitions are equivalent if they contain exactly the same boxes of color $i$.  Algebraically, instead of considering $G$-equivariant ideals of $R$, this is working $G$-invariantly.  That is, we have the ring $R^G$ of $G$ invariant elements of $R$.  The ring $R$ is a module over $R^G$, and splits into a direct sum of modules indexed by the irreducible representations of $R$.  Rather than counting ideals in $R$ with quotient having length $n$, they are counting submodules of $R_i$ of colength $n$.  
+
+%Geometrically, $R^G$ is the ring of functions on the singular space $\C^2/G$.  The modules $R_i$ are spaces of sections of sheave $\mathcal{F}_i$ that are .  These ideals are $T$ equivariant, and so they correspond to the euler characteristic of the quot scheme.  
+
+
+%\begin{question} What can be said about the Quot?  Homology groups, decomposition in the grothendieck ring of varieites, etc. How are these related to the topo \end{question}
 
 
 
@@ -832,15 +1121,19 @@ Changing Stability?
 But, it seems as $\delta\to\infty$, this second family of resolutions converges to the first.
 
 
-\section{Warm-up: Cores, quotients, and the antidiagonal case}
+\section{Warm-up: Cores, quotients, and $\Z_r\subset SL_2$}
 
-In this section, we focus on the anti-diagonal case $-1/r$; that is, where $A=\Z_r$ acting with weights $(1,-1)$.  In this case, much is already well known: combinatorially, cores and quotients, together with the abacus construction, give us much information.  Topologically, we are in the $SL_2$ case, and the components of the Hilbert scheme have a descipription as Nakajima quiver varieties. 
+In this section, we discuss the relationship between the classical notion of cores and quotients of partitions and the topology of $\Hilb_v([\C^2/G])$ in the case when $G=\Z_r\subset SL_2$, sometimes called the \emph{anti-diagonal case}.  This relationship is well known to experts, but is somewhat scattered across the literature and not always presented in the form we would like.  As this relationship is the central motivation for our notion of $G$ cores and quotients, we spend much time.
 
-Though there has been some work connecting the combinatorial and geometric viewpoints, we suspect more c
+
+
+
+
+
 
 \subsection{Colored boxes}
 
-In the anti-diagonal case, the coloring scheme of the cells is a familiar object in the student of partitions, but not one as frequently connected to core and quotient partitions.
+In the anti-diagonal case, the coloring scheme of the cells is a familiar object in the student of partitions.
 
 \begin{definition}
 The \emph{content} $c(\square)$ of a cell $\square=(i,j)\in\lambda$ is $c(\square)=i-j$
@@ -857,60 +1150,13 @@ The \emph{content} $c(\square)$ of a cell $\square=(i,j)\in\lambda$ is $c(\squar
 
 \end{tikzpicture}
 
+It is immediate from the definition that if we let $\C^*_{1,-1}$ be the torus that acts on $x$ with weight 1 and $y$ with weight $-1$, then the content $c(\square)$ is just the weight of the $\C^*$ action on the corresponding monomial in $R$.
 
-It is immediate from the definition, that if we let $\C^*_{1,-1}$ be the torus that acts on $x$ with weight 1 and $y$ with weight $0$, then the content $c(\square)$ is just the weight of the $\C^*$ action on the corresponding monomial in $R/\II_\lambda$.
+If we work with the antidiagonal $\Z_r$ action, with generator 
 
 Furthermore, the multiset of the contents of $\lambda \mod r$ is just the class of $[R/\II]\in K^0(\Z_r)$.
 
 
-\subsection{Topology of orbifold Hilbert schemes}
-
-The methods used to study the topology of Hilbert schemes of points on $\C^2$ adapts easily to Hilbert schemes of points on $[\C^2/G]$ when $G$ is abelian.  We view $\Hilb([\C^2/G])$ as $\Hilb(\C^2)^G$.  When $G$ is abelian, its action can be simultaneously diagonalized.  We use the $T=(\C^*)^2$ to be the one acting on the diagonal coordinates for $G$, so that $G\subset T$, and the actions of $G$ and $T$ commute. 
-
-In particular, since $T$ commutes with $G$, its action will preserve $G$ fixed point sets, and in particular we get a $T$ action on $\Hilb_n(\C^2)^G$, and we can proceed exactly as we did in studying $\Hilb_n(\C^2)$.
-
-
-
-\begin{lemma} Let $G$ be an abelian group acting on $\C^2$.  Then
-\[ \chi( \Hilb_n([\C^/G]))=p(n) \]
-\end{lemma}
-
-\begin{proof}
-Since $G\subset T$, we have $\Hilb_n(\C^2)^{\C^*}\subset\Hilb_n(\C^2)^G$, and so all the monomials ideals are $G$ invariant.  
-\end{proof}
-
-Similarly, we can use the Ellingsrud-Str\o mme's calculation of torus weights on $T_\lambda\Hilb_n$ to use the Bia\l ynicki-Birula decomposition to find the Betti numbers of $\Hilb_n([\C^2/G])$.  
-
-In general, if $G$ is a group acting on a manifold $M$ and $p\in M^G$ is a fixed point, the tangent directions of $M^G$ at $p$ are just the $G$-fixed tangent directions to $p$ in $M$: $T_p(M^G)=(T_pM)^G$.  
-
-Thus, if $\II\in \Hilb_n([\C^2/G])$ is a monomial ideal, the tangent space $T_{\II}\Hilb_n([\C^2/G])$ is just the $G$ invariant part of Ellingsurd and Str\o mme's calculation.  For $G$ a finite cycle group, a term in Lemma \ref{lem:torus-weights} will be $G$ invariant if and only if the arm and leg satisfy some linear congruence relation; for $G$ a product of two cyclic groups, it will be a system of linear relations.
-
-
-\begin{definition}
-Let $\lambda$ be a partition of $n$, and $k<r$ relatively prime.  We define 
-\[\dim_{k/r}(\lambda)=\dim T_\lambda\Hilb_n([\C^2/G_{k/r}])\]
-Furthermore, let $\C^*$ act on $\C^2$ with weights $(\varepsilon, 1)$, and consider the induced $\C^*$ action on $\Hilb_n([\C^2/G_{k/r}])$.  We define 
-\[\dim^{\pm}_r \lambda =\dim T^\pm_\lambda(\Hilb_n([\C^2/G_{k/r}])\]
-to be the dimensions of the positive and negative eigenspaces of this action. 
-\end{definition}
-
-\begin{lemma} We have
-
-\begin{align*}
-\dim_{k/r}(\lambda)&=\#\left\{\square\in\lambda \Big | \ell(\square)-k a(\square)\in\{-1,k\} \mod r\right\} \\
-\dim^+_{k/r}(\lambda)& =\#\left\{\square\in\lambda \Big | \ell(\square)-k a(\square)=-1 \mod r \text{ and } a(\square)>0\right\} \\
-\dim^-_{k/r} &= \dim_{k/r}-\dim^+_{k/r}
-\end{align*}
-\end{lemma}
-\begin{proof}
-Let $L$ denote the representation where the standard generator of $G_{k/r}$ acts as $\exp(2\pi i/r)$. Under the inclusion $i:G_{k/r}\in T$, we have $i^*(T_1)=L, i^*(T_2)=L^k$.  Thus, we see that as a $G_{k/r}$-rep, we have
-$$T_\lambda \Hilb_n(\C^2)=\sum_{\square\in\lambda} L^{-\ell(\square)+ka(\square)+k}+L^{\ell(\square)+1-ka(\square)}$$
-The tangent space to $\Hilb_n(\C^2/G_{k/r})$, being the $G$ invariant directions, will correspond to the exponents that are divisible by $r$.  This immediately gives the first line.
-
-To find the dimension of positive and negative eigenspaces  we intersect our answer to the first line with Prop whatever.
-
-The last line is equivalent to all fixed points being isolated.
-\end{proof}
 
 Combinatorially, it seems awkward that cells with $a(\square)=0$ are included in the negative eigenspace instead of the positive eigenspace, and it is natural to make the following definition:
 \begin{definition}
@@ -986,13 +1232,21 @@ The shaded cells are the cells contributing to $\cdim^+_{1/3}(\lambda)$; that is
 
 
 Combinatorially, our motivation lies in the notion of core partitions.
-\begin{definition}
-Let $\lambda$ be a partition.  The \emph{hook length} $h(\square)$ of $\square\in\lambda$ is $a(\square)+\ell(\square)+1$.
+\begin{definition} \label{def:hooklength}
+  Let $\lambda$ be a partition.  The \emph{hook length} $h(\square)$ of $\square\in\lambda$ is $a(\square)+\ell(\square)+1$.
+\end{definition}
 
+Comparing Definition \ref{def:hooklength} with Lemma \ref{lem:dimkr}, we have:
+
+\begin{lemma}
+$$\dim_{k/r}(\lambda)&=\#\left\{\square\in\lambda \Big | h(\square)=0 \pmod r\right\}$$
+\end{lemma}
+
+\begin{definition} \label{def:tcore}
 We say $\lambda$ is a \emph{$t$-core} if it has no cells $\square\in\lambda$ with $h(\square)=t$.
 \end{definition}
 
-There are many equivalent definitions of $t$-core partitions; when we generalize them some of these definitions will still hold and some will be different.
+There are many equivalent ways to think about $t$-core partitions; when we generalize them some of these definitions will still hold and some will be different.
 
 \begin{lemma}
 The following are equivalent:
@@ -1000,42 +1254,37 @@ The following are equivalent:
 \item $\lambda$ is a $t$-core
 \item $\lambda$ has no boundary strips of length $t$
 \item $\lambda$ has no cells $\square$ with $t|h(\square)$
-\item It is not possible to remove one square of each content from $\lambda$
-\item $\lambda$ is the only partition with its set of contents
+\item It is not possible to remove one square of each color from $\lambda$
+\item There are no partitions $\mu$ with $|\mu|^{-1/r}=|\lambda|^{-1/r}-\Reg$
+\item $|\lambda|^{-1/r}=|\mu|^{-1/r}$ implies $\lambda=\mu$ 
 \item $\II_\lambda$ is an isolated point in $\Hilb_n([\C^2/G_{-1/t}])$
 \end{enumerate}
 
 
 \end{lemma}
 
+Some implications between these partitions are immediate: $(3)\implies(1)$
 
-Many of these
+\subsection{Cores, Quotients, and the abacus}
 
-\subsection{Abacus construction}
-
-The abacus construction builds on the boundary path description of partitions in Section .
-
-Rather than working with bi-infinite strings of letters, we will prefer to work with \emph{Maya diagrams}, which we now describe.  The conventions in the following discussion are based on the ``fermionic'' viewpoint of partitions and lattice paths, based on Dirac's electron sea model, see \cite{KR} for more. 
+of letters, we will prefer to work with \emph{Maya diagrams}, which we now describe.  The conventions in the following discussion are based on the ``fermionic'' viewpoint of partitions and lattice paths, based on Dirac's electron sea model, see \cite{KR} for more. 
 
 
 \subsection{Paths}
 
-We will use $\Z_{1/2}$ to denote the set of half integers $\Z+1/2$, i.e., $-1/2$ and $3/2$ are in $\Z_{1/2}$, but $2$ is not.  $\Z_{1/2}^+$ will denote the positive half integers, and $\Z_{1/2}^-$ will denote the negative.
-
+We use $\Z_{1/2}$ to denote the set of half integers $\Z+1/2$, i.e., $-1/2$ and $3/2$ are in $\Z_{1/2}$, but $2$ is not.  $\Z_{1/2}^+$ will denote the positive half integers, and $\Z_{1/2}^-$ will denote the negative.
 
 
 \begin{definition}
-A state $S$ is a subset $S\subset \Z^{1/2}$ so that the symmetric difference of $S$ with $\Z^-_{1/2}$ is finite; that is $S\cap\Z^+_{1/2}$ and $S^c\cap \Z^-_{1/2}$ are both finite.  We call $|S\cap \Z^-_{1/2}|-|S\cap \Z^+_{1/2}|$ the \emph{charge} of $S$.
-
+  A state $S$ is a subset $S\subset \Z^{1/2}$ so that the symmetric difference of $S$ with $\Z^-_{1/2}$ is finite; that is $S\cap\Z^+_{1/2}$ and $S^c\cap \Z^-_{1/2}$ are both finite.  We call the elements of $k\in S\cap \Z^_{1/2}$ an electron of energy $k$, and an element of $\ell\in S^c\cap \Z^-{1/2}$ a positron of energy $-\ell$.  We will identify states as their finite collection of electrons and positrons.  We call $|S\cap \Z^-_{1/2}|-|S\cap \Z^+_{1/2}|$ the \emph{charge} of $S$.
+  
 We will typically represent a state by a \emph{Maya diagram} -- this is a sequence of circles labeled by $\Z_{1/2}$, with the positive entries going to the left and the negative entries to the right.  A black bead is placed at each of the entries of $S$, and the entries not in $S$ are displayed as white circles.
 \end{definition}
 
-We now describe a bijection between the set of partitions $\mathcal{P}$ to the set of charge 0 states/
 
 
 \subsubsection{}
-We draw partitions in ``Russian notation'' -- rotated $\pi/4$ radians counterclockwise and scaled up
-by a factor of $\sqrt{2}$, so that each segment of the border path of $\lambda$ is centered above a half integer on the $x$-axis, with origin above the square 0.
+The connection between Maya diagrams and partitions is best illustrated by drawing the partitions in ``Russian notation'' -- rotated $\pi/4$ radians counterclockwise and scaled up by a factor of $\sqrt{2}$, so that each segment of the border path of $\lambda$ is centered above a half integer on the $x$-axis, with origin above the square 0.  Given a partition $\lambda$, one then obtains a state $S_\lambda$ as follows: for each $k\in\Z^{1/2}$, there is exactly one segment of the boundary path of $\lambda$.  We put $k\in S_\lambda$ if this boundary segment travels NE, and we put $k\notin S_\lambda$ if this boundary segment goes SE.
 
 
 
@@ -1166,11 +1415,11 @@ The cells $\square\in\lambda$ are in bijection with the
 \emph{inversions} of the boundary path; that is, by pairs of segments
 $(\text{step}_1, \text{step}_2)$, where $\text{step}_1$ occurs before $\text{step}_2$,
 but $\text{step}_1$ is traveling NE and $\text{step}_2$ is traveing SE.  The bijection
-sends $\square$ to the segments at the end of its arm and leg.
+sends $\square$ to the segments at the end of its arm and leg, which we call the \emph{hand} and \emph{foot} of $\square$.
 
 Translating to the fermionic viewpoint, cells of $\lambda$ are in
 bijection with pairs 
-$$\left\{(e, e-k)\big | e\in\Z_{1/2}, k>0\right\}$$ of a filled energy level $e$ and an
+$$\left\{(e, e-k)\big | e\in\Z_{1/2}, k>0\right\}$$ of a filled energy level $e$ and an unfilled energy level $k$.  
 
 
 The arm $a(\square)$ corresponds to the number of energy levels between $e$ and $e-k$ that are empty; the leg $\ell(\square)$ is the number of energy levels between $e$ and $e-k$ that are full.  The hook length $h(\square)$ of the corresponding cell is $k$, the distance between the two sets with 
@@ -1235,17 +1484,14 @@ This is illustrated in the following picture:
 \end{tikzpicture}
 
 
-If $(e,e-k)$ is such a pair, reducing the energy of the electron from
-$e$ to $e-k$ changes $\lambda$ by removing the
-rim hook corresponding to the cell $\square$.  This rim-hook has
-length $k$.
-
+The classical definition of the $r$-core of a partition $\lambda$ is as follows.
 
 \begin{definition} 
-The $r$-core of $\lambda$, denoted $\core_r(\lambda)$, the partition obtained from $\lambda$ by iteratively choosing a rim-hook of size $r$ and removing it.
+The $r$-core of $\lambda$, denoted $\core_r(\lambda)$, the partition obtained from $\lambda$ by iteratively choosing a rim-hook of size $r$ in $\lambda$ and removing it, until we reach a partition with no rim-hooks of size $r$.
 \end{definition}
 
-It is not clear from the above definition that $\core_r(\lambda)$ is well defined -- it seems possible that removing rim hooks in different orders could result in different partitions.  We will see later that it is in fact well defined.  Assuming that $\core_r(\lambda)$ is well defined, it follows from Lemma \ref{lem:rimhooks} that $\core_r(\lambda)$ is an $r$-core.
+It is not clear from the above definition that $\core_r(\lambda)$ is well defined -- it seems possible that removing rim hooks in different orders could result in different partitions.  
+
 
 
 \begin{example}
@@ -1626,283 +1872,6 @@ In fact, an explicit form of this linear change of variables will hold in genera
 
 
 
-\section{Conjectured product formula}
-
-
-In this section we state the conjectured product formula.  Section \ref{sec:prod-start} gives some examples and describes the general form the product formula takes.  In Section \ref{sec:prod-CR} we give an explicit conjectural formula in terms of Chen-Ruan cohomology, while in Section \ref{sec:prod-comb} we give an explicit conjectural formula relating interchanging arms and co-legs.  Section \ref{sec:prod-equiv} proves the equivalence of the two formulations of the conjecture.
-
-
-\subsection{Initial observations toward the product formula}
-\label{sec:prod-start}
-
-To state our conjectural product formula, we will use the Pochhammer symbol 
-$$(a;x)_\infty:=\prod_{\ell\geq 0} (1-ax^\ell)$$
-We will also use the following extension of the Pochhammer symbol:
-$$(a_1,\dots, a_n; x)_\infty=\prod_{i=1}^n (a_i;x)_\infty$$
-
-
-\begin{example}{G\"ottsche's formula}
-Using the Pochhammer symbol, G\"ottsche's formula becomes:
-$$\sum_{n\geq 0} b_k(\Hilb_n(S))t^kq^n=\frac{(-qt;qt^2)_\infty^{b_1}(-qt^3;qt^2)_\infty^{b_3}}{(q;qt^2)_\infty^{b_0}(qt^2;qt^2)_\infty^{b_2}(qt^4;qt^2)_\infty^{b_4}}$$
-\end{example}
-
-
-
-Using the Bia\l ynicki-Birula calculation of Section \ref{ }, it is easy to write code to compute the generating function; see for instance the Sage code at \cite{ }.  Having gathered this data, one can then take log of the generating function and begin to look for product formulas.  For a given group $G$, such formulas are readily found, the difficulty is then finding a general pattern.  We begin with some initial observations in this direction.  
-
-\begin{example}{GLM's $\Z_3$ example}
-In \cite{GLM}, Gusein-Zade, Luengo, Melle-Hern\'andez conjectured
-$$\DC_{1/3}=\frac{1}{(1-q)}\frac{1}{(1-qt^2)}\frac{1}{(1-q^3)}\frac{1}{(1-q^4t^2)}\frac{1}{(1-q^5t^4)}\frac{1}{(1-q^6t^2)}\cdots$$
-Using the Pochhammer symbol, this becomes
-\begin{equation*}
-\begin{split}
-\DC_{1/3}&=\frac{1}{(q;t^2q^3)_\infty}\frac{1}{(q^2t^2;t^2q^3)_\infty}\frac{1}{(q^3;t^2q^3)_\infty} \\
-&=\frac{1}{(q,q^2t^2,q^3;t^2q^3)_\infty}
-\end{split}
-\end{equation*}
-\end{example}
-
-\begin{example}{$\Z_5$ actions}
-For $\Z_5$, there are two groups not contained in $SL_2$.  The diagonal action has a similar form to the diagonal $\Z_3$:
-
-$$\DC_{1/5}=\frac{1}{(q,q^2t^2,q^3,q^4t^2, q^5; q^5t^2)_\infty}$$
-That is, if we set $t=-1$, we obtain the usual Euler product.  The term $q^n$ term in the product occurs with coefficient $t^{2w(n)}$, where $w(n)=\lfloor n/5\rfloor + \epsilon_{1/5}(n)$, and 
-
-$$\epsilon_{1/5}(n)=\left\{\begin{array}{ll} 0 & n\cong 0,1,3 \pmod 5 \\ 1 & n\cong 2,4 \pmod 5\end{array}\right.$$
-
-For the other action, we have:
-$$\DC_{2/5}=\frac{1}{(q,q^2,q^3t^2,q^4t^2, q^5; q^5t^2)_\infty}$$
-Equivalently, the term $q^n$ term in the product occurs with coefficient $t^{2w(n)}$, where $w(n)=\lfloor n/5\rfloor + \epsilon_{2/5}(n)$, and 
-
-$$\epsilon_{2/5}(n)=\left\{\begin{array}{ll} 0 & n\cong 0,1,2 \pmod 5 \\ 1 & n\cong 3,4 \pmod 5\end{array}\right.$$
-
-\end{example}
-
-\begin{example}{Diagonal $\Z_4$-conjecture of GLM}
-In the previous two examples the intersection of $G$ with $SL_2$ was trivial; while in Section \ref{ } we saw how cores and quotients gave a product formula for the case when $G\subset SL_2$.  When $G$ is not contained in $SL_2$ but has a nontrivial intersection, the generating function $\DC_G$ appears to contain elements from both.
-
-When $\Z_4$ acts diagonally, Gusein-Zade, Luengo, Melle-Hern\'andez made the following conjecture:
-
-$$\DC_{1/4}=\frac{(q^2;q^2)^2_\infty}{(q;q^2)_\infty} \frac{1}{(q^2, t^2q^2, q^4, t^2q^4;t^2q^4)_\infty}$$
-
-\end{example}
-
-
-
-
-
-
-\subsubsection{Summary}
-It seems in general that if $G\cap SL_2=\{1\}$ then $\DC_G$ has a product formula that is a simple $t$-deformation of the usual Euler-product.  More specificly, it seems that
-$$\DC_{G}=\prod_{h=1}^r \frac{1}{(q^h t^{\epsilon(h)}; q^r t^2)_\infty}$$
-with $\epsilon(h)$ either 0 or 2; the question is then to describe $\epsilon(h)$.
-
-When $G\cap SL_2=\Z_k$, then it appears that $\DC_G$ is a $t$-deformation of the usual $k$-core and quotient product formula, with the $t$-terms only affecting the $k$-quotient terms.  More specifically, it seems that
-$$\DC_G=\frac{(q^k;q^k)^k_\infty}{(q;q)_\infty}
-\prod_{m=1}^{r/k}\frac{1}{(q^{km}t^{\epsilon_{1,m}},q^{km}t^{\epsilon_{2,m}},\dots,q^{km}t^{\epsilon_{k,m}} ;q^rt^2))}$$
-with $\epsilon_{i,j}$ either 0 or 2; the question is then to describe $\epsilon_{i,j}$.
-
-
-In G\"ottsche's formula, terms with $\epsilon(h)=0$ correspond to elements of $J_0(S)$, and terms with $\epsilon(h)=2$ corresponds to elements of $H_2(S)$. Thus, one might hope for a description of the $\epsilon(h)$ in terms of the cohomology of the stack $[\C^2/G]$.  The correct cohomology theory to use appears to be Chen-Ruan cohomology.
-
-\subsection{Product formula: geometry}
-\label{sec:prod-CR}
-
-\subsubsection{Chen-Ruan cohomology}
-
-The Chen-Ruan cohomology $H_{CR}^*(\mathcal{X})$ of an orbifold $\mathcal{X}$ was discovered as a byproduct of defining the quantum cohomology of such orbifolds \cite{chenruancohomology}.  As a vector space, the Chen-Ruan cohomology is the usual cohomology of the inertial orbifold $\mathcal{IX}$ of $\mathcal{X}$.  As a set $\mathcal{IX}$ is the space of constant maps from $S^1$ to $\mathcal{X}$; more algebraically, 
-$$\mathcal{IX}=\{(x, (g)| x\in \mathcal{X}, (g)\in\textrm{conj}(G_x)\}$$
-Every isotropy group $G_x$ has an identity element $e_x$, the subset of $(x, e_x)$ naturally forms a copy of $X$.  Elements $(x,(g))$ with $(g)$ nontrivial form other components of $\mathcal{IX}$ called \emph{twisted sectors}.
-
-Thus, for $\mathcal{X}=[\C^2/G]$, we see that 
-$$H_{CR}^*(\mathcal{X}) =H^*(\mathcal{IX})=\oplus_{g\in\textrm{conj}(G)} (\C^2)^g$$
-has a basis indexed by conjugacy classes of $G$.
-
-However, Chen-Ruan cohomology has a different product and grading than $H^*(\mathcal{IX})$.  Each twisted sector has a a degree shifting number $\iota(g)$, obtained as follows.
-
-Since $g\in G_x$, and $g$ acts on $T_x$.  It acts trivially on the tangent directions to fix($g$), and nontrivial on the normal directions.  Diagonalizing the action on the normal bundle, we see that $g$ is a diagonal matrix with entries 
-$$(\exp(2\pi i a_1/r), \exp(2\pi i a_2/r), \cdots \exp(2\pi i a_m))$$
-Then $\iota(g)=\sum a_i/r$; sometimes called the logarithmic trace of $g$.
-
-The grading shift number is in general only a rational number -- $\iota(g)\in \Z$ if and only if the determinant of $g$ is trivial.  Thus, in case all isotropy groups $G_x$ are in $SL_2$, then the Chen-Ruan cohomology is integrally graded.
-
-\begin{example}[Antidiagonal action]
-When $G\subset SL_2$, we have that 
-$$\iota(g)=\left\{\begin{array}{rl} 0 & g=0 \\
-1 & g\neq 0 \end{array}\right.
-$$
-
-Thus, the dimension of $H_{CR}^*([\C^2/G])$ is equal to the number of conjugacy classes of $G$ (which is the number of irreps of $G$.  We have $H_{CR}^0$ is one dimensional, with the rest of the classes being two dimensional.  Thus we have
-
-$$H_{CR}^*([\C^2/G])\cong H^*(\widetilde{S}_G)$$
-as graded vector spaces (actually, as rings in this case).  
-\end{example}
-
-
-\begin{theorem}[Yasuda \cite{yasuda}] \label{thm:yasuda}
-Let $\mathcal{X}$ an effective orbifold, and $\widetilde{X}\to|\mathcal{X}|$ a crepant resolution of the coarse moduli space.  Then :
-$$H_{CR}^*(\mathcal{X})=H^*(\widetilde{X})$$
-as graded vector spaces.  
-\end{theorem}
-
-Note that the products do not necessarily agree; quantumn corrections are needed; the \emph{Crepant Resolution Conjecture} states that, properly understood, the quantumn cohomology of $\mathcal{X}$ and $\widetilde{X}$ should agree.  See \cite{CoatesRuan} for discussion of the details and reference to other sources.
-
-
-\begin{example}
-Let $\Z_r$ act diagonally, with element $g_k$ acting as $(\exp(k2\pi i/r),\exp(k2\pi i/r))$.  Then we have $\iota(g_k)=2k/r$.
-\end{example}
-
-
-
-
-The Chen-Ruan cohomology of $[\C^2/G]$ is rationally graded, with $d$ with $0\leq d < 4$
-
-
-$$0\to G\cap SL_2\to G \to \C^*$$
-
-
-
-
-
-
-
-
-Our conjectural product formula for $\DC_G$ is easiest to state in case $G\cap SL_2=1$.  In this case, the action of $G$ on $\wedge T^*\C^2$ is faithful; taking $r$ times the logarithmic trace of this action gives a bijection between $G$ and $\{0,\dots, r-1\}$.
-
-
-Let $F(g)$ and $I(g)$ denote the fractional and integral parts of $\iota(g)$. 
-
-If $G\cap SL_2=\{1\}$, then $F(G)$ gives a bijection between $G$ and $\{0, 1/r,\dots, (r-1)/r\}$.
-\begin{conjecture}[Johnson] \label{conj:CR}
-Let $G$ be cyclic, and define $k=|G\cap SL_2|$
-
-$$\mathcal{H}_G(q,t)= \frac{(q^k;q^k)^k_\infty}{(q,q)_\infty} \prod_{g\in G}\frac{1}{(q^{r(1-F(g))} t^{2I(g)},q^rt^2)_\infty}$$
-
-\end{conjecture}
-
-
-\begin{example}[Diagonal action, $r$-odd]
-Let $r=2k+1$.   The element of $\Z_r$ that acts on $K$ as $\exp(2\pi i/r)$ acts 1on the tangent space as $\exp(2\pi i k/r)$, and thus as $\iota=2k/(2k+1)<1$.  
-
-Odd powers of this element will have $\iota<1$, while even powers will have $\iota>1$, giving 
-
-In the limit as $r\to\infty$ odd, we get Buryak-Feigin's result
-
-$$\prod_{n \text{ odd}} \frac{1}{1-q^n}\prod_{m \text{ even}}\frac{1}{1-tq^m}$$
-\end{example}
-
-
-\begin{example}[$S_{2/5}$]
-We have
-$$\begin{array}{r|c|l}
-g & r(1-F(g)) & I(g) \\
-\hline
-1 & 2 & 0 \\
-2 & 4 & 1 \\
-3 & 1 & 0 \\
-4 & 3 & 1 \\
-\end{array}
-$$
-
-Thus, we have
-
-
-$$
-\frac{1}{(q, q^2,q^3t, q^4t, q^5t^2; q^5t^2)_\infty}
-$$
-\end{example}
-
-
-\subsection{Product formula: combinatorics}
-\label{sec:prod-comb}
-
-We now give a different description of the product formula, at least for the case when $G\subset SL_2=1$, with motivation coming from combinatorics.  In particular, our conjecture is a strengthening of results of Bacher-Manivel \cite{BM} and Bessenrodt \cite{Bess}, which show that the total number cells in all partitions of $n$ with arm length $A$ and leg length $L$ is equal to the total number of parts of size $A+L+1$ in partitions of $n$.
-
-\subsubsection{ }
-
-The combinatorial motivation for the distribution of $\cdim_{k/r}(\lambda)$ is to define a new statistic, $\dusty_{k/r}$ that simply replaces arm with the co-leg.
-\begin{definition}
-$$\dusty_{k/r}(\lambda)=\#\left\{\square\in\lambda\Big| \ell(\square)-k\coleg(\square)=-1\mod r\right\}$$
-\end{definition}
-
-The immediate benefit of this definition is that this both $\ell(\square)$ and $\coleg(square)$ depend only on the row $\square$ is in, and not on the global shape of the partition.  Thus, viewing the rows of the partition as the parts of the partition, it is immediate that the $(q,t)$-enumeration of partitions has a product formula that is just a $t$-deformation of the standard Euler product, that is, we have
-
-$$\sum_{\lambda\in \PP} q^{|\lambda|} t^{|\dusty_{k/r}(\lambda)|}=\prod_{m\geq 1} \frac{1}{1-q^mt^{z_{k/r}(m)}}$$
-for some function $z(m)$.
-
-It is an easy observation that when $k+1$ is relatively prime to $r$, then $z_{k/r}(m)$ has the same basic structure as the weights $w_{k/r}(m)$ appearing in the distribution of 
-
-\begin{lemma} \label{lem:dusty-lemma}
-If $(k+1,r)=1$, then 
-$$w_{k/r}(m)=\varepsilon_{k/r}(m)+\lfloor m/r\rfloor$$
-where $\varepsilon_{k/r}(m)$ is either 0 or 1 and only depends on $m\mod r$.
-\end{lemma}
-
-\begin{proof}
-This follows from the fact that, as we move one box to the left in a row, $\ell(\square)-k\coleg(\square)$ increases by $k+1$.  Thus, when $k+1$ is relatively prime to $r$, in any string of $r$ boxes in a single row, $\ell(\square)-k\coleg(\square)$ will take on every residue class $\mod r$ exactly once. 
-\end{proof}
-
-\begin{conjecture} \label{conj:dusty}
-$$\sum_{\lambda\in \PP} q^{|\lambda|} t^{|\dusty_{k/r}(\lambda)|}=\sum_{\lambda\in \PP} q^{|\lambda|} t^{|\cdim_{k/r}(\lambda)|}$$
-\end{conjecture}
-
-
-\begin{example}
-Consider $\dusty_{1/r}$, for $r$ 
-
-\end{example}
-
-
-\begin{proposition}
-If we take the first derivative of Conjecture \ref{conj:dusty} with respect to $t$, and then set $t=1$, then the resulting equation is true.  
-\end{proposition}
-
-\begin{proof}
-First, consider the left hand side; $\sum_{\lambda\in\PP} q^{|\lambda|} t^{\cdim(\lambda)}$.  If we take the derivative of $t$ and set $t=1$, we get 
-$$\sum_{n} q^n\sum_{\lambda\in\PP_n}\sum_{\square\in\lambda} \delta(\ell(\square)-k\coleg(\square)=-1\mod r),$$
-that is, the coefficient of $q^n$ is the total number of squares in all partions of $n$ that have $\ell(\square)-k\coleg(square)=-1\mod r$.  
-
-  Here, a part of length $L$ will contribute 
-
-Similarly, when we take the derivative with respect to $t$ and set $t=1$ on the right hand side, the coefficient of $q^n$ is the total number of squares in all partitions of $n$ with $\ell(\square)-k a(\square)=-1\mod r$. 
-
-For any possible non-negative values $L$ and $A$ satisfying $L-kA=-1\mod r$, we can count the number of squares $\square$ in all partitions of $n$ with $a(\square)=A$ and $\ell(\square)=L$.  By the results of Bacher Manivel and Bessenrodt, this is equal to the number of all parts of length $A+L+1$ in all partitions of $n$.  
-
-But for any such values of $L$ and $A$, in every part of size $A+L+1$ there will be a unique $\square$ with $\coleg(\square)=A$ and $\ell(\square)=L$, and and this square will contribute to the left hand side.
-
-
-\end{proof}
-
-
-
-\subsection{Equivalence of the two product formulas}
-\label{sec:prod-equiv}
-
-\begin{proposition}
-Conjecture \ref{conj:CR} is equivalent to Conjecture \ref{conj:dusty}
-\end{proposition}
-
-\begin{proof}
-By Lemma \ref{prop:dusty-lemma}, we only need to prove that the powers of $t$ in the two conjectural product formulas agree for the first $r$ terms; that is, we need to show that $\epsilon_{k/r}(m)=\varepsilon_{k/r}(m)$ for $1\leq m\leq r$.  
-
-Now, for $\varepsilon_{k/r}(m)=1$, we need 
-\begin{align*}
-0 &\in \{m, m-(k+1),\dots, m-(m-1)(k+1) \} \\
--m &\in \{0, -(k+1),\dots,-(m-1)(k+1) \} \\
-\frac{-m}{k+1} &\in \{0, -1, \dots, -(L-1) \} \\
-\end{align*}
-Where we have worked in $\mathbb{Z}_r$.  Equivalently, if we choose the representative of $[-m/(k+1)]\in \mathbb{Z}/r\mathbb{Z}$ to be in in $\{0,\dots, r-1\}$, then we need $-m/(k+1)>-m$.
-
-From the Chen-Ruan point of view, a part of length $m<r$, with $ m\cong-(k+1)s\mod r$ will contribute if we have to carry when we add $s$ and $ks$, that is 
-\begin{align*}
-k s &\in\{ -1,\dots, -s \}\\
-(k+1)s &\in\{ 0,\dots, s-1\} \\
-m&\in\{ 0,-1,\dots, -s+1\} \\
-m& \in \{0, -1,\dots, m/(k+1)+1\}
-\end{align*}
-That is, we need $m>m/(k+1)$, if we choose the representative of $m/(k+1)\in\Z_r$ to be $<r$.
-
-\end{proof}
 
 
 \section{Generalized cores and applications}
@@ -2262,6 +2231,12 @@ For $G=\C^*$, this Theorem was proven by Evain \cite{evain1}.
 
 \section{Riemann-Roch calculation}
 
+In this section we use some more sophisticated algebraic geometric machinery.  However, since we are just working in ; we have attempted to give some background to make this section understandable to those who are not algebraic geometric geometers.
+
+Since $\C^2$ is only quasiprojective (not compact), for everything to be nice in what follows we will want to restrict to objects with compact support.  Since we are interested in moduli spaces of points, our objects will in fact all have support a finite set, and so this is not a real issue.
+
+
+
 \subsection{Riemann-Roch Theorem}
 Although the ext groups $\Ext^i(\mathcal{F},\mathcal{G})$ between two sheaves depend delicately on the sheaves involved, the Euler pairing
 $$\chi(\mathcal{F},\mathcal{G})=\sum_{i\geq 0} \Ext^i(\mathcal{F},\mathcal{G})$$
@@ -2280,11 +2255,14 @@ If $p=q$ we have:
 In both cases, $\chi(\mathcal{O}_p,\mathcal{O}_q)=0$.
 \end{example}
 
-The Riemann-Roch formula gives an evaluation of the Euler pairing strictly in terms of the $K$-theory class.  Since our orbifolds are global quotients we can just use an equivariant Riemann-Roch formula, and since there are isolated fixed points it has a particularly nice form
+The Riemann-Roch formula gives an evaluation of the Euler pairing strictly in terms of the $K$-theory classes of the sheaves involved.  Since our orbifolds are global quotients we can just use an equivariant Riemann-Roch formula, and since there are isolated fixed points it has a particularly nice form,  $K^0([\C^2/G])$ will just be representations of $G$.
 
-In particular, for $\C^2/G$, the Euler pairing will be equivalent to 
 
-The exterior algebra of $\C^2$ is a graded $G$ representation, with $\bigwedge^0\C^2$ the trivial representation, and $\bigwedge^2\C^2$ in piece 0, and $\bigwedge^1\C^2=\C^2$ in degree 1.  
+It is convenient to work in the \emph{super}-category, which simply means to introduce a $\Z_2$ grading.  If $V$ is a super representation, we define $\dim V=\dim V_0-\dim V_1$.
+
+\begin{example} 
+The exterior algebra $\bigwedge^*\C^2$ is a super $G$ representation, with $\bigwedge^0\C^2$ and $\bigwedge^2\C^2$ in degree 0, and $\bigwedge^1\C^2=\C^2$ in degree 1.  Hence $\dim \bigwedge^*(\C^2)=0$.
+\end{example}
 
 \begin{definition}
 The super McKay pairing is $Q_{SM}(V,W)=\dim (V\otimes W^\vee\otimes\bigwedge^*\C^2)^G$.
@@ -2303,9 +2281,11 @@ We now apply the Riemann-Roch theorem to the dimension and $K$-theory classes of
 First, note that pairing with $[V_G]$ just counts the dimension, and since the super dimension of $\bigwedge^*\C^2$ is zero, it is in the kernel of the McKay pairing.  Geometrically, this corresponds to the fact that adding the structure sheaf of a smooth point on $[\C^2/G]$ will change the $K^0$ theory class by $V_G$, but the smooth point may be added disjoint from the support of the rest of the sheaf and the sheaf it is being paired with and hence not change any of the ext groups.
 
 
-Thus, the Euler pairing $\chi$ descends to a pairing on $\overline{K}(G)=K^0(G)/V_G$.  Given a class $v\in \overline{K}(G)$, what is the minimum lift to $\tilde{v}\in K^0(G)$ with $[\tilde{v}]=v$ and $\Hilb_{\tilde{v}}$ nonempty?
+Thus, the Euler pairing $\chi$ descends to a pairing on $\overline{K}(G)=K^0(G)/V_G$.
 
-As vector spaces, $\overline{K}(G)$ is isomorphic to the subset of $K^0(G)$ with entries summing to zero, but quite as lattices.  Therefore for $G$ abelian we introduce the space 
+Given a class $v\in \overline{K}(G)$, what is the minimum lift to $\tilde{v}\in K^0(G)$ with $[\tilde{v}]=v$ and $\Hilb_{\tilde{v}}$ nonempty?
+
+As vector spaces, $\overline{K}(G)$ is isomorphic to the subset of $K^0(G)$ with entries summing to zero, but not quite as lattices.  Therefore for $G$ abelian we introduce the space 
 $$S^0_G=\left\{v\in K^0(G; \Z[1/|G|])\Bigg | \sum_{\chi\in\irreps(G)}(\chi, v)=0\right\}$$
 and we have an isomorphism $S^0_G$ and $\overline{K}(G)$.  
 
@@ -2327,7 +2307,7 @@ Let $\OO_{\tilde{v}}$ be any quotient sheaf with the right $K$-theory class.
 We first use
 $$\chi(\tilde{v}, \tilde{v})=\dim\Ext^0(\OO_{\tilde{v}},\OO_{\tilde{v}})-\dim\Ext^1(\OO_{\tilde{v}},\OO_{\tilde{v}})+\dim\Ext^2(\OO_{\tilde{v}},\OO_{\tilde{v}})$$
 
-By definition $\Ext^0(\OO_{\tilde{v}},\OO_{\tilde{v}})=\Hom_R(R/\II,R/\II)^G$.  Now since $\OO_v$ is a quotient of $R$ it is generated by $1$, and so to define a homomorphism we just need to say where $1$ maps. Since $\II$ is an ideal, it can map to any entry of $R/\II$.  Since one is fixed by $G$, for the homomorphism to be $G$ invariant we must preserve weight and map to something invariant.  So $\dim\Ext^0(\OO_{\tilde{v}},\OO_{\tilde{v}})=\tilde{v}_0$.  
+By definition $\Ext^0(\OO_{\tilde{v}},\OO_{\tilde{v}})=\Hom_R(R/\II,R/\II)^G$.  Now since $\OO_v$ generated as an $R$-module by $1\in R$, and so to define a homomorphism we just need to say where $1$ maps. Since $\II$ is an ideal, it can map to any element of $R/\II$.  Since 1 is fixed by $G$, to be $G$-equivariant we must preserve weight and map to something invariant.  So $\dim\Ext^0(\OO_{\tilde{v}},\OO_{\tilde{v}})=\tilde{v}_0$.  
 
 Using Serre-duality, $\dim\Ext^2(\OO_{\tilde{v}},\OO_{\tilde{v}})=\dim\Ext^0(\OO_{\tilde{v}},K\otimes\OO_{\tilde{v}})$.  The effect of tensoring by $K$ is just to change the $G$ action -- an invariant vector of $\OO_{\tilde{v}}\otimes K$ is just a vector that transforms as $K^\vee$ in $\OO_{\tilde{v}}$.  
 So $\dim\Ext^2(\OO_{\tilde{v}},\OO_{\tilde{v}})=\tilde{v}_{-k}$.  
@@ -2367,13 +2347,15 @@ When $G\in SL_2$, we the canonical bundle $K_{[\C^2/G]}$ is trivial, and so $k=0
 \end{proof}
 
 
+EXAMPLE SHOWING THIS GIVES THE SAME THING,.
+
 
 
 
 
 \appendix
 
-\section{Review of Ellingsrud-Str\o mme}
+\section{Betti numbers of $\Hilb_n(\C^2)$}
 This appendix reviews Ellingsrud-Str\o mme's computation of the poincare polynomial of $\Hilb_n(\C^2)$; it is aimed at combinatorialists.  
 
 The main tool is the $(\C^*)^2$ action on $\Hilb_n(\C^2)$ induced by the $(\C^*)^2$ action on $\C^2$.  The torus $(\C^*)^2$ acts on the plane $\C^2$ in the obvious way: $(s,t)\cdot (\alpha,\beta)=(s\alpha,t\beta)$.  This induces an action on $R=\C[x,y]$ and on $\Hilb_n(\C^2)$.  
@@ -2702,7 +2684,113 @@ Bounded cells well thus be in bijection with pairs of such cells.  Translating t
 
 An analogous argument shows that tangent directions with $b$ negative correspond to the other terms in the sum.
 
+\section{Geometry of resolutions and the McKay correspondence}
 
+
+Theorem \ref{thm:GHilb-resolution} is useful because it gives a modular interpretation of the minimal resolution.  It also shows the geometry of the minimal resolution appearing.
+
+The resolution of the $\C^2/G$ singularity is rational; hence the exceptional locus is a tree of $\proj^1$'s joining together.  In case $G$ is cyclic, the resolution is actually a chain of rational curves with negative self intersection.  See Chapter 10 of \cite{toric} for a thorough discussion of this.
+
+\begin{center}
+\begin{tikzpicture}[xscale=.75]
+\draw plot [smooth, tension=1] coordinates {(0,0) (2,.5) (4,0)};
+\draw plot [smooth, tension=1] coordinates {(3,0) (5,.5) (7,0)};
+\draw plot [smooth, tension=1] coordinates {(6,0) (8,.5) (10,0)};
+\draw plot [smooth, tension=1] coordinates {(9,0) (11,.5) (13,0)};
+
+\draw (2,1) node{$-2$};
+\draw (5,1) node{$-4$};
+\draw (8,1) node{$-3$};
+\draw (11,1) node{$-3$};
+
+\end{tikzpicture}
+\end{center}
+
+$$
+\begin{bmatrix}
+-2 & 1 & 0 & 0 \\
+1 & -4 & 1 & 0 \\
+0 & 1 & -3 & 1 \\
+0 & 0 & 1 & -3 
+\end{bmatrix}
+$$
+
+The number and self-intersection of the components of the exception divisor are given by the \emph{Hirzebruch-Jung} continued fraction expansion of $r/a$.  That is, if we write
+$$
+\frac{r}{a}=b_1-\cfrac{1}{b_2-\cfrac{1}{b_3-\cfrac{1}{\cdots - \cfrac{1}{b_r}}}}
+$$  
+then the exception divisor as $r$ components in a chain, and the $i$th component has self-intersection $-b_i$. 
+
+\begin{example}[Diagonal action]
+Consider the diagonal action of $\Z_r$ on $\C^2$; this corresponds to $a=1$, and so the Hirzebruch-Jung continued fraction is simply $r/1=r$.  The exceptional divisor consists of one component with self intersection $-r$.
+
+\end{example}
+
+
+\begin{example}[The anti-diagonal case]  
+In this case, the Hirzebruch-Jung continued fraction is
+$$r/(r-1)=\underbrace{2-\cfrac{1}{2-\cfrac{1}{\cdots-\cfrac{1}{2}}}}_{\text{$r-1$ times}}$$
+Thus, the resolution consists of a chain $r-1$ -2 curves.
+\end{example}
+
+\begin{example}[The other $\Z_5$ case]
+As a final example, consder $\Z_5$ acting with weights $(1,2)$.  Switching the role of $x$ and $y$, this is equivalent to $\Z_5$ acting with weights $(1,3)$.
+
+We have the continued fraction expansions
+$$5/2=3-\cfrac{1}{2}$$
+$$5/3=2-\cfrac{1}{3}$$
+The minimal resolution thus consists of a -3 curve meeting a -2 curve; the choice of which direction we choose as $x$ and $y$ corresponds to which edge of the chain we start at.
+\end{example}
+
+The intersection pairing of the minimal resolution $\widetilde{S}_{a/r}$ will play an important role later.  The components of the exception curve form a basis for 
+
+
+\subsection{McKay Correspondence}
+The McKay correspondence is relates the geometry of $\widetilde{S}_G$ to the representation theory of $G$.
+
+\begin{definition}
+Let $G$ be a finite group, and $W$ a representation of $G$.  The \emph{McKay graph} $\Gamma_V$ is the directed graph with vertex set $\irreps(G)$, and if $U$ and $V$ are two irreps of $G$, the multiplicity of the edges from $U$ to $V$ is the multiplicity of $V$ in $U\otimes W$.
+\end{definition}
+
+The subgroups of $SU_2$ have an ADE classification.  There are two infinite series: cyclic groups, binary dihedral groups, and double covers of the isometries of the symmetries of the platonic solids.
+
+McKay observed \cite{McKay} that when $G\subset SL_2(\C)$, the McKay graph of the defining two dimension representation was the \emph{affine} version of the corresponding ADE Dynkin diagram.  Removing the vertex corresponding to the trivial representation gives the usual ADE Dynkin diagram.  Furthermore, the exceptional locus of the minimal resolution $\widetilde{S}_G$ of the corresponding singularity has all $-2$ curves, with dual graph the corresponding Dynkin diagram. 
+
+
+
+
+
+
+A geometric explanation of this was first given by Gonzalez-Sprinberg and Verdier \cite{GSV}, by constructing vectors bundles $E_\rho$ on the minimal resolution $\widetilde{S}_G$, labeled by the irreducible representations $\rho$ of $G$, so that $c_1(E_\rho)$ was the corresponding component of the exception divisor.
+
+Ito and Nakamura observed the $G\Hilb$ is the minimal resolution \cite{IN}.
+
+The description of the minimal resolution $\widetilde{S}_G$ as $G-\Hilb$ gives a natural construction of these vector bundles: for each irrep $\rho$ of $G$, we have on the one hand a tautological bundle $\mathbb{E}_\rho$ over $G-\Hilb$, and on the other hand a vertex of the McKay graph.  
+
+$$c_1(\mathbb{E}_\rho)=E_\rho$$
+
+Furthermore, viewing the minimal resolution as a moduli space of objects on the orbifold gives rise to powerful tools using the derived category.  
+
+In dimensions higher than two, Hilbert schemes of points on a smooth surface are not smooth, and we no longer have any reason to expect that $G-\Hilb$ would be smooth, or a crepant resolution of $\C^n/G$ -- indeed, in dimensions 4 or higher, gorenstein quotient singularities need not have crepant resolutions.
+
+It turns out that in many cases of interest, $G-\Hilb$ is smooth in this case, and a crepant resolution of $\C^2/G$.  This was proven by Bridgeland, King and Reid in \cite{BKR} for dimension three, and Haiman's work on $\Hilb_n(\C^2)$ is essentially showing that it is $S_n-\Hilb(\C^n)$.
+
+
+
+\subsection{The special McKay correspondence}
+
+When $G$ is not in $SL_2$, the number of components in the exception divisor of $\widetilde{S}_G$ is strictly less than the number of nontrivial irreducible representations of $G$.  The \emph{special McKay correspondence} started by Wunram \cite{wunram} picks out a subset of the irreps of $G$, called the \emph{special} representations, and gives a labeling of the irreducible components of the exception divisor of $G$ by the special representations, so that we still have $c_1(\mathbb{E}_\rho)=E_\rho$.
+
+Kidoh \cite{Kidoh} in the cyclic case and Ishii \cite{ishii} in the general case proved that we still have $G\Hilb$ is the minimal resolution.
+
+Ito \cite{ito} gave the following combinatorial description of the special representations.  
+
+\begin{theorem}[\cite{ito}, Theorem 3.7]
+Defines $B(G)$ to be the set of monomials which are not divisible by any $G$-invariant monomial, and defines $L(G)$ to be the set of monomials not divisible by $xy, x^{|G|}, y^{|G|}$.  Then a representation $\rho$ is special if and only if the corresponding monomial is not contained in $B(G)\setminus L(G)$.
+\end{theorem}
+
+
+Although we will work mainly at the level of homology, it is worth noting the McKay and special McKay correspondences hold at the level of derived categories.  (KAPRANOV-VASSEROT, ISHII)
 
 
 
