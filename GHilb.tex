@@ -5,10 +5,10 @@
 
 \usepackage{tikz}
 \usetikzlibrary{arrows, snakes} %for arrowtips  
+\usetikzlibrary{decorations.pathreplacing} %for large braces
 \usepackage[sc]{mathpazo}
 \usepackage{hyperref}
 \usepackage{microtype}
-\usepackage{tikz}
 \usepackage{graphicx}
 \usepackage{wrapfig}
 %\usepackage{mathtools} %for \mathclap, fixing long subscripts in a summation
@@ -30,7 +30,7 @@
 \newtheorem{lemma}[dummy]{Lemma}
 \newtheorem{example}[dummy]{Example}
 \newtheorem{corollary}[dummy]{Corollary}
-v\newtheorem{definition}[dummy]{Definition}
+\newtheorem{definition}[dummy]{Definition}
 \newtheorem{remark}[dummy]{Remark}
 \newtheorem{proposition}[dummy]{Proposition}
 \newtheorem{observation}{Observation}
@@ -39,7 +39,7 @@ v\newtheorem{definition}[dummy]{Definition}
 \newtheorem{warning}[dummy]{Warning}
 
 \newcommand{\Z}{\mathbf{Z}}
-v\newcommand{\C}{\mathbf{C}}
+\newcommand{\C}{\mathbf{C}}
 \newcommand{\N}{\mathbf{N}}
 \newcommand{\R}{\mathbf{R}}
 \newcommand{\Q}{\mathbf{Q}}
@@ -60,6 +60,7 @@ v\newcommand{\C}{\mathbf{C}}
 \newcommand{\Var}{\mathbf{Var}}
 \newcommand{\Top}{\mathbf{Top}}
 \newcommand{\Sur}{\mathcal{S}}
+\newcommand{\cores}{\mathcal{C}}
 
 
 \DeclareMathOperator{\dusty}{pdim}
@@ -84,7 +85,7 @@ We study the connection between the combinatoric of certain partition statistics
 \end{abstract}
 
 
-\title{Orbifold Hilbert schemes and a generalization of cores and quotients}
+\title{Orbifold Hilbert schemes and generalized cores and quotients}
 
 
 \author{Paul Johnson}
@@ -1019,7 +1020,7 @@ However, coloured box counting will still play an important role for us.  As obs
 
 Let $v\in K^0(G)$.  Geometrically, it is clear that if $\Hilb_v$ is nonempety, then so is $\Hilb_{v+\Reg}$, as we can just add a generic smooth point.  Combinatorially, this translates to the following. Suppose that $|\lambda|^G=v$, and let $\lambda^\prime$ be obtained from $\lambda$ by adding a $1\times r$ strip to the bottom right corner $\lambda$.  Then $|\lambda^\prime|=v+\Reg$.
 
-\begin{lemma}
+\begin{lemma} \label{lem:nonempty-color}
 Let $v\in K^0(G)$.  Then there exists an $m$ so that $\Hilb_{v+m\Reg}$ is non-empty, i.e., there exists a $\lambda$ with $|\lambda|^G=v+m\Reg$.
 \end{lemma}
 
@@ -1123,13 +1124,7 @@ But, it seems as $\delta\to\infty$, this second family of resolutions converges 
 
 \section{Warm-up: Cores, quotients, and $\Z_r\subset SL_2$}
 
-In this section, we discuss the relationship between the classical notion of cores and quotients of partitions and the topology of $\Hilb_v([\C^2/G])$ in the case when $G=\Z_r\subset SL_2$, sometimes called the \emph{anti-diagonal case}.  This relationship is well known to experts, but is somewhat scattered across the literature and not always presented in the form we would like.  As this relationship is the central motivation for our notion of $G$ cores and quotients, we spend much time.
-
-
-
-
-
-
+In this section, we discuss the relationship between the classical notion of cores and quotients of partitions and the topology of orbifold Hilbert schemes in the case when $G=\Z_r\subset SL_2$, sometimes called the \emph{anti-diagonal case}.  This relationship is well known to experts, but is somewhat scattered across the literature and not always presented in the form we would like.  As this relationship is the central motivation for our notion of $G$-cores and quotients, it is worth the effort to review this theory fully.
 
 \subsection{Colored boxes}
 
@@ -1239,31 +1234,13 @@ Combinatorially, our motivation lies in the notion of core partitions.
 Comparing Definition \ref{def:hooklength} with Lemma \ref{lem:dimkr}, we have:
 
 \begin{lemma}
-$$\dim_{k/r}(\lambda)&=\#\left\{\square\in\lambda \Big | h(\square)=0 \pmod r\right\}$$
+$$\dim_{k/r}(\lambda)=\#\left\{\square\in\lambda \Big | h(\square)=0 \pmod r\right\}$$
 \end{lemma}
 
 \begin{definition} \label{def:tcore}
 We say $\lambda$ is a \emph{$t$-core} if it has no cells $\square\in\lambda$ with $h(\square)=t$.
 \end{definition}
 
-There are many equivalent ways to think about $t$-core partitions; when we generalize them some of these definitions will still hold and some will be different.
-
-\begin{lemma}
-The following are equivalent:
-\begin{enumerate}
-\item $\lambda$ is a $t$-core
-\item $\lambda$ has no boundary strips of length $t$
-\item $\lambda$ has no cells $\square$ with $t|h(\square)$
-\item It is not possible to remove one square of each color from $\lambda$
-\item There are no partitions $\mu$ with $|\mu|^{-1/r}=|\lambda|^{-1/r}-\Reg$
-\item $|\lambda|^{-1/r}=|\mu|^{-1/r}$ implies $\lambda=\mu$ 
-\item $\II_\lambda$ is an isolated point in $\Hilb_n([\C^2/G_{-1/t}])$
-\end{enumerate}
-
-
-\end{lemma}
-
-Some implications between these partitions are immediate: $(3)\implies(1)$
 
 \subsection{Cores, Quotients, and the abacus}
 
@@ -1276,7 +1253,7 @@ We use $\Z_{1/2}$ to denote the set of half integers $\Z+1/2$, i.e., $-1/2$ and 
 
 
 \begin{definition}
-  A state $S$ is a subset $S\subset \Z^{1/2}$ so that the symmetric difference of $S$ with $\Z^-_{1/2}$ is finite; that is $S\cap\Z^+_{1/2}$ and $S^c\cap \Z^-_{1/2}$ are both finite.  We call the elements of $k\in S\cap \Z^_{1/2}$ an electron of energy $k$, and an element of $\ell\in S^c\cap \Z^-{1/2}$ a positron of energy $-\ell$.  We will identify states as their finite collection of electrons and positrons.  We call $|S\cap \Z^-_{1/2}|-|S\cap \Z^+_{1/2}|$ the \emph{charge} of $S$.
+  A state $S$ is a subset $S\subset \Z^{1/2}$ so that the symmetric difference of $S$ with $\Z^-_{1/2}$ is finite; that is $S\cap\Z^+_{1/2}$ and $S^c\cap \Z^-_{1/2}$ are both finite.  We call the elements of $k\in S\cap \Z^-_{1/2}$ an electron of energy $k$, and an element of $\ell\in S^c\cap \Z^-{1/2}$ a positron of energy $-\ell$.  We will identify states as their finite collection of electrons and positrons.  We call $|S\cap \Z^-_{1/2}|-|S\cap \Z^+_{1/2}|$ the \emph{charge} of $S$.
   
 We will typically represent a state by a \emph{Maya diagram} -- this is a sequence of circles labeled by $\Z_{1/2}$, with the positive entries going to the left and the negative entries to the right.  A black bead is placed at each of the entries of $S$, and the entries not in $S$ are displayed as white circles.
 \end{definition}
@@ -1356,10 +1333,7 @@ modified to give a bijection between partitions and states of charge $c$ for any
 Rather than view the Maya diagram as a series of stones in a line, we
 now view it as beads on the runner of an abacus.  Sliding the beads
 to be right justified allows the charge of the state to be read off,
-as it is easy to see how many electrons have been added or are missing
-from the vacuum state.
-
-In what follows, we mix our metaphors and talk about electrons and protons on runners of an abacus.
+as it is easy to see how many electrons have been added or are missing.  The resulting state of charge $c$ is called the \emph{vacuum of charge $c$}.  In what follows, we mix our metaphors and talk about electrons on runners of an abacus.
 
 \begin{example} \label{ex:mayabijection}
 Consider Example \ref{ex:particles}, where the Maya diagram consists of
@@ -1419,43 +1393,88 @@ sends $\square$ to the segments at the end of its arm and leg, which we call the
 
 Translating to the fermionic viewpoint, cells of $\lambda$ are in
 bijection with pairs 
-$$\left\{(e, e-k)\big | e\in\Z_{1/2}, k>0\right\}$$ of a filled energy level $e$ and an unfilled energy level $k$.  
-
-
-The arm $a(\square)$ corresponds to the number of energy levels between $e$ and $e-k$ that are empty; the leg $\ell(\square)$ is the number of energy levels between $e$ and $e-k$ that are full.  The hook length $h(\square)$ of the corresponding cell is $k$, the distance between the two sets with 
-
-Recall that a \emph{rim hook} of length $a$ of $\lambda$ is a size $a$ subset of the cells of $\lambda$ so that removing the rim hook gives a small partition, and the rim hook does not contain a $2\times 2$ box.  
-
-\begin{lemma} \label{lem:rimhooks}
-Rimhooks of size $a$ in $\lambda$ are in bijection with cells $\square\in\lambda$ with $h(\square)=a$.  Removing the rimhook corresponds to moving the stone at $e$ and playing at $e-k$ instead.
-\end{lemma}
-
-This is illustrated in the following picture:
-
+$$\left\{(e, e-k)\big | e\in\Z_{1/2}, k>0\right\}$$ of a filled energy level $e$ and an unfilled energy level $e-k$.    The arm $a(\square)$ corresponds to the number of energy levels between $e$ and $e-k$ that are empty; the leg $\ell(\square)$ is the number of energy levels between $e$ and $e-k$ that are full.  The hook length $h(\square)$ of the corresponding cell is $k$; this is illustrated in the picture below.
+\begin{center}
 \begin{tikzpicture}[scale=.8]
 \begin{scope}[gray, very thin, scale=.6]
    \clip (-5.5, 5.5) rectangle (5.5, -1);
-   \draw[rotate=45, scale=1.412, fill, red!20!white] (1,1)--(1,2)--(3,2)--(3,0)--(2,0)--(2,1)--cycle;
    \draw[rotate=45, scale=1.412] (0,0) grid (6,6);
 \end{scope}
 \begin{scope}[rotate=45, very thick, scale=.6*1.412]
-   \draw (0,5.5) -- (0, 3) -- (1,3) -- (1,2) -- (3,2) -- (3,0) -- (5.5,0);
+   \draw (0,5.5) -- (0, 3) -- (2,3) -- (2,2) -- (3,2) -- (3,0) -- (5.5,0);
+   \draw (.5,1.5) node {$s$};
+   \draw (.5,2.5) node {$a$};
+      \draw (2.5,1.5) node {$\ell$};
+      \draw (1.5,1.5) node {$\ell$};
 \end{scope}
+\begin{scope}[scale=.6]
+\node (hand) at  (-5,3.5) {$h$};
+\draw[->, dashed] (hand) to (-2.5,3.5);
+\node (foot) at (6,4.5) {$f$};
+\draw[->, dashed] (foot) to (1.5,4.5);
+\end{scope}
+
 \begin{scope}[scale=.6, yshift=-.5cm]
    \draw (-5.5,0) node{$\cdots$};
    \draw (-4.5,0) circle (.3);
    \draw (-3.5,0) circle (.3);
    \filldraw (-2.5,0) circle (.3);
-   \draw (-1.5,0) circle (.3);
-   \filldraw[gray] (-.5,0) circle (.3);
+   \filldraw (-1.5,0) circle (.3);
+   \draw (-.5,0) circle (.3);
    \filldraw (.5,0) circle (.3);
    \draw (1.5,0) circle (.3);
    \draw (2.5,0) circle (.3);
    \filldraw (3.5,0) circle (.3);
    \filldraw (4.5,0) circle (.3);
    \draw (5.5,0) node{$\cdots$};
-   \node (start) at (-.3, -.3) {};
-   \node(finish) at (2.3, -.3) {};
+   \draw (-2.5,-1) node{$h$};
+   \draw (-1.5,-1) node{$\ell$};
+   \draw (-0.5,-1) node{$a$};
+   \draw (.5,-1) node{$\ell$};
+   \draw (1.5,-1) node{$f$};
+\end{scope}
+\end{tikzpicture}
+
+\end{center}
+
+
+
+\begin{definition} \label{def:rimhook} A \emph{rim hook} of length $a$ of $\lambda$ is a connected set of cells of $\lambda$ of size $a$, so that removing the rim hook also gives a partition, and the rim hook does not contain a $2\times 2$ box.  
+\end{definition}
+  
+\begin{lemma} \label{lem:rimhooks}
+Rimhooks of size $a$ in $\lambda$ are in bijection with cells $\square\in\lambda$ with $h(\square)=a$.  Removing the rimhook corresponds to moving the stone at $e$ and playing at $e-k$ instead.
+\end{lemma}
+
+\begin{example}
+We remove the hook of length 4 corresponding to the cell $s=(1,2)$ in the partition $\lambda=3+3+2$.
+
+
+\begin{tikzpicture}[scale=.8]
+\begin{scope}[gray, very thin, scale=.6]
+   \clip (-5.5, 5.5) rectangle (5.5, -1);
+   \draw[rotate=45, scale=1.412, fill, red!20!white] (0,3)--(2,3)--(2,2)--(3,2)--(3,1)--(1,1)--(1,2)--(0,2)--cycle;
+   \draw[rotate=45, scale=1.412] (0,0) grid (6,6); 
+\end{scope}
+\begin{scope}[rotate=45, very thick, scale=.6*1.412]
+   \draw (0,5.5) -- (0, 3) -- (2,3) -- (2,2) -- (3,2) -- (3,0) -- (5.5,0);
+   \draw (.5, 1.5) node {$s$};
+\end{scope}
+\begin{scope}[scale=.6, yshift=-.5cm]
+   \draw (-5.5,0) node{$\cdots$};
+   \draw (-4.5,0) circle (.3);
+   \draw (-3.5,0) circle (.3);
+   \filldraw[gray] (-2.5,0) circle (.3);
+   \filldraw (-1.5,0) circle (.3);
+   \draw (-.5,0) circle (.3);
+   \filldraw (.5,0) circle (.3);
+   \draw (1.5,0) circle (.3);
+   \draw (2.5,0) circle (.3);
+   \filldraw (3.5,0) circle (.3);
+   \filldraw (4.5,0) circle (.3);
+   \draw (5.5,0) node{$\cdots$};
+   \node (start) at (-2.3, -.3) {};
+   \node(finish) at (1.3, -.3) {};
    \draw[->] (start) to [out=-30, in=210] (finish);
 \end{scope}
 \begin{scope}[xshift=8cm]
@@ -1464,24 +1483,26 @@ This is illustrated in the following picture:
       \draw[rotate=45, scale=1.412] (0,0) grid (6,6);
    \end{scope}
    \begin{scope}[rotate=45, very thick, scale=.6*1.412]
-      \draw (0,5.5) -- (0, 3) -- (1,3) -- (1,1) -- (2,1) -- (2,0) -- (5.5,0);
+      \draw (0,5.5) -- (0, 2) -- (1,2) -- (1,1) -- (3,1) -- (3,0) -- (5.5,0);
    \end{scope}
    \begin{scope}[scale=.6, yshift=-.5cm]
       \draw (-5.5,0) node{$\cdots$};
       \draw (-4.5,0) circle (.3);
       \draw (-3.5,0) circle (.3);
-      \filldraw (-2.5,0) circle (.3);
-      \draw (-1.5,0) circle (.3);
+      \draw (-2.5,0) circle (.3);
+      \filldraw (-1.5,0) circle (.3);
       \draw (-.5,0) circle (.3);
       \filldraw (.5,0) circle (.3);
-      \draw (1.5,0) circle (.3);
-      \filldraw (2.5,0) circle (.3);
+      \filldraw (1.5,0) circle (.3);
+      \draw (2.5,0) circle (.3);
       \filldraw (3.5,0) circle (.3);
       \filldraw (4.5,0) circle (.3);
       \draw (5.5,0) node{$\cdots$};
    \end{scope}
 \end{scope}
 \end{tikzpicture}
+
+\end{example}
 
 
 The classical definition of the $r$-core of a partition $\lambda$ is as follows.
@@ -1490,82 +1511,26 @@ The classical definition of the $r$-core of a partition $\lambda$ is as follows.
 The $r$-core of $\lambda$, denoted $\core_r(\lambda)$, the partition obtained from $\lambda$ by iteratively choosing a rim-hook of size $r$ in $\lambda$ and removing it, until we reach a partition with no rim-hooks of size $r$.
 \end{definition}
 
-It is not clear from the above definition that $\core_r(\lambda)$ is well defined -- it seems possible that removing rim hooks in different orders could result in different partitions.  
+It is not clear from the above definition that $\core_r(\lambda)$ is well defined -- it seems possible that removing rim hooks in different orders could result in different partitions.  The construction known as ``cores and quotients'', which depends on the \emph{$r$-abacus} shows that $\core_r(\lambda)$ does not depend on the order the rim-hooks are removed.  
 
 
-
-\begin{example}
-The cell $\square=(2,1)$ of $\lambda=3+2+2$ (See Example \ref{ex:electronstopartitions}).
-Here, $h(\square)=3$, and corresponds to the electron in energy state $1/2$
-and the empty energy level $-5/2$; which are three apart.
-
-\end{example}
-
-\subsection{Bijections}
-
-The essence of the cores and quotient construction is that, rather than place the electrons corresponding to $\lambda$ on one runner, we place them on $r$ different runners, putting the energy levels $ka-i-1/2$ on runner $i$ -- i.e., every $r$th bead goes to the same runner, as in Figure \ref{ }
-
-The charge $c_i$ on the $i$th runner need not be 0, but using the change, we may still view the beads on the $i$th runner as a Maya diagram of a partition.  
-
+\begin{definition}
+  Let $\lambda$ be a partition.  The \emph{$r$-abacus of $\lambda$} is the representation of $\lambda$ where the electrons are spread out over $r$ runners, labelled 0 to $r-1$ rather than on one runner.  The $i$th runner holds the energy levels $kr-i-1/2$ for $k\in\Z$, so that every $r$th bead goes to the same runner.  
+\end{definition}
 
 \begin{definition} \label{def:quotients}
-The \emph{$r$-quotient} of $\lambda$, denoted $\quot_r(\lambda)$ is an $r$-tuple of partitions, where the $i$th partition $\quot_r^i(\lambda)$ is obtained by reading off the $i$th runner of the $r$-abacus of $\lambda$ as a partition.
+The \emph{$r$-quotient} of $\lambda$, denoted $\quot_r(\lambda)$ is an $r$-tuple of partitions, where the $i$th partition $\quot_r^i(\lambda)$ is obtained by reading off the $i$th runner of the $r$-abacus of $\lambda$ as a partition.  The charge $c_i$ on the $i$th runner need not be 0, but as in Remark \ref{ } we may still view the beads on the $i$th runner as a Maya diagram of a partition. 
 
 The size of the $r$-quotient is the sum of the sizes of the individual partitions: 
 $$|\quot_r(\lambda)|=\sum_{i=1}^r |\quot_r^i(\lambda)|$$
 \end{definition}
 
-The abacus construction also gives us another way to view the $r$-core of a partition $\lambda$.  Since removing an $r$-border strip corresponds to moving a bead $r$ spots to the right to an empty position, on the $r$ abacus this corresponds to moving a bead one step to the right on its runner.  Thus, 
-
-
-\begin{lemma}
-We have
-$$|\lambda|=|\core_r{\lambda}|+r|\quot_r{\lambda}|$$
-$$\cdim^+_{-1/r}(\lambda)=|\quot_r{\lambda}|$$
-\end{lemma}
-
-\begin{proof}
-To form the core of $\lambda$ from $\lambda$, we slide the beads on each runner of the abacus.  Each time we slide a bead one step, we are removing an $r$-strip from $\lambda$, and hence decreasing the size of $\lambda$ by one.  On the other hand, we are removing a single cell from $\tilde{\lambda}$.
-
-
-\end{proof}
-
-
-\begin{corollary} \label{cor:product-formulas-traditional-cores}
-
-Let $\mathcal{C}_r$ denote the set of $r$-core partitions.  We have
-$$\sum_{\lambda\in\mathcal{C}_a} q^{|\lambda|}=\frac{(q^r;q^r)_\infty^r}{(q;q)_\infty}$$
-Moreover, we have 
-$$\sum_{\lambda\in\mathcal{P}} q^{|\lambda|} t^{\cdim^+{-1/r}(\lambda)}=\frac{(q^r;q^r)_\infty^r}{(q;q)_\infty}\frac{1}{(q^rt;q^rt)_\infty^r}$$
-And hence:
-$$P_t(\Hilb_{[\C^2/G]})=\frac{(q^r;q^r)_\infty^r}{(q;q)_\infty}\frac{1}{(q^rt^2;q^rt^2)_\infty^{r-1}(q^r;q^rt^2)_\infty}$$
-\end{corollary}
 
 
 
 
-
-The process is reversible -- if we have $a$-different Maya diagrams whose charge sums to $0$, we may interleave the beads of them together as in Figure \ref{ }, and merge them to get a partition.  
-
-
-The $a$-quotient of $\lambda$ records information about the $a$-hooks of $\lambda$.  If we have a cell $\square\in\lambda$,  with hooklength $h(\square)=ka$ divisible by $a$, then the two energy levels of $\textrm{inversion}(\square)$ lie on the same runner.  Similarly, any inversion of energy states on the same runner corresponds to a cell with hook length divisible by $a$.  
-
-Thus, $\lambda$ is an $a$-core if and only if the beads on each runner of the $a$-abacus are right justified, that is, if the $a$-quotient of $\lambda$ is zero.  Moving a bead on the $a$-abacus, corresponds to removing a border strip of length $a$, and so sliding all the beads on each runner all the way to the right corresponds to removing all $a$-hooks in $\lambda$.  We see that the order we make the moves doesn't matter, as the end result will always be the same.
-
-  Although the total charge of all the runners must be zero, the charge need not be evenly divided among the runners.  Let
-$c_i$ be the charge on the $i$th runner; then we have $\sum c_i=0$, and the $c_i$ determine $\lambda$.
-
-Similarly, given any $\mathbf{c}=(c_0,\dots,c_{a-1})\in\Z^a$ with $\sum c_i=0$, there is a unique right justified abacus with charge  $c_i$ on the $i$th runner.  The coresponding partition is an $a$-core which we denote $\core_a(\mathbf{c})$.
-
-We have shown:
-
-\begin{lemma}
-There is a bijection $$\core_a:\{(c_0,\dots,c_{a-1}|c_i\in\Z, \sum c_i=0\}\to \{\lambda | \lambda \text{ is in $a$-core} \}$$
-\end{lemma}
-
-
-\begin{example}
-We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the boundary path illustrate which runner of the abacus that step belongs to.
+\begin{example} \label{ex:coresquotients}
+We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the boundary path of $\lambda$ illustrate which runner of the 3-abacus that step belongs to.
 
 \begin{center}
 \begin{tikzpicture}
@@ -1594,40 +1559,41 @@ We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the bound
 
    \begin{scope}[rotate=45, ultra thick, scale=.4*1.412]
       \begin{scope}[blue]
-         \draw (1,9.5) node{$1$};
-         \draw (2.5,8)node{$1$};
-         \draw (3,5.5)node{$1$};
-         \draw (4.5,4)node{$1$};
-         \draw (6,2.5)node{$1$};
-         \draw (7.5,1)node{$1$};
-         \draw (9.5,0)node{$1$};
+         \draw (1,9.5) node{$0$};
+         \draw (2.5,8)node{$0$};
+         \draw (3,5.5)node{$0$};
+         \draw (4.5,4)node{$0$};
+         \draw (6,2.5)node{$0$};
+         \draw (7.5,1)node{$0$};
+         \draw (9.5,0)node{$0$};
       \end{scope}
 
       \begin{scope}[red]
-         \draw (0,10.5)node{$2$};
-         \draw (1,8.5)node{$2$};
-         \draw (3,7.5)node{$2$};
-         \draw (3,4.5)node{$2$};
-         \draw (5,3.5)node{$2$};
-         \draw (6,1.5)node{$2$};
-         \draw (8,.5)node{$2$};
-         \draw (10.5,0)node{$2$};
+         \draw (0,10.5)node{$1$};
+         \draw (1,8.5)node{$1$};
+         \draw (3,7.5)node{$1$};
+         \draw (3,4.5)node{$1$};
+         \draw (5,3.5)node{$1$};
+         \draw (6,1.5)node{$1$};
+         \draw (8,.5)node{$1$};
+         \draw (10.5,0)node{$1$};
       \end{scope}
 
       \begin{scope}[black!50!green]
-         \draw (.5,10)node{$3$};
-         \draw (1.5, 8)node{$3$};
-         \draw (3,6.5)node{$3$};
-         \draw (3.5,4)node{$3$};
-         \draw (5.5,3)node{$3$};
-         \draw (6.5,1)node{$3$};
-         \draw (8.5,0)node{$3$};
+         \draw (.5,10)node{$2$};
+         \draw (1.5, 8)node{$2$};
+         \draw (3,6.5)node{$2$};
+         \draw (3.5,4)node{$2$};
+         \draw (5.5,3)node{$2$};
+         \draw (6.5,1)node{$2$};
+         \draw (8.5,0)node{$2$};
       \end{scope}
 
    \end{scope}
 
    \begin{scope}[scale=.4, yshift=-.5cm, blue]
-      \draw(-11.5,0) circle(.3);
+     \draw (-13,0) node{$0:$};
+     \draw(-11.5,0) circle(.3);
       \draw(-8.5, 0)  circle (.3);
       \filldraw(-5.5,0)  circle (.3);
       \draw(-2.5,0)  circle (.3);
@@ -1638,7 +1604,8 @@ We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the bound
    \end{scope}
 
    \begin{scope}[scale=.4, yshift=-1.5cm, red]
-      \draw(-10.5,0) circle(.3);
+     \draw (-13,0) node{$1:$};
+     \draw(-10.5,0) circle(.3);
       \draw(-7.5, 0)  circle (.3);
       \draw(-4.5,0)  circle (.3);
       \draw(-1.5,0)  circle (.3);
@@ -1649,7 +1616,8 @@ We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the bound
    \end{scope}
 
    \begin{scope}[scale=.4, yshift=-2.5cm, black!50!green]
-      \filldraw(-9.5,0) circle(.3);
+     \draw (-13,0) node{$2:$};
+     \filldraw(-9.5,0) circle(.3);
       \filldraw(-6.5, 0)  circle (.3);
       \draw(-3.5,0)  circle (.3);
       \filldraw(-.5,0)  circle (.3);
@@ -1664,7 +1632,7 @@ We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the bound
    \end{scope}
 \end{scope}
 
-\begin{scope}[yshift=-8cm] %drawing of the core
+\begin{scope}[yshift=-7cm] %drawing of the core
 \draw (0,5) node{$\core_3(\lambda)=7+5+3+3+2+2+1+1$};
 
 
@@ -1676,41 +1644,42 @@ We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the bound
 
    \begin{scope}[rotate=45, ultra thick, scale=.4*1.412]
       \begin{scope}[blue]
-         \draw (0,8.5) node{$1$};
-         \draw (1,6.5)node{$1$};
-         \draw (2,4.5)node{$1$};
-         \draw (3.5,3)node{$1$};
-         \draw (5.5,2)node{$1$};
-         \draw (7.5,1)node{$1$};
-         \draw (9.5,0)node{$1$};
+        \draw (0,8.5) node{$0$};
+         \draw (1,6.5)node{$0$};
+         \draw (2,4.5)node{$0$};
+         \draw (3.5,3)node{$0$};
+         \draw (5.5,2)node{$0$};
+         \draw (7.5,1)node{$0$};
+         \draw (9.5,0)node{$0$};
       \end{scope}
 
       \begin{scope}[red]
-         \draw (0,10.5)node{$2$};
-         \draw (0,7.5)node{$2$};
-         \draw (1,5.5)node{$2$};
-         \draw (2,3.5)node{$2$};
-         \draw (4,2.5)node{$2$};
-         \draw (6,1.5)node{$2$};
-         \draw (8,.5)node{$2$};
-         \draw (10.5,0)node{$2$};
+         \draw (0,10.5)node{$1$};
+         \draw (0,7.5)node{$1$};
+         \draw (1,5.5)node{$1$};
+         \draw (2,3.5)node{$1$};
+         \draw (4,2.5)node{$1$};
+         \draw (6,1.5)node{$1$};
+         \draw (8,.5)node{$1$};
+         \draw (10.5,0)node{$1$};
       \end{scope}
 
       \begin{scope}[black!50!green]
-         \draw (0,9.5)node{$3$};
-         \draw (0.5, 7)node{$3$};
-         \draw (0.5,7)node{$3$};
-         \draw (1.5,5)node{$3$};
-         \draw (2.5,3)node{$3$};
-         \draw (4.5,2)node{$3$};
-         \draw (6.5,1)node{$3$};
-         \draw (8.5,0)node{$3$};
+         \draw (0,9.5)node{$2$};
+         \draw (0.5, 7)node{$2$};
+         \draw (0.5,7)node{$2$};
+         \draw (1.5,5)node{$2$};
+         \draw (2.5,3)node{$2$};
+         \draw (4.5,2)node{$2$};
+         \draw (6.5,1)node{$2$};
+         \draw (8.5,0)node{$2$};
       \end{scope}
 
    \end{scope}
 
    \begin{scope}[scale=.4, yshift=-.5cm, blue]
-      \draw(-11.5,0) circle(.3);
+     \draw (-13,0) node{$0:$};
+     \draw(-11.5,0) circle(.3);
       \draw(-8.5, 0)  circle (.3);
       \draw(-5.5,0)  circle (.3);
       \draw(-2.5,0)  circle (.3);
@@ -1721,7 +1690,8 @@ We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the bound
    \end{scope}
 
    \begin{scope}[scale=.4, yshift=-1.5cm, red]
-      \draw(-10.5,0) circle(.3);
+     \draw (-13,0) node{$1:$};
+     \draw(-10.5,0) circle(.3);
       \draw(-7.5, 0)  circle (.3);
       \draw(-4.5,0)  circle (.3);
       \draw(-1.5,0)  circle (.3);
@@ -1732,7 +1702,8 @@ We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the bound
    \end{scope}
 
    \begin{scope}[scale=.4, yshift=-2.5cm, black!50!green]
-      \draw(-9.5,0) circle(.3);
+     \draw (-13,0) node{$2:$};
+     \draw(-9.5,0) circle(.3);
       \filldraw(-6.5, 0)  circle (.3);
       \filldraw(-3.5,0)  circle (.3);
       \filldraw(-.5,0)  circle (.3);
@@ -1749,12 +1720,12 @@ We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the bound
 \end{scope}
 
 
-\begin{scope}[yshift=-12cm] %the quotients
+\begin{scope}[yshift=-11cm] %the quotients
 
    \begin{scope}[xshift=-4cm] %blue quotient
 
 
-\draw (0,2) node{$\quot_3^1(\lambda)=2+1$};
+\draw (0,2) node{$\quot_3^0(\lambda)=2+1$};
       \begin{scope}[gray, very thin, scale=.4]
          \clip (-5, 3.5) rectangle (5, -1);
          \draw[rotate=45, scale=1.412, gray!20!white, fill] (0,0)--(0,2)--(1,2)--(1,1)--(2,1)--(2,0)--cycle;
@@ -1777,7 +1748,7 @@ We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the bound
 
 
    \begin{scope} %red quotient
-\draw (0,2) node{$\quot_3^2(\lambda)=\emptyset$};
+\draw (0,2) node{$\quot_3^1(\lambda)=\emptyset$};
       \begin{scope}[gray, very thin, scale=.4]
          \clip (-5, 3.5) rectangle (5, -1);
          \draw[rotate=45, scale=1.412] (0,0) grid (4,4);
@@ -1798,7 +1769,7 @@ We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the bound
 
 
    \begin{scope}[xshift=4cm] %green quotient 
-\draw (0,2) node{$\quot_3^3(\lambda)=1+1$};
+\draw (0,2) node{$\quot_3^2(\lambda)=1+1$};
 
       \begin{scope}[gray, very thin, scale=.4]
          \clip (-5, 3.5) rectangle (5, -1);
@@ -1826,11 +1797,89 @@ We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the bound
 \end{center}
 \end{example}
 
+While this example is fresh, we illustrate a few properties of cores and quotients that will be useful later.  First, note that the way we've colored the edges of the boundary path of $\lambda$ is related to the way we've colored the squares in the grid:
 
+Second, we have marked each square $\square$ of $\lambda$ that has a hook length divisible by $r$ with a suit-sign.  The suit-sign depends on which number the hand and foot of $\square$ are labeled.  Note that the squares with a given suit-sign are naturally arrayed in the same way as the corresponding component of $\quot(\lambda)$.  This gives another description of the $i$th piece of the $r$-quotient of $\lambda$: it consists of those cells of $\lambda$ whose row and column of the corresponding part of the boundary path are both colored $i$.  
+
+
+
+
+
+\begin{lemma}
+The $r$-core $\core_r(\lambda)$ is well-defined.  Furthermore, we have:
+$$|\lambda|=|\core_r{\lambda}|+r|\quot_r{\lambda}|$$
+$$\cdim^+_{-1/r}(\lambda)=|\quot_r{\lambda}|$$
+\end{lemma}
+
+\begin{proof}
+
+
+Consider the $r$-abacus of $\lambda$.  Removing an $r$-border strip from $\lambda$ corresponds to moving an electron $r$ spots to the right in the Maya diagram of $\lambda$, and hence to moving an electron one spot to the right on its runner in the $r$-abacus of $\lambda$.  Thus, if we remove as many $r$-border strips as possible, in the end we will always wind up with an $r$-abacus where all the electrons are right justified, showing that $\core_r(\lambda)$ is well defined.
+
+To see the first equation, every time we remove an $r$-border strip from $\lambda$, we remove $r$ cells from $\lambda$.  But since this only moves an electron one space on the $r$-abacus, it reduces $|\quot_r(\lambda)$ by one.
+
+To see the second equation, two energy levels differ by a multiple of $r$ if and only if they are on the same runner of the $r$-abacus.  Hence, $|\quot_r(\lambda)|$ is the number of cells with hook length divisible by $r$, which is $\cdim^+_{-1/r}(\lambda)$.
+
+\end{proof}
+
+
+As a corollary of the cores and quotients construction, we obtain a product formula for the generating function for $r$-cores, and for the Poincare polynomials of $\Hilb_n(\C^2/Z_r)$ for $\Z_r\subset SL_2$.
+
+\begin{corollary} \label{cor:product-formulas-traditional-cores}
+
+Let $\mathcal{C}_r$ denote the set of $r$-core partitions.  We have:
+\begin{equation} \label{eq:cores-product}
+  \sum_{\lambda\in\cores_r} q^{|\lambda|}=\frac{(q^r;q^r)_\infty^r}{(q;q)_\infty}
+  \end{equation}
+%Moreover, we have 
+$$\sum_{\lambda\in\mathcal{P}} q^{|\lambda|} t^{\cdim^+_{-1/r}(\lambda)}=\frac{(q^r;q^r)_\infty^r}{(q;q)_\infty}\frac{1}{(q^rt;q^rt)_\infty^r}$$
+%And hence:
+$$P_t(\Hilb_{-1/r})=\frac{(q^r;q^r)_\infty^r}{(q;q)_\infty}\frac{1}{(q^rt^2;q^rt^2)_\infty^{r-1}(q^r;q^rt^2)_\infty}$$
+\end{corollary}
+\begin{proof}
+The first equation is obtained from taking the generating function for all partitions and dividing by the generating function for $r$-quotients.  The last equation follows immediately from Corollary \ref{cor:orbibettipartitions}
+\end{proof}
+
+The $r$-abacus construction also gives a bijection between $r$-cores and elements $\Z^r$ as follows.  Consider the $r$-abacus of an $r$-core partition $\lambda$.  Since the electrons on each runner are right justified, the $r$-abacus is determined by the charges $c_i$, where $c_i$ is the charge of the $i$th runner.  Since altogether the electrons assemble to a partition, the total charge $\sum c_i=0$.  
+
+Similarly, given any $\mathbf{c}=(c_0,\dots,c_{r-1})\in\Z^r$ with $\sum c_i=0$, there is a unique right-justified abacus with charge $c_i$ on the $i$th runner.  The coresponding partition is an $a$-core which we denote $\core_a(\mathbf{c})$.
+
+We have shown:
+\begin{lemma}
+There is a bijection $$\core_r:\{(c_0,\dots,c_{r-1}|c_i\in\Z, \sum c_i=0\}\to \{\lambda | \lambda \text{ is in $r$-core} \}$$
+\end{lemma}
+
+
+\subsection{Cores, quotients, colors}
+
+We saw in Corollary \ref{cor:product-formulas-traditional-cores} that cores and quotients produced a product formula for the betti numbers of the \emph{disconnected} Hilbert schemes of points on $\C^2/Z_r$, for $\Z_r\subset SL_2$.  We now investigate what cores and quotients can say about the connected components of these Hilbert schemes.
+
+Recall that the box colouring for $\Z_r\subset SL_2$ was the contents mod $r$.  One checks that this coloring has the following property:
+\begin{lemma} \label{lem:stripcolor}
+Any $r$-border strip contains exactly one box of each color.  Thus, if we let $Q=q_1\cdot q_2\cdots q_r$, then we have:
+  $$\sum_{\lambda\in\PP} \mathbf{q}^{|\lambda|^{-1/r}} t^{\cdim^+_{-1/r}(\lambda)}=\frac{1}{(Q;Qt)^r_\infty}\sum_{\mu\in\cores_r} \mathbf{q}^{|\mu|^{-1/r}}$$
+\end{lemma}
+
+
+\begin{lemma} \label{lem:colored-core-existence}
+Let $G=\Z_r\subset SL_2$.    For any class $\widetilde{v}\in \widetilde{K}^0(G)$, there is an $r$-core partition $\lambda$ with $[\widetilde{\lambda}]^G=\widetilde{v}$.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lem:nonempty-color} there exists some partition $\mu$ with $[\widetilde{\mu}]=\widetilde{v}$.  By Lemma \ref{lem:stripcolor}, if we let $\lambda=\core_a(\mu)$, we have $[\widetilde{\lambda}]=[\widetilde{\mu}]$.
+\end{proof}
+
+It remains to describe the colored box counting of $r$-cores, which is slightly more complicated; for colored box counting there is no product formula analagous to Equation \eqref{eq:cores-product}.
 
 \subsection{Leaving and arriving word description}
 
-We now describe a slight shift in perspective on cores that will help when we generalize them.  One way to label the colors of the paths is in terms of the contents of the cells they border.  
+
+
+
+
+
+
+We now describe a slight shift in perspective on cores that will help when we generalize them.  One way to describe the labelling of the steps in the border path of $\lambda$ is in terms of the labelling of the cells those steps border.  In Russian notation, this means that a path segment starting from a lattice point has the same label as the square beneath it.
 
 
 
@@ -1842,36 +1891,143 @@ The core and quotient bijection above in particular gives a bijection between $a
 The \emph{$r$-charge} of a partition $\lambda$ is the $c^G(\lambda)$ vector in $\Lambda_a=\{(c_i)|\sum c_i=0\}$ where $c_i^G(\lambda)$ is the charge of the $i$th runner of $\lambda$ when written on the $a$-abacus.
 \end{definition}
 
+Using this description, we can get an intuitive picture of what a typical $r$-core looks like; the following 4-core is useful for the ensuing discussion.
+
+
+  \begin{tikzpicture}[scale=.3]
+\draw[very thin, gray!20!white] (0,0) grid (31,25);
+\draw[thick] (0,23)--(1,23)--(1,20)--(2,20)--(2,17)--(3,17)--(3,14)--(5,14)--(5,12)--(7,12)--(7,10)--(9,10)--(9,8)--(11,8)--(11,6)--(14,6)--(14,5)--(17,5)--(17,4)--(20,4)--(20,3)--(23,3)--(23,2)--(26,2)--(26,1)--(29,1)--(29,0);
+\draw[decorate, decoration={brace, amplitude=5pt}] (1,24)--(4,15) node [midway, right, xshift=3pt, yshift=3pt] {$A$};
+\draw[decorate, decoration={brace, amplitude=5pt}] (4,15)--(12,7) node [midway, above, xshift=7pt, yshift=3pt] {$B$};
+\draw[decorate, decoration={brace, amplitude=5pt}] (12,7)--(30,1) node [midway, above, xshift=5pt, yshift=4pt] {$C$};
+
+\draw[dashed] (0,14)--(3,14)--(3,0);
+\draw[dashed] (0,6)--(11,6)--(11,0);
+\draw (1.5, 16) node {$1$};
+\draw (1.5, 10) node {$2$};
+\draw (1.5, 3) node {$3$};
+\draw (6.5, 10) node {$4$};
+\draw (6.5, 3) node {$5$};
+\draw (15.5, 3) node {$6$};
+
+  \end{tikzpicture}
+  Let $A, B, C$ be the number of times the boundary path cycles through the abacus runners during the corresponding portion of the boundary path of $\lambda$.  Then the dashed lined break $\lambda$ into pieces whose areas are (roughly) computable in terms of $A, B$ and $C$.  This estimate comes from treating each of the three portions of the boundary path as a straight line, and there are also linear corrections coming because there will always be some additional fractional number of times we cycle through the path.   Both of these corrections will involve linear and constant term corrections, and their exact form will depend on which chamber $\lambda$ is in.  
+
+
+  
+  \begin{equation*}
+|\lambda|\sim \underbrace{3/2 A^2 }_{1}+\underbrace{2AB}_2+\underbrace{AC}_3+\underbrace{2B^2}_4+\underbrace{2BC}_5+\underbrace{3/2 C^2}_5
+  \end{equation*}
+
+  
+
+As we follow the boundary path of $\lambda$ along the $y$-axis from infinity, we alternate through the $r$ runners in turn until we eventually come to the smallest of the $c_i$, and then we finally have a step upwards.  Until we reach the next smallest charge, every time we cycle through the $r$-runners, we will take $r-1$ steps down, and one step over, and the boundary strip will appear to have slope $-(r-1)/1$ on this segment.  Once we have gone far ``part'' the second lowest $c_i$, every time we cycle through the $r$-runners we will take $r-2$ steps down and two steps over, and so the boundary path will have $-(r-2)/2$ on this segment.  In general, if we have gone far enough that $k$ of the runners are filled with electrons and $r-k$ of them are not, then the boundary strip will appear to have slope $(r-k)/k$.
+
+Thus, the boundary of an $r$-core will have $r-1$ different sections, each with increasing slope.  Let $S_i$ be the number of times we cycle through the runners during the $i$th section of the boundary path; we see the $S_i$ provide local coordinates on the space of $r$-cores, and that the area of the corresponding $r$-core is a quadratic function in the $S_i$.  In our example 4-core, the dashed lines drawn cut the partition into three rectangles and 3 triangles, the area of each of which is given by a quadratic function in the $S_i$.
+
+
+However, we also see that this description of $r$-core partitions has some piecewise dependence in terms of the charge coordinates $c_i$.  Let $\sigma$ be the permutation of $\{0,1,\dots,r-1\}$ so that $c_{\sigma_1}<c_{\sigma_2}<\cdots < c_{\sigma_r}$: then we roughly have $S_i=c_{\sigma_{i+1}}-c_{\sigma_i}$.
+
+Thus, the general behavior of the $r$-core corresponding to a charge vector $\mathbf{c}$ depends on the relative size of the coordinates of $\mathbf{c}$.  This is presumably well known, but I am not aware of explicit discussion of this before \cite{jsimultaneous}, where the fact that the length and skew length of $r$-core partitions are piecewise linear in the charge coordinates are used to study $(q,t)$-rational catalan numbers.
+
+
+
+
+
+Given the discussion above, it may be surprising that the size of the corresponding $r$-core is in fact a \emph{global} quadratic function in the charge coordinates $c_i$:
+
 
 
 
 \begin{theorem} \label{thm:quadratic-sl2}
 The size of a core is a quadratic function in the charge coordinates;
-$$|\core_a(\mathbf{c})|=\frac{a}{2}\sum_{k=0}^{a-1} c_k^2+ kc_k$$
-In fact, each colored cell count is a quadratic function in the charge coordinates.
-$$|\core_a(\mathbf{c})|^G_i=\frac{1}{2}\sum_{k=0}^{a-1} c_k^2+ \sum_{k>i}c_k$$
+$$|\core_r(\mathbf{c})|=\frac{r}{2}\sum_{k=0}^{r-1} c_k^2+ kc_k$$
+In fact, each colored cell count is quadratic, with the same quadratic part and simply different linear parts:  
+$$|\core_r(\mathbf{c})|^G_i=\frac{1}{2}\sum_{k=0}^{r-1} c_k^2+ \sum^{r-1}_{k=i}c_k$$
 \end{theorem}
 
-We are not sure where Theorem \ref{thm:quadratic-sl2} originates; it is proved independently in \cite{GKS, DS}.  The proof is not difficult and uses the interaction of Frobenius coordinates and the abacus, see ; the first statement is proved in \cite{jsimultaneous} and is easily extended to the second statement. 
+We are not sure where Theorem \ref{thm:quadratic-sl2} originates; seemingly independent proofs are in \cite{GKS, DS}, and it may go back earlier.  We give a combinatorial proof now, but see also Section \ref{ } for a geometric discussion.
+
+\begin{proof}
+ If  $c_k>0$ the $k$th runner has $c_k$ positrons, with
+ energies 
+\begin{align*}
+(k+1/2)&,\\
+(k+1/2)&+r, \\
+(k+1/2)&+2r,\\
+\vdots\quad &\quad \vdots \\
+ (k+1/2)&+(c_k-1)r
+\end{align*}
+To analyze the boxes of each color, we will treat the $ir$ and $k+1/2$ terms separately.  The $k+1/2$ boxes will always include half a box of color zero, and one box each of colors 1 to $k$, thus these terms will contribute $c_k/2$ boxes with color zero, and $c_k$ boxes of color $i$, for $1\leq i\leq k$.  
+
+The multiple of $r$ boxes we add will always contain one box of every color, and so the $ir$ terms will contribute $c_k(c_k-1)/2$ boxes of each color.
+
+Thus, we see that the number $r_k(i)$ of boxes of color $i$ that the $k$th runner is responsible for is
+\begin{equation} \label{eq:coloredsquaresonrunner}
+r_k(i)=  \left\{\begin{array}{ll}c_k^2/2 & i=0 \\  (c_k^2+c_k)/2 & 1 \leq i \leq k \\ (c_k^2-c_k)/2 & i>k \end{array}\right.\end{equation}
+
+Similarly, if $c_k<0$, the $k$th runner has $-c_k$ electrons with energies:
+\begin{align*}
+-(k+1/2)&+r,\\
+-(k+1/2)&+2r, \\
+-(k+1/2)&+3r,\\
+\vdots\quad &\qquad \vdots \\
+-(k+1/2)&+-c_kr
+\end{align*}
+Again, treating the $k+1/2$ terms and the $ir$ terms separately, we see that the $ir$ terms will always consist of one box of each color, while the $-(k+1/2)$ will be subtracting half a box of color zero, and one box of each color from 1 to $k$, and so Equation \eqref{eq:coloredsquaresonrunner} is also correct when $c_k<0$.
+
+Thus, we see that the quadratic part of $|\core_r(c)|_i^{-1/r}$ is always $\sum_{i=0}^{r-1} c_k^2/2$, and the linear part is 0 if $i=0$, and if $i>0$ is:
+$$(-c_0-c_1-c_2-\cdots - c_{i-1}+c_i+c_{i+1}+\cdots+c_{r-1})/2$$
+Since $\sum_{k=0}^{r-1} c_k=0$, this later is equivalnt to $\sum_{k\geq i}^{r-1} c_k$.  Furthermore, this is equal to 0 if $i=0$, and so we may use this formula universally.  Thus, we have shown that
+$$|\core_r(\mathbf{c})|^G_i=\frac{1}{2}\sum_{k=0}^{r-1} c_k^2+ \sum^{r-1}_{k=i}c_k$$
+
+\end{proof}
+
+\begin{example}
+
+\end{example}
+
 
 
 Note that since the quadratic part of $|\core_a(\mathbf{c})|^G_i$ is independent of $i$, the quadratic part is adding a number of copies of the regular representation.  Hence, Theorem \ref{thm:quadratic-sl2} implies:
-
-
-
-
 \begin{corollary} 
-There is a linear relation between the charge functions $c_i(\lambda)$ the class $[\lambda]^G$.
+The map from the charge lattice to $\widetilde{K}^0(\Z_r)$ given by $\mathbf{c}\mapsto [\core_r(\mathbf{c})]$ is linear.  Since by \ref{lem:colored-core-existence}, this map is surjective, and the two lattices have the same dimension, this map is an isomorphism, and so for any $v\in \widetilde{K}^0(\Z_r)$, there is a unique $r$-core $\lambda$ with $[\lambda]=v$.
 \end{corollary}
 
-In fact, an explicit form of this linear change of variables will hold in general, even though
+\begin{corollary}
+  Two partitions $\mu$ and $\nu$ have the same $r$-core if and only if $[\lambda]=[\mu]$.
+\end{corollary}
+
+\begin{corollary}
+  Given a class $v\in K^0(\Z_r)$, there is at most one partition $\lambda$ with $|\lambda|^{1/r}=V$ and $\dim^+_{-1/r}(\lambda)=0$.  Thus, the multigraded Hilbert schemes $\Hilb_v(-1/r)$ are connected.
+  \end{corollary}
 
 
 
- that there is a linear change of variables between the charge coordinates and the colored box coordinates.  This second fact we will prove this second fact directly in Theorem \ref{ }
 
 
 
+There are many equivalent ways to think about $t$-core partitions; when we generalize them some of these definitions will still hold and some will be different.
+
+\begin{lemma}
+The following are equivalent:
+\begin{enumerate}
+\item $\lambda$ is a $t$-core
+\item $\lambda$ has no boundary strips of length $t$
+\item $\lambda$ has no cells $\square$ with $t|h(\square)$
+\item It is not possible to remove one square of each color from $\lambda$
+\item There are no partitions $\mu$ with $|\mu|^{-1/r}=|\lambda|^{-1/r}-\Reg$
+\item $|\lambda|^{-1/r}=|\mu|^{-1/r}$ implies $\lambda=\mu$ 
+\item $\II_\lambda$ is an isolated point in $\Hilb_n([\C^2/G_{-1/t}])$
+\end{enumerate}
+
+
+\end{lemma}
+Some implications between these partitions are immediate: $(3)\implies(1)$
+
+
+
+ 
 
 
 \section{Generalized cores and applications}
