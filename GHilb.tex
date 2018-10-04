@@ -1124,7 +1124,7 @@ But, it seems as $\delta\to\infty$, this second family of resolutions converges 
 
 \section{Warm-up: Cores, quotients, and $\Z_r\subset SL_2$}
 
-In this section, we discuss the relationship between the classical notion of cores and quotients of partitions and the topology of orbifold Hilbert schemes in the case when $G=\Z_r\subset SL_2$, sometimes called the \emph{anti-diagonal case}.  This relationship is well known to experts, but is somewhat scattered across the literature and not always presented in the form we would like.  As this relationship is the central motivation for our notion of $G$-cores and quotients, it is worth the effort to review this theory fully.
+In this section, we review the classical notion of cores and quotients of partitions and their relation to the topology of orbifold Hilbert schemes in the case when $G=\Z_r\subset SL_2$.  This relationship is well known to experts, but is somewhat scattered across the literature.  Though most everything in this section is standard, there are various small points that we have not seen in the literature.  Furthermore, the viewpoint of cores and quotients that generalizes to $\Z_r\not\subset SL_2$ seem to not be the standard view.  Thus, we are quite thorough in our review of this material, with the hope of making the generalization easier and more natural.
 
 \subsection{Colored boxes}
 
@@ -1225,26 +1225,28 @@ The shaded cells are the cells contributing to $\cdim^+_{1/3}(\lambda)$; that is
 \end{tikzpicture}
 \end{proof}
 
-
-Combinatorially, our motivation lies in the notion of core partitions.
+When $\Z_r\subset SL_2$, then $\dim_G(\lambda)$ is closely related to the classical combinatorial notion of \emph{cores and quotients} of partitions.  We give a brief indication of this to motivate the next section, which reviews the theory thorougly.
 \begin{definition} \label{def:hooklength}
-  Let $\lambda$ be a partition.  The \emph{hook length} $h(\square)$ of $\square\in\lambda$ is $a(\square)+\ell(\square)+1$.
+  Let $\lambda$ be a partition, and $\square\in\lambda$ a cell.  The \emph{hook length} of $\square$, written $h(\square)$ is
+$$h=a(\square)+\ell(\square)+1$$
 \end{definition}
 
 Comparing Definition \ref{def:hooklength} with Lemma \ref{lem:dimkr}, we have:
 
 \begin{lemma}
-$$\dim_{k/r}(\lambda)=\#\left\{\square\in\lambda \Big | h(\square)=0 \pmod r\right\}$$
+$$\dim_{-1/r}(\lambda)=\#\left\{\square\in\lambda \Big | h(\square)=0 \pmod r\right\}$$
 \end{lemma}
+
+We will see that $\dim_{-1/r}(\lambda)$ is the size of the $r$-quotients of $\lambda$, which is closely related to the $r$-core partitions, which are easier to define.
 
 \begin{definition} \label{def:tcore}
 We say $\lambda$ is a \emph{$t$-core} if it has no cells $\square\in\lambda$ with $h(\square)=t$.
 \end{definition}
 
 
-\subsection{Cores, Quotients, and the abacus}
+\subsection{Cores, Quotients, and the abacus}  Up until now, we have mainly been identifying partitions as a collection of squares in the plane.  Another point of view that is frequently useful is to identify a partition with its \emph{boundary path}; that is, the sequence of unit length line segments that separate the boxes in $\lambda$ from the boxes not in $\lambda$.  Often this is done in ``English'' notation, and only partitions that that fit inside some finite box are considered; then the boundary path can be recorded as a finite sequence of letters $N$ and $E$, recording whether the boundary path went North or East at each step, see \cite{LW}, for example.
 
-of letters, we will prefer to work with \emph{Maya diagrams}, which we now describe.  The conventions in the following discussion are based on the ``fermionic'' viewpoint of partitions and lattice paths, based on Dirac's electron sea model, see \cite{KR} for more. 
+We follow another prominent convention to work with \emph{Maya diagrams}, which we now describe.  The conventions in the following discussion are based on the ``fermionic'' viewpoint of partitions and lattice paths, based on Dirac's electron sea model, see \cite{KR} for more. 
 
 
 \subsection{Paths}
@@ -1322,9 +1324,8 @@ $3/2$ and $5/2$.
 
 
 
-
-The bijection between partitions and states of charge zero may be
-modified to give a bijection between partitions and states of charge $c$ for any $c\in\Z$.   Simply translate the partition to the right by $c$.
+\begin{remark} \label{remark:nonzerocharge}
+The bijection between partitions and states of charge zero may be modified to give a bijection between partitions and states of charge $c$ for any $c\in\Z$.   Simply translate the partition to the right by $c$.
 
 
 
@@ -1336,10 +1337,7 @@ to be right justified allows the charge of the state to be read off,
 as it is easy to see how many electrons have been added or are missing.  The resulting state of charge $c$ is called the \emph{vacuum of charge $c$}.  In what follows, we mix our metaphors and talk about electrons on runners of an abacus.
 
 \begin{example} \label{ex:mayabijection}
-Consider Example \ref{ex:particles}, where the Maya diagram consists of
-two positrons and an electron.  Pushing the beads to be right
-justified, we see the first bead is one step to the right of zero, and
-hence the original state had charge 1.
+Consider the Maya diagram below, which has two two positrons and an electron, and hence charge one.  Pushing the beads to be right justified, we see the first bead is one step to the right of zero, computing the charge.
 
 \begin{center}
 \begin{tikzpicture}[scale=.6]
@@ -1515,11 +1513,11 @@ It is not clear from the above definition that $\core_r(\lambda)$ is well define
 
 
 \begin{definition}
-  Let $\lambda$ be a partition.  The \emph{$r$-abacus of $\lambda$} is the representation of $\lambda$ where the electrons are spread out over $r$ runners, labelled 0 to $r-1$ rather than on one runner.  The $i$th runner holds the energy levels $kr-i-1/2$ for $k\in\Z$, so that every $r$th bead goes to the same runner.  
+  Let $\lambda$ be a partition.  The \emph{$r$-abacus of $\lambda$} is the representation of $\lambda$ where the electrons are spread out over $r$ runners rather than one.  We label the runners from $0$ to $r-1$. The $i$th runner holds the energy levels $kr-i-1/2$ for $k\in\Z$, so that every $r$th bead goes to the same runner.  
 \end{definition}
 
 \begin{definition} \label{def:quotients}
-The \emph{$r$-quotient} of $\lambda$, denoted $\quot_r(\lambda)$ is an $r$-tuple of partitions, where the $i$th partition $\quot_r^i(\lambda)$ is obtained by reading off the $i$th runner of the $r$-abacus of $\lambda$ as a partition.  The charge $c_i$ on the $i$th runner need not be 0, but as in Remark \ref{ } we may still view the beads on the $i$th runner as a Maya diagram of a partition. 
+The \emph{$r$-quotient} of $\lambda$, denoted $\quot_r(\lambda)$ is an $r$-tuple of partitions, where the $i$th partition $\quot_r^i(\lambda)$ is obtained by reading off the $i$th runner of the $r$-abacus of $\lambda$ as a partition.  The charge $c_i$ on the $i$th runner need not be 0, but as in Remark \ref{remark:nonzerocharge} we may still view the beads on the $i$th runner as a Maya diagram of a partition. 
 
 The size of the $r$-quotient is the sum of the sizes of the individual partitions: 
 $$|\quot_r(\lambda)|=\sum_{i=1}^r |\quot_r^i(\lambda)|$$
@@ -1799,7 +1797,64 @@ We illustrate that $\core_3(0,3, -3)=7+5+3+3+2+2+1+1$.  The numbers on the bound
 
 While this example is fresh, we illustrate a few properties of cores and quotients that will be useful later.  First, note that the way we've colored the edges of the boundary path of $\lambda$ is related to the way we've colored the squares in the grid:
 
-Second, we have marked each square $\square$ of $\lambda$ that has a hook length divisible by $r$ with a suit-sign.  The suit-sign depends on which number the hand and foot of $\square$ are labeled.  Note that the squares with a given suit-sign are naturally arrayed in the same way as the corresponding component of $\quot(\lambda)$.  This gives another description of the $i$th piece of the $r$-quotient of $\lambda$: it consists of those cells of $\lambda$ whose row and column of the corresponding part of the boundary path are both colored $i$.  
+Second, we have marked each square $\square$ of $\lambda$ that has a hook length divisible by $r$ with a suit-sign.  The suit-sign depends on which number the hand and foot of $\square$ are labeled.  Note that the squares with a given suit-sign are naturally arrayed in the same way as the corresponding component of $\quot(\lambda)$.  This gives a description of the $i$th piece of the $r$-quotient of $\lambda$ as a subset of $\lambda$: $\quot_r^i(\lambda)$ it consists of those cells of $\lambda$ whose hand and foot are both colored $i$.  
+
+
+\begin{tikzpicture}
+   \begin{scope}[gray, very thin, scale=.4]
+      \clip (-11.5, 11.5) rectangle (11.5, -1);
+      \draw[rotate=45, scale=1.412, gray!20!white, fill] (0,0)--(0,10)--(1,10)--(1,8)--(3,8)--(3,4)--(5,4)--(5,3)--(6,3)--(6,1)--(8,1)--(8,0)--cycle;
+      \begin{scope}[rotate=45, scale=1.412, black!50!green] 
+         \draw (.5,6.5)node{$\spadesuit$};
+         \draw (1.5,6.5)node{$\spadesuit$};
+      \end{scope}
+
+      \begin{scope}[rotate=45, scale=1.412, blue] 
+         \draw (2.5,5.5)node{$\clubsuit$};
+         \draw (2.5,2.5)node{$\clubsuit$};
+         \draw (4.5,2.5)node{$\clubsuit$};
+      \end{scope}
+
+
+      \draw[rotate=45, scale=1.412] (0,0) grid (12,12);
+   \end{scope}
+
+   \begin{scope}[rotate=45, ultra thick, scale=.4*1.412]
+      \begin{scope}[blue]
+         \draw (1,9.5) node{$0$};
+         \draw (2.5,8)node{$0$};
+         \draw (3,5.5)node{$0$};
+         \draw (4.5,4)node{$0$};
+         \draw (6,2.5)node{$0$};
+         \draw (7.5,1)node{$0$};
+         \draw (9.5,0)node{$0$};
+      \end{scope}
+
+      \begin{scope}[red]
+         \draw (0,10.5)node{$1$};
+         \draw (1,8.5)node{$1$};
+         \draw (3,7.5)node{$1$};
+         \draw (3,4.5)node{$1$};
+         \draw (5,3.5)node{$1$};
+         \draw (6,1.5)node{$1$};
+         \draw (8,.5)node{$1$};
+         \draw (10.5,0)node{$1$};
+      \end{scope}
+
+      \begin{scope}[black!50!green]
+         \draw (.5,10)node{$2$};
+         \draw (1.5, 8)node{$2$};
+         \draw (3,6.5)node{$2$};
+         \draw (3.5,4)node{$2$};
+         \draw (5.5,3)node{$2$};
+         \draw (6.5,1)node{$2$};
+         \draw (8.5,0)node{$2$};
+      \end{scope}
+
+   \end{scope}
+
+\end{scope}
+\end{tikzpicture}
 
 
 
@@ -1816,7 +1871,7 @@ $$\cdim^+_{-1/r}(\lambda)=|\quot_r{\lambda}|$$
 
 Consider the $r$-abacus of $\lambda$.  Removing an $r$-border strip from $\lambda$ corresponds to moving an electron $r$ spots to the right in the Maya diagram of $\lambda$, and hence to moving an electron one spot to the right on its runner in the $r$-abacus of $\lambda$.  Thus, if we remove as many $r$-border strips as possible, in the end we will always wind up with an $r$-abacus where all the electrons are right justified, showing that $\core_r(\lambda)$ is well defined.
 
-To see the first equation, every time we remove an $r$-border strip from $\lambda$, we remove $r$ cells from $\lambda$.  But since this only moves an electron one space on the $r$-abacus, it reduces $|\quot_r(\lambda)$ by one.
+To see the first equation, every time we remove an $r$-border strip from $\lambda$, we remove $r$ cells from $\lambda$.  But since this only moves an electron one space on the $r$-abacus, it reduces $|\quot_r(\lambda)|$ by one.
 
 To see the second equation, two energy levels differ by a multiple of $r$ if and only if they are on the same runner of the $r$-abacus.  Hence, $|\quot_r(\lambda)|$ is the number of cells with hook length divisible by $r$, which is $\cdim^+_{-1/r}(\lambda)$.
 
@@ -1891,7 +1946,7 @@ The core and quotient bijection above in particular gives a bijection between $a
 The \emph{$r$-charge} of a partition $\lambda$ is the $c^G(\lambda)$ vector in $\Lambda_a=\{(c_i)|\sum c_i=0\}$ where $c_i^G(\lambda)$ is the charge of the $i$th runner of $\lambda$ when written on the $a$-abacus.
 \end{definition}
 
-Using this description, we can get an intuitive picture of what a typical $r$-core looks like; the following 4-core is useful for the ensuing discussion.
+Using this description, we can get an intuitive picture of what a typical $r$-core looks like that will be very useful when we turn to generalized cores.  The following 4-core is useful for the ensuing discussion.
 
 
   \begin{tikzpicture}[scale=.3]
@@ -2032,12 +2087,11 @@ Some implications between these partitions are immediate: $(3)\implies(1)$
 
 \section{Generalized cores and applications}
 
-This section introduces \emph{rational cores and quotients}, amd applies them to the study of $|\lambda|_G$ and $\cdim(\lambda)$.  In particular, we prove two results: the topology of $\Hilb_v$ stabilizes, and that the size of $k/r$-cores is piecewise quadratic.
+The previous section discussed $r$-cores and quotients, and their close connection with the topology of $\Hilb_n([\C^2/\Z_r])$ for $\Z_r\subset SL_2(\C)$.  Motivated by that connection, we now introduce \emph{generalized cores and quotients}, or $G$-cores and quotients, with the aim of having a similar connection to the topology of $\Hilb_n([\C^2/\Z_r])$ for $\Z_r\not\subset SL_2(\C)$.  When $G=\Z_r$ acting with weights $(1/r, k/r)$, we will call these $k/r$-cores and quotients.  
 
-The basic construction of $k/r$-cores and quotients is the $k/r$-abacus.  This parallels the usual abacus construction of regular cores and quotients, but is more complicated: rather than regularly cycling through the $r$ runners, the runners the electrons/beads are placed on depends on whether the previous state was filled with an electron or left empty.  
+We have two main results: the topology of $\Hilb_v$ stabilizes, and the size of $k/r$-cores is piecewise quadratic.
 
-The construction is also essentially the arriving/departing word construction of \cite{LW}.  We begin by making this explicit, and explaining usual $r$-cores in terms of leaving words.
-
+The basic construction of $k/r$-cores and quotients is the $k/r$-abacus.  This parallels the usual abacus construction of regular cores and quotients, but is more complicated: rather than regularly cycling through the $r$ runners in order, the runner each electrons/beads are placed on depends on whether the previous state was filled with an electron or left empty.  This dependence is best seen as modifying the leaving word description provided by above.
 
 \subsection{The regular abacus in terms of leaving words} \label{sec:leaving-words}
 
